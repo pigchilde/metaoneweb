@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpriteFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CssFileName="../images" ImageName="ico" IsPhone="false" PhoneFigure="2" PhoneUnit="rem" SpriteImgFileType="Png" xmlns="CssSprite">
+  <SpriteList>
+    <Sprite Path="ico-srearch.png" LocationX="0" LocationY="0" />
+    <Sprite Path="ico-blocks.png" LocationX="36" LocationY="0" />
+    <Sprite Path="ico-list.png" LocationX="76" LocationY="0" />
+    <Sprite Path="ico-heart.png" LocationX="116" LocationY="0" />
+    <Sprite Path="ico-star.png" LocationX="157" LocationY="0" />
+  </SpriteList>
+</SpriteFile>

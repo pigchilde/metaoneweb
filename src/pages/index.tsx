@@ -23,6 +23,11 @@ export default function IndexPage() {
           id: 'NEW',
         })}
       </Link>
+      <Link to={`/gamefi`}>
+        {intl.formatMessage({
+          id: 'GameFi',
+        })}
+      </Link>
     </div>
   );
 }
