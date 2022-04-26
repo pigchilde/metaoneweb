@@ -1,5 +1,5 @@
 export default {
   CN: 'CN',
   US: 'US',
-  NEW: 'news',
+  NEW_h2: 'MetaOne New Guilds Announcement',
 };

@@ -1,3 +1,49 @@
+@import url('~@/themes/base.less');
+@import url('~@/themes/common.less');
 .test {
   background-color: #444;
+}
+.banner {
+  height: 333px;
+  background: url(../../assets/news/img/test.jpg) center center no-repeat;
+  .banner-h2 {
+    padding-top: 109px;
+    font-size: 55px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: @white;
+  }
+  .banner-p {
+    padding-top: 20px;
+    text-align: left;
+    width: 637px;
+    height: 65px;
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: 0px;
+    color: @white;
+  }
+}
+.tab-box {
+  margin: 33px 0;
+  display: flex;
+  border-bottom: 2px solid @green;
+  li {
+    padding: 19px 25px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: solid 2px @green;
+    margin-right: 19px;
+    border-bottom: none;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.list-item {
+  display: flex;
 }
