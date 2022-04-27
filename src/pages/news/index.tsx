@@ -30,7 +30,64 @@ const News = () => {
         </ul>
         <ul className={styles['list-item']}>
           <li>
+            <div className={styles['img-box']}></div>
             <img src={testImg} alt="" />
+            <div className={styles['txt-box']}>
+              <h6>MetaOne completes $1.2-million </h6>
+              <p className={styles['txt-desc']}>
+                MetaOne aims to be the world’s leading GameFi, guild management
+                and analytics platform. Recently it ann
+              </p>
+              <p className={styles['txt-time']}>April 21 2022</p>
+            </div>
+          </li>
+          <li>
+            <div className={styles['img-box']}></div>
+            <img src={testImg} alt="" />
+            <div className={styles['txt-box']}>
+              <h6>MetaOne completes $1.2-million </h6>
+              <p className={styles['txt-desc']}>
+                MetaOne aims to be the world’s leading GameFi, guild management
+                and analytics platform. Recently it ann
+              </p>
+              <p className={styles['txt-time']}>April 21 2022</p>
+            </div>
+          </li>
+          <li>
+            <div className={styles['img-box']}></div>
+            <img src={testImg} alt="" />
+            <div className={styles['txt-box']}>
+              <h6>MetaOne completes $1.2-million </h6>
+              <p className={styles['txt-desc']}>
+                MetaOne aims to be the world’s leading GameFi, guild management
+                and analytics platform. Recently it ann
+              </p>
+              <p className={styles['txt-time']}>April 21 2022</p>
+            </div>
+          </li>
+          <li>
+            <div className={styles['img-box']}></div>
+            <img src={testImg} alt="" />
+            <div className={styles['txt-box']}>
+              <h6>MetaOne completes $1.2-million </h6>
+              <p className={styles['txt-desc']}>
+                MetaOne aims to be the world’s leading GameFi, guild management
+                and analytics platform. Recently it ann
+              </p>
+              <p className={styles['txt-time']}>April 21 2022</p>
+            </div>
+          </li>
+          <li>
+            <div className={styles['img-box']}></div>
+            <img src={testImg} alt="" />
+            <div className={styles['txt-box']}>
+              <h6>MetaOne completes $1.2-million </h6>
+              <p className={styles['txt-desc']}>
+                MetaOne aims to be the world’s leading GameFi, guild management
+                and analytics platform. Recently it ann
+              </p>
+              <p className={styles['txt-time']}>April 21 2022</p>
+            </div>
           </li>
         </ul>
       </section>

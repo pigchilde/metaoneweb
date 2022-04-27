@@ -46,4 +46,37 @@
 }
 .list-item {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  li {
+    width: 30%;
+    background-color: #111;
+    margin-bottom: 36px;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+    .txt-box {
+      padding: 40px 10%;
+      height: 186px;
+      overflow: hidden;
+    }
+    h6 {
+      font-size: 22px;
+      letter-spacing: 0px;
+      color: #fffaf5;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .txt-time {
+      text-align: right;
+      word-break: break-all;
+    }
+    .txt-desc {
+      font-size: 16px;
+      letter-spacing: 0px;
+      color: #b6b6b6;
+    }
+  }
 }
