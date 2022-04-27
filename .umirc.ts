@@ -6,4 +6,7 @@ export default defineConfig({
     type: 'none',
   },
   fastRefresh: {},
+  theme: {
+    'primary-color': '#00cacb',
+  },
 });
