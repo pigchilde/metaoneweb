@@ -1,12 +1,12 @@
 import styles from './index.less';
 import { Menu, Dropdown, message, Space } from 'antd';
 import tmp1 from '../../assets/gamefi/img/d-1.png';
+import Filters from './components/Filters';
+import { RightOutlined } from '@ant-design/icons';
 
-import { useIntl, setLocale } from 'umi';
 const GameFi = () => {
-  const intl = useIntl();
   return (
-    <>
+    <div>
       <header className={styles['heed-seletor']}>
         <div className={styles['wrapper']}>
           <h1>GAMES</h1>
@@ -40,7 +40,10 @@ const GameFi = () => {
               ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
               accumsan lacus vel facilisis.
             </p>
-            <div className={styles['btn']}>VIEW MORE</div>
+            <div className={styles['btn']}>
+              VIEW MORE
+              <RightOutlined />
+            </div>
           </aside>
         </div>
         <div className={styles['img-list']}>
@@ -88,8 +91,8 @@ const GameFi = () => {
         </div>
       </section>
 
-      <section className={styles['wrapper']}>dd</section>
-    </>
+      <Filters />
+    </div>
   );
 };
 

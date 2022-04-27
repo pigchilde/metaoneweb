@@ -1,0 +1,29 @@
+@import url('~@/themes/base.less');
+@import url('~@/themes/common.less');
+.filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.select-box {
+  display: flex;
+  align-items: center;
+  > label {
+    font-size: 23px;
+  }
+  .ico {
+    margin-right: 20px;
+  }
+}
+
+:global {
+  .ant-dropdown-trigger {
+    margin: 0 18px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: solid 2px #00c9cb;
+  }
+  .ant-space-item {
+    color: #fff;
+  }
+}
