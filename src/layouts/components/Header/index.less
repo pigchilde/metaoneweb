@@ -1,0 +1,248 @@
+@import '../../../themes/common.less';
+
+.spr {
+  background: url('~@/assets/common/img/spr.png') no-repeat;
+}
+
+.header {
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 68px;
+  border: 1px solid @white;
+  border-width: 1px 0;
+  background: #000;
+}
+
+.hd-l,
+.hd-r,
+.unsign,
+.signed {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 81px;
+  img {
+    height: 100%;
+  }
+  h1 {
+    font-size: 0;
+    line-height: 0;
+  }
+}
+
+.btn-menu {
+  width: 36px;
+  height: 35px;
+  &:extend(.spr);
+  background-position: 0 0;
+  margin-left: 42px;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  a {
+    font-size: 22px;
+    color: @white;
+    margin-left: 36px;
+    line-height: 33px;
+    &:hover {
+      color: @green;
+    }
+  }
+}
+
+.btn-help,
+.op-msg:before {
+  width: 36px;
+  height: 35px;
+  &:extend(.spr);
+}
+
+.btn-help {
+  background-position: 0 -35px;
+}
+
+.op-msg {
+  position: relative;
+  cursor: pointer;
+  margin-left: 17px;
+  &:before {
+    content: '';
+    display: block;
+    background-position: 0 -70px;
+  }
+  .msg-num {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    min-width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 11px;
+    background: #cc3e51;
+    font-size: 11px;
+    color: @white;
+    text-align: center;
+    padding: 0 8px;
+  }
+}
+
+.op-lang {
+  min-width: 33px;
+  height: 33px;
+  line-height: 33px;
+  border: 2px solid @white;
+  color: @white;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 23px;
+}
+
+.btn-register,
+.btn-signin {
+  width: 178px;
+  height: 59px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn-register {
+  margin-left: 22px;
+  border-width: 3px;
+  border-color: @green !important;
+}
+
+.btn-signin {
+  margin-left: 19px;
+}
+
+@media screen and (min-width: 1681px) and (max-width: 1870px) {
+  .header {
+    padding: 0 43px;
+  }
+  .btn-menu {
+    margin-left: 21px;
+  }
+  .nav {
+    a {
+      margin-left: 24px;
+      font-size: 22px;
+    }
+  }
+  .op-msg {
+    margin-left: 12px;
+  }
+  .op-lang {
+    margin-left: 18px;
+  }
+  .btn-register,
+  .btn-signin {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 1501px) and (max-width: 1680px) {
+  .header {
+    height: 110px;
+    padding: 0 30px;
+  }
+  .logo {
+    height: 70px;
+  }
+  .btn-menu {
+    margin-left: 15px;
+  }
+  .nav {
+    a {
+      margin-left: 16px;
+      font-size: 21px;
+    }
+  }
+  .op-msg {
+    margin-left: 12px;
+  }
+  .op-lang {
+    margin-left: 18px;
+  }
+  .btn-register,
+  .btn-signin {
+    margin-left: 15px;
+    width: 140px;
+    height: 46px;
+    font-size: 19px;
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1500px) {
+  .header {
+    padding: 0 21px;
+    height: 85px;
+  }
+  .logo {
+    height: 60px;
+  }
+  .btn-menu {
+    margin-left: 15px;
+  }
+  .nav {
+    a {
+      margin-left: 16px;
+      font-size: 19px;
+    }
+  }
+  .op-msg {
+    margin-left: 12px;
+  }
+  .op-lang {
+    margin-left: 18px;
+  }
+  .btn-register,
+  .btn-signin {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .header {
+    padding: 0 14px;
+    height: 70px;
+  }
+  .logo {
+    height: 50px;
+    margin-top: -16px;
+  }
+  .btn-menu {
+    margin-left: 10px;
+  }
+  .nav {
+    a {
+      margin-left: 12px;
+      font-size: 17px;
+    }
+  }
+  .op-msg {
+    margin-left: 12px;
+  }
+  .op-lang {
+    margin-left: 18px;
+  }
+  .btn-register,
+  .btn-signin {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 17px;
+  }
+}

@@ -1,7 +1,9 @@
 import styles from './index.less';
 import { Layout, Menu } from 'antd';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 interface objectT {
   [propName: string]: any;
 }
@@ -9,9 +11,9 @@ interface objectT {
 const BasicLayout = (props: any) => {
   return (
     <Layout>
-      <Header>Header</Header>
+      <Header />
       <Content> {props.children}</Content>
-      <Footer>Footer</Footer>
+      <Footer />
     </Layout>
   );
 };
