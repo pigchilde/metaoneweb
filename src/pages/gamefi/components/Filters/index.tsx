@@ -1,8 +1,7 @@
-[];
 import styles from './index.less';
 import styles2 from '../../index.less';
-import { Menu, Dropdown, Space } from 'antd';
-import { CaretDownOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, Space, Button, Input } from 'antd';
+import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 
 const Filters = () => {
   const items = [
@@ -18,7 +17,10 @@ const Filters = () => {
   const menu = <Menu items={items} />;
   return (
     <div className={`${styles['wrapper']} ${styles['filter-wrapper']} `}>
-      <aside className={styles['search-box']}></aside>
+      <aside className={styles['search-box']}>
+        <Input placeholder="Search" />
+        <SearchOutlined />
+      </aside>
       <aside className={styles['select-box']}>
         <label>Show</label>
         <Dropdown overlay={menu}>
@@ -40,6 +42,7 @@ const Filters = () => {
         </Dropdown>
         <i className={`${styles2['ico']} ${styles2['ico-blocks']}`}></i>
         <i className={`${styles2['ico']} ${styles2['ico-list']}`}></i>
+        <Button type="primary">Filters</Button>
       </aside>
     </div>
   );

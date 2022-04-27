@@ -1,0 +1,48 @@
+@import url('~@/themes/base.less');
+@import url('~@/themes/common.less');
+
+.list-wrapper {
+  background-color: #061216;
+  border-radius: 10px;
+  border: solid 0px #ffffff;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+:global {
+  .ant-pagination {
+    text-align: center;
+  }
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link,
+  .ant-pagination-item,
+  .ant-pagination-item-ellipsis {
+    border-radius: 7px;
+    border: solid 2px @green;
+
+    // background-color:transparent;
+  }
+  .ant-pagination-item {
+    background: transparent;
+    a {
+      color: #fff;
+    }
+
+    // color: #fff !important;
+  }
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    background: transparent;
+    color: @green;
+  }
+  .ant-pagination-item-active {
+    a {
+      color: #fff;
+    }
+    background: @green;
+  }
+  //   .ant-pagination-item-ellipsis{
+  //     border-radius: 7px;
+  //     border: solid 2px @green;
+  //   }
+}

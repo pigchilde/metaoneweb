@@ -1,15 +1,35 @@
 import styles from './index.less';
-import { Menu, Dropdown, message, Space } from 'antd';
+import { Menu, Dropdown, Button, Space } from 'antd';
 import tmp1 from '../../assets/gamefi/img/d-1.png';
 import Filters from './components/Filters';
-import { RightOutlined } from '@ant-design/icons';
+import Filist from './components/Filist';
+import { RightOutlined, CaretDownOutlined } from '@ant-design/icons';
 
 const GameFi = () => {
+  const dropitems = [
+    {
+      label: <div>Hot collections</div>,
+      key: '0',
+    },
+    {
+      label: <div>Hot collections2</div>,
+      key: '1',
+    },
+  ];
+  const menu = <Menu items={dropitems} />;
   return (
-    <div>
-      <header className={styles['heed-seletor']}>
+    <div className={styles['GameFi-wrapper']}>
+      <header className={styles['head-seletor']}>
         <div className={styles['wrapper']}>
           <h1>GAMES</h1>
+          <Dropdown overlay={menu}>
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                Hot collections
+                <CaretDownOutlined />
+              </Space>
+            </a>
+          </Dropdown>
         </div>
       </header>
       <section className={styles['banner']}>
@@ -40,10 +60,10 @@ const GameFi = () => {
               ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
               accumsan lacus vel facilisis.
             </p>
-            <div className={styles['btn']}>
+            <Button type="primary">
               VIEW MORE
               <RightOutlined />
-            </div>
+            </Button>
           </aside>
         </div>
         <div className={styles['img-list']}>
@@ -92,6 +112,7 @@ const GameFi = () => {
       </section>
 
       <Filters />
+      <Filist />
     </div>
   );
 };

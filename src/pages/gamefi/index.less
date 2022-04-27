@@ -1,5 +1,20 @@
 @import url('~@/themes/base.less');
 @import url('~@/themes/common.less');
+:global {
+  .ant-dropdown-trigger {
+    margin: 0 18px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: solid 2px #00c9cb;
+  }
+  .ant-dropdown-menu {
+    border-radius: 4px;
+    border: solid 2px #00c9cb;
+  }
+  .ant-space-item {
+    color: #fff;
+  }
+}
 
 .ico {
   background: url('../../assets/gamefi/img/ico.png') no-repeat;
@@ -36,7 +51,7 @@
   background-position: -157px 0;
 }
 
-.heed-seletor {
+.head-seletor {
   padding: 25px 0 17px;
 
   h1 {
@@ -47,10 +62,13 @@
   }
 
   .wrapper {
+    display: flex;
     align-items: center;
   }
 }
-
+.GameFi-wrapper {
+  padding-bottom: 230px;
+}
 .flex {
   display: flex;
 }
@@ -80,6 +98,14 @@
         height: 100%;
         object-fit: cover;
       }
+    }
+  }
+  :global {
+    .ant-btn-primary {
+      border-radius: 10px;
+      height: 54px;
+      padding: 0 30px;
+      font-size: 20px;
     }
   }
 
@@ -120,17 +146,6 @@
     p {
       margin-bottom: 20px;
       font-size: 22px;
-    }
-
-    .btn {
-      width: 212px;
-      height: 59px;
-      background-color: #00cacb;
-      border-radius: 10px;
-      line-height: 59px;
-      color: #ffffff;
-      font-size: 20px;
-      text-align: center;
     }
   }
 
