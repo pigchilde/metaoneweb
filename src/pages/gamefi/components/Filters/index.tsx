@@ -1,8 +1,8 @@
 import styles from './index.scss';
 import styles2 from '../../index.scss';
-import { Menu, Dropdown, Space, Button, Input } from 'antd';
+import { Menu, Dropdown, Space, Button, Input, Popover, Checkbox } from 'antd';
 import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
-
+import React from 'react';
 const Filters = () => {
   const items = [
     {
@@ -14,6 +14,39 @@ const Filters = () => {
       key: '1',
     },
   ];
+  const plainOptions = ['All', 'Launched'];
+  const plainOptions2 = ['All', 'Official', 'Testnet', 'Upcoming'];
+  const plainOptions3 = [
+    'Action',
+    'Metaverse',
+    'Racing',
+    'Strategy',
+    'Adventure',
+    'Mmorpg',
+    'Simulation',
+    'Rtrategy',
+    'Card',
+    'Puzzle',
+    'Sports',
+    'Turn-based Strategy',
+  ];
+
+  const popContent = (
+    <React.Fragment>
+      <h6 className={styles.checktitle}>IGO STATUS</h6>
+      <div className={styles.checkline}>
+        <Checkbox.Group options={plainOptions} />
+      </div>
+      <h6 className={styles.checktitle}>GAME RELEASE</h6>
+      <div className={styles.checkline}>
+        <Checkbox.Group options={plainOptions2} />
+      </div>
+      <h6 className={styles.checktitle}>CATEGORIES</h6>
+      <div className={styles.checkline}>
+        <Checkbox.Group options={plainOptions3} />
+      </div>
+    </React.Fragment>
+  );
   const menu = <Menu items={items} />;
   return (
     <div className={`wrapper ${styles['filter-wrapper']} `}>
@@ -42,7 +75,14 @@ const Filters = () => {
         </Dropdown>
         <i className={`${styles2['ico']} ${styles2['ico-blocks']}`}></i>
         <i className={`${styles2['ico']} ${styles2['ico-list']}`}></i>
-        <Button type="primary">Filters</Button>
+        <Popover
+          placement="bottomRight"
+          content={popContent}
+          title="FILTERS"
+          trigger="click"
+        >
+          <Button type="primary">Filters</Button>
+        </Popover>
       </aside>
     </div>
   );

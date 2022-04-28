@@ -8,21 +8,61 @@
     width: 100%;
     display: flex;
     align-items: center;
+
   }
   .col1 {
-    width: 25%;
+    width: 40%;
     
   }
   .col2 {
-    width: 15%;
+    width: 12%;
+  }
+  .rowH{
+    margin-bottom: 15px;
+    font-weight:bold ;
+    font-size: 15px;
+    .col1{
+      padding-left: 130px;
+    }
+  
   }
   ul {
+    .col1{
+        padding-left: 59px;
+    }
+    .col2{
+      @extend  %ellipsis-basic;
+      padding-left: 15px;
+      // @include ellipsis();
+      
+    }
+    .person{
+      display: flex;
+      align-items: center;
+    }
     .row {
       padding: 5px;
       background-color: #00191c;
       border-radius: 10px;
       border: solid 0px #ffffff;
       margin-bottom: 8px;
+    }
+    h6{
+      color: #ffffff;
+      font-size: 20px;
+      @include ellipsis();
+      font-weight: bold
+    }
+    p{
+      @include ellipsis();
+    }
+    .img{
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-right: 20px;
     }
   }
 }

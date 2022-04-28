@@ -1,11 +1,57 @@
-
 .filter-wrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+:global {
+  .ant-popover-placement-bottomRight .ant-popover-arrow {
+    display: none;
+  }
+  .ant-checkbox + span{
+    color: #feffff;
+  }
+  .ant-checkbox-group-item{
+    min-width: 105px;
+    margin-bottom: 10px;
+  }
+  .ant-popover-inner {
+    background-color: #162b2f;
+    border-radius: 10px;
+    border: solid 2px #00cacb;
+    color: #fff;
+    padding: 5px 30px 0px;
+    width: 590px;
+  }
+
+  .ant-popover-title {
+    color: $white;
+    font-size: 20px;
+    line-height: 2;
+    font-weight: bold;
+    padding-left: 0;
+    border-bottom: 0;
+  }
+  .ant-popover-inner-content{
+    padding: 0;
+  }
+}
+.checktitle{
+  color: #feffff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.checkline{
+  border-bottom: dashed 1px $green;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  &:last-child{
+    border: 0;
+  }
+}
 .search-box {
   position: relative;
+
   :global {
     .ant-input {
       width: 630px;
@@ -17,12 +63,13 @@
       font-size: 23px;
       padding-left: 20px;
     }
+
     .anticon {
       position: absolute;
       right: 20px;
       top: 50%;
       font-size: 25px;
-      transform: translateY(-50%); 
+      transform: translateY(-50%);
       color: $green;
     }
   }
@@ -32,11 +79,11 @@
   display: flex;
   align-items: center;
 
-  > label {
+  >label {
     font-size: 23px;
   }
 
-  > i {
+  >i {
     margin-right: 20px;
   }
 
@@ -49,5 +96,5 @@
     }
   }
 
-  
+
 }
