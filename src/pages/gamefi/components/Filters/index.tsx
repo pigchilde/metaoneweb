@@ -1,5 +1,5 @@
-import styles from './index.less';
-import styles2 from '../../index.less';
+import styles from './index.scss';
+import styles2 from '../../index.scss';
 import { Menu, Dropdown, Space, Button, Input } from 'antd';
 import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 
@@ -16,7 +16,7 @@ const Filters = () => {
   ];
   const menu = <Menu items={items} />;
   return (
-    <div className={`${styles['wrapper']} ${styles['filter-wrapper']} `}>
+    <div className={`wrapper ${styles['filter-wrapper']} `}>
       <aside className={styles['search-box']}>
         <Input placeholder="Search" />
         <SearchOutlined />
