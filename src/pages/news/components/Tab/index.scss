@@ -1,0 +1,22 @@
+@import '~@/themes/common.scss';
+
+.tab-box {
+  margin: 33px 0;
+  display: flex;
+  border-bottom: 2px solid $green;
+  li {
+    padding: 19px 25px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: solid 2px $green;
+    margin-right: 19px;
+    border-bottom: none;
+    max-width: 250px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@import '~@/themes/common.scss';
+.page-box {
+  text-align: center;
+  :global {
+    .ant-pagination {
+      text-align: center;
+    }
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link,
+    .ant-pagination-item,
+    .ant-pagination-item-ellipsis {
+      border-radius: 7px;
+      border: solid 2px $green;
+
+      // background-color:transparent;
+    }
+    .ant-pagination-item {
+      background: transparent;
+      a {
+        color: $green;
+      }
+
+      // color: #fff !important;
+    }
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link {
+      background: transparent;
+      color: $green;
+    }
+
+    .ant-pagination-item-container .ant-pagination-item-ellipsis,
+    .ant-pagination-item-container .ant-pagination-item-ellipsis {
+      color: $green;
+    }
+    .ant-pagination-jump-prev:hover .ant-pagination-item-ellipsis,
+    .ant-pagination-jump-next:hover .ant-pagination-item-ellipsis {
+      color: #fff;
+    }
+    .ant-pagination-item:hover a {
+      color: #fff;
+    }
+    .ant-pagination-item-active {
+      a {
+        color: #fff;
+      }
+      background: $green;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      background-color: #000;
+      color: $green;
+      border: solid 2px $green;
+      border-radius: 6px;
+    }
+    .ant-select-arrow {
+      color: $green;
+    }
+    .ant-pagination-options-size-changer.ant-select {
+      display: none;
+    }
+    .ant-pagination-options-quick-jumper {
+      color: $green;
+    }
+    .ant-pagination-options-quick-jumper input {
+      background-color: #000;
+      border: solid 2px $green;
+      color: $green;
+    }
+  }
+}

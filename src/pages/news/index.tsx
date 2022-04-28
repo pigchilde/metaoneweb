@@ -1,41 +1,26 @@
-import styles from './index.less';
-import { useIntl, setLocale } from 'umi';
-import testImg from '../../assets/news/pic/test.jpg';
-import { Pagination } from 'antd';
+import styles from './index.scss';
+import { useIntl } from 'umi';
+import testImg from '@/assets/news/pic/test.jpg';
+import PaginationItem from '@/components/Pagination';
+import Banner from './components/Banner';
+import Tab from './components/Tab';
+import { history } from 'umi';
 const News = () => {
-  const intl = useIntl();
   const onShowSizeChange = () => {};
+  const onClick = () => {
+    history.push('/news/1');
+  };
   return (
     <>
-      <header className={styles['banner']}>
-        <div className={`${styles['wrapper']}`}>
-          <h2 className={`${styles['banner-h2']}`}>
-            {intl.formatMessage({
-              id: 'NEW_h2',
-            })}
-          </h2>
-          <p className={`${styles['banner-p']}`}>
-            #Metaone #GameFi #NFTs #guilds #community #BlockchainGaming
-            https://t.co/7ToJurhNxs
-          </p>
-        </div>
-      </header>
+      <Banner />
+
       <section className={`${styles['main']} ${styles['wrapper']}`}>
-        <ul className={styles['tab-box']}>
-          <li>dsadadasdasd</li>
-          <li>dsadadasdasd</li>
-          <li>
-            dsadadaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsdasd
-          </li>
-          <li>dsadadasdasd</li>
-          <li>dsadadasdasd</li>
-        </ul>
+        <Tab />
         <ul className={styles['list-item']}>
-          <li>
+          <li onClick={onClick}>
             <div className={styles['img-box']}>
               <img src={testImg} alt="" />
             </div>
-
             <div className={styles['txt-box']}>
               <h6>MetaOne completes $1.2-million </h6>
               <p className={styles['txt-desc']}>
@@ -46,12 +31,9 @@ const News = () => {
             </div>
           </li>
         </ul>
-        <Pagination
-          showSizeChanger
-          onShowSizeChange={onShowSizeChange}
-          defaultCurrent={3}
-          total={500}
-        />
+        <div className={styles['pagination-item']}>
+          <PaginationItem />
+        </div>
       </section>
     </>
   );

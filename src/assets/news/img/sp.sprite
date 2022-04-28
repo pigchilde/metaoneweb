@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpriteFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CssFileName="../images" ImageName="sp" IsPhone="false" PhoneFigure="2" PhoneUnit="rem" SpriteImgFileType="Png" xmlns="CssSprite">
+  <SpriteList>
+    <Sprite Path="password-close.png" LocationX="0" LocationY="0" />
+    <Sprite Path="password-open.png" LocationX="0" LocationY="15" />
+    <Sprite Path="manage-ico.png" LocationX="0" LocationY="31" />
+    <Sprite Path="nft-ico.png" LocationX="0" LocationY="57" />
+    <Sprite Path="setting-ico.png" LocationX="0" LocationY="81" />
+    <Sprite Path="game-ico.png" LocationX="0" LocationY="108" />
+    <Sprite Path="info-ico.png" LocationX="0" LocationY="132" />
+    <Sprite Path="menu.png" LocationX="0" LocationY="164" />
+  </SpriteList>
+</SpriteFile>

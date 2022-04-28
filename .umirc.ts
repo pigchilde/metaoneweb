@@ -6,6 +6,8 @@ export default defineConfig({
     type: 'none',
   },
   fastRefresh: {},
+  // mfsu: {},
+  sass: {},
   theme: {
     'primary-color': '#00cacb',
   },

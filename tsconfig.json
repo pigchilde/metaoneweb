@@ -14,10 +14,12 @@
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     },
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true
   },
   "include": [
     "mock/**/*",
+    "src/components/**/*",
     "src/**/*",
     "config/**/*",
     ".umirc.ts",
