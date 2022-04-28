@@ -14,7 +14,7 @@ const News = () => {
     <>
       <Banner />
 
-      <section className={`${styles['main']} ${styles['wrapper']}`}>
+      <section className={`${styles['main']} wrapper`}>
         <Tab />
         <ul className={styles['list-item']}>
           <li onClick={onClick}>

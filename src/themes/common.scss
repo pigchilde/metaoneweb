@@ -7,6 +7,10 @@ $white: #fff;
 /*绿色*/
 $green: #00cacb;
 
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 /*动画*/
 .img-box {
   overflow: hidden;
@@ -19,8 +23,4 @@ $green: #00cacb;
       transform: scale3d(1.1, 1.1, 1.1);
     }
   }
-}
-.wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
 }

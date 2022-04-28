@@ -7,7 +7,12 @@ export default defineConfig({
   },
   fastRefresh: {},
   // mfsu: {},
-  sass: {},
+  sass: {
+    prependData: `
+    @import "~@/themes/common.scss";
+  `,
+  },
+
   theme: {
     'primary-color': '#00cacb',
   },
