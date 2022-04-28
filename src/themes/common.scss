@@ -18,7 +18,6 @@ $green: #00cacb;
   width: $width;
 }
 
-
 @mixin lineRow($num: 2) {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -41,11 +40,11 @@ $green: #00cacb;
 }
 
 @function toRem($px, $base: 14) {
-    @return calc($px / $base) * 1rem;
+  @return calc($px / $base) * 1rem;
 }
 $breakpoints: (
-  "lg": "only screen and ( max-width: 1681px)",
-  "md": "only screen and ( max-width: 1367px)",
+  'lg': 'only screen and ( max-width: 1681px)',
+  'md': 'only screen and ( max-width: 1367px)',
 ) !default;
 @mixin respond-to($breakpoint) {
   $query: map-get($breakpoints, $breakpoint);
@@ -55,12 +54,14 @@ $breakpoints: (
   }
 }
 
-
 .wrapper {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  @include respond-to(lg){
-     width: 1200px;
+  @include respond-to(lg) {
+    width: 1400px;
+  }
+  @include respond-to(md) {
+    width: 1200px;
   }
 }
 /*动画*/
@@ -76,4 +77,3 @@ $breakpoints: (
     }
   }
 }
-

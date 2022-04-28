@@ -1,11 +1,23 @@
 .sign-page {
   display: flex;
+  overflow: hidden;
   .sign-banner {
     flex: 1;
     background: url(../../assets/news/pic/sign1.png) 0 0 no-repeat;
-    background-size: contain;
+    // background-size: contain;
+    height: 100%;
+    h3 {
+      font-size: 50px;
+      color: $white;
+    }
   }
   .sign-main {
     min-width: 580rpx;
+    width: 60%;
+  }
+  :global {
+    .ant-tabs {
+      color: #fff;
+    }
   }
 }
