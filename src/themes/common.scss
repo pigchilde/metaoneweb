@@ -7,9 +7,61 @@ $white: #fff;
 /*绿色*/
 $green: #00cacb;
 
+%ellipsis-basic {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin ellipsis($width: 100%) {
+  @extend %ellipsis-basic;
+  width: $width;
+}
+
+
+@mixin lineRow($num: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+
+@mixin hidden($extend: true) {
+  @if $extend {
+    @extend %hidden;
+  } @else {
+    display: none !important;
+    visibility: hidden;
+  }
+}
+
+%hidden {
+  @include hidden(false);
+}
+
+@function toRem($px, $base: 14) {
+    @return calc($px / $base) * 1rem;
+}
+$breakpoints: (
+  "lg": "only screen and ( max-width: 1681px)",
+  "md": "only screen and ( max-width: 1367px)",
+) !default;
+@mixin respond-to($breakpoint) {
+  $query: map-get($breakpoints, $breakpoint);
+
+  @media #{if(type-of($query) == 'string', unquote($query), inspect($query))} {
+    @content;
+  }
+}
+
+
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
+  @include respond-to(lg){
+     width: 1200px;
+  }
 }
 /*动画*/
 .img-box {
@@ -24,3 +76,4 @@ $green: #00cacb;
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import styles from './index.less';
+import styles from './index.scss';
 import { Menu, Dropdown, Button, Space } from 'antd';
 import tmp1 from '../../assets/gamefi/img/d-1.png';
 import Filters from './components/Filters';
@@ -40,7 +40,9 @@ const GameFi = () => {
             </div>
           </aside>
           <aside className={styles['intro-box']}>
-            <div className={styles['title']}>AGE OF T.A.N.K.S</div>
+            <div className={styles['title']}>
+              AGE OF T.A.N.K.SAGE OF T.A.N.K.SAGE OF T.A.N.K.S
+            </div>
             <div className={styles['line']}>
               <label>developer/publisher</label>
               <div className={styles['handle']}>
