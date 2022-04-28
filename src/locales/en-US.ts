@@ -1,6 +1,7 @@
 export default {
   CN: 'CN',
   US: 'US',
+  NEW: 'news',
   NEW_h2: 'MetaOne New Guilds Announcement',
   GameFi: 'GameFi',
   META_ONE: 'META ONE',
@@ -13,4 +14,7 @@ export default {
   REGISTER: 'Register',
   SIGN_IN: 'Sign In',
   FOLLOW_US: 'FOLLOW US',
+  SIGN_TITLE1: 'Start Your GameFi Journey',
+  SIGN_TITLE2: 'Create Your Own Guild',
+  SIGN_TITLE3: 'Become A Whale',
 };

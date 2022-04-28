@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { Pagination } from 'antd';
 const PaginationItem = () => {
-  const onShowSizeChange = () => {};
+  const onShowSizeChange = (): void => {};
   return (
     <Pagination
       showQuickJumper

@@ -1,0 +1,11 @@
+.sign-page {
+  display: flex;
+  .sign-banner {
+    flex: 1;
+    background: url(../../assets/news/pic/sign1.png) 0 0 no-repeat;
+    background-size: contain;
+  }
+  .sign-main {
+    min-width: 580rpx;
+  }
+}
