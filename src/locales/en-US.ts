@@ -17,4 +17,9 @@ export default {
   SIGN_TITLE1: 'Start Your GameFi Journey',
   SIGN_TITLE2: 'Create Your Own Guild',
   SIGN_TITLE3: 'Become A Whale',
+  SIGN_TAB_GAME: 'Gamer',
+  SIGN_TAB_GUILD: 'Guild',
+  SIGN_TAB_NFT: 'NFTs Owner',
+  SIGN_TAB_GAME_TIP:
+    'Interested to be one of the firsts guilds of metaone? please leave your details below.',
 };
