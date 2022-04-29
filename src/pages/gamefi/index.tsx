@@ -4,6 +4,7 @@ import tmp1 from '../../assets/gamefi/img/d-1.png';
 import Filters from './components/Filters';
 import Filist from './components/Filist';
 import { RightOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { history } from 'umi';
 
 const GameFi = () => {
   const dropitems = [
@@ -16,6 +17,9 @@ const GameFi = () => {
       key: '1',
     },
   ];
+  const toDetail = () => {
+    history.push('/gamefi/1');
+  };
   const menu = <Menu items={dropitems} />;
   return (
     <div className={styles['GameFi-wrapper']}>
@@ -62,7 +66,7 @@ const GameFi = () => {
               ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
               accumsan lacus vel facilisis.
             </p>
-            <Button type="primary">
+            <Button type="primary" onClick={toDetail}>
               VIEW MORE
               <RightOutlined />
             </Button>

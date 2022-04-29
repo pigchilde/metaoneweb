@@ -5,6 +5,7 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+
   ::-webkit-scrollbar {
     width: 6px;
     height: 1px;
@@ -190,6 +191,7 @@ body {
   color: #fff;
   background-color: #000;
 }
+
 .clearfix:after {
   content: '';
   height: 0;
@@ -197,15 +199,20 @@ body {
   display: block;
   clear: both;
 }
+
 .clearfix {
   zoom: 1;
 }
 
-.ant-layout {
+#root {
   background: url(./assets/bg.jpg) center 0 no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: #000;
+  > .ant-layout {
+    background-color: transparent;
+  }
 }
+
 .ant-tabs {
   color: #fff;
 }
@@ -213,16 +220,19 @@ body {
 /*动画*/
 .img-box {
   overflow: hidden;
+
   img {
     transform: scale3d(1, 1, 1);
     transition: transform 0.3s;
   }
+
   &:hover {
     img {
       transform: scale3d(1.1, 1.1, 1.1);
     }
   }
 }
+
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;

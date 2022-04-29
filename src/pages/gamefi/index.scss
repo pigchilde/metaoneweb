@@ -12,8 +12,77 @@
   .ant-space-item {
     color: #fff;
   }
+  .ant-breadcrumb,
+  .ant-breadcrumb-link {
+    color: #fff;
+  }
+  .ant-breadcrumb-separator {
+    color: $green !important;
+    font-size: 32px;
+  }
+  
+  .ant-tabs-nav-list {
+    padding: 0 15px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .ant-tabs-tab {
+    padding: 0 !important;
+  }
+  .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-ink-bar{
+    opacity: 0;
+  }
+  .ant-tabs-top > .ant-tabs-nav::before,
+  .ant-tabs-bottom > .ant-tabs-nav::before,
+  .ant-tabs-top > div > .ant-tabs-nav::before,
+  .ant-tabs-bottom > div > .ant-tabs-nav::before {
+    border-bottom-color: $green !important;
+  }
+  .ant-tabs-tab .ant-tabs-tab-btn {
+    font-size: 23px;
+    line-height: 59px;
+    width: 240px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    background-color: #00cacb;
+    color: #fff !important;
+  }
 }
+.article {
+  color: #fff;
+  padding-bottom: 200px;
+  h2 {
+    font-size: 30px;
+    color: #fff;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+.nav-wrapper {
+  padding: 10px 0;
 
+  .navlink {
+    font-weight: bold;
+    padding: 0 10px;
+    font-size: 30px;
+  }
+  .navlabel {
+    font-size: 30px;
+    color: #bcbcbc;
+    padding: 0 10px;
+    position: relative;
+    top: 2px;
+  }
+}
+.article-wrapper {
+  margin-bottom: 60px;
+}
 .ico {
   background: url("../../assets/gamefi/img/ico.png") no-repeat;
   display: block;
@@ -63,8 +132,8 @@
     display: flex;
     align-items: center;
   }
-  @include respond-to(lg){
-    .wrapper{
+  @include respond-to(lg) {
+    .wrapper {
       width: 1200px;
     }
   }
