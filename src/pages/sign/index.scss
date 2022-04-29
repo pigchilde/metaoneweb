@@ -30,7 +30,7 @@
 .sign-box {
   width: 620px;
   margin: 0 auto;
-  padding: 124px 0;
+  padding: 110px 0;
 }
 .tab-box {
   width: 620px;
@@ -96,6 +96,16 @@
       background-color: $greenHover;
     }
   }
+  .tip {
+    padding-bottom: 15px;
+    width: 556px;
+
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: $white;
+    white-space: nowrap;
+  }
   :global {
     .ant-form-horizontal .ant-form-item-label {
       display: none;
@@ -112,8 +122,27 @@
     .ant-input-password-icon.anticon {
       color: $white;
     }
+    .ant-form-item {
+      margin-bottom: 27px;
+    }
     .ant-form-item .ant-form-item {
       margin-bottom: 0;
+    }
+    .ant-input-password .anticon-eye-invisible {
+      height: 15px;
+      width: 25px;
+      background: url(../../assets/news/img/sp.png) 0 0 no-repeat;
+      svg {
+        display: none;
+      }
+    }
+    .ant-input-password .anticon-eye {
+      height: 16px;
+      width: 25px;
+      background: url(../../assets/news/img/sp.png) 0 -15px no-repeat;
+      svg {
+        display: none;
+      }
     }
   }
 }

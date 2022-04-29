@@ -9,13 +9,12 @@ const Sign = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
   return (
     <div className={styles['sign-page']}>
-      <div className={styles['sign-banner']}>
+      <div className={`${styles['sign-banner']} ${styles['sign-banner2']}`}>
         <h3>
           {intl.formatMessage({
             id: 'SIGN_TITLE1',
