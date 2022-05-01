@@ -61,4 +61,12 @@ export default {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
   GAMERS_GAME_TUTORIAL_DES5:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+  GUILDS_BANNER_TITLE1: 'Total Gamers',
+  GUILDS_BANNER_TITLE2: 'New Guilds & Counting This Month',
+  GUILDS_BANNER_CON_TITLE: 'Largest Games Guilds Enabler',
+  GUILDS_BANNER_CON_DES:
+    'Hitting 1000 Game Guilds over 10 countries in a year, proven by 80 guilds signed up in days. Pipeline of 300++ guilds to be onboarded.MetaOne Platform is to become the single largest platform for Game Guilds with excellent activation tools, deep and predictive big data analysis, and comprehensive NFT game assets management on leasing and staking.',
+  GUILDS_LARGEST_GAMES: 'Largest Games Guilds',
+  GUILDS_LARGEST_GAMES_ENABLER: 'Largest Games Guilds Enabler    ',
+  GUILDS_LARGEST_GAMES_MODEL: 'MetaOne Guild Profit Model',
 };
