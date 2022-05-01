@@ -1,0 +1,25 @@
+@import '~@/themes/common.scss';
+
+.banner {
+  height: 811px;
+  background: url(../../../../assets/gamers/img/banner.jpg) center center
+    no-repeat;
+  .banner-h2 {
+    padding-top: 422px;
+    font-size: 55px;
+    line-height: 60px;
+    letter-spacing: 0px;
+    color: $white;
+    width: 712px;
+  }
+  .banner-p {
+    padding-top: 22px;
+    text-align: left;
+    width: 708px;
+    height: 106px;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: 0px;
+    color: $white;
+  }
+}
