@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PersonalSider from './components/PersonalSider';
 import { useState } from 'react';
+import { setLocale } from 'umi';
 
 const { Content, Sider } = Layout;
 interface objectT {
@@ -17,6 +18,7 @@ const BasicLayout = (props: any) => {
     setCollapsed(collapsed);
   };
 
+  setLocale('en-US', true);
   return (
     <Layout>
       <Header />

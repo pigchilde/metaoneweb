@@ -1,0 +1,35 @@
+@import '~@/themes/common.scss';
+
+.banner {
+  margin: 35px 0;
+
+  .wrap_bg {
+    background: url(../../../../assets/guilds/guilds_bg.png) calc(100% - 60px)
+      calc(100% - 60px) no-repeat;
+  }
+  .banner-title {
+    h2 {
+      font-size: 130px;
+      color: #00cacb;
+      line-height: 1;
+    }
+    p {
+      font-size: 26px;
+      line-height: 60px;
+      margin-bottom: 20px;
+    }
+  }
+  .banner-con {
+    h2 {
+      font-size: 55px;
+      line-height: 60px;
+      color: $white;
+    }
+    p {
+      font-size: 30px;
+      line-height: 36px;
+      width: 746px;
+      margin-top: 18px;
+    }
+  }
+}

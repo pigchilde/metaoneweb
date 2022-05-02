@@ -29,4 +29,51 @@ export default {
   PERSONAL_GUILD_BTN1: 'Make Order',
   PERSONAL_GUILD_RADIO1: 'NFT Info',
   PERSONAL_GUILD_RADIO2: 'Order Info',
+  GAMERS_BANNER_TITLE: 'Fast Track for Gamers into the Gaming Metaverse.',
+  GAMERS_BANNER_DES:
+    'MetaOne ensures seamless process and experience with our easy guided activation tools, well mapped out NFT game plays, and potential earn out models.',
+  GAMERS_List_TITLE: 'Gamers List',
+  GAMERS_List_TAB1: 'Weekly List',
+  GAMERS_List_TAB2: 'Overall List',
+  GAMERS_List_INFO_SIZE: 'size',
+  GAMERS_List_INFO_FROM: 'from',
+  GAMERS_List_INFO_GAMETYPE: 'Gametype',
+  GAMERS_BRIDGE_TITLE: 'The Bridge For All Gamers',
+  GAMERS_BRIDGE_DES:
+    'MetaOne ensures seamless process and experience with our easy guided activation tools, well mapped out NFT game plays, and potential earn out models.',
+  GAMERS_BRIDGE_CON1_TITLE: 'Register',
+  GAMERS_BRIDGE_CON1_DES: 'Sign up and connect your wallet.',
+  GAMERS_BRIDGE_CON2_TITLE: 'Analyse',
+  GAMERS_BRIDGE_CON2_DES: 'Guided video tutorial to understand the metaverse.',
+  GAMERS_BRIDGE_CON3_TITLE: 'Comprehend',
+  GAMERS_BRIDGE_CON3_DES: 'Trained in virtual environment, nothing to lose.',
+  GAMERS_BRIDGE_CON4_TITLE: 'Earn',
+  GAMERS_BRIDGE_CON4_DES: 'Select , Play, and Earn.',
+  GAMERS_GAME_TRAINING: 'Game Training',
+  GAMERS_GAME_TITLE1: 'Basic',
+  GAMERS_GAME_TITLE2: 'Medium',
+  GAMERS_GAME_TITLE3: 'Pro',
+  GAMERS_GAME_TITLE4: 'Expert',
+  GAMERS_GAME_TUTORIAL: 'Game Tutorial',
+  GAMERS_GAME_TUTORIAL_DES:
+    'MetaOne ensures seamless process and experience with our easy guided activation tools, well mapped out NFT game plays, and potential earn out models.',
+  GAMERS_GAME_TUTORIAL_TITLE: 'STEP',
+  GAMERS_GAME_TUTORIAL_DES1:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+  GAMERS_GAME_TUTORIAL_DES2:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+  GAMERS_GAME_TUTORIAL_DES3:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.  ',
+  GAMERS_GAME_TUTORIAL_DES4:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+  GAMERS_GAME_TUTORIAL_DES5:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ',
+  GUILDS_BANNER_TITLE1: 'Total Gamers',
+  GUILDS_BANNER_TITLE2: 'New Guilds & Counting This Month',
+  GUILDS_BANNER_CON_TITLE: 'Largest Games Guilds Enabler',
+  GUILDS_BANNER_CON_DES:
+    'Hitting 1000 Game Guilds over 10 countries in a year, proven by 80 guilds signed up in days. Pipeline of 300++ guilds to be onboarded.MetaOne Platform is to become the single largest platform for Game Guilds with excellent activation tools, deep and predictive big data analysis, and comprehensive NFT game assets management on leasing and staking.',
+  GUILDS_LARGEST_GAMES: 'Largest Games Guilds',
+  GUILDS_LARGEST_GAMES_ENABLER: 'Largest Games Guilds Enabler    ',
+  GUILDS_LARGEST_GAMES_MODEL: 'MetaOne Guild Profit Model',
 };
