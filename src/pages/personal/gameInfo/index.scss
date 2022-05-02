@@ -1,0 +1,243 @@
+$white-game-info: #eaffff;
+
+.game-info {
+  padding-right: 15px;
+  ul.nft-info {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    li {
+      /*height: 207px;*/
+      &.img {
+        margin-right: 16px;
+      }
+      &.nft-info-con {
+        border-radius: 4px;
+        border: solid 2px #006366;
+        padding: 26px 38px;
+        position: relative;
+      }
+      dl {
+        dt {
+          font-size: 28px;
+          line-height: 1.8;
+        }
+        dd {
+          font-size: 16px;
+          line-height: 23px;
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+            width: calc(100% - 216px);
+            align-items: center;
+            justify-content: flex-start;
+            li {
+              font-size: 16px;
+              line-height: 1.8;
+              width: 33%;
+              height: 29px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
+          &.button {
+            position: absolute;
+            right: 38px;
+            top: 26px;
+            a {
+              display: block;
+              width: 178px;
+              height: 59px;
+              background-color: #bb7924;
+              border-radius: 10px;
+              font-size: 20px;
+              line-height: 59px;
+              text-align: center;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.game-data {
+  display: flex;
+  justify-content: space-evenly;
+  li {
+    border-radius: 4px;
+    border: solid 2px #006366;
+    padding: 20px;
+    flex: 1;
+    margin-right: 25px;
+    &:nth-child(4) {
+      margin-right: 0;
+    }
+    span {
+      display: block;
+      &.title {
+        font-size: 18px;
+        line-height: 24px;
+        color: $white-game-info;
+        margin-bottom: 10px;
+      }
+      &.data {
+        i.num {
+          font-size: 37px;
+          line-height: 24px;
+          font-family: 'Oswald-Bold';
+          letter-spacing: 1px;
+          color: #00cacb;
+        }
+        i.name {
+          margin-left: 23px;
+          font-size: 18px;
+          line-height: 24px;
+          color: $white-game-info;
+        }
+        i.status {
+          margin-left: 18px;
+          font-size: 18px;
+          line-height: 24px;
+          color: #00de27;
+        }
+      }
+    }
+  }
+}
+.game-list {
+  background-color: #061216;
+  border-radius: 4px;
+  border: solid 2px #006366;
+  margin-top: 12px;
+  padding: 13px 18px;
+  :global {
+    .ant-tabs-nav-wrap {
+      border: none;
+    }
+    .ant-tabs-nav-list {
+      justify-content: flex-start;
+      padding: 0;
+      border: none;
+      .ant-tabs-tab {
+        width: 178px;
+        height: 53px;
+        border-radius: 10px;
+        border: solid 2px #00cacb;
+        text-align: center;
+        font-size: 20px;
+        display: block;
+        margin-left: 0;
+      }
+      .ant-tabs-tab-active {
+        background-color: #00cacb;
+      }
+      .ant-tabs-ink-bar {
+        display: none;
+      }
+    }
+    .ant-table {
+      color: $white-game-info;
+
+      table {
+        text-align: center;
+        background: #061216;
+        border-collapse: collapse;
+        th {
+          background: #061216;
+          color: $white-game-info;
+          text-align: center;
+          font-size: 20px;
+          border: none;
+          height: 38px;
+          line-height: 38px;
+          padding: 0 16px;
+          margin-bottom: 5px;
+        }
+        tr.ant-table-row {
+          border-collapse: separate;
+          background-color: #061c1f;
+          border-radius: 4px;
+          border: solid 0.3px #ffffff;
+          td {
+            height: 38px;
+            line-height: 38px;
+            padding: 0 16px;
+            margin-top: 5px;
+          }
+        }
+        .ant-table-tbody > tr > td {
+          /* border: none; */
+        }
+        .ant-table-tbody > tr > td.ant-table-cell-row-hover {
+          background: #bb7824;
+        }
+      }
+    }
+
+    .ant-pagination {
+      text-align: center;
+    }
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link,
+    .ant-pagination-item,
+    .ant-pagination-item-ellipsis {
+      border-radius: 7px;
+      border: solid 2px $green;
+
+      // background-color:transparent;
+    }
+    .ant-pagination-item {
+      background: transparent;
+      a {
+        color: $green;
+      }
+
+      // color: #fff !important;
+    }
+    .ant-pagination-prev .ant-pagination-item-link,
+    .ant-pagination-next .ant-pagination-item-link {
+      background: transparent;
+      color: $green;
+    }
+
+    .ant-pagination-item-container .ant-pagination-item-ellipsis,
+    .ant-pagination-item-container .ant-pagination-item-ellipsis {
+      color: $green;
+    }
+    .ant-pagination-jump-prev:hover .ant-pagination-item-ellipsis,
+    .ant-pagination-jump-next:hover .ant-pagination-item-ellipsis {
+      color: #fff;
+    }
+    .ant-pagination-item:hover a {
+      color: #fff;
+    }
+    .ant-pagination-item-active {
+      a {
+        color: #fff;
+      }
+      background: $green;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      background-color: #000;
+      color: $green;
+      border: solid 2px $green;
+      border-radius: 6px;
+    }
+    .ant-select-arrow {
+      color: $green;
+    }
+    .ant-pagination-options-size-changer.ant-select {
+      display: none;
+    }
+    .ant-pagination-options-quick-jumper {
+      color: $green;
+    }
+    .ant-pagination-options-quick-jumper input {
+      background-color: #000;
+      border: solid 2px $green;
+      color: $green;
+    }
+  }
+}

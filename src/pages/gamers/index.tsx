@@ -157,7 +157,7 @@ const Gamers = () => {
         <section className={styles['gamers-bridge']}>
           <h3>
             {intl.formatMessage({
-              id: 'GAMERS_List_TITLE',
+              id: 'GAMERS_BRIDGE_TITLE',
             })}
           </h3>
           <p className={styles['gamers-bridge-des']}>

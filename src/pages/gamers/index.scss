@@ -105,6 +105,7 @@
       }
 
       .table-list {
+        min-width: 540px;
         li {
           height: 62px;
           background-color: #00191c;
@@ -166,6 +167,7 @@
     margin-top: 21px;
     justify-content: space-evenly;
     li {
+      flex-shrink: 1;
       width: 341px;
       span {
         display: block;
@@ -173,7 +175,7 @@
       }
       span.img {
         margin-bottom: 33px;
-        background: url(../../assets/gamers/img/gamers_sprite.png);
+        background-image: url(../../assets/gamers/img/gamers_sprite.png);
         height: 295px;
         margin: 0 auto;
       }
@@ -188,7 +190,6 @@
       &:nth-child(1) {
         span.img {
           width: 259px;
-          height: 295px;
           background-position: 0 -201px;
         }
       }
@@ -227,10 +228,11 @@
     ul {
       display: flex;
       justify-content: space-evenly;
-      flex-shrink: 1;
       li {
         margin-right: 25px;
+
         span {
+          flex-shrink: 1;
           width: 375px;
           height: 684px;
           display: block;
