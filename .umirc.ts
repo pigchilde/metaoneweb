@@ -6,6 +6,12 @@ export default defineConfig({
     type: 'none',
   },
   fastRefresh: {},
+  proxy: {
+    '/api-docs': {
+      target: 'http://47.106.90.119:8000/v2',
+      changeOrigin: true,
+    },
+  },
   // mfsu: {},
   sass: {
     prependData: `

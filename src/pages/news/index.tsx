@@ -5,11 +5,27 @@ import PaginationItem from '@/components/Pagination';
 import Banner from './components/Banner';
 import Tab from './components/Tab';
 import { history } from 'umi';
-const News = () => {
+import { connect } from 'dva';
+import { useEffect } from 'react';
+interface objectT {
+  [propName: string]: any;
+}
+const News = (props: objectT) => {
+  const { dispatch, news = {} } = props;
   const onShowSizeChange = () => {};
   const onClick = () => {
     history.push('/news/1');
   };
+  useEffect(() => {
+    dispatch({
+      type: 'news/getList',
+      payload: {
+        id: 3,
+      },
+    }).then((res: objectT) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <>
       <Banner />
@@ -78,4 +94,6 @@ const News = () => {
   );
 };
 
-export default News;
+export default connect(({ news }: { news: objectT }) => ({
+  news,
+}))(News);
