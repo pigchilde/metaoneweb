@@ -244,36 +244,40 @@ const Gamers = () => {
           </h3>
           <ul>
             <li>
-              <span className={styles['img']}></span>
-              <p>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TITLE1',
-                })}
-              </p>
+              <span className={styles['img']}>
+                <p>
+                  {intl.formatMessage({
+                    id: 'GAMERS_GAME_TITLE1',
+                  })}
+                </p>
+              </span>
             </li>
             <li>
-              <span className={styles['img']}></span>
-              <p>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TITLE2',
-                })}
-              </p>
+              <span className={styles['img']}>
+                <p>
+                  {intl.formatMessage({
+                    id: 'GAMERS_GAME_TITLE2',
+                  })}
+                </p>
+              </span>
             </li>
             <li>
-              <span className={styles['img']}></span>
-              <p>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TITLE3',
-                })}
-              </p>
+              <span className={styles['img']}>
+                <p>
+                  {intl.formatMessage({
+                    id: 'GAMERS_GAME_TITLE3',
+                  })}
+                </p>
+              </span>
             </li>
             <li>
-              <span className={styles['img']}></span>
-              <p>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TITLE4',
-                })}
-              </p>
+              <span className={styles['img']}>
+                <p>
+                  {intl.formatMessage({
+                    id: 'GAMERS_GAME_TITLE4',
+                  })}
+                </p>
+              </span>
             </li>
           </ul>
         </div>

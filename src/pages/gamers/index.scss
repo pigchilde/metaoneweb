@@ -5,7 +5,7 @@
     font-size: 50px;
     line-height: 60px;
     color: $white;
-    margin: 110px 0 20px 0;
+    margin: 110px 0 20px 20px;
   }
   .gamers-list-con {
     width: 100%;
@@ -224,6 +224,10 @@
       font-size: 50px;
       line-height: 1.8;
       color: $white;
+      margin-left: 20px;
+      @include respond-to(lg) {
+        margin: 0 0 -70px 70px;
+      }
     }
     ul {
       display: flex;
@@ -243,6 +247,17 @@
           margin-left: auto;
           margin-right: auto;
           position: relative;
+
+          p {
+            font-size: 35px;
+            line-height: 48px;
+            text-align: center;
+            top: 439px;
+            padding-left: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+          }
         }
         &:nth-child(1) {
           span {
@@ -262,18 +277,12 @@
         &:nth-child(4) {
           margin-right: 0;
         }
-        p {
-          font-size: 35px;
-          line-height: 48px;
-          text-align: center;
-          margin-top: -242px;
-          padding-left: 10px;
-        }
-        @include respond-to(lg) {
-          width: 25%;
-          margin-right: 0;
-          transform: scale(0.7);
-        }
+      }
+      @include respond-to(lg) {
+        transform: scale(0.8);
+      }
+      @include respond-to(md) {
+        transform: scale(0.7);
       }
     }
   }
@@ -285,15 +294,18 @@
     font-size: 50px;
     line-height: 1.8;
     color: $white;
+    margin-left: 40px;
   }
   p.title-des {
     font-size: 26px;
     line-height: 36px;
+    margin-left: 40px;
   }
   ul {
     display: flex;
     justify-content: space-evenly;
     flex-shrink: 1;
+
     li {
       margin-right: 60px;
       span {
@@ -331,6 +343,7 @@
       &:nth-child(5) {
         margin-right: 0;
       }
+
       p.title {
         font-size: 30px;
         padding: 20px;
@@ -339,6 +352,15 @@
       p.des {
         font-size: 20px;
         line-height: 30px;
+      }
+    }
+    @include respond-to(lg) {
+      transform: scale(0.8);
+    }
+    @include respond-to(md) {
+      transform: scale(0.7);
+      li span {
+        margin-top: 0;
       }
     }
   }
