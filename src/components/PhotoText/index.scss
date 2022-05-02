@@ -5,7 +5,7 @@
   h3 {
     font-size: 50px;
     color: $white;
-    line-height: 1.8;
+    line-height: 1.5;
   }
   .text {
     font-size: 22px;
@@ -14,41 +14,52 @@
   }
   img {
     margin-top: 20px;
+    max-width: 90%;
+  }
+  type {
+    display: flex;
   }
   .type1 {
+    flex-direction: row;
+    align-items: center;
+    .text {
+      padding: 0 20px;
+    }
     h3 {
       text-align: center;
     }
   }
   .type2 {
+    display: flex;
+    align-items: center;
     .text {
-      float: left;
-      width: 49%;
-      vertical-align: middle;
+      flex: 1;
+      width: 48%;
+      padding-left: 2%;
     }
     .img {
-      float: right;
-      width: 50%;
+      flex: 1;
+      width: 48%;
       margin-left: 1%;
       img {
-        width: 100%;
         margin-top: 0;
       }
     }
   }
 
   .type3 {
+    display: flex;
+    align-items: center;
     .text {
-      float: right;
-      width: 49%;
-      vertical-align: middle;
+      width: 48%;
+      order: 2;
+      padding-right: 2%;
     }
     .img {
-      float: left;
-      width: 50%;
+      order: 1;
+      width: 48%;
       margin-right: 1%;
       img {
-        width: 100%;
         margin-top: 0;
       }
     }

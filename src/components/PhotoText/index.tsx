@@ -5,7 +5,7 @@ const PhotoText = (props: any) => {
   const onShowSizeChange = (): void => {};
   return (
     <section className={styles['photo-text']}>
-      <div className={`${styles['type' + type]} clearfix`}>
+      <div className={`type ${styles['type' + type]}`}>
         <div className={styles['text']}>
           <h3>{title}</h3>
           <div className={styles['text-con']}>{des}</div>
