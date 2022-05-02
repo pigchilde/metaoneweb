@@ -65,7 +65,13 @@ const personalSideer = (props: objectT) => {
           },
         ]}
       />
-      <span className={styles['sign-out']}>Sign Out</span>
+      <span
+        className={`${styles['sign-out']} ${
+          collapsed ? styles['sign-close'] : ''
+        }`}
+      >
+        Sign Out
+      </span>
     </div>
   );
 };

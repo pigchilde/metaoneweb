@@ -30,7 +30,7 @@ const BasicLayout = (props: any) => {
             className={styles['personal-sider']}
             width={410}
             trigger={null}
-            breakpoint="xl"
+            breakpoint="xxl"
           >
             <PersonalSider
               onCollapse={onCollapse}

@@ -22,4 +22,11 @@ export default {
   SIGN_TAB_NFT: 'NFTs Owner',
   SIGN_TAB_GAME_TIP:
     'Interested to be one of the firsts guilds of metaone? please leave your details below.',
+  PERSONAL_BACK: 'BACK',
+  PERSONAL_GUILD_ADDRESS: 'Lessess Address:',
+  PERSONAL_GUILD_TABS1: 'Lease Mode',
+  PERSONAL_GUILD_BTN: 'Cancel',
+  PERSONAL_GUILD_BTN1: 'Make Order',
+  PERSONAL_GUILD_RADIO1: 'NFT Info',
+  PERSONAL_GUILD_RADIO2: 'Order Info',
 };
