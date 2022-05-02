@@ -1,12 +1,19 @@
 import styles from './index.scss';
 import defaultAvatar from '../../../assets/personal/pic/avatar.jpg';
 import { Layout, Menu } from 'antd';
+import { history } from 'umi';
 interface objectT {
   [propName: string]: any;
 }
 
 const personalSideer = (props: objectT) => {
   const { onCollapse, collapsed } = props;
+  const onMenuSelect = (i: objectT) => {
+    const { key } = i;
+    if (key === '1') {
+      history.push('/personal/guild');
+    }
+  };
   return (
     <div className={styles['sider']}>
       <span
@@ -27,6 +34,7 @@ const personalSideer = (props: objectT) => {
         mode="inline"
         defaultSelectedKeys={['1']}
         className={styles['menu']}
+        onSelect={onMenuSelect}
         items={[
           {
             key: '1',
