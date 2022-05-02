@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import styles2 from '../../index.scss';
+import icos from '../../icon.scss';
 import { Menu, Dropdown, Space, Button, Input, Popover, Checkbox } from 'antd';
 import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 import React from 'react';
@@ -73,8 +73,8 @@ const Filters = () => {
             </Space>
           </a>
         </Dropdown>
-        <i className={`${styles2['ico']} ${styles2['ico-blocks']}`}></i>
-        <i className={`${styles2['ico']} ${styles2['ico-list']}`}></i>
+        <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
+        <i className={`${icos['ico']} ${icos['ico-list']}`}></i>
         <Popover
           placement="bottomRight"
           content={popContent}

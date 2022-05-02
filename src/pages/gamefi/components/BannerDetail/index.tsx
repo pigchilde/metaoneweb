@@ -81,8 +81,8 @@ const BannerDetail = () => {
           </div>
         </section>
         <section className={styles.btns}>
-          <Button type="primary">Filters</Button>
-          <Button>Filters</Button>
+          <Button type="primary">Connect Wallet</Button>
+          <Button>Download/Play</Button>
         </section>
       </aside>
     </div>

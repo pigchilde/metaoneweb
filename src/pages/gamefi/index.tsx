@@ -1,4 +1,5 @@
 import styles from './index.scss';
+import icos from './icon.scss';
 import { Menu, Dropdown, Button, Space } from 'antd';
 import tmp1 from '../../assets/gamefi/img/d-1.png';
 import Filters from './components/Filters';
@@ -51,11 +52,11 @@ const GameFi = () => {
               <label>developer/publisher</label>
               <div className={styles['handle']}>
                 <span>
-                  <i className={`${styles['ico']} ${styles['ico-heart']} `}></i>
+                  <i className={`${icos['ico']} ${icos['ico-heart']} `}></i>
                   1760
                 </span>
                 <span>
-                  <i className={`${styles['ico']} ${styles['ico-star']} `}></i>
+                  <i className={`${icos['ico']} ${icos['ico-star']} `}></i>
                   935
                 </span>
               </div>

@@ -1,0 +1,36 @@
+.help-wrapper {
+  position: relative;
+}
+
+.banner {
+  height: 333px;
+  background-color: #252525;
+  background-size: cover;
+  padding-top: 80px;
+  background-image: url('../../assets/helps/img/banner.jpg');
+  font-size: 30px;
+
+  h1 {
+    font-size: 55px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+
+  }
+}
+
+.help-list {
+  padding: 35px 0 70px;
+  position: relative;
+
+  :global {
+    .ant-collapse {
+      border: 0;
+      background: transparent;
+    }
+    .ant-collapse-header{
+        background: rgba($color: $green, $alpha:0.35);
+        color: $white;
+    }
+  }
+}
