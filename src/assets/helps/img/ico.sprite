@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpriteFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CssFileName="../images" ImageName="ico" IsPhone="false" PhoneFigure="2" PhoneUnit="rem" SpriteImgFileType="Png" xmlns="CssSprite">
+  <SpriteList>
+    <Sprite Path="ico-toopen.png" LocationX="0" LocationY="0" />
+    <Sprite Path="ico-toClose.png" LocationX="50" LocationY="0" />
+    <Sprite Path="ico-rad-l.png" LocationX="105" LocationY="0" />
+    <Sprite Path="ico-rad-r.png" LocationX="128" LocationY="0" />
+  </SpriteList>
+</SpriteFile>

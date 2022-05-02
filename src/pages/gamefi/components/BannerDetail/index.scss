@@ -2,20 +2,53 @@
   position: relative;
   margin-bottom: 80px;
   display: flex;
+  max-width: calc(100% - 150px);
+
+  .btnPre,
+  .btnNext {
+    position: absolute;
+    top: 210px;
+
+    :global {
+      .ant-btn {
+        width: 70px;
+        height: 70px;
+
+        .anticon {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .btnPre {
+    left: -75px;
+  }
+
+  .btnNext {
+    right: -75px;
+  }
+
+
 
   .img-left {
     width: calc(100% - 548px);
+    margin-bottom: 20px;
+
+    .imgwrap {
+      border: solid 5px #00cacb;
+      margin-bottom: 20px;
+    }
 
     .img {
       // aspect-ratio: 100/54;
-
       height: 477px;
-      border: solid 5px #00cacb;
       overflow: hidden;
       box-sizing: border-box;
-      margin-bottom: 20px;
+
 
       img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -41,7 +74,7 @@
         border: 0;
         opacity: 0.68;
 
-        &.on、,
+        &.on,
         &:hover {
           opacity: 1;
           border: solid 3px #00ffff;
@@ -74,6 +107,10 @@
   .lines {
     padding: 30px 0;
     border-bottom: dashed 1px $green;
+
+    &:last-child {
+      border: 0;
+    }
 
   }
 
@@ -108,31 +145,38 @@
         padding-left: 5px;
       }
     }
-   
+
   }
 
   .btns {
     padding-top: 20px;
     display: flex;
-  }
 
-  :global {
-    .ant-btn {
-      width: 240px;
-      height: 59px;
-      border: solid 2px $green;
-      margin-right: 10px;
-      background-color: transparent;
-      color: #fff;
-      font-size: 20px;
-      border-radius: 10px;
-    }
-    .ant-btn-primary{
+    :global {
+      .ant-btn {
+        width: 240px;
+        height: 59px;
+        border: solid 2px $green;
+        margin-right: 10px;
+        background-color: transparent;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 10px;
+      }
+
+      .ant-btn-primary {
         background-color: $green;
-        &:hover{
-            background-color: $greenHover;
+
+        &:hover {
+          background-color: $greenHover;
         }
+      }
     }
   }
+}
 
+@media screen and (max-width:1750px) {
+  .banner{
+    max-width: calc(100% - 150px) !important;
+  }
 }

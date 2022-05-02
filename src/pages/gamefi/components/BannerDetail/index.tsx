@@ -1,32 +1,66 @@
 import tmp1 from '@/assets/gamefi/img/d-1.png';
 import styles from './index.scss';
 import icos from '../../icon.scss';
-import { Button } from 'antd';
+import { Button, Carousel } from 'antd';
+import { useRef, useState } from 'react';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const BannerDetail = () => {
+  const imgList = [
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+  ];
+  const [count, setCount] = useState(0);
+  const carouselEl = useRef(null);
+  const carouselPre = () => {
+    carouselEl.current.prev();
+  };
+  const carouselNext = () => {
+    carouselEl.current.next();
+  };
+  const carouselPage = (index) => {
+    carouselEl.current.goTo(index);
+    setCount(index);
+  };
+  const carouselAfterChange = (e) => {
+    setCount(e);
+  };
   return (
-    <div className={`${styles.banner} wrapper`}>
+    <div className={`wrapper ${styles.banner}`}>
       <aside className={styles['img-left']}>
-        <div className={styles['img']}>
-          <img src={tmp1} />
+        <div className={styles.imgwrap}>
+          <Carousel
+            dots={false}
+            afterChange={carouselAfterChange}
+            ref={carouselEl}
+          >
+            {imgList.map((item, index) => {
+              return (
+                <div className={styles['img']} key={item.id}>
+                  <img src={tmp1} />
+                </div>
+              );
+            })}
+          </Carousel>
         </div>
+
         <div className={styles['img-list']}>
           <ul>
-            <li className={styles.img}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles.img}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles.img}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles.img}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles.img}>
-              <img src={tmp1} />
-            </li>
+            {imgList.map((item, index) => {
+              return (
+                <li
+                  className={`${styles.img} ${index == count ? styles.on : ''}`}
+                  onClick={() => carouselPage(index)}
+                  key={item.id}
+                >
+                  <img src={tmp1} />
+                </li>
+              );
+            })}
           </ul>
         </div>
       </aside>
@@ -85,6 +119,22 @@ const BannerDetail = () => {
           <Button>Download/Play</Button>
         </section>
       </aside>
+      <div className={styles.btnPre}>
+        <Button
+          type="primary"
+          onClick={carouselPre}
+          shape="circle"
+          icon={<LeftOutlined />}
+        />
+      </div>
+      <div className={styles.btnNext}>
+        <Button
+          type="primary"
+          onClick={carouselNext}
+          shape="circle"
+          icon={<RightOutlined />}
+        />
+      </div>
     </div>
   );
 };

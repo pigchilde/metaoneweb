@@ -1,3 +1,32 @@
+%ico {
+  background: url(../../assets/helps/img/ico.png) no-repeat;
+  display: block;
+}
+
+@mixin ico-toopen {
+  height: 37px;
+  width: 37px;
+  background-position: 0 0;
+}
+
+@mixin ico-toClose {
+  height: 37px;
+  width: 37px;
+  background-position: -50px 0;
+}
+
+@mixin ico-rad-l {
+  height: 7px;
+  width: 8px;
+  background-position: -105px 0;
+}
+
+@mixin ico-rad-r {
+  height: 7px;
+  width: 8px;
+  background-position: -128px 0;
+}
+
 .help-wrapper {
   position: relative;
 }
@@ -23,14 +52,114 @@
   padding: 35px 0 70px;
   position: relative;
 
+  .article {
+    img {
+      max-width: 100%;
+
+    }
+
+    p {
+      margin: 20px 0;
+    }
+  }
+
   :global {
     .ant-collapse {
       border: 0;
       background: transparent;
     }
-    .ant-collapse-header{
-        background: rgba($color: $green, $alpha:0.35);
-        color: $white;
+
+    .ant-collapse-content-active {
+      color: #fff;
+      font-size: 22px;
+      border: 2px solid $green;
+      border-radius: 0 0 10px 10px;
+      top: 0px;
+      position: relative;
+      z-index: 2;
+      padding: 40px 60px;
     }
+
+    .ant-collapse>.ant-collapse-item {
+      border-bottom: 0;
+      margin-bottom: 20px;
+
+      .ant-collapse-header {
+        background: rgba($color: $green, $alpha:0.35);
+        font-size: 22px;
+        color: $white !important;
+        border-radius: 10px;
+        padding-left: 50px;
+
+        >div {
+          @extend %ico;
+          @include ico-toopen();
+          border-radius: 50%;
+          position: absolute;
+          right: 25px;
+          top: 50%;
+          opacity: 0.5;
+          text-align: center;
+          transform: translateY(-50%);
+
+          &:hover {
+            opacity: 0.7;
+          }
+
+          svg {
+            display: none;
+            font-size: 20px;
+          }
+
+
+        }
+      }
+
+      &:hover {
+        .ant-collapse-header {
+          background: rgba($color: $green, $alpha:0.5);
+        }
+
+      }
+
+      &.ant-collapse-item-active {
+        margin-left: -30px;
+        margin-right: -30px;
+
+        .ant-collapse-header {
+          background-color: $green;
+          font-size: 25px;
+          padding-left: 60px;
+          border-radius: 10px 10px 0 0;
+
+          &::before,
+          &::after {
+            content: '';
+            @extend %ico;
+            bottom: -7px;
+            position: absolute;
+          }
+
+          &::before {
+            left: 2px;
+            @include ico-rad-l()
+          }
+
+          &::after {
+            right: 2px;
+            @include ico-rad-r()
+          }
+
+          >div {
+            @include ico-toClose();
+          }
+
+          //   height: 80px;
+        }
+
+      }
+    }
+
+
   }
 }

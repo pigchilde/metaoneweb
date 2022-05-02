@@ -1,12 +1,14 @@
 import styles from './index.scss';
-import icos from './icon.scss';
-import { Menu, Dropdown, Button, Space } from 'antd';
-import tmp1 from '../../assets/gamefi/img/d-1.png';
+import { Menu, Dropdown, Carousel, Button, Space } from 'antd';
+import {
+  CaretDownOutlined,
+  LeftOutlined,
+  RightOutlined,
+} from '@ant-design/icons';
+import { useRef } from 'react';
 import Filters from './components/Filters';
 import Filist from './components/Filist';
-import { RightOutlined, CaretDownOutlined } from '@ant-design/icons';
-import { history } from 'umi';
-
+import Banner from './components/Banner';
 const GameFi = () => {
   const dropitems = [
     {
@@ -18,8 +20,13 @@ const GameFi = () => {
       key: '1',
     },
   ];
-  const toDetail = () => {
-    history.push('/gamefi/1');
+  const bannerList = [{ id: 1 }, { id: 2 }, { id: 3 }];
+  const carouselEl = useRef(null);
+  const carouselPre = () => {
+    carouselEl.current.prev();
+  };
+  const carouselNext = () => {
+    carouselEl.current.next();
   };
   const menu = <Menu items={dropitems} />;
   return (
@@ -37,87 +44,29 @@ const GameFi = () => {
           </Dropdown>
         </div>
       </header>
-      <section className={styles['banner']}>
-        <div className={styles['flex']}>
-          <aside className={styles['img-box']}>
-            <div className={styles['img']}>
-              <img src={tmp1} />
-            </div>
-          </aside>
-          <aside className={styles['intro-box']}>
-            <div className={styles['title']}>
-              AGE OF T.A.N.K.SAGE OF T.A.N.K.SAGE OF T.A.N.K.S
-            </div>
-            <div className={styles['line']}>
-              <label>developer/publisher</label>
-              <div className={styles['handle']}>
-                <span>
-                  <i className={`${icos['ico']} ${icos['ico-heart']} `}></i>
-                  1760
-                </span>
-                <span>
-                  <i className={`${icos['ico']} ${icos['ico-star']} `}></i>
-                  935
-                </span>
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
-              accumsan lacus vel facilisis.
-            </p>
-            <Button type="primary" onClick={toDetail}>
-              VIEW MORE
-              <RightOutlined />
-            </Button>
-          </aside>
+      <div className={styles['banner-wrapper']}>
+        <Carousel dots={false} ref={carouselEl}>
+          {bannerList.map((item, index) => {
+            return <Banner key={item.id} />;
+          })}
+        </Carousel>
+        <div className={styles.btnPre}>
+          <Button
+            type="primary"
+            onClick={carouselPre}
+            shape="circle"
+            icon={<LeftOutlined />}
+          />
         </div>
-        <div className={styles['img-list']}>
-          <ul>
-            <li className={`${styles['img']} ${styles['on']} `}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-            <li className={styles['img']}>
-              <img src={tmp1} />
-            </li>
-          </ul>
+        <div className={styles.btnNext}>
+          <Button
+            type="primary"
+            onClick={carouselNext}
+            shape="circle"
+            icon={<RightOutlined />}
+          />
         </div>
-      </section>
-
+      </div>
       <Filters />
       <Filist />
     </div>
