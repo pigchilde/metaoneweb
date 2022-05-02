@@ -3,7 +3,37 @@ import icos from '../../icon.scss';
 import { Menu, Dropdown, Space, Button, Input, Popover, Checkbox } from 'antd';
 import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 import React from 'react';
+import { useIntl } from 'umi';
+
 const Filters = () => {
+  const intl = useIntl();
+  const GAMEFI_FILTERS_BTN = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_BTN',
+  });
+  const GAMEFI_FILTERS_SHOW = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_SHOW',
+  });
+  const GAMEFI_FILTERS_PERPAGR = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_PERPAGR',
+  });
+  const GAMEFI_FILTERS_NEWEST = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_NEWEST',
+  });
+  const GAMEFI_FILTERS_SEARCH = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_SEARCH',
+  });
+  const GAMEFI_FILTERS_CATEGORIES = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_CATEGORIES',
+  });
+  const GAMEFI_FILTERS_GAME_RELEASE = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_GAME_RELEASE',
+  });
+  const GAMEFI_FILTERS_IGO_STATUS = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_IGO_STATUS',
+  });
+  const GAMEFI_FILTERS_POPTITLE = intl.formatMessage({
+    id: 'GAMEFI_FILTERS_POPTITLE',
+  });
   const items = [
     {
       label: <div>10</div>,
@@ -33,15 +63,15 @@ const Filters = () => {
 
   const popContent = (
     <React.Fragment>
-      <h6 className={styles.checktitle}>IGO STATUS</h6>
+      <h6 className={styles.checktitle}>{GAMEFI_FILTERS_IGO_STATUS}</h6>
       <div className={styles.checkline}>
         <Checkbox.Group options={plainOptions} />
       </div>
-      <h6 className={styles.checktitle}>GAME RELEASE</h6>
+      <h6 className={styles.checktitle}>{GAMEFI_FILTERS_GAME_RELEASE}</h6>
       <div className={styles.checkline}>
         <Checkbox.Group options={plainOptions2} />
       </div>
-      <h6 className={styles.checktitle}>CATEGORIES</h6>
+      <h6 className={styles.checktitle}>{GAMEFI_FILTERS_CATEGORIES}</h6>
       <div className={styles.checkline}>
         <Checkbox.Group options={plainOptions3} />
       </div>
@@ -51,11 +81,11 @@ const Filters = () => {
   return (
     <div className={`wrapper ${styles['filter-wrapper']} `}>
       <aside className={styles['search-box']}>
-        <Input placeholder="Search" />
+        <Input placeholder={GAMEFI_FILTERS_SEARCH} />
         <SearchOutlined />
       </aside>
       <aside className={styles['select-box']}>
-        <label>Show</label>
+        <label>{GAMEFI_FILTERS_SHOW}</label>
         <Dropdown overlay={menu}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>
@@ -64,11 +94,11 @@ const Filters = () => {
             </Space>
           </a>
         </Dropdown>
-        <label>Items per page</label>
+        <label>{GAMEFI_FILTERS_PERPAGR}</label>
         <Dropdown overlay={menu}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>
-              Newest
+              {GAMEFI_FILTERS_NEWEST}
               <CaretDownOutlined />
             </Space>
           </a>
@@ -78,10 +108,10 @@ const Filters = () => {
         <Popover
           placement="bottomRight"
           content={popContent}
-          title="FILTERS"
+          title={GAMEFI_FILTERS_POPTITLE}
           trigger="click"
         >
-          <Button type="primary">Filters</Button>
+          <Button type="primary">{GAMEFI_FILTERS_BTN}</Button>
         </Popover>
       </aside>
     </div>

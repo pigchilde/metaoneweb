@@ -1,15 +1,31 @@
 import styles from './index.scss';
 import BannerDetail from './components/BannerDetail';
-import React from 'react';
 import { Breadcrumb, Tabs } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { history } from 'umi';
+import { useIntl } from 'umi';
 import tmp1 from '@/assets/gamefi/img/d-1.png';
 const Detail = () => {
   const { TabPane } = Tabs;
   const returnBack = () => {
     history.push('/gamefi/');
   };
+  const intl = useIntl();
+  const GAMEFI_DETAIL_TAB1 = intl.formatMessage({
+    id: 'GAMEFI_DETAIL_TAB1',
+  });
+  const GAMEFI_DETAIL_TAB2 = intl.formatMessage({
+    id: 'GAMEFI_DETAIL_TAB2',
+  });
+  const GAMEFI_DETAIL_TAB3 = intl.formatMessage({
+    id: 'GAMEFI_DETAIL_TAB3',
+  });
+  const GAMEFI_DETAIL_TAB4 = intl.formatMessage({
+    id: 'GAMEFI_DETAIL_TAB4',
+  });
+  const GAMEFI_DETAIL_BACK = intl.formatMessage({
+    id: 'GAMEFI_DETAIL_BACK',
+  });
 
   return (
     <div className={styles['detail-wrapper']}>
@@ -17,7 +33,7 @@ const Detail = () => {
         <Breadcrumb>
           <Breadcrumb.Item onClick={returnBack}>
             <LeftOutlined style={{ fontSize: '32px', color: '#00cacb' }} />
-            <span className={styles.navlink}>BACK</span>
+            <span className={styles.navlink}>{GAMEFI_DETAIL_BACK}</span>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <span className={styles.navlabel}>Game name</span>
@@ -27,7 +43,7 @@ const Detail = () => {
       <BannerDetail />
       <div className={`wrapper ${styles['article-wrapper']}`}>
         <Tabs>
-          <TabPane tab="ABOUT GAME" key="1">
+          <TabPane tab={GAMEFI_DETAIL_TAB1} key="1">
             <article className={styles.article}>
               <h2>
                 3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
@@ -43,7 +59,7 @@ const Detail = () => {
               <img src={tmp1} />
             </article>
           </TabPane>
-          <TabPane tab="GAME PLAY" key="2">
+          <TabPane tab={GAMEFI_DETAIL_TAB2} key="2">
             <article className={styles.article}>
               <h2>
                 3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
@@ -59,7 +75,7 @@ const Detail = () => {
               <img src={tmp1} />
             </article>
           </TabPane>
-          <TabPane tab="TOKENOMICS" key="3">
+          <TabPane tab={GAMEFI_DETAIL_TAB3} key="3">
             <article className={styles.article}>
               <h2>
                 3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
@@ -75,7 +91,7 @@ const Detail = () => {
               <img src={tmp1} />
             </article>
           </TabPane>
-          <TabPane tab="TEAM" key="4">
+          <TabPane tab={GAMEFI_DETAIL_TAB4} key="4">
             <article className={styles.article}>
               <h2>
                 3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS

@@ -1,15 +1,22 @@
 import styles from './index.scss';
 import { Collapse } from 'antd';
 import tmp1 from '@/assets/gamefi/img/d-1.png';
-
+import { useIntl } from 'umi';
 const Helps = () => {
   const { Panel } = Collapse;
+  const intl = useIntl();
+  const HELP_BANNER_TITLE = intl.formatMessage({
+    id: 'HELP_BANNER_TITLE',
+  });
+  const HELP_BANNER_DES = intl.formatMessage({
+    id: 'HELP_BANNER_DES',
+  });
   return (
     <div className={styles['help-wrapper']}>
       <header className={styles.banner}>
         <div className="wrapper">
-          <h1>Help center</h1>
-          <p>Are you in trouble? We hope we can give you an answer here.</p>
+          <h1>{HELP_BANNER_TITLE}</h1>
+          <p>{HELP_BANNER_DES}</p>
         </div>
       </header>
       <div className={`wrapper ${styles['help-list']}`}>

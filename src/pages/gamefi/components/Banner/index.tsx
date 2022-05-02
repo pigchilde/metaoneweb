@@ -5,11 +5,19 @@ import { Button, Carousel } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
 import { history } from 'umi';
 import { useRef, useState } from 'react';
+import { useIntl } from 'umi';
 
 const Banner = () => {
   const toDetail = () => {
     history.push('/gamefi/1');
   };
+  const intl = useIntl();
+  const btnText = intl.formatMessage({
+    id: 'GAMEFI_BANNER_BTN',
+  });
+  const authText = intl.formatMessage({
+    id: 'GAMEFI_BANNER_AUTH',
+  });
   const [count, setCount] = useState(0);
   const carouselEl = useRef(null);
 
@@ -48,7 +56,7 @@ const Banner = () => {
             AGE OF T.A.N.K.SAGE OF T.A.N.K.SAGE OF T.A.N.K.S
           </div>
           <div className={styles['line']}>
-            <label>developer/publisher</label>
+            <label>{authText}</label>
             <div className={styles['handle']}>
               <span>
                 <i className={`${icos['ico']} ${icos['ico-heart']} `}></i>
@@ -67,7 +75,7 @@ const Banner = () => {
             accumsan lacus vel facilisis.
           </p>
           <Button type="primary" onClick={toDetail}>
-            VIEW MORE
+            {btnText}
             <RightOutlined />
           </Button>
         </aside>
