@@ -7,7 +7,7 @@ interface objectT {
 }
 
 export const getList: objectT = async (params: objectT) => {
-  return request(`/api-docs/center/news/getLatestNewsList/${params.id}`, {
+  return request(`/center/news/getLatestNewsList/${params.id}`, {
     method: 'GET',
   });
 };

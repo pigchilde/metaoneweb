@@ -7,8 +7,8 @@ export default defineConfig({
   },
   fastRefresh: {},
   proxy: {
-    '/api-docs': {
-      target: 'http://47.106.90.119:8000/v2',
+    '/center': {
+      target: 'http://47.106.90.119:8000',
       changeOrigin: true,
     },
   },
