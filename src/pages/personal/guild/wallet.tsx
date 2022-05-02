@@ -25,7 +25,7 @@ const guild = () => {
   };
   return (
     <>
-      <Link to="/" className={styles['back']}>
+      <Link to="/personal/guild" className={styles['back']}>
         {'< '}
         {intl.formatMessage({
           id: 'PERSONAL_BACK',

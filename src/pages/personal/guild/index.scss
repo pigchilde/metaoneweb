@@ -19,6 +19,7 @@
   line-height: 30px;
   margin-bottom: 10px;
   font-size: 18px;
+  color: #eaffff;
   &:last-child {
     margin-bottom: 0;
   }
@@ -34,6 +35,7 @@
     line-height: 32px;
     background-color: #bb7924;
     border-radius: 4px;
+    color: $white;
     cursor: pointer;
     &:hover {
       background-color: #9a5f11;
@@ -44,6 +46,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+  color: #eaffff;
   .view {
     display: inline-block;
     margin-left: 30px;
@@ -53,6 +56,8 @@
     line-height: 32px;
     background-color: #bb7924;
     border-radius: 4px;
+    color: $white;
+
     cursor: pointer;
     &:hover {
       background-color: #9a5f11;
@@ -77,6 +82,7 @@
     }
     .txt {
       font-size: 18px;
+      color: #eaffff;
     }
     .txt1 {
       font-size: 30px;

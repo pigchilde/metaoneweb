@@ -31,7 +31,6 @@ const guild = () => {
   };
   const intl = useIntl();
   const handleChange = () => {};
-  console.log(lineData, 8888);
   const lineConfig = {
     data: lineData,
     xField: 'year',
@@ -143,11 +142,11 @@ const guild = () => {
                 id: 'PERSONAL_GUILD_TXT3',
               })}
             </span>
-            <span className={styles['view']}>
+            <Link to={`/personal/guild/wallet`} className={styles['view']}>
               {intl.formatMessage({
                 id: 'PERSONAL_GUILD_VIEW',
               })}
-            </span>
+            </Link>
           </p>
         </div>
         <div className={styles['box']}>

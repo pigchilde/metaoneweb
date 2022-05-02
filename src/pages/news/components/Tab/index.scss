@@ -1,22 +1,42 @@
-@import '~@/themes/common.scss';
-
 .tab-box {
   margin: 33px 0;
-  display: flex;
-  border-bottom: 2px solid $green;
-  li {
-    padding: 19px 25px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border: solid 2px $green;
-    margin-right: 19px;
-    border-bottom: none;
-    max-width: 250px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    &:last-child {
-      margin-right: 0;
+  :global {
+    .ant-tabs-nav-list {
+      padding: 0;
+    }
+    .ant-tabs-tab {
+      // margin-left: 19px;
+      // background-color: #000;
+      padding: 13px 15px;
+      border: 2px solid $green;
+      text-align: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      max-width: 200px;
+    }
+    .ant-tabs-tab-btn {
+      width: 100%;
+      font-size: 20px;
+      @extend %ellipsis-basic;
+    }
+    .ant-tabs-tab + .ant-tabs-tab {
+      margin-left: 19px;
+    }
+    .ant-tabs-nav::before,
+    .ant-tabs-bottom > .ant-tabs-nav::before,
+    .ant-tabs-nav::before,
+    .ant-tabs-bottom > div > .ant-tabs-nav::before {
+      border-bottom: 2px solid $green;
+    }
+    .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-nav .ant-tabs-ink-bar {
+      display: none;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active {
+      background-color: $green;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+      color: $white;
     }
   }
 }
