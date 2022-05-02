@@ -154,7 +154,7 @@ const Gamers = () => {
             </div>
           </div>
         </section>
-        <section className={styles['gamers-bridge']}>
+        {/* <section className={styles['gamers-bridge']}>
           <h3>
             {intl.formatMessage({
               id: 'GAMERS_BRIDGE_TITLE',
@@ -219,7 +219,7 @@ const Gamers = () => {
               </span>
             </li>
           </ul>
-        </section>
+        </section> */}
         <PhotoText
           type="3"
           title="MetaOne NFT Assets Leasing"

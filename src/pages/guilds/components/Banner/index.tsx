@@ -6,16 +6,10 @@ const Banner = () => {
     <header className={styles['banner']}>
       <div className={`wrapper ${styles['wrap_bg']}`}>
         <div className={styles['banner-title']}>
-          <h2>1000+</h2>
-          <p>
-            {intl.formatMessage({
-              id: 'GUILDS_BANNER_TITLE1',
-            })}
-          </p>
           <h2>135</h2>
           <p>
             {intl.formatMessage({
-              id: 'GUILDS_BANNER_TITLE2',
+              id: 'GUILDS_BANNER_TITLE',
             })}
           </p>
         </div>

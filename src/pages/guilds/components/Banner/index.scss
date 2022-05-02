@@ -2,10 +2,13 @@
 
 .banner {
   margin: 35px 0;
+  height: 731px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直居中 */
+  background: url(../../../../assets/guilds/guilds_bg.png) no-repeat right 0;
 
   .wrap_bg {
-    background: url(../../../../assets/guilds/guilds_bg.png) calc(100% - 60px)
-      calc(100% - 60px) no-repeat;
     padding-left: 20px;
   }
   .banner-title {
