@@ -6,5 +6,6 @@
     <Sprite Path="ico-list.png" LocationX="76" LocationY="0" />
     <Sprite Path="ico-heart.png" LocationX="116" LocationY="0" />
     <Sprite Path="ico-star.png" LocationX="157" LocationY="0" />
+    <Sprite Path="ico-detaillabel.png" LocationX="0" LocationY="45" />
   </SpriteList>
 </SpriteFile>

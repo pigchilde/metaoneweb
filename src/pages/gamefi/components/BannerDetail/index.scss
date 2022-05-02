@@ -1,57 +1,138 @@
 .banner {
-    position: relative;
-    margin-bottom: 80px;
-    display: flex;
-    .img-left {
-        width: calc(100% - 548px);
-        
-        .img {
-            // aspect-ratio: 100/54;
-            
-            height: 477px;
-            border: solid 5px #00cacb;
-            overflow: hidden;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+  position: relative;
+  margin-bottom: 80px;
+  display: flex;
+
+  .img-left {
+    width: calc(100% - 548px);
+
+    .img {
+      // aspect-ratio: 100/54;
+
+      height: 477px;
+      border: solid 5px #00cacb;
+      overflow: hidden;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .img-list {
+      display: block;
+      width: 100%;
+
+      ul {
+        display: flex;
+        overflow-x: hidden;
+      }
+
+      .img {
+        width: 176px;
+        height: 126px;
+        overflow: hidden;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: 20px;
+        border: 0;
+        opacity: 0.68;
+
+        &.on、,
+        &:hover {
+          opacity: 1;
+          border: solid 3px #00ffff;
         }
-        .img-list {
-            display: block;
-            width: 100%;
-            ul {
-                display: flex;
-                overflow-x: hidden;
-            }
 
-            .img {
-                width: 176px;
-                height: 126px;
-                overflow: hidden;
-                flex-grow: 0;
-                flex-shrink: 0;
-                margin-right: 20px;
-                border: 0;
-                opacity: 0.68;
-                &.on、,
-                &:hover {
-                    opacity: 1;
-                    border: solid 3px #00ffff;
-                }
-                &:last-child {
-                    margin-right: 0;
-                }
-                img {
-                    width: 100%;
+        &:last-child {
+          margin-right: 0;
+        }
 
-                    height: 100%;
-                    display: block;
-                    object-fit: cover;
-                }
-            }
+        img {
+          width: 100%;
+
+          height: 100%;
+          display: block;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .intro-box {
+    margin-left: 30px;
+    font-size: 24px;
+  }
+
+  .introhead {
+    display: flex;
+  }
+
+  .lines {
+    padding: 30px 0;
+    border-bottom: dashed 1px $green;
+
+  }
+
+  .line {
+    display: flex;
+    font-size: 22px;
+    margin-bottom: 5px
+  }
+
+  .linelabel {
+    @include ellipsis();
+    width: 55%;
+
+  }
+
+  .linetext {
+    @include ellipsis();
+    width: 45%;
+    font-weight: bold;
+  }
+
+  .handles {
+    display: flex;
+    align-items: center;
+
+    .item {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+
+      >span {
+        padding-left: 5px;
+      }
+    }
+   
+  }
+
+  .btns {
+    padding-top: 20px;
+    display: flex;
+  }
+
+  :global {
+    .ant-btn {
+      width: 240px;
+      height: 59px;
+      border: solid 2px $green;
+      margin-right: 10px;
+      background-color: transparent;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+    .ant-btn-primary{
+        background-color: $green;
+        &:hover{
+            background-color: $greenHover;
         }
     }
+  }
+
 }
