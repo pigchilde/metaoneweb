@@ -4,7 +4,7 @@ const Banner = () => {
   const intl = useIntl();
   return (
     <header className={styles['banner']}>
-      <div className={`${styles['wrapper']}`}>
+      <div className={`wrapper ${styles['wrap_bg']}`}>
         <div className={styles['banner-title']}>
           <h2>1000+</h2>
           <p>

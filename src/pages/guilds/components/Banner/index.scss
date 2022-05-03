@@ -5,11 +5,13 @@
   height: 731px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 垂直居中 */
+  justify-content: center;
+  align-items: stretch;
   background: url(../../../../assets/guilds/guilds_bg.png) no-repeat right 0;
 
   .wrap_bg {
     padding-left: 20px;
+    min-width: 1200px;
   }
   .banner-title {
     h2 {

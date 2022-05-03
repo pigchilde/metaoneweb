@@ -3,6 +3,9 @@ import Banner from './components/Banner';
 import { useIntl } from 'umi';
 import avater from '../../assets/gamers/pic/avater.png';
 import PhotoText from '@/components/PhotoText';
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs;
 
 const Gamers = () => {
   const intl = useIntl();
@@ -53,7 +56,7 @@ const Gamers = () => {
               <dd></dd>
             </dl>
             <div className={styles['gamers-list-table']}>
-              <ul className={styles['table-tab']}>
+              {/* <ul className={styles['table-tab']}>
                 <li className={styles['active']}>
                   {intl.formatMessage({
                     id: 'GAMERS_List_TAB1',
@@ -65,92 +68,100 @@ const Gamers = () => {
                   })}
                 </li>
               </ul>
-              <ul className={styles['table-list']}>
-                <li>
-                  <span className={styles['num']}>4</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>5</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>6</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>7</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>8</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>9</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-                <li>
-                  <span className={styles['num']}>10</span>
-                  <span className={styles['avatar']}>
-                    <img src={avater} />
-                  </span>
-                  <span className={styles['info']}>
-                    Gamer Name
-                    <br />
-                    <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                  </span>
-                  <span className={styles['score']}>7700</span>
-                </li>
-              </ul>
+               */}
+              <Tabs defaultActiveKey="1">
+                <TabPane tab="Weekly List" key="1">
+                  <ul className={styles['table-list']}>
+                    <li>
+                      <span className={styles['num']}>4</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>5</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>6</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>7</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>8</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>9</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>10</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>7700</span>
+                    </li>
+                  </ul>
+                </TabPane>
+                <TabPane tab="Overall List" key="2">
+                  Content of Tab Pane 2
+                </TabPane>
+              </Tabs>
             </div>
           </div>
         </section>
