@@ -10,8 +10,9 @@
       padding: 13px 15px;
       border: 2px solid $green;
       text-align: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      // border-top-left-radius: 10px;
+      // border-top-right-radius: 10px;
+      border-radius: 10px;
       max-width: 200px;
     }
     .ant-tabs-tab-btn {
@@ -27,6 +28,8 @@
     .ant-tabs-nav::before,
     .ant-tabs-bottom > div > .ant-tabs-nav::before {
       border-bottom: 2px solid $green;
+      left: 10px;
+      right: 10px;
     }
     .ant-tabs-nav .ant-tabs-ink-bar,
     .ant-tabs-nav .ant-tabs-ink-bar {

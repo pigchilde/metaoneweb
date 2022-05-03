@@ -6,26 +6,32 @@ import Banner from './components/Banner';
 import Tab from './components/Tab';
 import { history } from 'umi';
 import { connect } from 'dva';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 interface objectT {
   [propName: string]: any;
 }
 const News = (props: objectT) => {
   const { dispatch, news = {} } = props;
+  const [params, setParams] = useState({
+    pageNum: 1,
+    pageSize: 12,
+  } as objectT);
   const onShowSizeChange = () => {};
   const onClick = () => {
     history.push('/news/1');
   };
+
   useEffect(() => {
     dispatch({
       type: 'news/getList',
       payload: {
-        id: 3,
+        id: news.tabValue,
+        data: params,
       },
     }).then((res: objectT) => {
       console.log(res);
     });
-  }, []);
+  }, [news.tabValue, params]);
   return (
     <>
       <Banner />
