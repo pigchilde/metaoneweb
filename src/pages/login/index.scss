@@ -1,0 +1,103 @@
+.login-page {
+  width: 600px;
+  margin: 150px auto 200px;
+  border: 2px solid $green;
+  padding: 30px 40px 60px;
+  border-radius: 10px;
+
+  .resgister {
+    float: right;
+  }
+
+  .login-head {
+    text-align: center;
+    color: $white;
+    margin-bottom: 40px;
+    font-size: 20px;
+
+    >h1 {
+      color: $white;
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 2;
+    }
+  }
+
+  .form-send {
+    margin-left: 14px;
+    width: 122px;
+    height: 38px;
+    background-color: #004e52;
+    border-radius: 10px;
+    border: solid 1px $green;
+    transition: all 0.3s;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+
+  :global {
+    .ant-form-horizontal .ant-form-item-label {
+      display: none;
+    }
+
+    .ant-form-item-control-input-content a {
+      font-size: 18px;
+    }
+
+    .ant-btn-primary {
+      height: 43px;
+      font-size: 19px;
+    }
+
+    .ant-input,
+    .ant-input-affix-wrapper {
+      background-color: transparent !important;
+      border: 1px solid $green;
+      font-size: 16px;
+      padding: 8px 11px;
+      color: $white;
+      border-radius: 10px;
+    }
+
+    .ant-input-password-icon.anticon {
+      color: $white;
+    }
+
+    .ant-form-vertical .ant-form-item-label>label {
+      font-size: 20px;
+      color: $white;
+    }
+
+    .ant-form-item {
+      margin-bottom: 27px;
+    }
+
+    .ant-form-item .ant-form-item {
+      margin-bottom: 0;
+    }
+
+    .ant-input-password .anticon-eye-invisible {
+      height: 15px;
+      width: 25px;
+      background: url(../../assets/news/img/sp.png) 0 0 no-repeat;
+
+      svg {
+        display: none;
+      }
+    }
+
+    .ant-input-password .anticon-eye {
+      height: 16px;
+      width: 25px;
+      background: url(../../assets/news/img/sp.png) 0 -15px no-repeat;
+
+      svg {
+        display: none;
+      }
+    }
+  }
+
+}

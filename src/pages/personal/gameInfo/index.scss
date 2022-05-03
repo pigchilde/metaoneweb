@@ -119,7 +119,7 @@ $white-game-info: #eaffff;
   margin-top: 12px;
   padding: 13px 18px;
   :global {
-    .ant-tabs-nav-wrap {
+    .ant-tabs-top > .ant-tabs-nav::before {
       border: none;
     }
     .ant-tabs-nav-list {

@@ -87,6 +87,9 @@
       padding: 24px 15px;
 
       :global {
+        .ant-tabs-top > .ant-tabs-nav::before {
+          border: none;
+        }
         .ant-tabs-nav-list {
           height: 52px;
           .ant-tabs-tab {
