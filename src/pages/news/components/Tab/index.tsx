@@ -1,9 +1,23 @@
 import styles from './index.scss';
 import { Tabs } from 'antd';
 import { useIntl } from 'umi';
+import { connect } from 'dva';
 const { TabPane } = Tabs;
-const Tab = () => {
-  const tabChange = () => {};
+interface objectT {
+  [propName: string]: any;
+}
+const Tab = (props: objectT) => {
+  const { news = {}, dispatch } = props;
+  /*tab切换*/
+  const tabChange = (e: string) => {
+    dispatch({
+      type: 'news/setData',
+      payload: {
+        name: 'tabValue',
+        data: e,
+      },
+    });
+  };
   const intl = useIntl();
   return (
     <Tabs
@@ -30,4 +44,7 @@ const Tab = () => {
     </Tabs>
   );
 };
-export default Tab;
+
+export default connect(({ news }: { news: objectT }) => ({
+  news,
+}))(Tab);
