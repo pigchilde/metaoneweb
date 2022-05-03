@@ -53,11 +53,11 @@ const BannerDetail = () => {
   const carouselNext = () => {
     carouselEl.current.next();
   };
-  const carouselPage = (index) => {
+  const carouselPage = (index: any) => {
     carouselEl.current.goTo(index);
     setCount(index);
   };
-  const carouselAfterChange = (e) => {
+  const carouselAfterChange = (e: any) => {
     setCount(e);
   };
   return (

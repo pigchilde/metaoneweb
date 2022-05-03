@@ -1,9 +1,12 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
-import { Form, Input, Button, Avatar, Row, Col } from 'antd';
+import { Form, Input, Button, Avatar, Row, Col, Modal } from 'antd';
+import { useState } from 'react';
 
 const setting = () => {
   const intl = useIntl();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const { TextArea } = Input;
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -11,6 +14,16 @@ const setting = () => {
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -58,13 +71,67 @@ const setting = () => {
               <TextArea rows={4} placeholder="Enter Your Description" />
             </Form.Item>
             <Form.Item name="name" label="">
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
+              <div className={styles['btns']}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+                <Button onClick={showModal}>Change password</Button>
+              </div>
             </Form.Item>
           </Col>
         </Row>
       </Form>
+      <Modal
+        title="Change password"
+        wrapClassName="pop-pwd"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="Submit"
+      >
+        <div className={styles.changePop}>
+          <Form
+            name="basic"
+            wrapperCol={{ span: 24 }}
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+            layout="vertical"
+          >
+            <Form.Item
+              label="Email"
+              name="Email"
+              rules={[
+                { required: true, message: 'Please input your Your Email' },
+              ]}
+            >
+              <Input placeholder="Your Email" />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: 'Please input your password!' },
+              ]}
+            >
+              <Input.Password placeholder="Your Password" />
+            </Form.Item>
+            <Form.Item
+              label="confirmPassword"
+              name="confirmPassword"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your confirm Password!',
+                },
+              ]}
+            >
+              <Input.Password placeholder="Confirm Password" />
+            </Form.Item>
+          </Form>
+        </div>
+      </Modal>
     </div>
   );
 };

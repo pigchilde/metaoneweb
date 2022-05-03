@@ -33,7 +33,7 @@ const Banner = () => {
     { id: 8 },
     { id: 9 },
   ];
-  const carouselPage = (index) => {
+  const carouselPage = (index: any) => {
     carouselEl.current.goTo(index);
     setCount(index);
   };

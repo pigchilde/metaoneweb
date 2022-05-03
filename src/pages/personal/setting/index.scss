@@ -1,5 +1,10 @@
 .setting {
   padding: 32px 24px 20px 0;
+
+  .btns {
+    display: flex;
+  }
+
   .setting-con {
     margin-top: 40px;
   }
@@ -9,6 +14,7 @@
       display: block;
       margin: 0 auto;
     }
+
     p {
       margin-top: 15px;
       font-size: 30px;
@@ -25,6 +31,7 @@
         width: calc(50% - 46px);
         margin: 0 23px;
       }
+
       .setting-textarea {
         width: calc(100% - 46px);
       }
@@ -36,6 +43,7 @@
         font-size: 30px;
         line-height: 48px;
       }
+
       input {
         border-radius: 4px;
         border: solid 2px #006366;
@@ -46,6 +54,7 @@
         background: none;
         margin-bottom: 35px;
       }
+
       textarea {
         border-radius: 4px;
         border: solid 2px #006366;
@@ -54,14 +63,117 @@
         background: none;
         margin-bottom: 35px;
       }
-      button {
-        width: 178px;
-        height: 53px;
-        background-color: #c8354e;
+
+      .ant-btn {
+        height: 60px;
+        color: $white;
         border-radius: 10px;
         font-size: 30px;
-        border: none;
+        margin-right: 20px;
+        border-color: #c8354e;
       }
+
+      .ant-btn-default {
+        background: transparent;
+        color: $white;
+
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .ant-btn-primary {
+        // border: none;
+        width: 178px;
+        background-color: #c8354e;
+      }
+    }
+  }
+}
+
+:global {
+  .pop-pwd {
+
+    .ant-modal {
+      padding-bottom: 0;
+      border: 1px solid $green;
+    }
+
+    .ant-modal-content {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .ant-modal-close-x {
+      .anticon {
+        color: $green;
+        font-size: 26px;
+
+      }
+    }
+
+    .ant-modal-header {
+      background: transparent;
+      border-bottom-color: $green;
+    }
+
+    .ant-modal-footer {
+      padding: 20px 16px;
+      border-top-color: $green;
+    }
+
+    .ant-input,
+    .ant-input-affix-wrapper {
+      border-radius: 4px;
+      border: solid 2px #006366;
+      color: #a6a6a6;
+      font-size: 20px;
+      background: none;
+    }
+
+    .ant-input-password .anticon-eye-invisible {
+      height: 15px;
+      width: 25px;
+      background: url(../../../assets/news/img/sp.png) 0 0 no-repeat;
+
+      svg {
+        display: none;
+      }
+    }
+
+    .ant-input-password .anticon-eye {
+      height: 16px;
+      width: 25px;
+      background: url(../../../assets/news/img/sp.png) 0 -15px no-repeat;
+
+      svg {
+        display: none;
+      }
+    }
+
+    .ant-modal-title {
+      color: $white;
+      text-align: center;
+      font-size: 32px;
+      line-height: 46px;
+
+    }
+
+    .ant-form-item-label>label {
+      color: $white;
+      font-size: 20px;
+    }
+
+    .ant-btn {
+      font-size: 22px;
+      height: 50px;
+      min-width: 150px;
+      // line-height: 32px;
+      box-sizing: border-box;
+    }
+
+    .ant-btn-default {
+      border-color: $green;
+      background-color: transparent;
+      color: #fff;
     }
   }
 }
