@@ -8,6 +8,17 @@ interface objectT {
 }
 const Tab = (props: objectT) => {
   const { news = {}, dispatch } = props;
+  const intl = useIntl();
+  const tabDatas = [
+    {
+      id: 10,
+      name: '测试',
+    },
+    {
+      id: 1001,
+      name: '最新数据',
+    },
+  ];
   /*tab切换*/
   const tabChange = (e: string) => {
     dispatch({
@@ -18,29 +29,15 @@ const Tab = (props: objectT) => {
       },
     });
   };
-  const intl = useIntl();
   return (
     <Tabs
       defaultActiveKey="1"
       onChange={tabChange}
       className={styles['tab-box']}
     >
-      <TabPane
-        tab={intl.formatMessage({
-          id: 'SIGN_TAB_GAME',
-        })}
-        key="1"
-      ></TabPane>
-      <TabPane
-        tab="dddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-        key="2"
-      ></TabPane>
-      <TabPane
-        tab={intl.formatMessage({
-          id: 'SIGN_TAB_NFT',
-        })}
-        key="3"
-      ></TabPane>
+      {tabDatas.map((i) => {
+        return <TabPane tab={i.name} key={i.id}></TabPane>;
+      })}
     </Tabs>
   );
 };

@@ -7,7 +7,7 @@ export default {
   namespace: 'news',
   state: {
     listDatas: {},
-    tabValue: '1',
+    tabValue: '10',
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
