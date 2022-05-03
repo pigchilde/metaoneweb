@@ -7,31 +7,22 @@ interface objectT {
   [propName: string]: any;
 }
 const Tab = (props: objectT) => {
-  const { news = {}, dispatch } = props;
+  const { news = {}, dispatch, tabChange, value } = props;
   const intl = useIntl();
   const tabDatas = [
     {
-      id: 10,
+      id: 'COMPREHENSIVE',
       name: '测试',
     },
     {
-      id: 1001,
+      id: 'LATEST',
       name: '最新数据',
     },
   ];
-  /*tab切换*/
-  const tabChange = (e: string) => {
-    dispatch({
-      type: 'news/setData',
-      payload: {
-        name: 'tabValue',
-        data: e,
-      },
-    });
-  };
+
   return (
     <Tabs
-      defaultActiveKey="1"
+      defaultActiveKey={value}
       onChange={tabChange}
       className={styles['tab-box']}
     >

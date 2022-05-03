@@ -3,7 +3,7 @@
   display: flex;
   // justify-content: space-between;
   flex-wrap: wrap;
-  min-height: 300px;
+  min-height: 500px;
   li {
     width: 520px;
     background-color: #111;
@@ -61,8 +61,16 @@
 }
 
 .article-page {
+  position: relative;
+  margin-bottom: 80px;
   width: 80%;
+  .time {
+    position: absolute;
+    top: 30px;
+    right: 0;
+  }
   h3 {
+    width: 80%;
     padding: 15px 0 38px;
     font-size: 35px;
     line-height: 31px;

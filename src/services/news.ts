@@ -14,3 +14,9 @@ export const getList: objectT = async (params: objectT) => {
     },
   );
 };
+
+export const getData: objectT = async (params: objectT) => {
+  return request(`/center/news/getNews/${params.id}`, {
+    method: 'GET',
+  });
+};

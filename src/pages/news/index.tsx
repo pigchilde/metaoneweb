@@ -10,30 +10,43 @@ import { history } from 'umi';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import { autoAddEllipsis } from '@/utils/utils';
+import moment from 'moment';
 interface objectT {
   [propName: string]: any;
 }
 const News = (props: objectT) => {
-  const { dispatch, news = {} } = props;
+  const { location = {}, dispatch, news = {} } = props;
+  const { query = {} } = location;
   const [params, setParams] = useState({
     pageNum: 1,
     pageSize: 12,
   } as objectT);
   const [listDatas, setListDatas] = useState({} as objectT);
   const [loading, setLoading] = useState(true as boolean);
+  const [tabValue, seTabValue] = useState(
+    query.tab ? query.tab : ('COMPREHENSIVE' as string),
+  );
   const onPageChange = (e: number) => {
     setParams({ ...params, pageNum: e });
   };
-  const onClick = () => {
-    history.push('/news/1');
+  const onLiClick = (i: objectT) => {
+    history.push(`/news/${i.id}?tab=${tabValue}`);
+  };
+
+  /*tab切换*/
+  const tabChange = (e: string) => {
+    seTabValue(e);
+    setParams({ ...params, pageNum: 1 });
   };
 
   useEffect(() => {
+    // console.log(moment('2022/03/12').format('LL'));
+    // return;
     setLoading(true);
     dispatch({
       type: 'news/getList',
       payload: {
-        id: news.tabValue,
+        id: tabValue,
         data: params,
       },
     }).then((res: objectT) => {
@@ -41,7 +54,9 @@ const News = (props: objectT) => {
       if (code === 0) {
         const newData = data.map((i: objectT) => {
           //80个字外架省略号
-          const ellipsisContent = autoAddEllipsis(i.content, 80);
+          const ellipsisContent = i.content
+            ? autoAddEllipsis(i.content, 80)
+            : { data: '' };
           return { ...i, ellipsisContent: ellipsisContent.data };
         });
         setListDatas({ ...res, data: newData });
@@ -49,27 +64,29 @@ const News = (props: objectT) => {
 
       setLoading(false);
     });
-  }, [news.tabValue, params]);
+  }, [tabValue, params]);
   return (
     <>
       <Banner />
 
       <section className={`${styles['main']} wrapper`}>
-        <Tab />
+        <Tab tabChange={tabChange} value={tabValue} />
         <ul className={styles['list-item']}>
           {loading ? (
             <Loading></Loading>
           ) : listDatas.data.length ? (
             listDatas.data.map((i: objectT) => {
               return (
-                <li onClick={onClick} key={i.id}>
+                <li onClick={() => onLiClick(i)} key={i.id}>
                   <div className={styles['img-box']}>
                     <img src={i.img} alt="" />
                   </div>
                   <div className={styles['txt-box']}>
                     <h6>{i.title} </h6>
                     <p className={styles['txt-desc']}>{i.ellipsisContent}</p>
-                    <p className={styles['txt-time']}>April 21 2022</p>
+                    <p className={styles['txt-time']}>
+                      {moment(i.createTime).format('LL')}
+                    </p>
                   </div>
                 </li>
               );
@@ -78,16 +95,20 @@ const News = (props: objectT) => {
             <Empty></Empty>
           )}
         </ul>
-        <div className={styles['pagination-item']}>
-          <PaginationItem
-            datas={{
-              total: listDatas.count ? listDatas.count : 1,
-              current: params.pageNum,
-              pageSize: params.pageSize,
-            }}
-            onPageChange={onPageChange}
-          />
-        </div>
+        {listDatas.data && listDatas.data.length ? (
+          <div className={styles['pagination-item']}>
+            <PaginationItem
+              datas={{
+                total: listDatas.count ? listDatas.count : 1,
+                current: params.pageNum,
+                pageSize: params.pageSize,
+              }}
+              onPageChange={onPageChange}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </section>
     </>
   );

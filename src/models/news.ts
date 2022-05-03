@@ -26,5 +26,12 @@ export default {
       const data: initialStateT = yield call(newsService.getList, payload);
       return data;
     },
+    *getData(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(newsService.getData, payload);
+      return data;
+    },
   },
 };
