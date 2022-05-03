@@ -2,15 +2,10 @@ import styles from './index.scss';
 import { Pagination } from 'antd';
 
 interface objectT {
-  datas: {
-    total: number;
-    current: number;
-    pageSize: number;
-  };
   [propName: string]: any;
 }
 const PaginationItem = (props: objectT) => {
-  const { datas, onPageChange } = props;
+  const { datas = {}, onPageChange } = props;
   const { total, current, pageSize } = datas;
   return (
     <Pagination

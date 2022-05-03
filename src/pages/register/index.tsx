@@ -5,6 +5,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 const { TabPane } = Tabs;
 const Sign = () => {
   const intl = useIntl();
+  const tabDatas = [];
   const tabChange = () => {};
   const onFinish = (values: any) => {
     console.log('Success:', values);
