@@ -51,7 +51,7 @@
 .help-list {
   padding: 35px 0 70px;
   position: relative;
-
+  min-height: calc(100vh - 500px);
   .article {
     img {
       max-width: 100%;

@@ -48,7 +48,7 @@ const Login = () => {
             htmlType="submit"
             className={styles['form-submit']}
           >
-            Sign I
+            Sign In
           </Button>
         </Form.Item>
       </Form>
