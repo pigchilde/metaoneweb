@@ -62,26 +62,26 @@ const Sign = () => {
               autoComplete="off"
             >
               <Form.Item
-                label="Username"
-                name="username"
+                label="nickName"
+                name="nickName"
                 rules={[
-                  { required: true, message: 'Please input your username!' },
+                  { required: true, message: 'Please input your nickName!' },
                 ]}
               >
                 <Input placeholder="Name" />
               </Form.Item>
               <Form.Item
-                label="Email"
-                name="Email"
+                label="email"
+                name="email"
                 rules={[
-                  { required: true, message: 'Please input your username!' },
+                  { required: true, message: 'Please input your email!' },
                 ]}
               >
-                <Input placeholder="Email" />
+                <Input placeholder="email" />
               </Form.Item>
-              <Form.Item label="Email2">
+              <Form.Item label="verificationCode">
                 <Form.Item
-                  name="year"
+                  name="verificationCode"
                   rules={[{ required: true }]}
                   style={{
                     display: 'inline-block',
@@ -105,19 +105,25 @@ const Sign = () => {
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <Form.Item
-                label="Password1"
-                name="password1"
+                label="confirmPassword"
+                name="confirmPassword"
                 rules={[
-                  { required: true, message: 'Please input your password!' },
+                  {
+                    required: true,
+                    message: 'Please input your confirm Password!',
+                  },
                 ]}
               >
                 <Input.Password placeholder="Confirm Password" />
               </Form.Item>
               <Form.Item
-                label="Email"
-                name="Email"
+                label="invitationCode"
+                name="invitationCode"
                 rules={[
-                  { required: true, message: 'Please input your username!' },
+                  {
+                    required: true,
+                    message: 'Please input your invitationCode!',
+                  },
                 ]}
               >
                 <Input placeholder="ConfiInvitation Code" />

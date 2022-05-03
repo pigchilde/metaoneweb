@@ -16,7 +16,10 @@ const News = (props: objectT) => {
     pageNum: 1,
     pageSize: 12,
   } as objectT);
-  const onShowSizeChange = () => {};
+  const [listDatas, setListDatas] = useState({} as objectT);
+  const onPageChange = (e: number) => {
+    setParams({ ...params, pageNum: e });
+  };
   const onClick = () => {
     history.push('/news/1');
   };
@@ -29,7 +32,7 @@ const News = (props: objectT) => {
         data: params,
       },
     }).then((res: objectT) => {
-      console.log(res);
+      setListDatas(res);
     });
   }, [news.tabValue, params]);
   return (
@@ -93,7 +96,14 @@ const News = (props: objectT) => {
           </li>
         </ul>
         <div className={styles['pagination-item']}>
-          <PaginationItem />
+          <PaginationItem
+            datas={{
+              total: listDatas.count,
+              current: params.pageNum,
+              pageSize: params.pageSize,
+            }}
+            onPageChange={onPageChange}
+          />
         </div>
       </section>
     </>

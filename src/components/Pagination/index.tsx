@@ -1,13 +1,24 @@
 import styles from './index.scss';
 import { Pagination } from 'antd';
-const PaginationItem = () => {
-  const onShowSizeChange = (): void => {};
+
+interface objectT {
+  datas: {
+    total: number;
+    current: number;
+    pageSize: number;
+  };
+  [propName: string]: any;
+}
+const PaginationItem = (props: objectT) => {
+  const { datas, onPageChange } = props;
+  const { total, current, pageSize } = datas;
   return (
     <Pagination
       showQuickJumper
-      onShowSizeChange={onShowSizeChange}
-      defaultCurrent={3}
-      total={500}
+      onChange={onPageChange}
+      current={current}
+      pageSize={pageSize}
+      total={total}
       className={styles['page-box']}
     />
   );
