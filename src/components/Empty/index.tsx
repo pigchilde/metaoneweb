@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './index.scss';
 import { Empty } from 'antd';
-// import noneImg from '../../assets/img/none.png';
-const VideoPlayer = (props: any) => {
+/**
+ * @param props title  非必传|无数据文字标题 desc  非必传|无数据文字描述 size  非必传|大小 small
+ * @returns
+ */
+const EmptySnippets = (props: any) => {
   const { title, desc, size } = props;
   return (
     <div
@@ -16,4 +19,4 @@ const VideoPlayer = (props: any) => {
   );
 };
 
-export default VideoPlayer;
+export default EmptySnippets;
