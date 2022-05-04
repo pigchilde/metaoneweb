@@ -1,12 +1,23 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
-const Banner = () => {
+interface objectT {
+  [propName: string]: any;
+}
+
+const Banner = (props: objectT) => {
+  const {
+    data: { title, img, content, totalGamers },
+  } = props;
   const intl = useIntl();
+
+  const background = {
+    background: `url(${img}) no-repeat right 0`,
+  };
   return (
-    <header className={styles['banner']}>
+    <header className={styles['banner']} style={background}>
       <div className={`wrapper ${styles['wrap_bg']}`}>
         <div className={styles['banner-title']}>
-          <h2>1000+</h2>
+          <h2>{totalGamers}+</h2>
           <p>
             {intl.formatMessage({
               id: 'GAMERS_BANNER_TITLE',
@@ -14,12 +25,8 @@ const Banner = () => {
           </p>
         </div>
         <div className={styles['banner-con']}>
-          <h2>Fast Track for Gamers into the Gaming Metaverse.</h2>
-          <p>
-            MetaOne ensures seamless process and experience with our easy guided
-            activation tools, well mapped out NFT game plays, and potential earn
-            out models.
-          </p>
+          <h2>{title}</h2>
+          <p>{content}</p>
         </div>
       </div>
     </header>

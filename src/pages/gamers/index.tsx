@@ -4,18 +4,42 @@ import { useIntl } from 'umi';
 import avater from '../../assets/gamers/pic/avater.png';
 import PhotoText from '@/components/PhotoText';
 import { Tabs } from 'antd';
+import { connect } from 'dva';
+import { useEffect, useState } from 'react';
+import Loading from '@/components/Loading';
 
 const { TabPane } = Tabs;
+interface objectT {
+  [propName: string]: any;
+}
 
-const Gamers = () => {
+const Gamers = (props: objectT) => {
   const intl = useIntl();
-  const onShowSizeChange = () => {};
-  const onClick = () => {
-    // history.push('/news/1');
-  };
+  const { dispatch } = props;
+  const [loading, setLoading] = useState(true as boolean);
+  const [bannerData, setBannerData] = useState({} as objectT);
+  const [informationList, setInformationList] = useState({} as objectT);
+
+  useEffect(() => {
+    setLoading(true);
+
+    dispatch({
+      type: 'gamers/getGamersInfo',
+      payload: {},
+    }).then((res: objectT) => {
+      const { banner, list } = res;
+      if (banner.code === 0) {
+        setBannerData(banner.data);
+      }
+      if (list.code === 0) {
+        setInformationList(list.data);
+      }
+      setLoading(false);
+    });
+  }, []);
   return (
     <>
-      <Banner />
+      {<Banner data={bannerData} />}
 
       <section className={`${styles['main']} wrapper`}>
         <section className={styles['gamers-list']}>
@@ -165,222 +189,20 @@ const Gamers = () => {
             </div>
           </div>
         </section>
-        {/* <section className={styles['gamers-bridge']}>
-          <h3>
-            {intl.formatMessage({
-              id: 'GAMERS_BRIDGE_TITLE',
-            })}
-          </h3>
-          <p className={styles['gamers-bridge-des']}>
-            {intl.formatMessage({
-              id: 'GAMERS_BRIDGE_CON2_DES',
-            })}
-          </p>
-          <ul className={styles['gamers-bridge-con']}>
-            <li>
-              <span className={styles['img']}></span>
-              <span className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON1_TITLE',
-                })}
-              </span>
-              <span className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON1_DES',
-                })}
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <span className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON2_TITLE',
-                })}
-              </span>
-              <span className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON2_DES',
-                })}
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <span className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON3_TITLE',
-                })}
-              </span>
-              <span className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON3_DES',
-                })}
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <span className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON4_TITLE',
-                })}
-              </span>
-              <span className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_BRIDGE_CON4_DES',
-                })}
-              </span>
-            </li>
-          </ul>
-        </section> */}
-        <PhotoText
-          type="3"
-          title="MetaOne NFT Assets Leasing"
-          des="Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets.<br/>
-
-              Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets."
-          imgSrc="http://dummyimage.com/848x500"
-        />
-      </section>
-      <section className={styles['gamers-training']}>
-        <div
-          className={`${styles['gamers-training-bg']} ${styles['main']} wrapper`}
-        >
-          <h3>
-            {intl.formatMessage({
-              id: 'GAMERS_GAME_TRAINING',
-            })}
-          </h3>
-          <ul>
-            <li>
-              <span className={styles['img']}>
-                <p>
-                  {intl.formatMessage({
-                    id: 'GAMERS_GAME_TITLE1',
-                  })}
-                </p>
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}>
-                <p>
-                  {intl.formatMessage({
-                    id: 'GAMERS_GAME_TITLE2',
-                  })}
-                </p>
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}>
-                <p>
-                  {intl.formatMessage({
-                    id: 'GAMERS_GAME_TITLE3',
-                  })}
-                </p>
-              </span>
-            </li>
-            <li>
-              <span className={styles['img']}>
-                <p>
-                  {intl.formatMessage({
-                    id: 'GAMERS_GAME_TITLE4',
-                  })}
-                </p>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section className={styles['gamers-tutorial']}>
-        <div className={`${styles['main']} wrapper`}>
-          <h3>
-            {intl.formatMessage({
-              id: 'GAMERS_GAME_TUTORIAL',
-            })}
-          </h3>
-          <p className={styles['title-des']}>
-            {intl.formatMessage({
-              id: 'GAMERS_GAME_TUTORIAL_DES',
-            })}
-          </p>
-          <ul>
-            <li>
-              <span className={styles['img']}></span>
-              <p className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_TITLE',
-                })}{' '}
-                1
-              </p>
-              <p className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_DES1',
-                })}
-              </p>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <p className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_TITLE',
-                })}{' '}
-                2
-              </p>
-              <p className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_DES2',
-                })}
-              </p>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <p className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_TITLE',
-                })}{' '}
-                3
-              </p>
-              <p className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_DES3',
-                })}
-              </p>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <p className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_TITLE',
-                })}{' '}
-                4
-              </p>
-              <p className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_DES4',
-                })}
-              </p>
-            </li>
-            <li>
-              <span className={styles['img']}></span>
-              <p className={styles['title']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_TITLE',
-                })}{' '}
-                5
-              </p>
-              <p className={styles['des']}>
-                {intl.formatMessage({
-                  id: 'GAMERS_GAME_TUTORIAL_DES5',
-                })}
-              </p>
-            </li>
-          </ul>
-        </div>
+        {loading ? (
+          <Loading></Loading>
+        ) : informationList.length ? (
+          informationList.map((item: objectT) => {
+            return <PhotoText datas={item} />;
+          })
+        ) : (
+          ''
+        )}
       </section>
     </>
   );
 };
 
-export default Gamers;
+export default connect(({ gamers }: { gamers: objectT }) => ({
+  gamers,
+}))(Gamers);

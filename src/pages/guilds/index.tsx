@@ -3,16 +3,42 @@ import Banner from './components/Banner';
 import { useIntl } from 'umi';
 import avater from '../../assets/gamers/pic/avater.png';
 import PhotoText from '@/components/PhotoText';
+import { Tabs } from 'antd';
+import { connect } from 'dva';
+import { useEffect, useState } from 'react';
+import Loading from '@/components/Loading';
 
-const Guilds = () => {
+interface objectT {
+  [propName: string]: any;
+}
+
+const Guilds = (props: objectT) => {
   const intl = useIntl();
-  const onShowSizeChange = () => {};
-  const onClick = () => {
-    // history.push('/news/1');
-  };
+  const { dispatch } = props;
+  const [loading, setLoading] = useState(true as boolean);
+  const [bannerData, setBannerData] = useState({} as objectT);
+  const [informationList, setInformationList] = useState({} as objectT);
+
+  useEffect(() => {
+    setLoading(true);
+
+    dispatch({
+      type: 'guilds/getGuildsInfo',
+      payload: {},
+    }).then((res: objectT) => {
+      const { banner, list } = res;
+      if (banner.code === 0) {
+        setBannerData(banner.data);
+      }
+      if (list.code === 0) {
+        setInformationList(list.data);
+      }
+      setLoading(false);
+    });
+  }, []);
   return (
     <>
-      <Banner />
+      <Banner data={bannerData} />
 
       <section className={`${styles['main']} wrapper`}>
         <section className={styles['line']}></section>
@@ -156,47 +182,29 @@ const Guilds = () => {
           </div>
         </section>
         <section className={styles['line']}></section>
-        <PhotoText
-          type="1"
-          title="MetaOne NFT Assets Leasing"
-          des="Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets.<br/>
+        {loading ? (
+          <Loading></Loading>
+        ) : informationList.length ? (
+          informationList.map((item: objectT, index: number) => {
+            console.log(informationList.length, index, 'size');
 
-              Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets."
-          imgSrc="http://dummyimage.com/848x500"
-        />
-        <section className={styles['line']}></section>
-        <PhotoText
-          type="2"
-          title="MetaOne NFT Assets Leasing"
-          des="Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets.<br/>
-
-              Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets."
-          imgSrc="http://dummyimage.com/848x500"
-        />
-        <section className={styles['line']}></section>
-        <PhotoText
-          type="3"
-          title="MetaOne NFT Assets Leasing"
-          des="Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets.<br/>
-
-              Gamers can browse available NFTs for leasing based on GameFi
-              titles offered in the MetaOne platform; even the NFTs are on
-              different blockchain from the owner of the assets."
-          imgSrc="http://dummyimage.com/848x500"
-        />
+            return informationList.length - 1 !== index ? (
+              <>
+                <PhotoText datas={item} />
+                <section className={styles['line']}></section>
+              </>
+            ) : (
+              <PhotoText datas={item} />
+            );
+          })
+        ) : (
+          ''
+        )}
       </section>
     </>
   );
 };
 
-export default Guilds;
+export default connect(({ guilds }: { guilds: objectT }) => ({
+  guilds,
+}))(Guilds);
