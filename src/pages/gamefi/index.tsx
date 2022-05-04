@@ -5,30 +5,38 @@ import {
   LeftOutlined,
   RightOutlined,
 } from '@ant-design/icons';
-import { useRef } from 'react';
+import { connect } from 'dva';
+import { useRef, useEffect, useState } from 'react';
 import Filters from './components/Filters';
 import Filist from './components/Filist';
 import Banner from './components/Banner';
-const GameFi = () => {
+interface objectT {
+  [propName: string]: any;
+}
+const GameFi = (props: objectT) => {
+  const { location = {}, dispatch, gamefi = {} } = props;
+  const [listDatas, setListDatas] = useState({} as objectT);
   const dropitems = [
     {
-      label: <div>Hot collections</div>,
-      key: '0',
+      label: <div>LIKE Collections</div>,
+      key: 'LIKE',
     },
     {
-      label: <div>Hot collections2</div>,
-      key: '1',
+      label: <div>STAR Collections</div>,
+      key: 'STAR',
     },
   ];
   const bannerList = [{ id: 1 }, { id: 2 }, { id: 3 }];
-  const carouselEl = useRef(null);
+  const carouselEl = useRef({} as objectT);
   const carouselPre = () => {
     carouselEl.current.prev();
   };
   const carouselNext = () => {
     carouselEl.current.next();
   };
+
   const menu = <Menu items={dropitems} />;
+
   return (
     <div className={styles['GameFi-wrapper']}>
       <header className={styles['head-seletor']}>
@@ -72,5 +80,6 @@ const GameFi = () => {
     </div>
   );
 };
-
-export default GameFi;
+export default connect(({ gamefi }: { gamefi: objectT }) => ({
+  gamefi,
+}))(GameFi);

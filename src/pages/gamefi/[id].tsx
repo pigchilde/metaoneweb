@@ -2,10 +2,20 @@ import styles from './index.scss';
 import BannerDetail from './components/BannerDetail';
 import { Breadcrumb, Tabs } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
-import { history } from 'umi';
-import { useIntl } from 'umi';
+import { history, useIntl } from 'umi';
+import { connect } from 'dva';
+import { useEffect, useState } from 'react';
+import Loading from '@/components/Loading';
+
+interface objectT {
+  [propName: string]: any;
+}
 import tmp1 from '@/assets/gamefi/img/d-1.png';
-const Detail = () => {
+const Detail = (props: objectT) => {
+  const { location = {}, dispatch, gamefi = {}, match = {} } = props;
+  const [loading, setLoading] = useState(true as boolean);
+  const [gameDatas, setGameDatas] = useState({} as objectT);
+  const { params = {} } = match;
   const { TabPane } = Tabs;
   const returnBack = () => {
     history.push('/gamefi/');
@@ -26,6 +36,21 @@ const Detail = () => {
   const GAMEFI_DETAIL_BACK = intl.formatMessage({
     id: 'GAMEFI_DETAIL_BACK',
   });
+  useEffect(() => {
+    setLoading(true);
+    dispatch({
+      type: 'gamefi/getData',
+      payload: {
+        id: params.id,
+      },
+    }).then((res: objectT) => {
+      const { code, data } = res;
+      if (code === 0) {
+        setGameDatas(data);
+      }
+      setLoading(false);
+    });
+  }, [params.id]);
 
   return (
     <div className={styles['detail-wrapper']}>
@@ -36,11 +61,11 @@ const Detail = () => {
             <span className={styles.navlink}>{GAMEFI_DETAIL_BACK}</span>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <span className={styles.navlabel}>Game name</span>
+            <span className={styles.navlabel}>{gameDatas.name}</span>
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <BannerDetail />
+      <BannerDetail datas={gameDatas} />
       <div className={`wrapper ${styles['article-wrapper']}`}>
         <Tabs>
           <TabPane tab={GAMEFI_DETAIL_TAB1} key="1">
@@ -112,4 +137,6 @@ const Detail = () => {
     </div>
   );
 };
-export default Detail;
+export default connect(({ gamefi }: { gamefi: objectT }) => ({
+  gamefi,
+}))(Detail);

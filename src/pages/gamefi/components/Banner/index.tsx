@@ -6,7 +6,9 @@ import { RightOutlined } from '@ant-design/icons';
 import { history } from 'umi';
 import { useRef, useState } from 'react';
 import { useIntl } from 'umi';
-
+interface objectT {
+  [propName: string]: any;
+}
 const Banner = () => {
   const toDetail = () => {
     history.push('/gamefi/1');
@@ -19,7 +21,7 @@ const Banner = () => {
     id: 'GAMEFI_BANNER_AUTH',
   });
   const [count, setCount] = useState(0);
-  const carouselEl = useRef(null);
+  const carouselEl = useRef({} as objectT);
 
   const imgList = [
     { id: 0 },

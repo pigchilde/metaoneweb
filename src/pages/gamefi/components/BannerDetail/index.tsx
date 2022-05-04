@@ -1,19 +1,16 @@
-import tmp1 from '@/assets/gamefi/img/d-1.png';
 import styles from './index.scss';
 import icos from '../../icon.scss';
 import { Button, Carousel } from 'antd';
 import { useRef, useState } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useIntl } from 'umi';
-const BannerDetail = () => {
-  const imgList = [
-    { id: 0 },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-  ];
+interface objectT {
+  [propName: string]: any;
+}
+const BannerDetail = (props: objectT) => {
+  const { datas = {} } = props;
+  const imgList = datas.imgs || [];
+  console.log('BannerDetail', datas);
   const intl = useIntl();
   const GAMEFI_DETAIL_BANNER_BTN1 = intl.formatMessage({
     id: 'GAMEFI_DETAIL_BANNER_BTN1',
@@ -46,7 +43,7 @@ const BannerDetail = () => {
     id: 'GAMEFI_DETAIL_BANNER_Status',
   });
   const [count, setCount] = useState(0);
-  const carouselEl = useRef(null);
+  const carouselEl = useRef({} as objectT);
   const carouselPre = () => {
     carouselEl.current.prev();
   };
@@ -69,10 +66,10 @@ const BannerDetail = () => {
             afterChange={carouselAfterChange}
             ref={carouselEl}
           >
-            {imgList.map((item, index) => {
+            {imgList.map((item: string, index: number) => {
               return (
-                <div className={styles['img']} key={item.id}>
-                  <img src={tmp1} />
+                <div className={styles['img']} key={index}>
+                  <img src={item} />
                 </div>
               );
             })}
@@ -81,14 +78,14 @@ const BannerDetail = () => {
 
         <div className={styles['img-list']}>
           <ul>
-            {imgList.map((item, index) => {
+            {imgList.map((item: string, index: number) => {
               return (
                 <li
                   className={`${styles.img} ${index == count ? styles.on : ''}`}
                   onClick={() => carouselPage(index)}
-                  key={item.id}
+                  key={index}
                 >
-                  <img src={tmp1} />
+                  <img src={item} />
                 </li>
               );
             })}
@@ -101,11 +98,11 @@ const BannerDetail = () => {
           <div className={styles.handles}>
             <label className={styles.item}>
               <i className={`${icos.ico} ${icos['ico-heart']}`}></i>
-              <span>1760</span>
+              <span>{datas.likeCount || 0}</span>
             </label>
             <label className={styles.item}>
               <i className={`${icos.ico} ${icos['ico-star']}`}></i>
-              <span>936</span>
+              <span>{datas.starCount || 0}</span>
             </label>
           </div>
         </header>
