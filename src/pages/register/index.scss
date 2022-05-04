@@ -4,8 +4,7 @@
   .sign-banner {
     position: relative;
     flex: 1;
-    background: url(../../assets/news/pic/sign1.png) 0 0 no-repeat;
-    background-size: cover;
+    overflow: hidden;
     h3 {
       position: absolute;
       top: 50%;
@@ -17,6 +16,20 @@
       // word-break: break-all;
       transform: translate(-50%, -50%);
     }
+    .img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: url(../../assets/news/pic/sign1.png) 0 0 no-repeat;
+      background-size: cover;
+      animation: scaleAni 20s infinite;
+    }
+  }
+  .sign-banner2 .img {
+    background-image: url(../../assets/news/pic/sign2.png);
+  }
+  .sign-banner3 .img {
+    background-image: url(../../assets/news/pic/sign3.png);
   }
   .sign-main {
     min-width: 580rpx;
@@ -120,6 +133,12 @@
       color: $white;
       border-radius: 10px;
     }
+    .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+      background-color: transparent;
+    }
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper {
+      background-color: transparent;
+    }
     .ant-input-password-icon.anticon {
       color: $white;
     }
@@ -145,5 +164,18 @@
         display: none;
       }
     }
+  }
+}
+@keyframes scaleAni {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

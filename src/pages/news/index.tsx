@@ -83,7 +83,9 @@ const News = (props: objectT) => {
                   </div>
                   <div className={styles['txt-box']}>
                     <h6>{i.title} </h6>
-                    <p className={styles['txt-desc']}>{i.ellipsisContent}</p>
+                    <p className={styles['txt-desc']}>
+                      dddddd{i.ellipsisContent}
+                    </p>
                     <p className={styles['txt-time']}>
                       {moment(i.createTime).format('LL')}
                     </p>
