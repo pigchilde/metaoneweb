@@ -1,6 +1,15 @@
 import styles from './index.scss';
 import icos from '../../icon.scss';
-import { Menu, Dropdown, Space, Button, Input, Popover, Checkbox } from 'antd';
+import {
+  Menu,
+  Dropdown,
+  Space,
+  Button,
+  Input,
+  Popover,
+  Checkbox,
+  Select,
+} from 'antd';
 import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useIntl } from 'umi';
@@ -60,7 +69,9 @@ const Filters = () => {
     'Sports',
     'Turn-based Strategy',
   ];
-
+  const pageSizes = [10, 20, 30];
+  const pagePers = ['Newest', 'High ROI', 'Top Rank'];
+  const { Option } = Select;
   const popContent = (
     <React.Fragment>
       <h6 className={styles.checktitle}>{GAMEFI_FILTERS_IGO_STATUS}</h6>
@@ -86,25 +97,28 @@ const Filters = () => {
       </aside>
       <aside className={styles['select-box']}>
         <label>{GAMEFI_FILTERS_SHOW}</label>
-        <Dropdown overlay={menu}>
-          <a onClick={(e) => e.preventDefault()}>
-            <Space>
-              10
-              <CaretDownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
+        <Select suffixIcon={<CaretDownOutlined />} defaultValue={pageSizes[0]}>
+          {pageSizes.map((item: any) => {
+            return (
+              <Option value={item} key={item}>
+                {item}
+              </Option>
+            );
+          })}
+        </Select>
+
         <label>{GAMEFI_FILTERS_PERPAGR}</label>
-        <Dropdown overlay={menu}>
-          <a onClick={(e) => e.preventDefault()}>
-            <Space>
-              {GAMEFI_FILTERS_NEWEST}
-              <CaretDownOutlined />
-            </Space>
-          </a>
-        </Dropdown>
-        <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
-        <i className={`${icos['ico']} ${icos['ico-list']}`}></i>
+        <Select suffixIcon={<CaretDownOutlined />} defaultValue={pagePers[0]}>
+          {pagePers.map((item: any) => {
+            return (
+              <Option value={item} key={item}>
+                {item}
+              </Option>
+            );
+          })}
+        </Select>
+        {/* <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
+        <i className={`${icos['ico']} ${icos['ico-list']}`}></i> */}
         <Popover
           placement="bottomRight"
           content={popContent}

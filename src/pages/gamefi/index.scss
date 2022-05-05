@@ -1,31 +1,75 @@
-:global {
-  .ant-dropdown-trigger {
-    margin: 0 18px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: solid 2px #00c9cb;
+.gameFi-wrapper {
+  padding-bottom: 230px;
+  :global {
+    .ant-dropdown-trigger {
+      margin: 0 18px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: solid 2px $green;
+    }
+    .ant-select {
+      border-radius: 10px;
+      border: solid 2px $green;
+      margin: 0 15px;
+    }
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+      height: auto;
+    }
+    .ant-select-arrow .anticon:not(.ant-select-suffix) {
+      color: $green;
+      font-size: 20px;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      background-color: transparent;
+      border: 0;
+    }
+    .ant-select-selection-item {
+      color: $white;
+      padding: 7px 30px 7px 4px !important;
+    }
+
+    .ant-dropdown-menu {
+      border-radius: 4px;
+      border: solid 2px $green;
+    }
+
+    .ant-space-item {
+      color: $white;
+    }
+
+    .ant-breadcrumb,
+    .ant-breadcrumb-link {
+      color: $white;
+    }
+
+    .ant-breadcrumb-separator {
+      color: $green !important;
+      font-size: 32px;
+    }
+  }
+}
+.head-seletor {
+  padding: 25px 0 17px;
+  :global {
+    .ant-select {
+      width: 280px;
+    }
+    .ant-select-selection-item {
+      font-size: 20px;
+    }
+  }
+  h1 {
+    font-size: 35px;
+    color: #ffffff;
+    line-height: 1;
+    margin-right: 40px;
+    font-weight: bold;
   }
 
-  .ant-dropdown-menu {
-    border-radius: 4px;
-    border: solid 2px #00c9cb;
+  .wrapper {
+    display: flex;
+    align-items: center;
   }
-
-  .ant-space-item {
-    color: #fff;
-  }
-
-  .ant-breadcrumb,
-  .ant-breadcrumb-link {
-    color: #fff;
-  }
-
-  .ant-breadcrumb-separator {
-    color: $green !important;
-    font-size: 32px;
-  }
-
-
 }
 
 .article {
@@ -78,15 +122,15 @@
       padding: 0 !important;
     }
 
-    .ant-tabs-top>.ant-tabs-nav .ant-tabs-ink-bar,
-    .ant-tabs-top>div>.ant-tabs-nav .ant-tabs-ink-bar {
+    .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-ink-bar {
       opacity: 0;
     }
 
-    .ant-tabs-top>.ant-tabs-nav::before,
-    .ant-tabs-bottom>.ant-tabs-nav::before,
-    .ant-tabs-top>div>.ant-tabs-nav::before,
-    .ant-tabs-bottom>div>.ant-tabs-nav::before {
+    .ant-tabs-top > .ant-tabs-nav::before,
+    .ant-tabs-bottom > .ant-tabs-nav::before,
+    .ant-tabs-top > div > .ant-tabs-nav::before,
+    .ant-tabs-bottom > div > .ant-tabs-nav::before {
       border-bottom-color: $green !important;
     }
 
@@ -105,33 +149,11 @@
   }
 }
 
-
-.head-seletor {
-  padding: 25px 0 17px;
-
-  h1 {
-    font-size: 35px;
-    color: #ffffff;
-    line-height: 1;
-    font-weight: bold;
-  }
-
-  .wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-}
-
-.GameFi-wrapper {
-  padding-bottom: 230px;
-}
-
 .flex {
   display: flex;
 }
 
-.banner-wrapper{
+.banner-wrapper {
   position: relative;
   .btnPre,
   .btnNext {

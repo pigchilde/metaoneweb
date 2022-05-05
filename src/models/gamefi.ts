@@ -6,8 +6,9 @@ export default {
   namespace: 'gamefi',
   state: {
     listDatas: {},
-    queryFilter: {},
+    listFilter: {},
     hotlistDatas: {},
+    hotFilter: { gamePopularCategory: 'LIKE' },
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
@@ -17,8 +18,37 @@ export default {
         [payload.name]: payload.data || {},
       };
     },
+    setListFilter(state: initialStateT, action: initialStateT) {
+      const { payload = {} } = action;
+      return { ...state };
+    },
+    setHotFilter(state: initialStateT, action: initialStateT) {
+      const { payload = {} } = action;
+      const hotFilter = { gamePopularCategory: payload };
+      return {
+        ...state,
+        hotFilter,
+      };
+    },
   },
   effects: {
+    *getHotList(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const filter: initialStateT = yield select(
+          (state: initialStateT) => state.gamefi.hotFilter,
+        );
+        const data: initialStateT = yield call(
+          gameFiService.getHotList,
+          filter,
+        );
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
     *getList(
       { payload, callback }: initialStateT,
       { call, put }: initialStateT,

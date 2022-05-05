@@ -96,6 +96,7 @@ const Filist = (props: objectT) => {
             datas={{
               total: listDatas.count ? listDatas.count : 1,
             }}
+            onPageChange={onPageChange}
           />
         </div>
       ) : (

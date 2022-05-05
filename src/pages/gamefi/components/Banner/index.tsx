@@ -3,15 +3,17 @@ import icos from '../../icon.scss';
 import tmp1 from '@/assets/gamefi/img/d-1.png';
 import { Button, Carousel } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import { history, useIntl } from 'umi';
 import { useRef, useState } from 'react';
-import { useIntl } from 'umi';
 interface objectT {
   [propName: string]: any;
 }
-const Banner = () => {
+
+const Banner = (props: objectT) => {
+  const { datas = {}, key } = props;
+  const { name, description, likeCount, starCount } = datas;
   const toDetail = () => {
-    history.push('/gamefi/1');
+    history.push(`/gamefi/${key}`);
   };
   const intl = useIntl();
   const btnText = intl.formatMessage({
@@ -54,28 +56,21 @@ const Banner = () => {
           </Carousel>
         </aside>
         <aside className={styles['intro-box']}>
-          <div className={styles['title']}>
-            AGE OF T.A.N.K.SAGE OF T.A.N.K.SAGE OF T.A.N.K.S
-          </div>
+          <div className={styles['title']}>{name}</div>
           <div className={styles['line']}>
             <label>{authText}</label>
             <div className={styles['handle']}>
               <span>
                 <i className={`${icos['ico']} ${icos['ico-heart']} `}></i>
-                1760
+                {likeCount}
               </span>
               <span>
                 <i className={`${icos['ico']} ${icos['ico-star']} `}></i>
-                935
+                {starCount}
               </span>
             </div>
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
-            accumsan lacus vel facilisis.
-          </p>
+          <p className={styles['description']}>{description}</p>
           <Button type="primary" onClick={toDetail}>
             {btnText}
             <RightOutlined />

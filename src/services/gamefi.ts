@@ -10,7 +10,7 @@ export const getList: objectT = async (params: objectT) => {
   });
 };
 export const getHotList: objectT = async (params: objectT) => {
-  return request(`/center/game/hot-game-list/?${stringify(params.data)}`, {
+  return request(`/center/game/hot-game-list?${stringify(params)}`, {
     method: 'GET',
   });
 };
