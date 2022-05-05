@@ -10,10 +10,10 @@ interface objectT {
 }
 
 const Banner = (props: objectT) => {
-  const { datas = {}, key } = props;
+  const { datas = {} } = props;
   const { name, description, likeCount, starCount } = datas;
   const toDetail = () => {
-    history.push(`/gamefi/${key}`);
+    history.push(`/gamefi/${datas.id}`);
   };
   const intl = useIntl();
   const btnText = intl.formatMessage({

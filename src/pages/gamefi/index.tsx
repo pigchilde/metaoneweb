@@ -8,7 +8,7 @@ import {
 import { connect } from 'dva';
 import React, { useRef, useEffect, useState } from 'react';
 import Filters from './components/Filters';
-import Filist from './components/Filist';
+
 import Banner from './components/Banner';
 import Empty from '@/components/Empty';
 import Loading from '@/components/Loading';
@@ -114,7 +114,6 @@ const GameFi = (props: objectT) => {
         )}
       </div>
       <Filters />
-      <Filist />
     </div>
   );
 };

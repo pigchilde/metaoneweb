@@ -1,3 +1,16 @@
+.detail-wrapper{
+  :global{
+    .ant-breadcrumb,
+    .ant-breadcrumb-link {
+      color: $white;
+    }
+
+    .ant-breadcrumb-separator {
+      color: $green !important;
+      font-size: 32px;
+    }
+  }
+}
 .gameFi-wrapper {
   padding-bottom: 230px;
   :global {
@@ -37,15 +50,7 @@
       color: $white;
     }
 
-    .ant-breadcrumb,
-    .ant-breadcrumb-link {
-      color: $white;
-    }
-
-    .ant-breadcrumb-separator {
-      color: $green !important;
-      font-size: 32px;
-    }
+   
   }
 }
 .head-seletor {
@@ -155,6 +160,7 @@
 
 .banner-wrapper {
   position: relative;
+  min-height: 500px;
   .btnPre,
   .btnNext {
     position: absolute;
@@ -180,3 +186,4 @@
     right: 10px;
   }
 }
+

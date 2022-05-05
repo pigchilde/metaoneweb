@@ -4,6 +4,10 @@
   margin-bottom: 20px;
   
 }
+.list-wrapper {
+  min-height: 500px;
+  position: relative;
+}
 
 :global {
   .ant-popover-placement-bottomRight .ant-popover-arrow {
