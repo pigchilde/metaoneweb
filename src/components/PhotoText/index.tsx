@@ -5,11 +5,13 @@ const PhotoText = (props: any) => {
     title,
     content,
     img,
+    video,
     layoutCategory,
   }: {
     title: string;
     content: string;
-    img: string;
+    img: string | undefined;
+    video: string | undefined;
     layoutCategory: string;
   } = datas;
 
@@ -18,9 +20,8 @@ const PhotoText = (props: any) => {
     12: 2,
     13: 3,
     14: 4,
-    21: 5,
-    22: 6,
   };
+
   return (
     <section className={styles['photo-text']}>
       <div className={`${styles['type' + types[layoutCategory]]}`}>
@@ -29,7 +30,14 @@ const PhotoText = (props: any) => {
           <div className={styles['text-con']}>{content}</div>
         </div>
         <div className={styles['img']}>
-          <img src={img} />
+          {img ? (
+            <img src={img} />
+          ) : (
+            <video controls width="100%">
+              <source src={video} type="video/mp4" />
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          )}
         </div>
       </div>
     </section>
