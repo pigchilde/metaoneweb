@@ -13,6 +13,12 @@ const personalSideer = (props: objectT) => {
     if (key === '1') {
       history.push('/personal/guild');
     }
+    if (key === '2') {
+      history.push('/personal/gameInfo');
+    }
+    if (key === '5') {
+      history.push('/personal/setting');
+    }
   };
   return (
     <div className={styles['sider']}>

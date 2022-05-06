@@ -6,6 +6,7 @@ import { Button, Radio, Tabs, Select } from 'antd';
 import { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/plots';
 import { Line } from '@ant-design/plots';
+import { history } from 'umi';
 const { TabPane } = Tabs;
 const { Option } = Select;
 interface objectT {
@@ -31,6 +32,9 @@ const guild = () => {
   };
   const intl = useIntl();
   const handleChange = () => {};
+  const toPage = () => {
+    history.push(`/personal/guild/yield`);
+  };
   const lineConfig = {
     data: lineData,
     xField: 'year',
@@ -161,7 +165,10 @@ const guild = () => {
                 <strong>87675</strong>
               </p>
             </li>
-            <li className={`${styles['ico-item']} ${styles['ico-item2']}`}>
+            <li
+              className={`${styles['ico-item']} ${styles['ico-item2']}`}
+              onClick={toPage}
+            >
               <p className={styles['txt']}>
                 {intl.formatMessage({
                   id: 'PERSONAL_GUILD_TXT5',

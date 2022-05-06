@@ -54,8 +54,8 @@ const News = (props: objectT) => {
       if (code === 0) {
         const newData = data.map((i: objectT) => {
           //80个字外架省略号
-          const ellipsisContent = i.content
-            ? autoAddEllipsis(i.content, 80)
+          const ellipsisContent = i.outline
+            ? autoAddEllipsis(i.outline, 80)
             : { data: '' };
           return { ...i, ellipsisContent: ellipsisContent.data };
         });
@@ -83,9 +83,7 @@ const News = (props: objectT) => {
                   </div>
                   <div className={styles['txt-box']}>
                     <h6>{i.title} </h6>
-                    <p className={styles['txt-desc']}>
-                      dddddd{i.ellipsisContent}
-                    </p>
+                    <p className={styles['txt-desc']}>{i.ellipsisContent}</p>
                     <p className={styles['txt-time']}>
                       {moment(i.createTime).format('LL')}
                     </p>
