@@ -54,4 +54,13 @@ export default {
   HELP_BANNER_TITLE: 'Help center',
   HELP_BANNER_DES:
     'Are you in trouble? We hope we can give you an answer here.',
+
+  INDEX_VIDEO_SWIPER_TITLE: '',
+  INDEX_VIDEO_SWIPER_DESCRIPTION: '',
+  INDEX_NEWS_SWIPER_TOP_TEXT: '',
+  INDEX_NEWS_SWIPER_TITLE: '',
+  INDEX_NEWS_SWIPER_DESCRIPTION: '',
+  INDEX_INVESTORS_ADVISORS: '',
+  INDEX_MANAGEMENT_TEAM: '',
+  INDEX_INVESTORS: '',
 };

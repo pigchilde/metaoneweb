@@ -124,4 +124,14 @@ export default {
   REGISTER_INVITATION_CODE: 'Invitation Code',
   REGISTER_INVITATION_CODE_TIP: 'Please input your Invitation Code!',
   REGISTER_SUBMIT: 'submit',
+
+  INDEX_VIDEO_SWIPER_TITLE: 'MetaOne RAZZEL DAZZEL SHOW',
+  INDEX_VIDEO_SWIPER_DESCRIPTION: 'the network for the new generation',
+  INDEX_NEWS_SWIPER_TOP_TEXT: 'Focus On',
+  INDEX_NEWS_SWIPER_TITLE: 'Our Latest News',
+  INDEX_NEWS_SWIPER_DESCRIPTION:
+    'MetaOne provides extensive gaming data analytics from games to gamers level.',
+  INDEX_INVESTORS_ADVISORS: 'MetaOne Investors Advisors',
+  INDEX_MANAGEMENT_TEAM: 'MetaOne Management Team',
+  INDEX_INVESTORS: 'Investors',
 };

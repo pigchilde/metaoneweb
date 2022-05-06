@@ -1,0 +1,185 @@
+.spr {
+  background: url('~@/assets/common/img/spr.png') no-repeat;
+}
+
+.wrapper {
+  max-width: 1650px;
+}
+
+.title {
+  background: rgb(121, 242, 157);
+}
+
+.cm-tit {
+  font-size: 50px;
+  color: $white;
+}
+
+.banner {
+  height: 805px;
+  overflow: hidden;
+  background-size: cover;
+  color: $white;
+  .wrapper {
+    height: 100%;
+    display: flex;
+    align-items:flex-end;
+    justify-content:flex-start;
+  }
+  .info {
+    width: 700px;
+  }
+  .tit {
+    font-size: 55px;
+    line-height: 65px;
+    margin-bottom: 15px;
+    color: $white;
+    @include lineRow(3);
+  }
+  .desc {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 48px;
+    letter-spacing: -1px;
+    @include lineRow(8);
+  }
+  .btn-download {
+    width: 197px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 45px;
+    &:before {
+      content: "";
+      position: static;
+      display: inline-block;
+      vertical-align: middle;
+      width: 36px;
+      height: 35px;
+      @extend .spr;
+      background-position: 0 -105px;
+      margin-right: 5px;
+      opacity: 1;
+    }
+  }
+}
+
+.share {
+  height: 119px;
+  background: $green;
+}
+
+.video-swiper {
+  overflow: hidden;
+  color: $white;
+  .cm-tit {
+    margin: 90px 0 15px;
+    line-height: 48px;
+  }
+  .desc {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.news-swiper {
+  height: 920px;
+  overflow: hidden;
+  background: #0d122c url("~@/assets/index/img/bg-news.jpg") bottom right no-repeat;
+  margin-bottom: 108px;
+  .txt-top {
+    font-size: 40px;
+    line-height: 40px;
+    margin: 82px 0 18px;
+  }
+  .tit {
+    font-size: 100px;
+    line-height: 48px;
+    margin-bottom: 26px;
+    color: $white;
+  }
+  .desc {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 33px;
+    width: 720px;
+  }
+}
+
+.photo-text {
+  margin-bottom: 339px;
+}
+
+.advisors {
+  margin-bottom: 380px;
+  .list {
+    display: flex;
+    @for $i from 0 through 6 {
+      &.total-#{$i} {
+        figure {
+          width: percentage(calc(1 / $i));
+        }
+      }
+    }
+  }
+  .cm-tit {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  figure {
+    width: 16%;
+    text-align: center;
+    margin: 0 27px;
+    max-width: 283px;
+    @include respond-to(md) {
+      margin: 0 14px;
+    }
+  }
+  img {
+    width: 100%;
+    max-height: 283px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 30px;
+  }
+  p {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.team-swiper {
+  margin-bottom: 294px;
+  .cm-tit {
+    line-height: 60px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+}
+
+.investors {
+  margin-bottom: 403px;
+  .wrapper {
+    max-width: 1308px;
+  }
+  .cm-tit {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  li {
+    width: 30%;
+    margin: 0 20px 100px;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}

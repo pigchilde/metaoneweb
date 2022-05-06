@@ -1,0 +1,192 @@
+$bgColor: #02050e;
+
+.spr {
+  background: url('~@/assets/common/img/spr.png') no-repeat;
+}
+
+.swiper {
+  position: relative;
+  padding: 0 105px;
+  @include respond-to(lg) {
+    width: 97%;
+    margin: 0 auto;
+  }
+  :global {
+    .swiper-slide {
+      &:nth-child(n+3) {
+        figure {
+          background: #826bbc;
+        }
+      }
+      &:nth-child(n+4) {
+        figure {
+          background: #00bcbd;
+        }
+        
+      }
+      &:nth-child(n+5) {
+        figure {
+          background: #87b85a;
+        }
+        
+      }
+    }
+  }
+  figure {
+    position: relative;
+    width: 459px;
+    height: 624px;
+    padding: 31px 0 0;
+    overflow: hidden;
+    @include respond-to(lg) {
+      width: 380px;
+    }
+    @include respond-to(md) {
+      width: 310px;
+    }
+    i {
+      position: absolute;
+      top: 86px;
+      right: 0;
+      width: 10px;
+      height: 116px;
+      background: $bgColor;
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-width: 3px 5px;
+        border-style: solid;
+      }
+      &:before {
+        top: -6px;
+        border-color: transparent $bgColor $bgColor transparent;
+      }
+      &:after {
+        bottom: -6px;
+        border-color: $bgColor $bgColor transparent transparent;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-width: 5px 9px;
+      border-style: solid;
+      border-color: transparent transparent $bgColor $bgColor;
+    }
+  }
+  .img-wrap {
+    width: 274px;
+    height: 274px;
+    margin: 0 auto 14px;
+  }
+  img  {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .info {
+    box-sizing: border-box;
+    height: 286px;
+    background: rgba(37, 37, 37, 0.37);
+    padding: 20px 47px 15px 53px;
+  }
+  .hd {
+    position: relative;
+    border-bottom: 1px dashed $white;
+    padding: 0 40px 14px 0;
+    margin-bottom: 14px;
+  }
+  .name {
+    font-size: 30px;
+    color: $white;
+    margin-bottom: 5px;
+    @include ellipsis();
+    line-height: 32px;
+  }
+  .position{
+    font-size: 20px;
+    color: #daf7ff;
+    @include ellipsis();
+    line-height: 19px;
+  }
+  .desc {
+    color: $white;
+    font-size: 16px;
+    @include lineRow(8);
+    margin-bottom: 10px;
+    line-height: 20px;
+  }
+  .linkin {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 33px;
+    height: 33px;
+    border-radius: 10px;
+    border: 2px solid $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      @extend .spr;
+      background-position: -3px -248px;
+    }
+    &:hover {
+      background: #017aba;
+      border-color: #017aba;
+    }
+  }
+}
+
+.swiper-ctrl {
+  span {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: $green;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: all 0.5s;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-top: -18px;
+    &:before {
+      content: "";
+      @extend .spr;
+      width: 36px;
+      height: 35px;
+    }
+    &:hover {
+      opacity: 0.98;
+      transform: scale(0.98);
+    }
+    &.btn-prev {
+      left: 0;
+      &:before {
+        background-position: 0 -140px;
+      }
+    }
+    &.btn-next {
+      right: 0;
+      &:before {
+        background-position: 0 -175px;
+      }
+    }
+  }
+}

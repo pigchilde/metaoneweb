@@ -1,4 +1,4 @@
-import styles from './index.less';
+import styles from './index.scss';
 import { Layout, Button } from 'antd';
 import { Link, useIntl, setLocale } from 'umi';
 import { useRef } from 'react';

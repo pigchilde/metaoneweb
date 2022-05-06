@@ -1,5 +1,3 @@
-@import '../../../themes/common.less';
-
 .spr {
   background: url('~@/assets/common/img/spr.png') no-repeat;
 }
@@ -10,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 68px;
-  border: 1px solid @white;
+  border: 1px solid $white;
   border-width: 1px 0;
   background: #000;
 }
@@ -37,7 +35,7 @@
 .btn-menu {
   width: 36px;
   height: 35px;
-  &:extend(.spr);
+  @extend .spr;
   background-position: 0 0;
   margin-left: 42px;
   cursor: pointer;
@@ -48,11 +46,11 @@
   align-items: center;
   a {
     font-size: 22px;
-    color: @white;
+    color: $white;
     margin-left: 36px;
     line-height: 33px;
     &:hover {
-      color: @green;
+      color: $green;
     }
   }
 }
@@ -61,7 +59,7 @@
 .op-msg:before {
   width: 36px;
   height: 35px;
-  &:extend(.spr);
+  @extend .spr;
 }
 
 .btn-help {
@@ -87,7 +85,7 @@
     border-radius: 11px;
     background: #cc3e51;
     font-size: 11px;
-    color: @white;
+    color: $white;
     text-align: center;
     padding: 0 8px;
   }
@@ -97,8 +95,8 @@
   min-width: 33px;
   height: 33px;
   line-height: 33px;
-  border: 2px solid @white;
-  color: @white;
+  border: 2px solid $white;
+  color: $white;
   border-radius: 50%;
   text-align: center;
   cursor: pointer;
@@ -108,6 +106,9 @@
 
 .btn-register,
 .btn-signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 178px;
   height: 59px;
   font-size: 20px;
@@ -118,7 +119,7 @@
 .btn-register {
   margin-left: 22px;
   border-width: 3px;
-  border-color: @green !important;
+  border-color: $green !important;
 }
 
 .btn-signin {

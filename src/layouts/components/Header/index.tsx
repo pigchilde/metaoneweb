@@ -1,4 +1,4 @@
-import styles from './index.less';
+import styles from './index.scss';
 import { Layout, Button } from 'antd';
 import { Link, useIntl, setLocale } from 'umi';
 import { useRef } from 'react';
@@ -21,10 +21,10 @@ const Header = () => {
         </Link>
         <i className={styles['btn-menu']}></i>
         <nav className={styles['nav']}>
-          <Link to="">{intl.formatMessage({ id: 'GUILDS' })}</Link>
-          <Link to="">{intl.formatMessage({ id: 'GAMERS' })}</Link>
+          <Link to="/guilds">{intl.formatMessage({ id: 'GUILDS' })}</Link>
+          <Link to="/gamers">{intl.formatMessage({ id: 'GAMERS' })}</Link>
           <Link to="">{intl.formatMessage({ id: 'NFTS_OWNER' })}</Link>
-          <Link to="">{intl.formatMessage({ id: 'GameFi' })}</Link>
+          <Link to="/gamefi">{intl.formatMessage({ id: 'GameFi' })}</Link>
           <Link to="">{intl.formatMessage({ id: 'ANNOUNCEMENT' })}</Link>
           <Link to="">{intl.formatMessage({ id: 'NFTS_HUB' })}</Link>
           <Link to="">{intl.formatMessage({ id: 'STAKING' })}</Link>
@@ -44,10 +44,14 @@ const Header = () => {
         <div className={styles['user-sign']}>
           {/* 未登录 */}
           <div className={styles['unsign']}>
-            <Button className={styles['btn-register']} ghost>
+            <Button className={styles['btn-register']} ghost href="/register">
               {intl.formatMessage({ id: 'REGISTER' })}
             </Button>
-            <Button className={styles['btn-signin']} type="primary">
+            <Button
+              className={styles['btn-signin']}
+              type="primary"
+              href="/login"
+            >
               {intl.formatMessage({ id: 'SIGN_IN' })}
             </Button>
           </div>
