@@ -172,7 +172,9 @@ export default function IndexPage() {
           <ul>
             {logoList.map((item: any, index: number) => (
               <li key={index}>
-                <img src={require('@/assets/index/pic/logo.png')} alt="" />
+                <Link to="" target="_blank">
+                  <img src={require('@/assets/index/pic/logo.png')} alt="" />
+                </Link>
               </li>
             ))}
           </ul>
