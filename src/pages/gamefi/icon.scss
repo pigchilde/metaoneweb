@@ -2,17 +2,16 @@
   background: url("../../assets/gamefi/img/ico.png") no-repeat;
   display: block;
 }
-.ico-srearch{height:26px;width:26px;background-position: 0 0;}
+.ico-srearch{height:26px;width:26px;background-position: -203px 0;}
 .ico-blocks{height:30px;width:31px;background-position: -36px 0;}
 .ico-list{height:30px;width:32px;background-position: -76px 0;}
 .ico-heart{height:28px;width:33px;background-position: -116px 0;}
 .ico-star{height:33px;width:34px;background-position: -157px 0;}
 .ico-detaillabel{height:34px;width:277px;background-position: 0 -45px;}
+.ico-heart-on{height:28px;width:33px;background-position: -245px 0;}
+.ico-star-on{height:33px;width:34px;background-position: -293px 0;}
 
-.ico-list,.ico-blocks{
-  cursor: pointer;
-}
-.ico-heart,.ico-star{
+.ico-list,.ico-blocks,.ico-heart,.ico-star,.ico-heart-on,.ico-star-on{
   cursor: pointer;
   margin-right: 4px;
 }

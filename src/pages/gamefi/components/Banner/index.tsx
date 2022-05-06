@@ -5,13 +5,15 @@ import { Button, Carousel } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
 import { history, useIntl } from 'umi';
 import { useRef, useState } from 'react';
+import { connect } from 'dva';
+
 interface objectT {
   [propName: string]: any;
 }
 
 const Banner = (props: objectT) => {
-  const { datas = {} } = props;
-  const { name, description, likeCount, starCount } = datas;
+  const { datas = {}, dispatch } = props;
+  const { name, description } = datas;
   const toDetail = () => {
     history.push(`/gamefi/${datas.id}`);
   };
@@ -23,6 +25,10 @@ const Banner = (props: objectT) => {
     id: 'GAMEFI_BANNER_AUTH',
   });
   const [count, setCount] = useState(0);
+  const [isLike, setIsLike] = useState<boolean>(false);
+  const [isStar, setIsStar] = useState<boolean>(false);
+  const [likeCount, setLinkCount] = useState<number>(datas.likeCount);
+  const [starCount, setStarCount] = useState<number>(datas.starCount);
   const carouselEl = useRef({} as objectT);
 
   const imgList = [
@@ -41,6 +47,61 @@ const Banner = (props: objectT) => {
     carouselEl.current.goTo(index);
     setCount(index);
   };
+  const changeStar = () => {
+    //收藏
+    let num = 0;
+    let data = {
+      gameId: datas.id,
+      userId: '22222',
+      likeStatus: '',
+    };
+    if (isStar) {
+      num = starCount - 1;
+      num = num < 0 ? 0 : num;
+      data.likeStatus = 'UNLIKE';
+    } else {
+      data.likeStatus = 'LIKE';
+      num = starCount + 1;
+    }
+    dispatch({
+      type: 'gamefi/gameStart',
+      payload: {
+        data,
+      },
+    }).then((res: objectT) => {
+      console.log('gameStar', res);
+      setStarCount(num);
+      setIsStar(!isStar);
+    });
+  };
+  const changeLike = () => {
+    //点赞
+    let num = 0;
+    let data = {
+      gameId: datas.id,
+      userId: '22222',
+      likeStatus: '',
+    };
+    if (isLike) {
+      num = likeCount - 1;
+      num = num < 0 ? 0 : num;
+      data.likeStatus = 'UNLIKE';
+    } else {
+      num = likeCount + 1;
+      data.likeStatus = 'LIKE';
+    }
+    dispatch({
+      type: 'gamefi/gameLike',
+      payload: {
+        data,
+      },
+    }).then((res: objectT) => {
+      console.log('gameLike', res);
+      setLinkCount(num);
+      setIsLike(!isLike);
+    });
+  };
+
   return (
     <section className={styles['banner']}>
       <div className={styles['flex']}>
@@ -61,12 +122,22 @@ const Banner = (props: objectT) => {
             <label>{authText}</label>
             <div className={styles['handle']}>
               <span>
-                <i className={`${icos['ico']} ${icos['ico-heart']} `}></i>
-                {likeCount}
+                <i
+                  onClick={changeStar}
+                  className={`${icos['ico']} ${
+                    isStar ? icos['ico-heart-on'] : icos['ico-heart']
+                  } `}
+                ></i>
+                {starCount}
               </span>
               <span>
-                <i className={`${icos['ico']} ${icos['ico-star']} `}></i>
-                {starCount}
+                <i
+                  onClick={changeLike}
+                  className={`${icos['ico']} ${
+                    isLike ? icos['ico-star-on'] : icos['ico-star']
+                  } `}
+                ></i>
+                {likeCount}
               </span>
             </div>
           </div>
@@ -95,4 +166,7 @@ const Banner = (props: objectT) => {
     </section>
   );
 };
-export default Banner;
+
+export default connect(({ gamefi }: { gamefi: objectT }) => ({
+  gamefi,
+}))(Banner);

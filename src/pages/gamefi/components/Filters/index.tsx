@@ -6,17 +6,20 @@ import React from 'react';
 import Filist from '../Filist';
 import { useIntl } from 'umi';
 import { connect } from 'dva';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PaginationItem from '@/components/Pagination';
 import Loading from '@/components/Loading';
 import Empty from '@/components/Empty';
+import { InputProps } from 'antd/lib/input';
 
 interface objectT {
   [propName: string]: any;
 }
+
 const Filters = (props: objectT) => {
   const intl = useIntl();
   const { dispatch, gamefi = {} } = props;
+  const inputRef = useRef<InputProps>(null);
   const GAMEFI_FILTERS_BTN = intl.formatMessage({
     id: 'GAMEFI_FILTERS_BTN',
   });
@@ -46,6 +49,7 @@ const Filters = (props: objectT) => {
   const [params, setParams] = useState<objectT>({
     pageNum: 1,
     pageSize: 10,
+    orderByType: 'Newest',
   });
   const plainOptions = ['All', 'Launched'];
   const plainOptions2 = ['All', 'Official', 'Testnet', 'Upcoming'];
@@ -91,7 +95,7 @@ const Filters = (props: objectT) => {
     setParams({ ...params, pageNum: 0, orderByType: value });
   };
   const changeNameFilter = () => {
-    setParams({ ...params, pageNum: 0, name: 'ccc' });
+    setParams({ ...params, pageNum: 0, name: inputRef.current?.input?.value });
   };
   const onPageChange = (e: number) => {
     setParams({ ...params, pageNum: e });
@@ -116,7 +120,7 @@ const Filters = (props: objectT) => {
     <div className={`wrapper `}>
       <div className={styles['filter-wrapper']}>
         <aside className={styles['search-box']}>
-          <Input placeholder={GAMEFI_FILTERS_SEARCH} />
+          <Input placeholder={GAMEFI_FILTERS_SEARCH} ref={inputRef} />
           <SearchOutlined onClick={changeNameFilter} />
         </aside>
         <aside className={styles['select-box']}>

@@ -18,18 +18,6 @@ export default {
         [payload.name]: payload.data || {},
       };
     },
-    setListFilter(state: initialStateT, action: initialStateT) {
-      const { payload = {} } = action;
-      return { ...state };
-    },
-    setHotFilter(state: initialStateT, action: initialStateT) {
-      const { payload = {} } = action;
-      const hotFilter = { gamePopularCategory: payload };
-      return {
-        ...state,
-        hotFilter,
-      };
-    },
   },
   effects: {
     *getHotList(
@@ -66,6 +54,28 @@ export default {
     ) {
       const data: initialStateT = yield call(gameFiService.getData, payload);
       return data;
+    },
+    *gameStart(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(gameFiService.gameStar, payload);
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *gameLike(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(gameFiService.gameLike, payload);
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
     },
   },
 };

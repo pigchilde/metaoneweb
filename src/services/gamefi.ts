@@ -5,7 +5,8 @@ interface objectT {
   [propName: string]: any;
 }
 export const getList: objectT = async (params: objectT) => {
-  return request(`/center/game/list/`, {
+  console.log('getlist', params);
+  return request(`/center/game/list?${stringify(params.data)}`, {
     method: 'GET',
   });
 };
@@ -20,12 +21,18 @@ export const getData: objectT = async (params: objectT) => {
   });
 };
 export const gameStar: objectT = async (params: objectT) => {
+  // return request(`/center/game/star`, {
+  //   method: 'POST',
+  //   data: params.data,
+  // });
+  console.log(params.data);
   return request(`/center/game/star`, {
     method: 'POST',
     data: params.data,
   });
 };
 export const gameLike: objectT = async (params: objectT) => {
+  console.log(params.data);
   return request(`/center/game/like`, {
     method: 'POST',
     data: params.data,
