@@ -38,10 +38,10 @@ const CustomSwiper = (props: any) => {
   const handleVideoCtrl = (swiper: any) => {
     const prevSlide = swiper.slides[swiper.previousIndex];
     const currSlide = swiper.slides[swiper.activeIndex];
-    const currVideo = currSlide.querySelector('video');
+    /*  const currVideo = currSlide.querySelector('video');
     const prevVideo = prevSlide.querySelector('video');
     prevVideo.pause();
-    currVideo.play();
+    currVideo.play(); */
   };
 
   return (
@@ -64,39 +64,39 @@ const CustomSwiper = (props: any) => {
             : false
         }
       >
-        {datas.map((item: any, index: number) => (
-          <SwiperSlide
-            className={`${styles['slide']} ${styles[`slide-${type}`]}`}
-            key={index}
-          >
-            {type === 'image' ? (
-              <Link to="">
-                <figure className={styles['slide-item']}>
-                  <img src={item.img} alt="" />
-                  <div className={styles['info']}>
-                    <h4 className={styles['tit']}>{item.title}</h4>
-                    <p className={styles['desc']}>{item.desc}</p>
-                    <time>{item.date}</time>
+        {datas.length
+          ? datas.map((item: any, index: number) => (
+              <SwiperSlide
+                className={`${styles['slide']} ${styles[`slide-${type}`]}`}
+                key={index}
+              >
+                {type === 'image' ? (
+                  <Link to="">
+                    <figure className={styles['slide-item']}>
+                      <img src={item.img} alt="" />
+                      <div className={styles['info']}>
+                        <h4 className={styles['tit']}>{item.title}</h4>
+                        <p className={styles['desc']}>{item.content}</p>
+                        <time>{item.date}</time>
+                      </div>
+                    </figure>
+                  </Link>
+                ) : (
+                  <div className="video-wrap">
+                    <video controls>
+                      <source src={item.video} />
+                    </video>
+                    <div
+                      className={`btn-play ${showPlayBtn ? 'show' : undefined}`}
+                    >
+                      Start Watching
+                    </div>
+                    <p className={styles['desc']}>{item.video}</p>
                   </div>
-                </figure>
-              </Link>
-            ) : (
-              <div className="video-wrap">
-                <video controls>
-                  <source src={item.video} />
-                </video>
-                <div className={`btn-play ${showPlayBtn ? 'show' : undefined}`}>
-                  Start Watching
-                </div>
-                <p className={styles['desc']}>
-                  {index}Satellite and blockchain-enhanced IoT network Supports
-                  the global connectivity of the IoT devices in a secure and
-                  collaborative way.
-                </p>
-              </div>
-            )}
-          </SwiperSlide>
-        ))}
+                )}
+              </SwiperSlide>
+            ))
+          : ''}
       </Swiper>
       {type === 'image' ? (
         <div className={styles['swiper-ctrl']}>

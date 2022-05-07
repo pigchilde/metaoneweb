@@ -4,60 +4,80 @@ import { Button } from 'antd';
 import CustomSwiper from '@/components/CustomSwiper';
 import PhotoText from '@/components/PhotoText';
 import TeamSwiper from './TeamSwiper';
-export default function IndexPage() {
+import { connect } from 'dva';
+import { useEffect, useState } from 'react';
+import Loading from '@/components/Loading';
+
+interface objectT {
+  [propName: string]: any;
+}
+
+const Index = (props: objectT) => {
   const intl = useIntl();
+  const { dispatch } = props;
+  const [loading, setLoading] = useState(true as boolean);
+  const [bannerData, setBannerData] = useState({} as objectT);
+  const [videoAutoList, setVideoAutoList] = useState({} as objectT);
+  const [imgAutoList, setImgAutoList] = useState({} as objectT);
+  const [informationList, setInformationList] = useState({} as objectT);
+  const [adviserList, setAdviserList] = useState({} as objectT);
+  const [managmentList, setManagmentList] = useState({} as objectT);
+  const [advisorList, setAdvisorList] = useState({} as objectT);
+
   //切换成英文
   const setLang = (lang: string) => {
     setLocale(lang, true);
   };
   const advisorsList = new Array(6).fill('');
   const logoList = new Array(5).fill('');
-  const datas = [
-    {
-      id: 1,
-      video:
-        'https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg3.mp4',
-      img: require('@/assets/index/pic/news.jpg'),
-      title: 'MetaOne completes $1.2-million',
-      desc: 'MetaOne aims to be the world’s leading GameFi, guild management and analytics platform. Recently it announced the close of its seed round led by Infinity Ventures .',
-      date: 'April 21 2022',
-    },
-    {
-      id: 2,
-      video:
-        'https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg3.mp4',
-      img: require('@/assets/index/pic/news.jpg'),
-      title: 'MetaOne completes $1.2-million',
-      desc: 'MetaOne aims to be the world’s leading GameFi, guild management and analytics platform. Recently it announced the close of its seed round led by Infinity Ventures .',
-      date: 'April 21 2022',
-    },
-    {
-      id: 3,
-      video:
-        'https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg3.mp4',
-      img: require('@/assets/index/pic/news.jpg'),
-      title: 'MetaOne completes $1.2-million',
-      desc: 'MetaOne aims to be the world’s leading GameFi, guild management and analytics platform. Recently it announced the close of its seed round led by Infinity Ventures .',
-      date: 'April 21 2022',
-    },
-    {
-      id: 4,
-      video:
-        'https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg3.mp4',
-      img: require('@/assets/index/pic/news.jpg'),
-      title: 'MetaOne completes $1.2-million',
-      desc: 'MetaOne aims to be the world’s leading GameFi, guild management and analytics platform. Recently it announced the close of its seed round led by Infinity Ventures .',
-      date: 'April 21 2022',
-    },
-  ];
-  const photoTextDatas = {
-    layoutCategory: 11,
-    title: 'MetaOne Analytics Tools',
-    content:
-      'MetaOne provides extensive gaming data analytics from games to gamers level. The insights reflect undisputed value for all stakeholders, with the infusion of AI in our predictive analysis.',
-    video:
-      'https://klxxcdn.oss-cn-hangzhou.aliyuncs.com/histudy/hrm/media/bg3.mp4',
-  };
+
+  useEffect(() => {
+    setLoading(true);
+
+    dispatch({
+      type: 'index/getIndexInfo',
+      payload: {},
+    }).then((res: objectT) => {
+      const {
+        banner,
+        videoList,
+        imgList,
+        informationList,
+        adviserList,
+        managmentList,
+        advisorList,
+      } = res;
+      if (banner.code === 0) {
+        setBannerData(banner.data);
+      }
+
+      if (videoList.code === 0) {
+        setVideoAutoList(videoList.data);
+      }
+
+      if (imgList.code === 0) {
+        setImgAutoList(imgList.data);
+      }
+
+      if (informationList.code === 0) {
+        setInformationList(informationList.data);
+      }
+
+      if (adviserList.code === 0) {
+        setAdviserList(adviserList.data);
+      }
+
+      if (managmentList.code === 0) {
+        setManagmentList(managmentList.data);
+      }
+
+      if (advisorList.code === 0) {
+        setAdvisorList(advisorList.data);
+      }
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <div>
       <h1 className={styles.title} onClick={() => setLang('zh-CN')}>
@@ -82,19 +102,14 @@ export default function IndexPage() {
       </Link>
       <section
         className={styles['banner']}
-        style={{ backgroundImage: 'url()' }}
+        style={{ background: `url(${bannerData.img}) no-repeat` }}
       >
         <div className={styles['wrapper']}>
           <div className={styles['info']}>
-            <h2 className={styles['cm-tit']}>Gaming Guilds As A Service</h2>
-            <p className={styles['desc']}>
-              MetaOne simplify onboarding and NFT processes, enabling massive
-              gamers community with extensive gaming data analytics from games
-              to gamers level, and provides high assurance NFT assets management
-              platform to the gaming metaverse.
-            </p>
+            <h2 className={styles['cm-tit']}>{bannerData.title}</h2>
+            <p className={styles['desc']}>{bannerData.content}</p>
             <Button type="primary" className={styles['btn-download']}>
-              whitepaper
+              {intl.formatMessage({ id: 'INDEX_BANNER_BUTTON' })}
             </Button>
             <div className={styles['share']}></div>
           </div>
@@ -109,7 +124,7 @@ export default function IndexPage() {
             {intl.formatMessage({ id: 'INDEX_VIDEO_SWIPER_DESCRIPTION' })}
           </p>
         </div>
-        <CustomSwiper type="video" datas={datas}></CustomSwiper>
+        <CustomSwiper type="video" datas={videoAutoList}></CustomSwiper>
       </section>
       <section className={styles['news-swiper']}>
         <div className={styles['wrapper']}>
@@ -123,20 +138,21 @@ export default function IndexPage() {
             {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_DESCRIPTION' })}
           </p>
           <div className={styles['swiper']}>
-            <CustomSwiper type="image" datas={datas}></CustomSwiper>
+            <CustomSwiper type="image" datas={imgAutoList}></CustomSwiper>
           </div>
         </div>
       </section>
-      <section className={styles['photo-text']}>
-        <div className={styles['wrapper']}>
-          <PhotoText datas={photoTextDatas} />
-        </div>
-      </section>
-      <section className={styles['photo-text']}>
-        <div className={styles['wrapper']}>
-          <PhotoText datas={photoTextDatas} />
-        </div>
-      </section>
+      {informationList.length
+        ? informationList.map((item: objectT) => {
+            return (
+              <section className={styles['photo-text']}>
+                <div className={styles['wrapper']}>
+                  <PhotoText datas={item} />
+                </div>
+              </section>
+            );
+          })
+        : ''}
       <section className={styles['advisors']}>
         <div className={styles['wrapper']}>
           <h3 className={styles['cm-tit']}>
@@ -147,12 +163,14 @@ export default function IndexPage() {
               styles[`total-${advisorsList.length}`]
             }`}
           >
-            {advisorsList.map((item: any, index: number) => (
-              <figure key={index}>
-                <img src={require('@/assets/index/pic/avatar-1.png')} alt="" />
-                <p>Prakash Somosundram</p>
-              </figure>
-            ))}
+            {adviserList.length
+              ? adviserList.map((item: any, index: number) => (
+                  <figure key={index}>
+                    <img src={item.photo} alt={item.name} />
+                    <p>{item.name}</p>
+                  </figure>
+                ))
+              : ''}
           </div>
         </div>
       </section>
@@ -161,7 +179,7 @@ export default function IndexPage() {
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_MANAGEMENT_TEAM' })}
           </h3>
-          <TeamSwiper />
+          <TeamSwiper datas={managmentList} />
         </div>
       </section>
       <section className={styles['investors']}>
@@ -170,16 +188,22 @@ export default function IndexPage() {
             {intl.formatMessage({ id: 'INDEX_INVESTORS' })}
           </h3>
           <ul>
-            {logoList.map((item: any, index: number) => (
-              <li key={index}>
-                <Link to="" target="_blank">
-                  <img src={require('@/assets/index/pic/logo.png')} alt="" />
-                </Link>
-              </li>
-            ))}
+            {advisorList.length
+              ? advisorList.map((item: any, index: number) => (
+                  <li key={index}>
+                    <Link to={item.homePage} target="_blank">
+                      <img src={item.logo} alt="" />
+                    </Link>
+                  </li>
+                ))
+              : ''}
           </ul>
         </div>
       </section>
     </div>
   );
-}
+};
+
+export default connect(({ index }: { index: objectT }) => ({
+  index,
+}))(Index);

@@ -134,4 +134,5 @@ export default {
   INDEX_INVESTORS_ADVISORS: 'MetaOne Investors Advisors',
   INDEX_MANAGEMENT_TEAM: 'MetaOne Management Team',
   INDEX_INVESTORS: 'Investors',
+  INDEX_BANNER_BUTTON: 'whitepaper',
 };
