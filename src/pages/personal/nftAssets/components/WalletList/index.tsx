@@ -60,8 +60,10 @@ const WalletList = (props: objectT) => {
                                 </label>
                               </div>
                               <div className={styles['text']}>
-                                <span>Rent(USDT/Day)</span>
-                                <span>1000.00</span>
+                                <span className={styles['name']}>
+                                  Rent(USDT/Day)Rent(USDT/Day)Rent(USDT/Day)Rent(USDT/Day)
+                                </span>
+                                <span className={styles['price']}>1000.00</span>
                               </div>
                             </div>
                           </div>

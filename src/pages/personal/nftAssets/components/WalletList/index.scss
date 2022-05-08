@@ -42,7 +42,7 @@
 }
 
 .item {
-  width: calc(25% - 20px);
+  width: calc(21% - 20px);
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -64,6 +64,15 @@
     padding: 0 15px;
     @include ellipsis();
     margin-bottom: 10px;
+  }
+
+  .name {
+    margin-right: 10px;
+    @include ellipsis(calc(70% - 10px));
+  }
+
+  .price {
+    @include ellipsis(30%);
   }
 
   .img {
