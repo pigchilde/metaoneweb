@@ -9,6 +9,7 @@ const gameList = () => {
   return (
     <>
       <Link to="/" className={styles['back']}>
+        {'< '}
         {role == 'gamer' ? 'MY GAME LIST' : ' LIST OF GAMES'}
       </Link>
       {role == 'gamer' ? <GamerList /> : <GuildList />}
