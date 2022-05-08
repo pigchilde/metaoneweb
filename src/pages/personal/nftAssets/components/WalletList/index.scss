@@ -1,7 +1,4 @@
-.items {
-  display: flex;
 
-}
 
 .wallet-swiper {
   position: relative;
@@ -40,9 +37,13 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.items {
+  display: flex;
+  margin-right: -20px;
 
+}
 .item {
-  width: calc(21% - 20px);
+  width: calc(20% - 20px);
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 10px;

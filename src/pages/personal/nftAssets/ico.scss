@@ -1,5 +1,29 @@
-.ico{background:url('../../../assets/ntf/img/ico.png') no-repeat; display: block;}
-.ico-wallets{height:35px;width:41px;background-position: 0 0;}
-.ico-myNTFS{height:41px;width:45px;background-position: -52px 0;}
-.ico-leassingNTFS{height:41px;width:51px;background-position: -110px 0;}
-.ico-worth{height:41px;width:57px;background-position: -180px 0;}
+.ico {
+  background: url('../../../assets/ntf/img/ico.png') no-repeat;
+  display: block;
+  flex-shrink: 0;
+}
+
+.ico-wallets {
+  height: 35px;
+  width: 41px;
+  background-position: 0 0;
+}
+
+.ico-myNTFS {
+  height: 41px;
+  width: 45px;
+  background-position: -52px 0;
+}
+
+.ico-leassingNTFS {
+  height: 41px;
+  width: 51px;
+  background-position: -110px 0;
+}
+
+.ico-worth {
+  height: 41px;
+  width: 57px;
+  background-position: -180px 0;
+}
