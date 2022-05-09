@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
 import { Tabs } from 'antd';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { useState } from 'react';
 import { connect } from 'dva';
 const { TabPane } = Tabs;
@@ -59,6 +59,7 @@ const Register = (props: objectT) => {
     const currentDatas = tabDatas.find((i: objectT) => i.id == e);
     setTabValues(currentDatas ? currentDatas : {});
   };
+  /*提交*/
   const onFinish = (values: any) => {
     if (loading) {
       return;
@@ -70,9 +71,15 @@ const Register = (props: objectT) => {
         data: { ...values, registerCategory: tabValues.id + '' },
       },
     }).then((res: objectT) => {
-      const { code, data } = res;
+      const { code, data, msg } = res;
       if (code === 0) {
-        console.log(8897867);
+      } else {
+        message.error({
+          content: msg,
+          style: {
+            marginTop: '20vh',
+          },
+        });
       }
 
       setLoading(false);
@@ -80,6 +87,24 @@ const Register = (props: objectT) => {
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+  };
+
+  /*获取验证码*/
+  const sendEmail = () => {
+    const emailData = form.getFieldsValue(['email']);
+    dispatch({
+      type: 'register/postEmial',
+      payload: {
+        data: { code: tabValues.id + '', email: emailData.email },
+      },
+    }).then((res: objectT) => {
+      const { code, data } = res;
+      if (code === 0) {
+        console.log(8897867);
+      }
+
+      setLoading(false);
+    });
   };
   return (
     <div className={styles['sign-page']}>
@@ -181,7 +206,11 @@ const Register = (props: objectT) => {
                   />
                 </Form.Item>
 
-                <Button type="primary" className={styles['form-send']}>
+                <Button
+                  type="primary"
+                  className={styles['form-send']}
+                  onClick={sendEmail}
+                >
                   {intl.formatMessage({
                     id: 'REGISTER_SEND',
                   })}

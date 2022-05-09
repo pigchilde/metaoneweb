@@ -12,3 +12,16 @@ export const postData: objectT = async (params: objectT) => {
     data: params.data,
   });
 };
+
+export const postEmial: objectT = async (params: objectT) => {
+  return request(`/center/user/get-verification-code`, {
+    method: 'POST',
+    data: params.data,
+  });
+};
+export const postCode: objectT = async (params: objectT) => {
+  return request(`/center/user/verification-code`, {
+    method: 'POST',
+    data: params.data,
+  });
+};

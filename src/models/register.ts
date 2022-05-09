@@ -23,5 +23,15 @@ export default {
       const data: initialStateT = yield call(registerService.postData, payload);
       return data;
     },
+    *postEmial(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        registerService.postEmial,
+        payload,
+      );
+      return data;
+    },
   },
 };
