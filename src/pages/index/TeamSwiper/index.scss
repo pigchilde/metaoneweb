@@ -1,9 +1,5 @@
 $bgColor: #02050e;
 
-.spr {
-  background: url('~@/assets/common/img/spr.png') no-repeat;
-}
-
 .swiper {
   position: relative;
   padding: 0 105px;
@@ -13,18 +9,18 @@ $bgColor: #02050e;
   }
   :global {
     .swiper-slide {
-      &:nth-child(n+3) {
+      &:nth-child(3n-2) {
         figure {
           background: #826bbc;
         }
       }
-      &:nth-child(n+4) {
+      &:nth-child(3n-1) {
         figure {
           background: #00bcbd;
         }
         
       }
-      &:nth-child(n+5) {
+      &:nth-child(3n) {
         figure {
           background: #87b85a;
         }
@@ -37,7 +33,6 @@ $bgColor: #02050e;
     width: 459px;
     height: 624px;
     padding: 31px 0 0;
-    overflow: hidden;
     @include respond-to(lg) {
       width: 380px;
     }
@@ -47,7 +42,7 @@ $bgColor: #02050e;
     i {
       position: absolute;
       top: 86px;
-      right: 0;
+      right: -1px;
       width: 10px;
       height: 116px;
       background: $bgColor;
@@ -138,7 +133,7 @@ $bgColor: #02050e;
       content: "";
       width: 100%;
       height: 100%;
-      @extend .spr;
+      @extend .cm-spr;
       background-position: -3px -248px;
     }
     &:hover {
@@ -168,7 +163,7 @@ $bgColor: #02050e;
     margin-top: -18px;
     &:before {
       content: "";
-      @extend .spr;
+      @extend .cm-spr;
       width: 36px;
       height: 35px;
     }

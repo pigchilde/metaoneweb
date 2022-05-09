@@ -1,0 +1,33 @@
+.fixed-sider {
+  position: fixed;
+  bottom: 166px;
+  right: 82px;
+  z-index: 1;
+}
+
+.btn-top {
+  width: 59px;
+  height: 139px;
+  background: $green;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 20px;
+  transition: all 0.5s;
+  &:before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 35px;
+    margin-bottom: 3px;
+    @extend .cm-spr;
+    background-position: 0 -210px;
+  }
+  &:hover {
+    transform: scale(0.98);
+    opacity: 0.98;
+  }
+}

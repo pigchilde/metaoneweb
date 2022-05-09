@@ -1,6 +1,4 @@
 export default {
-  CN: 'CN',
-  US: 'US',
   NEW: 'news',
   NEW_h2: 'MetaOne New Guilds Announcement',
   GameFi: 'GameFi',
@@ -135,4 +133,15 @@ export default {
   INDEX_MANAGEMENT_TEAM: 'MetaOne Management Team',
   INDEX_INVESTORS: 'Investors',
   INDEX_BANNER_BUTTON: 'whitepaper',
+
+  COMMON_TO_TOP: 'TOP',
+  COMMON_MENU_MAIN: 'Main',
+  COMMON_MENU_SETTINGS: 'Settings',
+  COMMON_MENU_SIGN_OUT: 'Sign Out',
+  COMMON_BUTTON_INVITE_USER: 'Invite User',
+  COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
+
+  LANG_ENGLISH: 'English',
+  LANG_CHINESE_SIMPLIFIED: 'Chinese (Simplified)',
+  LANG_CHINESE_TRADITIONAL: 'Chinese (traditional)',
 };

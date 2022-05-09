@@ -1,22 +1,25 @@
-.spr {
-  background: url('~@/assets/common/img/spr.png') no-repeat;
-}
 
 .header {
   height: 128px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 68px;
   border: 1px solid $white;
   border-width: 1px 0;
   background: #000;
 }
 
+.hd-wrapper {
+  min-width: 1200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .hd-l,
 .hd-r,
 .unsign,
-.signed {
+.signed,
+.uc-op {
   display: flex;
   align-items: center;
 }
@@ -35,7 +38,7 @@
 .btn-menu {
   width: 36px;
   height: 35px;
-  @extend .spr;
+  @extend .cm-spr;
   background-position: 0 0;
   margin-left: 42px;
   cursor: pointer;
@@ -59,7 +62,7 @@
 .op-msg:before {
   width: 36px;
   height: 35px;
-  @extend .spr;
+  @extend .cm-spr;
 }
 
 .btn-help {
@@ -92,20 +95,74 @@
 }
 
 .op-lang {
+  position: relative;
   min-width: 33px;
   height: 33px;
   line-height: 33px;
   border: 2px solid $white;
   color: $white;
-  border-radius: 50%;
+  border-radius: 17px;
   text-align: center;
   cursor: pointer;
   font-size: 16px;
   margin-left: 23px;
+  .dropdown {
+    top: 32px;
+  }
 }
 
-.btn-register,
-.btn-signin {
+.has-dropdown {
+  position: relative;
+  &:hover {
+    z-index: 1;
+    .dropdown {
+      display: block;
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  text-align: center;
+  transform: translate(-50%, 0);
+  cursor: auto;
+  padding-top: 13px;
+  white-space: nowrap;
+  display: none;
+  ul {
+    padding: 28px 27px 16px;
+    background: $white;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 36px;
+    height: 13px;
+    @extend .cm-spr;
+    background-position: 0 -291px;
+    margin-left: -18px;
+  }
+  li, a {
+    font-size: 14px;
+    color: #000;
+    line-height: 20px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    &:hover {
+      color: $green;
+    }
+  }
+}
+
+.unsign {
+  // display: none;
+}
+
+.r-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,18 +171,50 @@
   font-size: 20px;
   text-align: center;
   border-radius: 10px;
-}
-
-.btn-register {
+  padding: 0;
   margin-left: 22px;
   border-width: 3px;
   border-color: $green !important;
+  &:global {
+    &.ant-btn-primary {
+      border-width: 0;
+    }
+  }
 }
 
-.btn-signin {
-  margin-left: 19px;
+.signed {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  display: none;
+
+  .dropdown {
+    top: 60px;
+  }
 }
 
+.avatar {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.username {
+  display: inline-block;
+  color: $white;
+  font-size: 20px;
+  margin-left: 18px;
+  max-width: 200px;
+  @include ellipsis();
+}
 @media screen and (min-width: 1681px) and (max-width: 1870px) {
   .header {
     padding: 0 43px;
@@ -145,8 +234,7 @@
   .op-lang {
     margin-left: 18px;
   }
-  .btn-register,
-  .btn-signin {
+  .r-btn {
     margin-left: 15px;
   }
 }
@@ -174,12 +262,11 @@
   .op-lang {
     margin-left: 18px;
   }
-  .btn-register,
-  .btn-signin {
+  .r-btn {
     margin-left: 15px;
     width: 140px;
     height: 46px;
-    font-size: 19px;
+    font-size: 17px;
   }
 }
 
@@ -206,12 +293,24 @@
   .op-lang {
     margin-left: 18px;
   }
-  .btn-register,
-  .btn-signin {
+  .r-btn {
     margin-left: 10px;
     width: 110px;
     height: 40px;
-    font-size: 17px;
+    font-size: 14px;
+    border-width: 2px;
+  }
+  .signed {
+    .dropdown {
+      top: 55px;
+    }
+  }
+  .avatar {
+    width: 65px;
+    height: 65px;
+  }
+  .username {
+    max-width: 130px;
   }
 }
 
@@ -239,11 +338,23 @@
   .op-lang {
     margin-left: 18px;
   }
-  .btn-register,
-  .btn-signin {
+  .r-btn {
     margin-left: 10px;
     width: 110px;
     height: 40px;
-    font-size: 17px;
+    font-size: 14px;
+    border-width: 1px;
+  }
+  .signed {
+    .dropdown {
+      top: 50px;
+    }
+  }
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .username {
+    max-width: 100px;
   }
 }

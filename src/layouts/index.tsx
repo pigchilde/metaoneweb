@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import PersonalSider from './components/PersonalSider';
+import FixedSider from './components/FixedSider';
 import { useState } from 'react';
 import { setLocale } from 'umi';
 import moment from 'moment';
@@ -49,6 +50,7 @@ const BasicLayout = (props: any) => {
       )}
 
       <Footer />
+      <FixedSider />
     </Layout>
   );
 };

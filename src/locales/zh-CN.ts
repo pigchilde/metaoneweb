@@ -1,6 +1,4 @@
 export default {
-  CN: '中文',
-  US: '英文',
   NEW: '新闻',
   GameFi: '游戏Fi',
   META_ONE: '元一',
@@ -55,12 +53,25 @@ export default {
   HELP_BANNER_DES:
     'Are you in trouble? We hope we can give you an answer here.',
 
-  INDEX_VIDEO_SWIPER_TITLE: '',
-  INDEX_VIDEO_SWIPER_DESCRIPTION: '',
-  INDEX_NEWS_SWIPER_TOP_TEXT: '',
-  INDEX_NEWS_SWIPER_TITLE: '',
-  INDEX_NEWS_SWIPER_DESCRIPTION: '',
-  INDEX_INVESTORS_ADVISORS: '',
-  INDEX_MANAGEMENT_TEAM: '',
-  INDEX_INVESTORS: '',
+  INDEX_VIDEO_SWIPER_TITLE: 'MetaOne RAZZEL DAZZEL SHOW',
+  INDEX_VIDEO_SWIPER_DESCRIPTION: 'the network for the new generation',
+  INDEX_NEWS_SWIPER_TOP_TEXT: 'Focus On',
+  INDEX_NEWS_SWIPER_TITLE: 'Our Latest News',
+  INDEX_NEWS_SWIPER_DESCRIPTION:
+    'MetaOne provides extensive gaming data analytics from games to gamers level.',
+  INDEX_INVESTORS_ADVISORS: 'MetaOne Investors Advisors',
+  INDEX_MANAGEMENT_TEAM: 'MetaOne Management Team',
+  INDEX_INVESTORS: 'Investors',
+  INDEX_BANNER_BUTTON: 'whitepaper',
+
+  COMMON_TO_TOP: '返回顶部',
+  COMMON_MENU_MAIN: 'Main',
+  COMMON_MENU_SETTINGS: 'Settings',
+  COMMON_MENU_SIGN_OUT: 'Sign Out',
+  COMMON_BUTTON_INVITE_USER: 'Invite User',
+  COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
+
+  LANG_ENGLISH: '英语',
+  LANG_CHINESE_SIMPLIFIED: '中文（简体）',
+  LANG_CHINESE_TRADITIONAL: '中文（繁体）',
 };

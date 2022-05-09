@@ -28,8 +28,6 @@ const Index = (props: objectT) => {
   const setLang = (lang: string) => {
     setLocale(lang, true);
   };
-  const advisorsList = new Array(6).fill('');
-  const logoList = new Array(5).fill('');
 
   useEffect(() => {
     setLoading(true);
@@ -80,26 +78,6 @@ const Index = (props: objectT) => {
 
   return (
     <div>
-      <h1 className={styles.title} onClick={() => setLang('zh-CN')}>
-        {intl.formatMessage({
-          id: 'CN',
-        })}
-      </h1>
-      <h1 className={styles.title} onClick={() => setLang('en-US')}>
-        {intl.formatMessage({
-          id: 'US',
-        })}
-      </h1>
-      <Link to={`/news`}>
-        {intl.formatMessage({
-          id: 'NEW',
-        })}
-      </Link>
-      <Link to={`/gamefi`}>
-        {intl.formatMessage({
-          id: 'GameFi',
-        })}
-      </Link>
       <section
         className={styles['banner']}
         style={{ background: `url(${bannerData.img}) no-repeat` }}
@@ -145,7 +123,7 @@ const Index = (props: objectT) => {
       {informationList.length
         ? informationList.map((item: objectT) => {
             return (
-              <section className={styles['photo-text']}>
+              <section className={styles['photo-text']} key={item.id}>
                 <div className={styles['wrapper']}>
                   <PhotoText datas={item} />
                 </div>
@@ -160,12 +138,12 @@ const Index = (props: objectT) => {
           </h3>
           <div
             className={`${styles['list']} ${
-              styles[`total-${advisorsList.length}`]
+              styles[`total-${adviserList.length}`]
             }`}
           >
             {adviserList.length
-              ? adviserList.map((item: any, index: number) => (
-                  <figure key={index}>
+              ? adviserList.map((item: any) => (
+                  <figure key={item.id}>
                     <img src={item.photo} alt={item.name} />
                     <p>{item.name}</p>
                   </figure>
@@ -189,8 +167,8 @@ const Index = (props: objectT) => {
           </h3>
           <ul>
             {advisorList.length
-              ? advisorList.map((item: any, index: number) => (
-                  <li key={index}>
+              ? advisorList.map((item: any) => (
+                  <li key={item.id}>
                     <Link to={item.homePage} target="_blank">
                       <img src={item.logo} alt="" />
                     </Link>

@@ -1,6 +1,3 @@
-.spr {
-  background: url('~@/assets/common/img/spr.png') no-repeat;
-}
 
 .slide-video {
   &:global {
@@ -193,7 +190,7 @@
     margin-top: -18px;
     &:before {
       content: "";
-      @extend .spr;
+      @extend .cm-spr;
       width: 36px;
       height: 35px;
     }
