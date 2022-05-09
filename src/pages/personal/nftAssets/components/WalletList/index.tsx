@@ -1,7 +1,6 @@
 import styles from './index.scss';
 import 'swiper/swiper.scss';
 import { Button, Image } from 'antd';
-
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import { useState } from 'react';

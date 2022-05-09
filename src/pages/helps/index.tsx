@@ -1,6 +1,5 @@
 import styles from './index.scss';
 import { Collapse } from 'antd';
-import tmp1 from '@/assets/gamefi/img/d-1.png';
 import { useIntl } from 'umi';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
@@ -28,8 +27,9 @@ const Helps = (props: objectT) => {
       type: 'helps/getList',
     })
       .then((res: objectT) => {
-        const { code, data } = res;
+        const { code } = res;
         if (code === 0) {
+          setListDatas(res);
         }
         setLoading(false);
       })
@@ -49,12 +49,16 @@ const Helps = (props: objectT) => {
       <div className={`wrapper ${styles['help-list']}`}>
         {loading ? (
           <Loading />
-        ) : listDatas.data?.length ? (
-          <Collapse bordered={false}>
-            <Panel header="why play gamefi?" key="1">
-              <article className={styles.article}>wwww</article>
-            </Panel>
-          </Collapse>
+        ) : listDatas.data?.length > 0 ? (
+          listDatas.data.map((item: objectT) => {
+            return (
+              <Collapse bordered={false}>
+                <Panel header={item.title} key={item.id}>
+                  <article className={styles.article}>{item.content}</article>
+                </Panel>
+              </Collapse>
+            );
+          })
         ) : (
           <Empty />
         )}

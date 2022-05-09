@@ -1,17 +1,19 @@
 import styles from './index.scss';
-import { Carousel, Button, Select } from 'antd';
+import { Button, Select } from 'antd';
 import {
   CaretDownOutlined,
   LeftOutlined,
   RightOutlined,
 } from '@ant-design/icons';
 import { connect } from 'dva';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Filters from './components/Filters';
-
 import Banner from './components/Banner';
 import Empty from '@/components/Empty';
 import Loading from '@/components/Loading';
+import 'swiper/swiper.scss';
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 
 interface objectT {
   [propName: string]: any;
@@ -32,13 +34,7 @@ const GameFi = (props: objectT) => {
     },
   ];
   const { Option } = Select;
-  const carouselEl = useRef({} as objectT);
-  const carouselPre = () => {
-    carouselEl.current.prev();
-  };
-  const carouselNext = () => {
-    carouselEl.current.next();
-  };
+
   const changeHotFilter = (value: any) => {
     dispatch({
       type: 'gamefi/setHotFilter',
@@ -87,26 +83,26 @@ const GameFi = (props: objectT) => {
           <Loading />
         ) : hotListDatas.data?.length > 0 ? (
           <React.Fragment>
-            <Carousel dots={false} ref={carouselEl}>
+            <Swiper
+              modules={[Navigation]}
+              navigation={{
+                prevEl: `.${styles['btnPre']}`,
+                nextEl: `.${styles['btnNext']}`,
+              }}
+            >
               {hotListDatas.data.map((item: objectT) => {
-                return <Banner key={item.id} datas={item} />;
+                return (
+                  <SwiperSlide key={item.id}>
+                    <Banner key={item.id} datas={item} />
+                  </SwiperSlide>
+                );
               })}
-            </Carousel>
-            <div className={styles.btnPre}>
-              <Button
-                type="primary"
-                onClick={carouselPre}
-                shape="circle"
-                icon={<LeftOutlined />}
-              />
+            </Swiper>
+            <div className={styles['btnPre']}>
+              <Button type="primary" shape="circle" icon={<LeftOutlined />} />
             </div>
-            <div className={styles.btnNext}>
-              <Button
-                type="primary"
-                onClick={carouselNext}
-                shape="circle"
-                icon={<RightOutlined />}
-              />
+            <div className={styles['btnNext']}>
+              <Button type="primary" shape="circle" icon={<RightOutlined />} />
             </div>
           </React.Fragment>
         ) : (
