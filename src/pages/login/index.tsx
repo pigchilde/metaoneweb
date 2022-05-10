@@ -1,10 +1,41 @@
 import styles from './index.scss';
-import { useIntl } from 'umi';
-import { Form, Input, Button } from 'antd';
+import { connect, useIntl, useHistory } from 'umi';
+import { Form, Input, Button, message } from 'antd';
+import { encryptedData } from '@/utils/rsaUtils';
+import Cookies from 'js-cookie';
 
-const Login = () => {
+interface objectT {
+  [propName: string]: any;
+}
+
+const Login = (props: objectT) => {
+  const { dispatch } = props;
   const intl = useIntl();
-  const onFinish = (values: any) => {};
+  const history = useHistory();
+
+  /**
+   * 表单验证成功提交
+   * @param values
+   */
+  const onFinish = (values: objectT) => {
+    const auth = encryptedData(JSON.stringify(values));
+    dispatch({
+      type: 'login/login',
+      payload: {
+        auth,
+      },
+    }).then((res: objectT) => {
+      const { code, msg, data } = res;
+      if (code) {
+        // 登录失败
+        message.error(msg);
+        return;
+      }
+      // 登录成功
+      Cookies.set('token', `${data.tokenHead}${data.token}`, { expires: 30 });
+      history.goBack();
+    });
+  };
   const onFinishFailed = (errorInfo: any) => {};
   return (
     <div className={styles['login-page']}>
@@ -23,8 +54,17 @@ const Login = () => {
       >
         <Form.Item
           label="Email"
-          name="Email"
-          rules={[{ required: true, message: 'Please input your Your Email' }]}
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your Your Email',
+            },
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+          ]}
         >
           <Input placeholder="Your Email" />
         </Form.Item>
@@ -55,4 +95,6 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default connect(({ login }: { login: objectT }) => ({
+  login,
+}))(Login);
