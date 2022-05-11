@@ -11,7 +11,7 @@ export const getList: objectT = async (params: objectT) => {
   });
 };
 export const getHotList: objectT = async (params: objectT) => {
-  return request(`/center/game/hot-game-list?${stringify(params)}`, {
+  return request(`/center/game/hot-game-list?gamePopularCategory=${params}`, {
     method: 'GET',
   });
 };
@@ -33,5 +33,10 @@ export const gameStar: objectT = async (params: objectT) => {
 export const gameLike: objectT = async (params: objectT) => {
   return request(`/center/game/like?${stringify(params.data)}`, {
     method: 'POST',
+  });
+};
+export const getDicItem: objectT = async (params: objectT) => {
+  return request(`/center/dic/getDicItem/${params}`, {
+    method: 'GET',
   });
 };
