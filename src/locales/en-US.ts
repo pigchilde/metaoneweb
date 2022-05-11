@@ -141,6 +141,7 @@ export default {
   COMMON_MENU_SIGN_OUT: 'Sign Out',
   COMMON_BUTTON_INVITE_USER: 'Invite User',
   COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
+  COMMON_NO_DATA: 'no data',
 
   LANG_ENGLISH: 'English',
   LANG_CHINESE_SIMPLIFIED: 'Chinese (Simplified)',
