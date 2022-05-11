@@ -97,15 +97,10 @@ const Detail = (props: objectT) => {
                 your allies to conquer the Metaverse. Aunique mix of strategy
                 and action with stunning graphics awaits!
               </p>
-              <img src={tmp1} />
             </article>
           </TabPane>
           <TabPane tab={GAMEFI_DETAIL_TAB3} key="3">
             <article className={styles.article}>
-              <h2>
-                3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
-                TO CONQUER EARTH ZERO METAVERSE
-              </h2>
               <p>
                 resources.build vour NFT tanks. and defend your territory
                 aaainst thousands of other rival players. Battle it out in
@@ -122,13 +117,7 @@ const Detail = (props: objectT) => {
                 3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
                 TO CONQUER EARTH ZERO METAVERSE
               </h2>
-              <p>
-                resources.build vour NFT tanks. and defend your territory
-                aaainst thousands of other rival players. Battle it out in
-                thrilling military conflicts and spectacular locales alongside
-                your allies to conquer the Metaverse. Aunique mix of strategy
-                and action with stunning graphics awaits!
-              </p>
+
               <img src={tmp1} />
             </article>
           </TabPane>

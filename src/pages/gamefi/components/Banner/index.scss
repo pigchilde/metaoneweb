@@ -106,7 +106,7 @@
       flex-shrink: 1;
       margin-right: 20px;
       aspect-ratio: 167/119;
-
+      cursor: pointer;
       &.on,
       &:hover {
         border: solid 3px $green;
