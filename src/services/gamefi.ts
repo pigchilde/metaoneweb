@@ -25,16 +25,13 @@ export const gameStar: objectT = async (params: objectT) => {
   //   method: 'POST',
   //   data: params.data,
   // });
-  console.log(params.data);
-  return request(`/center/game/star`, {
+
+  return request(`/center/game/star?${stringify(params.data)}`, {
     method: 'POST',
-    data: params.data,
   });
 };
 export const gameLike: objectT = async (params: objectT) => {
-  console.log(params.data);
-  return request(`/center/game/like`, {
+  return request(`/center/game/like?${stringify(params.data)}`, {
     method: 'POST',
-    data: params.data,
   });
 };

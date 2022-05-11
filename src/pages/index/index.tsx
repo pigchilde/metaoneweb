@@ -24,7 +24,7 @@ const Index = (props: objectT) => {
   const [managmentList, setManagmentList] = useState({} as objectT);
   const [advisorList, setAdvisorList] = useState({} as objectT);
 
-  //切换成英文
+  //切换成语言
   const setLang = (lang: string) => {
     setLocale(lang, true);
   };
