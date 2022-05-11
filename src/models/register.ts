@@ -33,5 +33,12 @@ export default {
       );
       return data;
     },
+    *postCode(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(registerService.postCode, payload);
+      return data;
+    },
   },
 };

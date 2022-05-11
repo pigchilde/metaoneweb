@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { useIntl } from 'umi';
+import { useIntl, history } from 'umi';
 import { Tabs } from 'antd';
 import { Form, Input, Button, message } from 'antd';
 import { useState } from 'react';
@@ -13,6 +13,12 @@ const Register = (props: objectT) => {
   const [form] = Form.useForm();
   const intl = useIntl();
   const [loading, setLoading] = useState(false as boolean);
+  const [sendEmailTxt, setSendEmailTxt] = useState({
+    txt: intl.formatMessage({
+      id: 'REGISTER_SEND',
+    }),
+    disable: false,
+  } as objectT);
   const [tabValues, setTabValues] = useState({
     id: 1,
     name: intl.formatMessage({
@@ -65,24 +71,45 @@ const Register = (props: objectT) => {
       return;
     }
     setLoading(true);
+    //验证验证码
     dispatch({
-      type: 'register/postData',
+      type: 'register/postCode',
       payload: {
-        data: { ...values, registerCategory: tabValues.id + '' },
+        data: { email: values.email, code: values.verificationCode },
       },
-    }).then((res: objectT) => {
-      const { code, data, msg } = res;
-      if (code === 0) {
+    }).then((result: objectT) => {
+      const { code: cCode, msg: cMsg } = result;
+      if (cCode === 0) {
+        //提交数据
+        dispatch({
+          type: 'register/postData',
+          payload: {
+            data: { ...values, code: tabValues.id + '' },
+          },
+        }).then((res: objectT) => {
+          const { code, data, msg } = res;
+          if (code === 0) {
+            history.push(`/login`);
+          } else {
+            message.error({
+              content: msg,
+              style: {
+                marginTop: '20vh',
+              },
+            });
+          }
+
+          setLoading(false);
+        });
       } else {
         message.error({
-          content: msg,
+          content: cMsg,
           style: {
             marginTop: '20vh',
           },
         });
+        setLoading(false);
       }
-
-      setLoading(false);
     });
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -91,19 +118,41 @@ const Register = (props: objectT) => {
 
   /*获取验证码*/
   const sendEmail = () => {
+    if (sendEmailTxt.disable) {
+      return;
+    }
     const emailData = form.getFieldsValue(['email']);
+    setSendEmailTxt({ ...sendEmailTxt, disable: true });
     dispatch({
       type: 'register/postEmial',
       payload: {
         data: { code: tabValues.id + '', email: emailData.email },
       },
     }).then((res: objectT) => {
-      const { code, data } = res;
+      const { code, data, msg } = res;
       if (code === 0) {
-        console.log(8897867);
+        const txt = intl.formatMessage({
+          id: 'REGISTER_RESEND',
+        });
+        let count = 10;
+        setSendEmailTxt({ disable: true, txt: `${txt}(${count})` });
+        const timer = setInterval(() => {
+          count--;
+          if (count < 1) {
+            clearInterval(timer);
+            setSendEmailTxt({ disable: false, txt: `${txt}` });
+            return;
+          }
+          setSendEmailTxt({ disable: true, txt: `${txt}(${count})` });
+        }, 1000);
+      } else {
+        message.error({
+          content: msg,
+          style: {
+            marginTop: '20vh',
+          },
+        });
       }
-
-      setLoading(false);
     });
   };
   return (
@@ -208,12 +257,12 @@ const Register = (props: objectT) => {
 
                 <Button
                   type="primary"
-                  className={styles['form-send']}
+                  className={`${styles['form-send']} ${
+                    sendEmailTxt.disable ? styles['form-send-disable'] : ''
+                  }`}
                   onClick={sendEmail}
                 >
-                  {intl.formatMessage({
-                    id: 'REGISTER_SEND',
-                  })}
+                  {sendEmailTxt.txt}
                 </Button>
               </Form.Item>
               <Form.Item

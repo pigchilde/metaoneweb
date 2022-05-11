@@ -11,13 +11,16 @@ $white-game-info: #eaffff;
 }
 .game-data {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: -25px;
   li {
     border-radius: 4px;
     border: solid 2px #006366;
     padding: 20px;
     flex: 1;
-    margin-right: 25px;
+    margin-left: 25px;
+    margin-bottom: 10px;
     &:nth-child(4) {
       margin-right: 0;
     }
@@ -90,7 +93,8 @@ $white-game-info: #eaffff;
       table {
         text-align: center;
         background: #061216;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0 8px;
         th {
           background: #061216;
           color: $white-game-info;
@@ -104,10 +108,12 @@ $white-game-info: #eaffff;
         }
         tr.ant-table-row {
           border-collapse: separate;
-          background-color: #061c1f;
+
           border-radius: 4px;
-          border: solid 0.3px #ffffff;
+          // border: solid 0.3px #ffffff;
+          box-shadow: 0 0 3px 1px rgba($color: $green, $alpha: 0.2);
           td {
+            background-color: #061c1f;
             height: 38px;
             line-height: 38px;
             padding: 0 16px;
@@ -115,7 +121,8 @@ $white-game-info: #eaffff;
           }
         }
         .ant-table-tbody > tr > td {
-          /* border: none; */
+          // /* border: none; */
+          border: none;
         }
         .ant-table-tbody > tr > td.ant-table-cell-row-hover {
           background: #bb7824;

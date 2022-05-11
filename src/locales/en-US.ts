@@ -114,6 +114,7 @@ export default {
   REGISTER_VERFICATION: 'Verification Code',
   REGISTER_VERFICATION_TIP: 'Please input your Verification Code!',
   REGISTER_SEND: 'Send',
+  REGISTER_RESEND: 'Resend',
   REGISTER_PASSWORD: 'Password',
   REGISTER_PASSWORD_TIP: 'Please input your Password!',
   REGISTER_PASSWORD_TIP1: 'The two passwords that you entered do not match!',
