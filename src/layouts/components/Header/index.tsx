@@ -9,16 +9,16 @@ const LANG_LIST = [
     localeFile: 'en-US',
     localeItemId: 'LANG_ENGLISH',
   },
-  {
-    flag: 'CH',
-    localeFile: 'zh-CN',
-    localeItemId: 'LANG_CHINESE_SIMPLIFIED',
-  },
-  {
-    flag: 'CH',
-    localeFile: 'zh-CN',
-    localeItemId: 'LANG_CHINESE_TRADITIONAL',
-  },
+  // {
+  //   flag: 'CH',
+  //   localeFile: 'zh-CN',
+  //   localeItemId: 'LANG_CHINESE_SIMPLIFIED',
+  // },
+  // {
+  //   flag: 'CH',
+  //   localeFile: 'zh-CN',
+  //   localeItemId: 'LANG_CHINESE_TRADITIONAL',
+  // },
 ];
 
 const Header = () => {
@@ -40,7 +40,7 @@ const Header = () => {
             <img src={require('@/assets/common/img/logo.png')} />
             <h1>{intl.formatMessage({ id: 'META_ONE' })}</h1>
           </Link>
-          <i className={styles['btn-menu']}></i>
+          {/* <i className={styles['btn-menu']}></i> */}
           <nav className={styles['nav']}>
             <Link to="/guilds">{intl.formatMessage({ id: 'GUILDS' })}</Link>
             <Link to="/gamers">{intl.formatMessage({ id: 'GAMERS' })}</Link>
@@ -55,11 +55,11 @@ const Header = () => {
           {!isUcPage ? (
             <Link to="/helps" className={styles['btn-help']}></Link>
           ) : null}
-          {!isUcPage ? (
+          {/* {!isUcPage ? (
             <div className={styles['op-msg']}>
               <span className={styles['msg-num']}>99+</span>
             </div>
-          ) : null}
+          ) : null} */}
           <div className={`${styles['op-lang']} ${styles['has-dropdown']}`}>
             <span className={styles['lang-name']}>{currLang}</span>
             <div className={styles['dropdown']}>

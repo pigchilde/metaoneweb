@@ -193,7 +193,7 @@ const Gamers = (props: objectT) => {
           <Loading></Loading>
         ) : informationList.length ? (
           informationList.map((item: objectT) => {
-            return <PhotoText datas={item} />;
+            return <PhotoText datas={item} key={item.id} />;
           })
         ) : (
           ''
