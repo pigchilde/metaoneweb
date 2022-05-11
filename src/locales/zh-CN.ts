@@ -5,7 +5,7 @@ export default {
   GUILDS: '',
   GAMERS: '',
   NFTS_OWNER: '',
-  ANNOUNCEMENT: '',
+  ANNOUNCEMENT: '新闻',
   NFTS_HUB: '',
   STAKING: '',
   REGISTER: '注册',

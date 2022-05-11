@@ -38,34 +38,34 @@ const CustomSwiper = (props: any) => {
   const handleVideoCtrl = (swiper: any) => {
     const prevSlide = swiper.slides[swiper.previousIndex];
     const currSlide = swiper.slides[swiper.activeIndex];
-    /*  const currVideo = currSlide.querySelector('video');
+    const currVideo = currSlide.querySelector('video');
     const prevVideo = prevSlide.querySelector('video');
     prevVideo.pause();
-    currVideo.play(); */
+    currVideo.play();
   };
 
   return (
-    <div className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}>
-      <Swiper
-        modules={[Navigation]}
-        slidesPerView={3}
-        loop={type === 'video' ? true : false}
-        centeredSlides={type === 'video' ? true : false}
-        spaceBetween={type === 'video' ? 500 : 29}
-        onClick={type === 'video' ? handleVideoClick : () => {}}
-        onAfterInit={type === 'video' ? handleVideoCtrl : () => {}}
-        onSlideChange={handleSlideChange}
-        navigation={
-          type === 'image'
-            ? {
-                prevEl: `.${styles['btn-prev']}`,
-                nextEl: `.${styles['btn-next']}`,
-              }
-            : false
-        }
-      >
-        {datas.length
-          ? datas.map((item: any, index: number) => (
+    <>
+      {datas && datas.length ? (
+        <div className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}>
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={3}
+            loop={type === 'video' ? true : false}
+            centeredSlides={type === 'video' ? true : false}
+            spaceBetween={type === 'video' ? 500 : 29}
+            onClick={type === 'video' ? handleVideoClick : () => {}}
+            onSlideChange={handleSlideChange}
+            navigation={
+              type === 'image'
+                ? {
+                    prevEl: `.${styles['btn-prev']}`,
+                    nextEl: `.${styles['btn-next']}`,
+                  }
+                : false
+            }
+          >
+            {datas.map((item: any, index: number) => (
               <SwiperSlide
                 className={`${styles['slide']} ${styles[`slide-${type}`]}`}
                 key={index}
@@ -95,28 +95,29 @@ const CustomSwiper = (props: any) => {
                   </div>
                 )}
               </SwiperSlide>
-            ))
-          : ''}
-      </Swiper>
-      {type === 'image' ? (
-        <div className={styles['swiper-ctrl']}>
-          <span className={styles['btn-prev']}></span>
-          <span
-            className={`${styles['btn-next']} ${
-              showMoreLink ? styles['hide'] : ''
-            }`}
-          ></span>
-          <Link
-            to=""
-            className={`${styles['link-more']} ${
-              !showMoreLink ? styles['hide'] : ''
-            }`}
-          >
-            <i></i>
-          </Link>
+            ))}
+          </Swiper>
+          {type === 'image' ? (
+            <div className={styles['swiper-ctrl']}>
+              <span className={styles['btn-prev']}></span>
+              <span
+                className={`${styles['btn-next']} ${
+                  showMoreLink ? styles['hide'] : ''
+                }`}
+              ></span>
+              <Link
+                to=""
+                className={`${styles['link-more']} ${
+                  !showMoreLink ? styles['hide'] : ''
+                }`}
+              >
+                <i></i>
+              </Link>
+            </div>
+          ) : null}
         </div>
       ) : null}
-    </div>
+    </>
   );
 };
 

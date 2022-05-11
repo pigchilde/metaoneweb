@@ -6,7 +6,7 @@ export default {
   GUILDS: 'Guilds',
   GAMERS: 'Gamers',
   NFTS_OWNER: 'NFTs Owner',
-  ANNOUNCEMENT: 'Announcement',
+  ANNOUNCEMENT: 'News',
   NFTS_HUB: 'NFTs Hub',
   STAKING: 'Staking',
   REGISTER: 'Register',
