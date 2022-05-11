@@ -186,15 +186,13 @@ const Guilds = (props: objectT) => {
           <Loading></Loading>
         ) : informationList.length ? (
           informationList.map((item: objectT, index: number) => {
-            console.log(informationList.length, index, 'size');
-
             return informationList.length - 1 !== index ? (
-              <>
+              <div key={item.id}>
                 <PhotoText datas={item} />
                 <section className={styles['line']}></section>
-              </>
+              </div>
             ) : (
-              <PhotoText datas={item} />
+              <PhotoText datas={item} key="index" />
             );
           })
         ) : (
