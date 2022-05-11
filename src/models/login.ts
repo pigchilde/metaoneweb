@@ -4,13 +4,15 @@ interface initialStateT {
 }
 export default {
   namespace: 'login',
-  state: {},
+  state: {
+    userInfo: {},
+  },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
       const { payload = {} } = action;
       return {
         ...state,
-        [payload.name]: payload.data || {},
+        ...payload,
       };
     },
   },
@@ -21,6 +23,45 @@ export default {
     ) {
       try {
         const data: initialStateT = yield call(loginService.login, payload);
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *getUserInfo(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(
+          loginService.getUserInfo,
+          payload,
+        );
+        yield put({
+          type: 'setData',
+          payload: {
+            userInfo: data.data,
+          },
+        });
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *logout(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(loginService.logout);
+        if (!data.code) {
+          // 登出成功
+          yield put({
+            type: 'setData',
+            payload: {
+              userInfo: {},
+            },
+          });
+        }
         return data;
       } catch (err) {
         return Promise.reject(err);

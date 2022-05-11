@@ -158,10 +158,6 @@
   }
 }
 
-.unsign {
-  // display: none;
-}
-
 .r-btn {
   display: flex;
   align-items: center;
@@ -187,7 +183,6 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  display: none;
 
   .dropdown {
     top: 60px;
@@ -199,6 +194,7 @@
   height: 80px;
   overflow: hidden;
   border-radius: 50%;
+  flex-shrink: 0;
   img {
     display: block;
     width: 100%;

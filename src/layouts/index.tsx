@@ -4,9 +4,10 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PersonalSider from './components/PersonalSider';
 import FixedSider from './components/FixedSider';
-import { useState } from 'react';
-import { setLocale } from 'umi';
+import { useEffect, useState } from 'react';
+import { connect, setLocale } from 'umi';
 import moment from 'moment';
+import Cookies from 'js-cookie';
 // import 'moment/locale/en';
 
 const { Content, Sider } = Layout;
@@ -16,11 +17,32 @@ interface objectT {
 
 const BasicLayout = (props: any) => {
   moment.locale('en');
-  const { location = {} } = props;
+  const {
+    location = {},
+    dispatch,
+    login: { userInfo },
+  } = props;
   const [collapsed, setCollapsed] = useState(false as boolean);
   const onCollapse = (collapsed: boolean) => {
     setCollapsed(collapsed);
   };
+
+  useEffect(() => {
+    if (userInfo.uid) {
+      // 已登录
+      return;
+    }
+    // 未登录
+    const token = Cookies.get('token');
+    if (token) {
+      dispatch({
+        type: 'login/getUserInfo',
+        payload: {
+          token,
+        },
+      });
+    }
+  }, []);
 
   setLocale('en-US', true);
   return (
@@ -54,4 +76,6 @@ const BasicLayout = (props: any) => {
     </Layout>
   );
 };
-export default BasicLayout;
+export default connect(({ login }: { login: objectT }) => ({
+  login,
+}))(BasicLayout);
