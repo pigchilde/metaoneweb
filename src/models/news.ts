@@ -33,5 +33,12 @@ export default {
       const data: initialStateT = yield call(newsService.getData, payload);
       return data;
     },
+    *getDicItem(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(newsService.getDicItem, payload);
+      return data;
+    },
   },
 };

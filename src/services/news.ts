@@ -20,3 +20,9 @@ export const getData: objectT = async (params: objectT) => {
     method: 'GET',
   });
 };
+
+export const getDicItem: objectT = async (params: objectT) => {
+  return request(`/center/dic/getDicItem/${params.id}`, {
+    method: 'GET',
+  });
+};

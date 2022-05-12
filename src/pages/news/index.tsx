@@ -40,20 +40,18 @@ const News = (props: objectT) => {
   };
 
   useEffect(() => {
-    // console.log(moment('2022/03/12').format('LL'));
-    // return;
     setLoading(true);
     dispatch({
       type: 'news/getList',
       payload: {
-        id: tabValue,
+        id: tabValue.toUpperCase(),
         data: params,
       },
     }).then((res: objectT) => {
       const { code, data } = res;
       if (code === 0) {
         const newData = data.map((i: objectT) => {
-          //80个字外架省略号
+          //80个字外加省略号
           const ellipsisContent = i.outline
             ? autoAddEllipsis(i.outline, 80)
             : { data: '' };
