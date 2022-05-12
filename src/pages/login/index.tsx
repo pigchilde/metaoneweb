@@ -9,9 +9,22 @@ interface objectT {
 }
 
 const Login = (props: objectT) => {
-  const { dispatch } = props;
+  const { dispatch, loading } = props;
   const intl = useIntl();
   const history = useHistory();
+
+  /**
+   * 获取登录的用户信息
+   * @param token 登录后得到的token值
+   */
+  const getUserInfo = (token: string) => {
+    dispatch({
+      type: 'login/getUserInfo',
+      payload: {
+        token,
+      },
+    });
+  };
 
   /**
    * 表单验证成功提交
@@ -32,7 +45,10 @@ const Login = (props: objectT) => {
         return;
       }
       // 登录成功
-      Cookies.set('token', `${data.tokenHead}${data.token}`, { expires: 30 });
+      message.success(msg);
+      const token = `${data.tokenHead}${data.token}`;
+      Cookies.set('token', token, { expires: 30 });
+      getUserInfo(token);
       history.goBack();
     });
   };
@@ -87,6 +103,7 @@ const Login = (props: objectT) => {
             type="primary"
             htmlType="submit"
             className={styles['form-submit']}
+            disabled={loading.global}
           >
             Sign In
           </Button>
@@ -95,6 +112,9 @@ const Login = (props: objectT) => {
     </div>
   );
 };
-export default connect(({ login }: { login: objectT }) => ({
-  login,
-}))(Login);
+export default connect(
+  ({ login, loading }: { login: objectT; loading: objectT }) => ({
+    login,
+    loading,
+  }),
+)(Login);

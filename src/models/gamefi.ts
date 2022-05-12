@@ -25,12 +25,13 @@ export default {
       { call, put, select }: initialStateT,
     ) {
       try {
-        const filter: initialStateT = yield select(
-          (state: initialStateT) => state.gamefi.hotFilter,
-        );
+        // const filter: initialStateT = yield select(
+        //   (state: initialStateT) => state.gamefi.hotFilter,
+        // );
+        console.log(payload, 'payload');
         const data: initialStateT = yield call(
           gameFiService.getHotList,
-          filter,
+          'LIKE',
         );
         return data;
       } catch (err) {
@@ -72,6 +73,20 @@ export default {
     ) {
       try {
         const data: initialStateT = yield call(gameFiService.gameLike, payload);
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *getDicItem(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(
+          gameFiService.getDicItem,
+          payload,
+        );
         return data;
       } catch (err) {
         return Promise.reject(err);

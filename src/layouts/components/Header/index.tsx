@@ -1,7 +1,12 @@
 import styles from './index.scss';
-import { Layout, Button } from 'antd';
-import { Link, useIntl, setLocale } from 'umi';
+import { Layout, Button, message } from 'antd';
+import { Link, useIntl, setLocale, connect } from 'umi';
 import { useRef, useState } from 'react';
+import Cookies from 'js-cookie';
+
+interface objectT {
+  [propName: string]: any;
+}
 
 const LANG_LIST = [
   {
@@ -9,19 +14,23 @@ const LANG_LIST = [
     localeFile: 'en-US',
     localeItemId: 'LANG_ENGLISH',
   },
-  {
-    flag: 'CH',
-    localeFile: 'zh-CN',
-    localeItemId: 'LANG_CHINESE_SIMPLIFIED',
-  },
-  {
-    flag: 'CH',
-    localeFile: 'zh-CN',
-    localeItemId: 'LANG_CHINESE_TRADITIONAL',
-  },
+  // {
+  //   flag: 'CH',
+  //   localeFile: 'zh-CN',
+  //   localeItemId: 'LANG_CHINESE_SIMPLIFIED',
+  // },
+  // {
+  //   flag: 'CH',
+  //   localeFile: 'zh-CN',
+  //   localeItemId: 'LANG_CHINESE_TRADITIONAL',
+  // },
 ];
 
-const Header = () => {
+const Header = (props: objectT) => {
+  const {
+    login: { userInfo },
+    dispatch,
+  } = props;
   const intl = useIntl();
   const [currLang, setCurrLang] = useState(LANG_LIST[0].flag);
   const [isUcPage, setIsUcPage] = useState(false);
@@ -32,6 +41,23 @@ const Header = () => {
     setLocale(LANG_LIST[index].localeFile, true);
   };
 
+  /**
+   * 处理登出
+   */
+  const handleLogout = () => {
+    dispatch({
+      type: 'login/logout',
+    }).then((res: objectT) => {
+      if (!res.code) {
+        // 登出成功
+        message.success(res.msg);
+        Cookies.remove('token');
+      } else {
+        message.error(res.msg);
+      }
+    });
+  };
+
   return (
     <Layout.Header className={styles['header']}>
       <div className={styles['hd-wrapper']}>
@@ -40,7 +66,7 @@ const Header = () => {
             <img src={require('@/assets/common/img/logo.png')} />
             <h1>{intl.formatMessage({ id: 'META_ONE' })}</h1>
           </Link>
-          <i className={styles['btn-menu']}></i>
+          {/* <i className={styles['btn-menu']}></i> */}
           <nav className={styles['nav']}>
             <Link to="/guilds">{intl.formatMessage({ id: 'GUILDS' })}</Link>
             <Link to="/gamers">{intl.formatMessage({ id: 'GAMERS' })}</Link>
@@ -55,11 +81,11 @@ const Header = () => {
           {!isUcPage ? (
             <Link to="/helps" className={styles['btn-help']}></Link>
           ) : null}
-          {!isUcPage ? (
+          {/* {!isUcPage ? (
             <div className={styles['op-msg']}>
               <span className={styles['msg-num']}>99+</span>
             </div>
-          ) : null}
+          ) : null} */}
           <div className={`${styles['op-lang']} ${styles['has-dropdown']}`}>
             <span className={styles['lang-name']}>{currLang}</span>
             <div className={styles['dropdown']}>
@@ -74,49 +100,55 @@ const Header = () => {
           </div>
           {!isUcPage ? (
             <div className={styles['user-sign']}>
-              {/* 未登录 */}
-              <div className={styles['unsign']}>
-                <Button
-                  className={`${styles['btn-register']} ${styles['r-btn']}`}
-                  ghost
-                  href="/register"
-                >
-                  {intl.formatMessage({ id: 'REGISTER' })}
-                </Button>
-                <Button
-                  className={`${styles['btn-signin']} ${styles['r-btn']}`}
-                  type="primary"
-                  href="/login"
-                >
-                  {intl.formatMessage({ id: 'SIGN_IN' })}
-                </Button>
-              </div>
-              {/* 已登录 */}
-              <div className={`${styles['signed']} ${styles['has-dropdown']}`}>
-                <div className={styles['avatar']}>
-                  <img src={require('@/assets/common/pic/avatar.png')} />
+              {!userInfo.uid ? ( // 未登录
+                <div className={styles['unsign']}>
+                  <Link to="/register">
+                    <Button
+                      className={`${styles['btn-register']} ${styles['r-btn']}`}
+                      ghost
+                    >
+                      {intl.formatMessage({ id: 'REGISTER' })}
+                    </Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button
+                      className={`${styles['btn-signin']} ${styles['r-btn']}`}
+                      type="primary"
+                    >
+                      {intl.formatMessage({ id: 'SIGN_IN' })}
+                    </Button>
+                  </Link>
                 </div>
-                <span className={styles['username']}>
-                  usernameusernameusername
-                </span>
-                <div className={styles['dropdown']}>
-                  <ul>
-                    <li>
-                      <Link to="">
-                        {intl.formatMessage({ id: 'COMMON_MENU_MAIN' })}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="">
-                        {intl.formatMessage({ id: 'COMMON_MENU_SETTINGS' })}
-                      </Link>
-                    </li>
-                    <li>
-                      {intl.formatMessage({ id: 'COMMON_MENU_SIGN_OUT' })}
-                    </li>
-                  </ul>
+              ) : (
+                // 已登录
+                <div
+                  className={`${styles['signed']} ${styles['has-dropdown']}`}
+                >
+                  <div className={styles['avatar']}>
+                    <img src={require('@/assets/common/pic/avatar.png')} />
+                  </div>
+                  <span className={styles['username']}>
+                    {userInfo.nickName}
+                  </span>
+                  <div className={styles['dropdown']}>
+                    <ul>
+                      <li>
+                        <Link to="">
+                          {intl.formatMessage({ id: 'COMMON_MENU_MAIN' })}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="">
+                          {intl.formatMessage({ id: 'COMMON_MENU_SETTINGS' })}
+                        </Link>
+                      </li>
+                      <li onClick={handleLogout}>
+                        {intl.formatMessage({ id: 'COMMON_MENU_SIGN_OUT' })}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ) : (
             <div className={styles['uc-op']}>
@@ -141,4 +173,6 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect(({ login }: { login: objectT }) => ({
+  login,
+}))(Header);

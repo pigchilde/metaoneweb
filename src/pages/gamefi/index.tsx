@@ -19,34 +19,35 @@ interface objectT {
   [propName: string]: any;
 }
 const GameFi = (props: objectT) => {
-  const { dispatch, gamefi = {} } = props;
+  const { dispatch } = props;
   const [hotListDatas, setHotListDatas] = useState<objectT>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const [hotFilter, setHotFilter] = useState<string>('LIKE');
-  const selectHotList = [
-    {
-      label: 'LIKE Collections',
-      key: 'LIKE',
-    },
-    {
-      label: 'Top favorite',
-      key: 'STAR',
-    },
-  ];
+  const [hloading, setHLoading] = useState<boolean>(true);
+  const [hotFilter, setHotFilter] = useState<string>();
+  const [selectHotList, setSelectHotList] = useState([]);
   const { Option } = Select;
-
   const changeHotFilter = (value: any) => {
-    dispatch({
-      type: 'gamefi/setHotFilter',
-      payload: value,
-    });
     setHotFilter(value);
   };
+  useEffect(() => {
+    setHLoading(true);
+    dispatch({
+      type: 'gamefi/getDicItem',
+      payload: 'GMS_GAME_POPULAR_CATEGORY',
+    }).then((res: objectT) => {
+      const { code, data } = res;
+      if (code == 0) {
+        setHotFilter(data[0].code);
+        setSelectHotList(data);
+        setHLoading(false);
+      }
+    });
+  }, []);
   useEffect(() => {
     setLoading(true);
     dispatch({
       type: 'gamefi/getHotList',
-      payload: gamefi.hotFilter,
+      payload: hotFilter,
     }).then((res: objectT) => {
       setLoading(false);
       const { code, data } = res;
@@ -63,19 +64,21 @@ const GameFi = (props: objectT) => {
       <header className={styles['head-seletor']}>
         <div className={styles['wrapper']}>
           <h1>GAMES</h1>
-          <Select
-            suffixIcon={<CaretDownOutlined />}
-            onChange={changeHotFilter}
-            defaultValue={selectHotList[0].key}
-          >
-            {selectHotList.map((item: objectT) => {
-              return (
-                <Option value={item.key} key={item.key}>
-                  {item.label}
-                </Option>
-              );
-            })}
-          </Select>
+          {hloading ? null : (
+            <Select
+              suffixIcon={<CaretDownOutlined />}
+              onChange={changeHotFilter}
+              defaultValue={hotFilter}
+            >
+              {selectHotList.map((item: objectT) => {
+                return (
+                  <Option value={item.code} key={item.code}>
+                    {item.name}
+                  </Option>
+                );
+              })}
+            </Select>
+          )}
         </div>
       </header>
       <div className={styles['banner-wrapper']}>

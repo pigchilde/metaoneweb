@@ -1,8 +1,11 @@
-.detail-wrapper{
-  :global{
+.detail-wrapper {
+  :global {
     .ant-breadcrumb,
     .ant-breadcrumb-link {
       color: $white;
+    }
+    .ant-breadcrumb-link {
+      cursor: pointer;
     }
 
     .ant-breadcrumb-separator {
@@ -49,8 +52,6 @@
     .ant-space-item {
       color: $white;
     }
-
-   
   }
 }
 .head-seletor {
@@ -186,4 +187,3 @@
     right: 10px;
   }
 }
-

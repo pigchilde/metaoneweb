@@ -1,0 +1,14 @@
+.handle {
+    display: flex;
+    align-items: center;
+
+    .item {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+
+        > span {
+            padding-left: 5px;
+        }
+    }
+}
