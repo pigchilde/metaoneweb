@@ -1,4 +1,4 @@
-# umi project
+# MetaOne
 
 ## Getting Started
 
