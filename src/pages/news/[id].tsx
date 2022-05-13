@@ -43,7 +43,7 @@ const Detail = (props: objectT) => {
     <>
       <Banner />
       <section className={`${styles['main']} ${styles['wrapper']}`}>
-        <Tab value={query.tab} tabChange={tabChange} />
+        <Tab value={query.tab} tabChange={tabChange} type="default" />
         <article className={styles['article-page']}>
           <h3>{newDatas.title}</h3>
           <span className={styles['time']}>

@@ -8,7 +8,7 @@ interface objectT {
   [propName: string]: any;
 }
 const Tab = (props: objectT) => {
-  const { news = {}, dispatch, tabChange, value } = props;
+  const { dispatch, tabChange, value, type } = props;
   const intl = useIntl();
   const [tabDatas, setTabDatas] = useState([] as objectT);
 
@@ -22,15 +22,9 @@ const Tab = (props: objectT) => {
       const { code, data } = res;
       if (code === 0 && data.length) {
         setTabDatas(data);
-        tabChange('1001');
-        // const newData = data.map((i: objectT) => {
-        //   //80个字外架省略号
-        //   const ellipsisContent = i.outline
-        //     ? autoAddEllipsis(i.outline, 80)
-        //     : { data: '' };
-        //   return { ...i, ellipsisContent: ellipsisContent.data };
-        // });
-        // setListDatas({ ...res, data: newData });
+        if (type !== 'default') {
+          tabChange(data[0].code);
+        }
       }
     });
   }, []);

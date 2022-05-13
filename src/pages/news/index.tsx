@@ -24,7 +24,7 @@ const News = (props: objectT) => {
   const [listDatas, setListDatas] = useState({} as objectT);
   const [loading, setLoading] = useState(true as boolean);
   const [tabValue, seTabValue] = useState(
-    query.tab ? query.tab : ('COMPREHENSIVE' as string),
+    query.tab ? query.tab : ('' as string),
   );
   const onPageChange = (e: number) => {
     setParams({ ...params, pageNum: e });
@@ -41,10 +41,15 @@ const News = (props: objectT) => {
 
   useEffect(() => {
     setLoading(true);
+
+    if (!tabValue) {
+      setLoading(false);
+      return;
+    }
     dispatch({
       type: 'news/getList',
       payload: {
-        id: tabValue.toUpperCase(),
+        id: tabValue,
         data: params,
       },
     }).then((res: objectT) => {
@@ -68,11 +73,15 @@ const News = (props: objectT) => {
       <Banner />
 
       <section className={`${styles['main']} wrapper`}>
-        <Tab tabChange={tabChange} value={tabValue} />
+        <Tab
+          tabChange={tabChange}
+          value={tabValue}
+          type={tabValue ? 'default' : tabValue}
+        />
         <ul className={styles['list-item']}>
           {loading ? (
             <Loading></Loading>
-          ) : listDatas.data.length ? (
+          ) : listDatas.data?.length ? (
             listDatas.data.map((i: objectT) => {
               return (
                 <li onClick={() => onLiClick(i)} key={i.id}>
