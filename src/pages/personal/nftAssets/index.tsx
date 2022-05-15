@@ -4,12 +4,54 @@ import { Link, useIntl } from 'umi';
 import { Button, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import WalletList from './components/WalletList';
+import { useState, useEffect } from 'react';
+import web3Utils, { eth2Wei, wei2Eth } from '../../../utils/web3';
+import config from '../../../utils/web3Config';
 
 interface objectT {
   [propName: string]: any;
 }
 const NFTAssets = () => {
   const intl = useIntl();
+
+  const [wallet, setWallet] = useState();
+
+  useEffect(() => {
+    /* web3Utils
+      .getBalance('0xf653381Aa2e85737fDBf5b755a2Ade943542A96E')
+      .then((res) => {
+        console.log(wei2Eth(res), 'res');
+      }); */
+
+    ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
+      const contract = web3Utils.initContract(
+        config.CDMContractABI,
+        config.CDMContractAddress,
+        accounts[0],
+      );
+
+      contract.methods
+        .getMyDepositsList()
+        .call()
+        .then((res) => {
+          console.log(res, 'getMyDepositsList res');
+        });
+
+      contract.methods
+        .earningItem(0)
+        .call()
+        .then((res) => {
+          console.log(res, 'earningItem res');
+        });
+
+      contract.methods
+        .getLendItemMsg(0)
+        .call()
+        .then((res) => {
+          console.log(res, 'getLendItemMsg res');
+        });
+    });
+  }, []);
 
   const selectList = [
     {
