@@ -67,5 +67,30 @@ export default {
         return Promise.reject(err);
       }
     },
+    *sendCode(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(loginService.sendCode, payload);
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *resetPassword(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(
+          loginService.resetPassword,
+          payload,
+        );
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
   },
 };
