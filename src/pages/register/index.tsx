@@ -84,7 +84,7 @@ const Register = (props: objectT) => {
         dispatch({
           type: 'register/postData',
           payload: {
-            data: { ...values, code: tabValues.id + '' },
+            data: { ...values, registerCategory: tabValues.id + '' },
           },
         }).then((res: objectT) => {
           const { code, data, msg } = res;
