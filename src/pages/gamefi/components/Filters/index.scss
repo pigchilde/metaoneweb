@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  :global{
+    .ant-btn-primary{
+      margin-left: 10px;
+    }
+  }
   
 }
 .list-wrapper {

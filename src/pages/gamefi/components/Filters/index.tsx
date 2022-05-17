@@ -100,6 +100,9 @@ const Filters = (props: objectT) => {
   const onPageChange = (e: number) => {
     setParams({ ...params, pageNum: e });
   };
+  const resetParams = () => {
+    console.log('dd');
+  };
   useEffect(() => {
     setLoading(true);
     dispatch({
@@ -153,8 +156,8 @@ const Filters = (props: objectT) => {
               );
             })}
           </Select>
-          {/* <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
-        <i className={`${icos['ico']} ${icos['ico-list']}`}></i> */}
+          <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
+          <i className={`${icos['ico']} ${icos['ico-list']}`}></i>
           <Popover
             placement="bottomRight"
             content={popContent}
@@ -163,6 +166,9 @@ const Filters = (props: objectT) => {
           >
             <Button type="primary">{GAMEFI_FILTERS_BTN}</Button>
           </Popover>
+          <Button type="primary" onClick={resetParams}>
+            RESET
+          </Button>
         </aside>
       </div>
       <div className={`${styles['list-wrapper']}`}>

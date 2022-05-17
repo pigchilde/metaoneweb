@@ -171,7 +171,6 @@ const BannerDetail = (props: objectT) => {
         </section>
         <section className={styles.btns}>
           <Button type="primary">{GAMEFI_DETAIL_BANNER_BTN1}</Button>
-          <Button>{GAMEFI_DETAIL_BANNER_BTN2}</Button>
         </section>
       </aside>
       <div className={styles.btnPre}>

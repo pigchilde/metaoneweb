@@ -50,7 +50,7 @@ const Helps = (props: objectT) => {
         {loading ? (
           <Loading />
         ) : listDatas.data?.length > 0 ? (
-          <Collapse bordered={false}>
+          <Collapse accordion bordered={false}>
             {listDatas.data.map((item: objectT) => {
               return (
                 <Panel header={item.title} key={item.id}>
