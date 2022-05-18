@@ -73,8 +73,12 @@ const Header = (props: objectT) => {
             <Link to="">{intl.formatMessage({ id: 'NFTS_OWNER' })}</Link>
             <Link to="/gamefi">{intl.formatMessage({ id: 'GameFi' })}</Link>
             <Link to="/news">{intl.formatMessage({ id: 'ANNOUNCEMENT' })}</Link>
-            <Link to="">{intl.formatMessage({ id: 'NFTS_HUB' })}</Link>
-            <Link to="">{intl.formatMessage({ id: 'STAKING' })}</Link>
+            <a href="https://metaone.gg/market" target="_blank">
+              {intl.formatMessage({ id: 'NFTS_HUB' })}
+            </a>
+            <a href="https://metaone.gg/staking" target="_blank">
+              {intl.formatMessage({ id: 'STAKING' })}
+            </a>
           </nav>
         </div>
         <div className={styles['hd-r']}>

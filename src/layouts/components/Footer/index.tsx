@@ -2,6 +2,7 @@ import styles from './index.scss';
 import { Layout, Button } from 'antd';
 import { Link, useIntl, setLocale } from 'umi';
 import { useRef } from 'react';
+import SocialMediaList from '@/components/SocialMediaList';
 
 const Footer = () => {
   const intl = useIntl();
@@ -26,7 +27,9 @@ const Footer = () => {
       <div className={styles['ft-r']}>
         <dl>
           <dt>{intl.formatMessage({ id: 'FOLLOW_US' })}</dt>
-          <dd></dd>
+          <dd>
+            <SocialMediaList className={styles['social-media']} />
+          </dd>
         </dl>
       </div>
     </Layout.Footer>

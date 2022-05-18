@@ -34,10 +34,10 @@ $bgColor: #02050e;
     height: 624px;
     padding: 31px 0 0;
     @include respond-to(lg) {
-      width: 380px;
+      width: 368px;
     }
     @include respond-to(md) {
-      width: 310px;
+      width: 303px;
     }
     i {
       position: absolute;

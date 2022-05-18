@@ -25,15 +25,8 @@ const TeamSwiper = (props: any) => {
           >
             {datas.length
               ? datas.map((item: any, index: number) => (
-                  <SwiperSlide
-                    className={`${styles['slide']} ${styles[`slide-${type}`]}`}
-                    key={index}
-                  >
-                    <figure
-                      className={`${styles['slide-item']} ${
-                        styles[`slide-item-${index + 1}`]
-                      }`}
-                    >
+                  <SwiperSlide className={styles['slide']} key={index}>
+                    <figure>
                       <div className={styles['img-wrap']}>
                         <img src={item.photo} alt="" />
                       </div>
@@ -41,10 +34,12 @@ const TeamSwiper = (props: any) => {
                         <div className={styles['hd']}>
                           <p className={styles['name']}>{item.name}</p>
                           <p className={styles['position']}>{item.position}</p>
-                          <Link
-                            to={item.homePage}
+                          <a
+                            href={item.homePage}
                             className={styles['linkin']}
-                          ></Link>
+                            target="_blank"
+                            title=""
+                          ></a>
                         </div>
                         <p className={styles['desc']}>{item.description}</p>
                       </div>

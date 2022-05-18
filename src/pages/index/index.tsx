@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import CustomSwiper from '@/components/CustomSwiper';
 import PhotoText from '@/components/PhotoText';
 import TeamSwiper from './TeamSwiper';
+import SocialMediaList from '@/components/SocialMediaList';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
@@ -18,7 +19,7 @@ const Index = (props: objectT) => {
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
   const [videoAutoList, setVideoAutoList] = useState({} as objectT);
-  const [imgAutoList, setImgAutoList] = useState({} as objectT);
+  const [newsList, setNewsList] = useState<objectT[]>([]);
   const [informationList, setInformationList] = useState({} as objectT);
   const [adviserList, setAdviserList] = useState({} as objectT);
   const [managmentList, setManagmentList] = useState({} as objectT);
@@ -27,6 +28,24 @@ const Index = (props: objectT) => {
   //切换成语言
   const setLang = (lang: string) => {
     setLocale(lang, true);
+  };
+
+  // 获取最新新闻列表
+  const getNewsList = () => {
+    dispatch({
+      type: 'news/getList',
+      payload: {
+        id: 1001,
+        data: {
+          pageNum: 1,
+          pageSize: 5,
+        },
+      },
+    }).then((res: any) => {
+      if (!res.code) {
+        setNewsList(res.data);
+      }
+    });
   };
 
   useEffect(() => {
@@ -39,7 +58,6 @@ const Index = (props: objectT) => {
       const {
         banner,
         videoList,
-        imgList,
         informationList,
         adviserList,
         managmentList,
@@ -51,10 +69,6 @@ const Index = (props: objectT) => {
 
       if (videoList.code === 0) {
         setVideoAutoList(videoList.data);
-      }
-
-      if (imgList.code === 0) {
-        setImgAutoList(imgList.data);
       }
 
       if (informationList.code === 0) {
@@ -74,6 +88,8 @@ const Index = (props: objectT) => {
       }
       setLoading(false);
     });
+
+    getNewsList();
   }, []);
 
   return (
@@ -89,7 +105,9 @@ const Index = (props: objectT) => {
             <Button type="primary" className={styles['btn-download']}>
               {intl.formatMessage({ id: 'INDEX_BANNER_BUTTON' })}
             </Button>
-            <div className={styles['share']}></div>
+            <div className={styles['share']}>
+              <SocialMediaList />
+            </div>
           </div>
         </div>
       </section>
@@ -116,7 +134,11 @@ const Index = (props: objectT) => {
             {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_DESCRIPTION' })}
           </p>
           <div className={styles['swiper']}>
-            <CustomSwiper type="image" datas={imgAutoList}></CustomSwiper>
+            <CustomSwiper
+              type="image"
+              datas={newsList}
+              moreLink="/news?tab=1001"
+            ></CustomSwiper>
           </div>
         </div>
       </section>
@@ -169,9 +191,9 @@ const Index = (props: objectT) => {
             {advisorList.length
               ? advisorList.map((item: any) => (
                   <li key={item.id}>
-                    <Link to={item.homePage} target="_blank">
+                    <a href={item.homePage} target="_blank" title="">
                       <img src={item.logo} alt="" />
-                    </Link>
+                    </a>
                   </li>
                 ))
               : ''}
