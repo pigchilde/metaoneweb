@@ -2,29 +2,48 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  :global{
-    .ant-btn-primary{
+
+  :global {
+    .ant-btn-primary {
       margin-left: 10px;
     }
   }
-  
+
 }
+
 .list-wrapper {
   min-height: 500px;
   position: relative;
+}
+
+.popover {
+  position: relative;
+
+  :global {
+    .ant-btn-primary {
+      position: absolute;
+      right: 0px;
+      top: -35px;
+
+    }
+
+    .ant-checkbox+span {
+      color: #feffff;
+    }
+  }
 }
 
 :global {
   .ant-popover-placement-bottomRight .ant-popover-arrow {
     display: none;
   }
-  .ant-checkbox + span{
-    color: #feffff;
-  }
-  .ant-checkbox-group-item{
+
+
+  .ant-checkbox-group-item {
     min-width: 105px;
     margin-bottom: 10px;
   }
+
   .ant-popover-inner {
     background-color: #162b2f;
     border-radius: 10px;
@@ -42,23 +61,28 @@
     padding-left: 0;
     border-bottom: 0;
   }
-  .ant-popover-inner-content{
+
+  .ant-popover-inner-content {
     padding: 0;
   }
 }
-.checktitle{
+
+.checktitle {
   color: #feffff;
   font-size: 18px;
   margin-bottom: 10px;
 }
-.checkline{
+
+.checkline {
   border-bottom: dashed 1px $green;
   margin-bottom: 24px;
   padding-bottom: 10px;
-  &:last-child{
+
+  &:last-child {
     border: 0;
   }
 }
+
 .search-box {
   position: relative;
 
@@ -74,7 +98,7 @@
       font-size: 23px;
       padding-left: 20px;
     }
-    
+
     .anticon {
       position: absolute;
       right: 20px;
@@ -85,9 +109,10 @@
     }
 
   }
-  @include  respond-to(lg){
-    :global{
-      .ant-input{
+
+  @include respond-to(lg) {
+    :global {
+      .ant-input {
         width: 400px;
       }
     }

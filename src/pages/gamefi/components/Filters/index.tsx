@@ -51,6 +51,23 @@ const Filters = (props: objectT) => {
     pageSize: 10,
     orderByType: 'Newest',
   });
+
+  const pageSizes = [10, 20, 30];
+  const pagePers = ['Newest', 'High ROI', 'Top Rank'];
+  const { Option } = Select;
+
+  const changeSizeFilter = (value: any) => {
+    setParams({ ...params, pageNum: 0, pageSize: value });
+  };
+  const changePerFilter = (value: any) => {
+    setParams({ ...params, pageNum: 0, orderByType: value });
+  };
+  const changeNameFilter = () => {
+    setParams({ ...params, pageNum: 0, name: inputRef.current?.input?.value });
+  };
+  const onPageChange = (e: number) => {
+    setParams({ ...params, pageNum: e });
+  };
   const plainOptions = ['All', 'Launched'];
   const plainOptions2 = ['All', 'Official', 'Testnet', 'Upcoming'];
   const plainOptions3 = [
@@ -67,41 +84,58 @@ const Filters = (props: objectT) => {
     'Sports',
     'Turn-based Strategy',
   ];
-  const pageSizes = [10, 20, 30];
-  const pagePers = ['Newest', 'High ROI', 'Top Rank'];
-  const { Option } = Select;
-
+  const [checkedList1, setCheckedList1] = React.useState([]);
+  const [checkedList2, setCheckedList2] = React.useState([]);
+  const [checkedList3, setCheckedList3] = React.useState([]);
+  const resetCheck = () => {
+    setCheckedList1([]);
+    setCheckedList2([]);
+    setCheckedList3([]);
+  };
+  const onChangeCheck1 = (list: any) => {
+    setCheckedList1(list);
+  };
+  const onChangeCheck2 = (list: any) => {
+    setCheckedList2(list);
+  };
+  const onChangeCheck3 = (list: any) => {
+    setCheckedList3(list);
+  };
   const popContent = (
-    <React.Fragment>
+    <div className={styles.popover}>
+      <Button type="primary" onClick={resetCheck}>
+        RESET
+      </Button>
       <h6 className={styles.checktitle}>{GAMEFI_FILTERS_IGO_STATUS}</h6>
       <div className={styles.checkline}>
-        <Checkbox.Group options={plainOptions} />
+        <Checkbox.Group
+          onChange={onChangeCheck1}
+          value={checkedList1}
+          options={plainOptions}
+        />
       </div>
       <h6 className={styles.checktitle}>{GAMEFI_FILTERS_GAME_RELEASE}</h6>
       <div className={styles.checkline}>
-        <Checkbox.Group options={plainOptions2} />
+        <Checkbox.Group
+          onChange={onChangeCheck2}
+          options={plainOptions2}
+          value={checkedList2}
+        />
       </div>
       <h6 className={styles.checktitle}>{GAMEFI_FILTERS_CATEGORIES}</h6>
       <div className={styles.checkline}>
-        <Checkbox.Group options={plainOptions3} />
+        <Checkbox.Group
+          onChange={onChangeCheck3}
+          options={plainOptions3}
+          value={checkedList3}
+        />
       </div>
-    </React.Fragment>
+    </div>
   );
-
-  const changeSizeFilter = (value: any) => {
-    setParams({ ...params, pageNum: 0, pageSize: value });
-  };
-  const changePerFilter = (value: any) => {
-    setParams({ ...params, pageNum: 0, orderByType: value });
-  };
-  const changeNameFilter = () => {
-    setParams({ ...params, pageNum: 0, name: inputRef.current?.input?.value });
-  };
-  const onPageChange = (e: number) => {
-    setParams({ ...params, pageNum: e });
-  };
-  const resetParams = () => {
-    console.log('dd');
+  const popVisibleChange = (e: any) => {
+    if (!e) {
+      console.log('dd', e);
+    }
   };
   useEffect(() => {
     setLoading(true);
@@ -163,12 +197,10 @@ const Filters = (props: objectT) => {
             content={popContent}
             title={GAMEFI_FILTERS_POPTITLE}
             trigger="click"
+            onVisibleChange={popVisibleChange}
           >
             <Button type="primary">{GAMEFI_FILTERS_BTN}</Button>
           </Popover>
-          <Button type="primary" onClick={resetParams}>
-            RESET
-          </Button>
         </aside>
       </div>
       <div className={`${styles['list-wrapper']}`}>

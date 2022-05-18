@@ -1,19 +1,17 @@
 import styles from './index.scss';
 import tmp1 from '@/assets/gamefi/img/d-1.png';
-import { Button, Carousel, Image } from 'antd';
+import { Button, Image } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
 import { history, useIntl } from 'umi';
 import 'swiper/swiper.scss';
 import { Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'dva';
 import Star from '../Star';
 interface objectT {
   [propName: string]: any;
 }
-
 const Banner = (props: objectT) => {
   const { datas = {}, dispatch } = props;
   const { name, description } = datas;
@@ -27,12 +25,9 @@ const Banner = (props: objectT) => {
   const authText = intl.formatMessage({
     id: 'GAMEFI_BANNER_AUTH',
   });
-  const [count, setCount] = useState(0);
 
   const [gameData, setGameData] = useState(datas);
-  const carouselEl = useRef({} as objectT);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
   const imgList = [
     { id: 0 },
     { id: 1 },
@@ -46,20 +41,23 @@ const Banner = (props: objectT) => {
     { id: 9 },
     { id: 10 },
   ];
+  const [count, setCount] = useState(0);
+  const slideChange = (swiper: any) => {
+    setCount(swiper.activeIndex);
+  };
   useEffect(() => {
     setGameData(datas);
   }, [datas]);
-
-  const carouselPage = (index: any) => {
-    // carouselEl.current.goTo(index);
-    setCount(index);
-  };
 
   return (
     <section className={styles['banner']}>
       <div className={styles['flex']}>
         <aside className={styles['img-left']}>
-          <Swiper modules={[Thumbs]} thumbs={{ swiper: thumbsSwiper }}>
+          <Swiper
+            modules={[Thumbs]}
+            thumbs={{ swiper: thumbsSwiper }}
+            onSlideChange={slideChange}
+          >
             {imgList.map((item: objectT, index: number) => {
               return (
                 <SwiperSlide key={index}>
@@ -99,8 +97,10 @@ const Banner = (props: objectT) => {
         >
           {imgList.map((item: objectT, index: number) => {
             return (
-              <SwiperSlide key={index}>
-                <div className={styles['img']} key={item.id}>
+              <SwiperSlide key={item.id}>
+                <div
+                  className={`${styles.img} ${index == count ? styles.on : ''}`}
+                >
                   <Image
                     preview={false}
                     src={tmp1}

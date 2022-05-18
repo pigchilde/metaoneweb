@@ -27,9 +27,10 @@
   .img-left {
     // width: calc(100% - 548px);
     width: 60%;
+
     .img {
       aspect-ratio: 16/9;
-    
+
       overflow: hidden;
       background-color: #1b1b1b;
       border: solid 1px $white;
@@ -97,17 +98,7 @@
     :global {
       .swiper-slide {
         width: 167px;
-        border: solid 3px transparent;
-
-        &:hover {
-          border: solid 3px $green;
-        }
-
       }
-
-      // .swiper-slide-active {
-      //   border: solid 3px $green;
-      // }
     }
 
     ul {
@@ -124,6 +115,16 @@
       flex-shrink: 1;
       aspect-ratio: 167/94;
       cursor: pointer;
+      border: solid 3px transparent;
+
+      &.on {
+        border: solid 3px $green;
+      }
+
+      &:hover {
+        border: solid 3px $green;
+      }
+
       img {
         width: 100%;
 
