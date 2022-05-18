@@ -2,15 +2,16 @@
 
 .banner {
   margin: 35px 0;
-  height: 731px;
+  height: 810px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 垂直居中 */
-  background: url(../../../../assets/gamers/img/banner.jpg) no-repeat right 0;
+  justify-content: center;
+  align-items: stretch;
 
   .wrap_bg {
     padding-left: 20px;
     min-width: 1200px;
+    width: 90%;
   }
   .banner-title {
     h2 {
@@ -25,7 +26,7 @@
     }
   }
   .banner-con {
-    width: 712px;
+    max-width: 60%;
     h2 {
       font-size: 55px;
       line-height: 60px;
@@ -37,6 +38,7 @@
       width: 746px;
       margin-top: 18px;
       max-height: 400px;
+      overflow: hidden;
     }
   }
 }

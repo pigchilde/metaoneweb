@@ -55,9 +55,15 @@ const Gamers = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                Guild:Guild Name <br />
+                Favorite games:RPG、ACT、AVG
+              </dd>
             </dl>
             <dl>
               <dt>
@@ -65,9 +71,15 @@ const Gamers = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                Guild:Guild Name <br />
+                Favorite games:RPG、ACT、AVG
+              </dd>
             </dl>
             <dl>
               <dt>
@@ -75,9 +87,15 @@ const Gamers = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                Guild:Guild Name <br />
+                Favorite games:RPG、ACT、AVG
+              </dd>
             </dl>
             <div className={styles['gamers-list-table']}>
               {/* <ul className={styles['table-tab']}>
@@ -104,7 +122,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -116,7 +134,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -128,7 +146,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -140,7 +158,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -152,7 +170,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -164,7 +182,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>
@@ -176,7 +194,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>7700</span>
                     </li>

@@ -41,11 +41,10 @@ const Guilds = (props: objectT) => {
       <Banner data={bannerData} />
 
       <section className={`${styles['main']} wrapper`}>
-        <section className={styles['line']}></section>
         <section className={styles['gamers-guilds']}>
           <h3>
             {intl.formatMessage({
-              id: 'GUILDS_LARGEST_GAMES',
+              id: 'GUILDS_EARNINGS',
             })}
           </h3>
           <div className={styles['gamers-list-con']}>
@@ -55,9 +54,15 @@ const Guilds = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                size:500 from:Area <br />
+                Gametype:RPG、ACT、AVG
+              </dd>
             </dl>
             <dl>
               <dt>
@@ -65,9 +70,15 @@ const Guilds = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                size:500 from:Area <br />
+                Gametype:RPG、ACT、AVG
+              </dd>
             </dl>
             <dl>
               <dt>
@@ -75,9 +86,15 @@ const Guilds = (props: objectT) => {
                   <img src={avater} />
                 </span>
                 <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
+                <span className={styles['score']}>
+                  7700<i>USDT</i>
+                </span>
               </dt>
-              <dd></dd>
+              <dd className={styles['img']}></dd>
+              <dd className={styles['txt']}>
+                size:500 from:Area <br />
+                Gametype:RPG、ACT、AVG
+              </dd>
             </dl>
             <div className={styles['gamers-list-table']}>
               <ul className={styles['table-tab']}>
@@ -181,7 +198,6 @@ const Guilds = (props: objectT) => {
             </div>
           </div>
         </section>
-        <section className={styles['line']}></section>
         {loading ? (
           <Loading></Loading>
         ) : informationList.length ? (
@@ -189,7 +205,6 @@ const Guilds = (props: objectT) => {
             return informationList.length - 1 !== index ? (
               <div key={item.id}>
                 <PhotoText datas={item} />
-                <section className={styles['line']}></section>
               </div>
             ) : (
               <PhotoText datas={item} key="index" />

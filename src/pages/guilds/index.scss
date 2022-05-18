@@ -36,10 +36,19 @@
           font-size: 26px;
           line-height: 36px;
           margin-bottom: 21px;
+          i {
+            font-size: 14px;
+            margin-left: 10px;
+          }
         }
       }
-      dd {
+      dd.img {
+        margin: 0 auto;
         background: url(../../assets/gamers/img/gamers_sprite.png);
+      }
+      dd.txt {
+        margin-top: 20px;
+        text-align: center;
       }
     }
     dl:nth-child(1) {
@@ -56,7 +65,7 @@
           margin-bottom: 21px;
         }
       }
-      dd {
+      dd.img {
         width: 238px;
         height: 173px;
         background-position: 0 0;
@@ -66,7 +75,7 @@
     dl:nth-child(2) {
       order: 1;
 
-      dd {
+      dd.img {
         width: 149px;
         height: 130px;
         background-position: -265px 0;
@@ -75,7 +84,7 @@
     }
     dl:nth-child(3) {
       order: 3;
-      dd {
+      dd.img {
         width: 113px;
         height: 113px;
         background-position: -458px 0;

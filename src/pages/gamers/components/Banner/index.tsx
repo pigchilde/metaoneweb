@@ -1,26 +1,26 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
+
 interface objectT {
   [propName: string]: any;
 }
 
 const Banner = (props: objectT) => {
-  const {
-    data: { title, img, content, totalGamers },
-  } = props;
   const intl = useIntl();
-
+  const {
+    data: { title, img, content, newGuilds },
+  } = props;
   const background = {
     background: `url(${img}) no-repeat right 0`,
   };
   return (
-    <header className={styles['banner']} style={background}>
-      <div className={`wrapper ${styles['wrap_bg']}`}>
+    <header className={styles['banner']}>
+      <div className={`wrapper ${styles['wrap_bg']}`} style={background}>
         <div className={styles['banner-title']}>
-          <h2>{totalGamers}+</h2>
+          <h2>{newGuilds}</h2>
           <p>
             {intl.formatMessage({
-              id: 'GAMERS_BANNER_TITLE',
+              id: 'GUILDS_BANNER_TITLE',
             })}
           </p>
         </div>
