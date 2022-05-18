@@ -1,6 +1,7 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  title: 'META ONE',
   locale: {
     default: 'en-US',
   },
@@ -9,6 +10,7 @@ export default defineConfig({
     type: 'none',
   },
   fastRefresh: {},
+  hash: true,
   proxy: {
     '/center': {
       target: 'http://47.106.90.119:8000',
@@ -24,5 +26,10 @@ export default defineConfig({
 
   theme: {
     'primary-color': '#00cacb',
+  },
+  targets: {
+    ie: 10,
+    edge: 12,
+    firefox: 42,
   },
 });

@@ -4,8 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import PersonalSider from './components/PersonalSider';
 import FixedSider from './components/FixedSider';
-import { useEffect, useState } from 'react';
-import { connect, setLocale } from 'umi';
+import { useEffect, useRef, useState } from 'react';
+import { connect, setLocale, useLocation } from 'umi';
 import moment from 'moment';
 import Cookies from 'js-cookie';
 // import 'moment/locale/en';
@@ -17,15 +17,27 @@ interface objectT {
 
 const BasicLayout = (props: any) => {
   moment.locale('en');
+  const pageRef = useRef({} as objectT);
   const {
     location = {},
     dispatch,
     login: { userInfo },
   } = props;
+  const { pathname, search } = location;
   const [collapsed, setCollapsed] = useState(false as boolean);
+  const [queryKey, setQueryKey] = useState('' as unknown as boolean);
+
   const onCollapse = (collapsed: boolean) => {
     setCollapsed(collapsed);
   };
+
+  useEffect(() => {
+    if (pathname.indexOf('/news/') > -1) {
+      pageRef.current.scrollTop = 330;
+    } else {
+      pageRef.current.scrollTop = 0;
+    }
+  }, [pathname, search]);
 
   useEffect(() => {
     if (userInfo.uid) {
@@ -46,7 +58,7 @@ const BasicLayout = (props: any) => {
 
   setLocale('en-US', true);
   return (
-    <Layout className={styles['page-layout']}>
+    <Layout className={styles['page-layout']} ref={pageRef}>
       <Header />
 
       {location.pathname.indexOf('/personal') > -1 ? (

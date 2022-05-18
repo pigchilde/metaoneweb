@@ -72,7 +72,7 @@ const News = (props: objectT) => {
     <>
       <Banner />
 
-      <section className={`${styles['main']} wrapper`}>
+      <section className={`${styles['main']} wrapper`} id="main">
         <Tab
           tabChange={tabChange}
           value={tabValue}
