@@ -63,7 +63,9 @@ const Register = (props: objectT) => {
   ];
   const tabChange = (e: string) => {
     const currentDatas = tabDatas.find((i: objectT) => i.id == e);
+    console.log(currentDatas, 4757);
     setTabValues(currentDatas ? currentDatas : {});
+    form.resetFields();
   };
   /*提交*/
   const onFinish = (values: any) => {
@@ -318,27 +320,30 @@ const Register = (props: objectT) => {
                   })}
                 />
               </Form.Item>
-              <Form.Item
-                label="invitationCode"
-                name="invitationCode"
-                rules={
-                  [
-                    // {
-                    //   required: true,
-                    //   message: intl.formatMessage({
-                    //     id: 'REGISTER_INVITATION_CODE_TIP',
-                    //   }),
-                    // },
-                  ]
-                }
-              >
-                <Input
-                  placeholder={intl.formatMessage({
-                    id: 'REGISTER_INVITATION_CODE',
-                  })}
-                />
-              </Form.Item>
-
+              {tabValues.name === 'Gamer' ? (
+                <Form.Item
+                  label="invitationCode"
+                  name="invitationCode"
+                  rules={
+                    [
+                      // {
+                      //   required: true,
+                      //   message: intl.formatMessage({
+                      //     id: 'REGISTER_INVITATION_CODE_TIP',
+                      //   }),
+                      // },
+                    ]
+                  }
+                >
+                  <Input
+                    placeholder={intl.formatMessage({
+                      id: 'REGISTER_INVITATION_CODE',
+                    })}
+                  />
+                </Form.Item>
+              ) : (
+                ''
+              )}
               <Form.Item>
                 <Button
                   type="primary"
