@@ -18,6 +18,7 @@ const TeamSwiper = (props: any) => {
             loop
             centeredSlides
             spaceBetween={25}
+            initialSlide={1}
             navigation={{
               prevEl: `.${styles['btn-prev']}`,
               nextEl: `.${styles['btn-next']}`,
