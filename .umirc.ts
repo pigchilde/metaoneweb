@@ -5,7 +5,6 @@ export default defineConfig({
   locale: {
     default: 'en-US',
   },
-  publicPath: '/front/',
   nodeModulesTransform: {
     type: 'none',
   },
