@@ -7,13 +7,17 @@ interface objectT {
   [propName: string]: any;
 }
 const Stars = (props: objectT) => {
-  const { data = {}, dispatch } = props;
+  const {
+    data = {},
+    dispatch,
+    login: { userInfo },
+  } = props;
   const [gameData, setGameData] = useState<objectT>(data);
   const [isLike, setIsLike] = useState<boolean>(false);
   const [isStar, setIsStar] = useState<boolean>(false);
   const [likeCount, setLinkCount] = useState<number>(data.likeCount);
   const [starCount, setStarCount] = useState<number>(data.starCount);
-
+  console.log(props);
   useEffect(() => {
     setGameData(data);
     setLinkCount(data.likeCount);
@@ -21,55 +25,64 @@ const Stars = (props: objectT) => {
   }, [data]);
   const changeStar = () => {
     //收藏
-    let num = 0;
-    let postData = {
-      gameId: gameData.id,
-      userId: '22222',
-      likeStatus: '',
-    };
-    if (isStar) {
-      num = starCount - 1;
-      num = num < 0 ? 0 : num;
-      postData.likeStatus = 'UNLIKE';
+    if (userInfo.uid) {
+      //已经登录
+      let num = 0;
+      let postData = {
+        gameId: gameData.id,
+        userId: userInfo.uid,
+        likeStatus: '',
+      };
+      if (isStar) {
+        num = starCount - 1;
+        num = num < 0 ? 0 : num;
+        postData.likeStatus = 'UNLIKE';
+      } else {
+        postData.likeStatus = 'LIKE';
+        num = starCount + 1;
+      }
+      dispatch({
+        type: 'gamefi/gameStart',
+        payload: {
+          data: postData,
+        },
+      }).then((res: objectT) => {
+        setStarCount(num);
+        setIsStar(!isStar);
+      });
     } else {
-      postData.likeStatus = 'LIKE';
-      num = starCount + 1;
+      //未登录
     }
-    dispatch({
-      type: 'gamefi/gameStart',
-      payload: {
-        data: postData,
-      },
-    }).then((res: objectT) => {
-      setStarCount(num);
-      setIsStar(!isStar);
-    });
   };
   const changeLike = () => {
     //点赞
-    let num = 0;
-    let postData = {
-      gameId: gameData.id,
-      userId: '22222',
-      likeStatus: '',
-    };
-    if (isLike) {
-      num = likeCount - 1;
-      num = num < 0 ? 0 : num;
-      postData.likeStatus = 'UNLIKE';
+    if (userInfo.uid) {
+      let num = 0;
+      let postData = {
+        gameId: gameData.id,
+        userId: userInfo.uid,
+        likeStatus: '',
+      };
+      if (isLike) {
+        num = likeCount - 1;
+        num = num < 0 ? 0 : num;
+        postData.likeStatus = 'UNLIKE';
+      } else {
+        num = likeCount + 1;
+        postData.likeStatus = 'LIKE';
+      }
+      dispatch({
+        type: 'gamefi/gameLike',
+        payload: {
+          data: postData,
+        },
+      }).then((res: objectT) => {
+        setLinkCount(num);
+        setIsLike(!isLike);
+      });
     } else {
-      num = likeCount + 1;
-      postData.likeStatus = 'LIKE';
+      //未登录
     }
-    dispatch({
-      type: 'gamefi/gameLike',
-      payload: {
-        data: postData,
-      },
-    }).then((res: objectT) => {
-      setLinkCount(num);
-      setIsLike(!isLike);
-    });
   };
   return (
     <div className={styles['handle']}>
@@ -94,6 +107,9 @@ const Stars = (props: objectT) => {
     </div>
   );
 };
-export default connect(({ gamefi }: { gamefi: objectT }) => ({
-  gamefi,
-}))(Stars);
+export default connect(
+  ({ gamefi, login }: { gamefi: objectT; login: objectT }) => ({
+    gamefi,
+    login,
+  }),
+)(Stars);
