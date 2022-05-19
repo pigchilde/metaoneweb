@@ -2,22 +2,20 @@ import 'swiper/swiper.scss';
 import styles from './index.scss';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Link } from 'umi';
 import moment from 'moment';
 
 const CustomSwiper = (props: any) => {
   const { datas = [], type = 'image', moreLink } = props;
   const [showMoreLink, setShowMoreLink] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   /**
    * 处理视频点击
    */
   const handleVideoClick = (swiper: any) => {
     swiper.slideTo(swiper.clickedIndex, 500);
-    const currSlide = swiper.slides[swiper.activeIndex];
-    const currVideo = currSlide.querySelector('video');
-    currVideo.muted = false;
   };
 
   /**
@@ -44,10 +42,21 @@ const CustomSwiper = (props: any) => {
     currVideo.play();
   };
 
+  /**
+   * 处理音量变化
+   */
+  const handleVolumeChange = (e: SyntheticEvent) => {
+    const video = e.target as HTMLVideoElement;
+    setMuted(video.muted);
+  };
+
   return (
     <>
       {datas && datas.length ? (
-        <div className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}>
+        <div
+          className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}
+          id="customSwiper"
+        >
           <Swiper
             modules={[Navigation]}
             slidesPerView={3}
@@ -83,7 +92,11 @@ const CustomSwiper = (props: any) => {
                   </Link>
                 ) : (
                   <div className="video-wrap">
-                    <video controls muted>
+                    <video
+                      controls
+                      muted={muted}
+                      onVolumeChange={handleVolumeChange}
+                    >
                       <source src={item.video} />
                     </video>
                     <p className={styles['desc']}>{item.title}</p>
