@@ -124,7 +124,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>5</span>
@@ -136,7 +138,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>6</span>
@@ -148,7 +152,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>7</span>
@@ -160,7 +166,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>8</span>
@@ -172,7 +180,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>9</span>
@@ -184,7 +194,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                     <li>
                       <span className={styles['num']}>10</span>
@@ -196,7 +208,9 @@ const Gamers = (props: objectT) => {
                         <br />
                         <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
                       </span>
-                      <span className={styles['score']}>7700</span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
                     </li>
                   </ul>
                 </TabPane>

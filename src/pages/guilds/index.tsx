@@ -120,7 +120,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>5</span>
@@ -132,7 +134,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>6</span>
@@ -144,7 +148,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>7</span>
@@ -156,7 +162,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>8</span>
@@ -168,7 +176,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>9</span>
@@ -180,7 +190,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
                 <li>
                   <span className={styles['num']}>10</span>
@@ -192,7 +204,9 @@ const Guilds = (props: objectT) => {
                     <br />
                     <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
                   </span>
-                  <span className={styles['score']}>7700</span>
+                  <span className={styles['score']}>
+                    7700<i>USDT</i>
+                  </span>
                 </li>
               </ul>
             </div>
