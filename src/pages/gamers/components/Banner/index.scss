@@ -13,6 +13,9 @@
     min-width: 1200px;
     width: 90%;
     height: 810px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .banner-title {
     h2 {
