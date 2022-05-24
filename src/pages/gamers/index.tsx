@@ -215,7 +215,106 @@ const Gamers = (props: objectT) => {
                   </ul>
                 </TabPane>
                 <TabPane tab="Overall List" key="2">
-                  Content of Tab Pane 2
+                  <ul className={styles['table-list']}>
+                    <li>
+                      <span className={styles['num']}>4</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name1
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>5</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>6</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>7</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>8</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>9</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                    <li>
+                      <span className={styles['num']}>10</span>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['info']}>
+                        Gamer Name
+                        <br />
+                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                      </span>
+                      <span className={styles['score']}>
+                        7700<i>USDT</i>
+                      </span>
+                    </li>
+                  </ul>
                 </TabPane>
               </Tabs>
             </div>

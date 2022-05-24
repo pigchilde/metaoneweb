@@ -8,10 +8,10 @@ interface objectT {
 const Banner = (props: objectT) => {
   const intl = useIntl();
   const {
-    data: { title, img, content, newGuilds },
+    data: { title, backageImg, content, newGuilds },
   } = props;
   const background = {
-    background: `url(${img}) no-repeat right 0`,
+    background: `url(${backageImg}) no-repeat right 0`,
   };
   return (
     <header className={styles['banner']}>

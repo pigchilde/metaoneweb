@@ -100,6 +100,42 @@
       flex-grow: 1;
       padding: 24px 15px;
 
+      :global {
+        .ant-tabs-top > .ant-tabs-nav::before {
+          border: none;
+        }
+        .ant-tabs-nav-list {
+          height: 52px;
+          .ant-tabs-tab {
+            margin-left: 0;
+          }
+          .ant-tabs-ink-bar {
+            display: none;
+          }
+          .ant-tabs-tab-active {
+            height: 52px;
+            padding: 0;
+            background: none;
+            .ant-tabs-tab-btn {
+              background-color: #00cacb;
+              border-radius: 10px;
+              padding: 0 15px;
+              height: 52px;
+            }
+          }
+          .ant-tabs-tab-btn {
+            padding: 0 15px;
+            height: 52px;
+            border-radius: 10px;
+            border: solid 1px #00cacb;
+            display: inline-block;
+            line-height: 52px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+        }
+      }
+
       .table-tab {
         margin-bottom: 17px;
         li {
@@ -125,9 +161,10 @@
           border-radius: 10px;
           border: solid 0px #ffffff;
           margin-bottom: 9px;
-          padding: 0 45px;
+          padding: 0 25px;
           font-size: 20px;
           line-height: 62px;
+          min-width: 540px;
 
           span {
             display: block;
@@ -142,7 +179,7 @@
               width: 42px;
               height: 42px;
             }
-            margin: 0 14px 0 30px;
+            margin: 0 14px 0 20px;
           }
           span.info {
             font-size: 20px;
