@@ -3,6 +3,7 @@ import { connect, useIntl, useHistory } from 'umi';
 import { Form, Input, Button, message } from 'antd';
 import { encryptedData } from '@/utils/rsaUtils';
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 interface objectT {
   [propName: string]: any;
@@ -13,16 +14,22 @@ const Login = (props: objectT) => {
   const intl = useIntl();
   const history = useHistory();
 
+  useEffect(() => {
+    // 如果没有token清楚已保存的用户信息
+    const token = Cookies.get('token');
+    if (!token) {
+      dispatch({
+        type: 'login/removeUserInfo',
+      });
+    }
+  }, []);
+
   /**
    * 获取登录的用户信息
-   * @param token 登录后得到的token值
    */
-  const getUserInfo = (token: string) => {
+  const getUserInfo = () => {
     dispatch({
       type: 'login/getUserInfo',
-      payload: {
-        token,
-      },
     });
   };
 
@@ -48,7 +55,7 @@ const Login = (props: objectT) => {
       message.success(msg);
       const token = `${data.tokenHead}${data.token}`;
       Cookies.set('token', token, { expires: 30 });
-      getUserInfo(token);
+      getUserInfo();
       history.goBack();
     });
   };

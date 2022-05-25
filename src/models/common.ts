@@ -7,6 +7,7 @@ export default {
   namespace: 'common',
   state: {
     socialMediaList: [],
+    platformInfo: {},
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
@@ -31,6 +32,25 @@ export default {
           type: 'setData',
           payload: {
             socialMediaList: data.data,
+          },
+        });
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *getPlatformInfo(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(
+          commonService.getPlatformInfo,
+          payload,
+        );
+        yield put({
+          type: 'setData',
+          payload: {
+            platformInfo: data.data,
           },
         });
       } catch (err) {

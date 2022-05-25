@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { useIntl, setLocale, Link } from 'umi';
+import { useIntl, setLocale } from 'umi';
 import { Button } from 'antd';
 import CustomSwiper from '@/components/CustomSwiper';
 import PhotoText from '@/components/PhotoText';
@@ -15,7 +15,10 @@ interface objectT {
 
 const Index = (props: objectT) => {
   const intl = useIntl();
-  const { dispatch } = props;
+  const {
+    dispatch,
+    common: { platformInfo },
+  } = props;
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
   const [videoAutoList, setVideoAutoList] = useState({} as objectT);
@@ -24,6 +27,7 @@ const Index = (props: objectT) => {
   const [adviserList, setAdviserList] = useState({} as objectT);
   const [managmentList, setManagmentList] = useState({} as objectT);
   const [advisorList, setAdvisorList] = useState({} as objectT);
+  const [positionList, setPositionList] = useState<objectT[]>([]);
 
   //切换成语言
   const setLang = (lang: string) => {
@@ -53,7 +57,9 @@ const Index = (props: objectT) => {
 
     dispatch({
       type: 'index/getIndexInfo',
-      payload: {},
+      payload: {
+        dicCode: 'CMS_POSITION_TYPE',
+      },
     }).then((res: objectT) => {
       const {
         banner,
@@ -62,6 +68,7 @@ const Index = (props: objectT) => {
         adviserList,
         managmentList,
         advisorList,
+        positionDicItem,
       } = res;
       if (banner.code === 0) {
         setBannerData(banner.data);
@@ -86,6 +93,9 @@ const Index = (props: objectT) => {
       if (advisorList.code === 0) {
         setAdvisorList(advisorList.data);
       }
+      if (positionDicItem.code === 0) {
+        setPositionList(positionDicItem.data);
+      }
       setLoading(false);
     });
 
@@ -102,7 +112,11 @@ const Index = (props: objectT) => {
           <div className={styles['info']}>
             <h2 className={styles['cm-tit']}>{bannerData.title}</h2>
             <p className={styles['desc']}>{bannerData.content}</p>
-            <Button type="primary" className={styles['btn-download']}>
+            <Button
+              type="primary"
+              className={styles['btn-download']}
+              href={platformInfo.whitePaper}
+            >
               {intl.formatMessage({ id: 'INDEX_BANNER_BUTTON' })}
             </Button>
             <div className={styles['share']}>
@@ -163,7 +177,10 @@ const Index = (props: objectT) => {
               ? adviserList.map((item: any) => (
                   <figure key={item.id}>
                     <img src={item.photo} alt={item.name} />
-                    <p>{item.name}</p>
+                    <p className={styles['name']}>{item.name}</p>
+                    <div className={styles['intro']}>
+                      <p>{item.description}</p>
+                    </div>
                   </figure>
                 ))
               : ''}
@@ -175,7 +192,7 @@ const Index = (props: objectT) => {
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_MANAGEMENT_TEAM' })}
           </h3>
-          <TeamSwiper datas={managmentList} />
+          <TeamSwiper datas={managmentList} positionList={positionList} />
         </div>
       </section>
       <section className={styles['investors']}>
@@ -200,6 +217,9 @@ const Index = (props: objectT) => {
   );
 };
 
-export default connect(({ index }: { index: objectT }) => ({
-  index,
-}))(Index);
+export default connect(
+  ({ index, common }: { index: objectT; common: objectT }) => ({
+    index,
+    common,
+  }),
+)(Index);

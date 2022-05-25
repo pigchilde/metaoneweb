@@ -2,12 +2,13 @@ import 'swiper/swiper.scss';
 import styles from './index.scss';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { useState } from 'react';
-import { Link } from 'umi';
+
+interface objectT {
+  [propName: string]: any;
+}
 
 const TeamSwiper = (props: any) => {
-  let { datas = [], type = 'image' } = props;
-
+  let { datas = [], type = 'image', positionList = [] } = props;
   return (
     <>
       {datas && datas.length ? (
@@ -34,7 +35,14 @@ const TeamSwiper = (props: any) => {
                       <div className={styles['info']}>
                         <div className={styles['hd']}>
                           <p className={styles['name']}>{item.name}</p>
-                          <p className={styles['position']}>{item.position}</p>
+                          <p className={styles['position']}>
+                            {
+                              positionList.filter(
+                                (position: objectT) =>
+                                  position.code === item.position,
+                              )[0]?.name
+                            }
+                          </p>
                           <a
                             href={item.homePage}
                             className={styles['linkin']}

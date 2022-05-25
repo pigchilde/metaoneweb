@@ -37,3 +37,10 @@ export const getAdvisorList: objectT = async () => {
     method: 'GET',
   });
 };
+
+export const getDicItem: objectT = async (params: objectT) => {
+  const { dicCode } = params;
+  return request(`/center/dic/getDicItem/${dicCode}`, {
+    method: 'GET',
+  });
+};

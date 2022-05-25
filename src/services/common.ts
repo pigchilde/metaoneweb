@@ -8,3 +8,9 @@ export const getSocialMediaList: objectT = async () => {
     method: 'GET',
   });
 };
+
+export const getPlatformInfo: objectT = async () => {
+  return request(`/center/platform-setting/getPlatformInfo`, {
+    method: 'GET',
+  });
+};

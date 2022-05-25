@@ -95,7 +95,7 @@ $bgColor: #02050e;
   .hd {
     position: relative;
     border-bottom: 1px dashed $white;
-    padding: 0 40px 14px 0;
+    padding: 0 0 14px 0;
     margin-bottom: 14px;
   }
   .name {
@@ -104,6 +104,7 @@ $bgColor: #02050e;
     margin-bottom: 5px;
     @include ellipsis();
     line-height: 32px;
+    padding-right: 40px;
   }
   .position{
     font-size: 20px;

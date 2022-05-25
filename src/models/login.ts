@@ -92,5 +92,20 @@ export default {
         return Promise.reject(err);
       }
     },
+    *removeUserInfo(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        yield put({
+          type: 'setData',
+          payload: {
+            userInfo: {},
+          },
+        });
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
   },
 };

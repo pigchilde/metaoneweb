@@ -71,7 +71,6 @@ export default {
   COMMON_BUTTON_INVITE_USER: 'Invite User',
   COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
 
-  LANG_ENGLISH: '英语',
-  LANG_CHINESE_SIMPLIFIED: '中文（简体）',
-  LANG_CHINESE_TRADITIONAL: '中文（繁体）',
+  LANG_EN_US: '英语(美国)',
+  LANG_ZH_CN: '中文（简体）',
 };

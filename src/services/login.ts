@@ -1,5 +1,4 @@
-import { request } from '@/utils/request';
-import { useParams } from 'umi/node_modules/@types/react-router';
+import { request, authRequest } from '@/utils/request';
 
 interface objectT {
   [propName: string]: any;
@@ -20,17 +19,11 @@ export const login: objectT = async (params: objectT) => {
 
 /**
  * 获取登录用户信息
- * @param params 参数对象
- * - @param {string} Authorization 登录的token信息
  * @returns 返回已登录用户信息
  */
-export const getUserInfo = async (params: objectT) => {
-  const { token } = params;
-  return request(`/center/user/info`, {
+export const getUserInfo = async () => {
+  return authRequest(`/center/user/info`, {
     method: 'GET',
-    headers: {
-      Authorization: token,
-    },
   });
 };
 

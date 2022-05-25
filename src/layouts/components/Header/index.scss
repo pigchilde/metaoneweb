@@ -139,6 +139,8 @@
   ul {
     padding: 28px 27px 16px;
     background: $white;
+    max-height: 300px;
+    overflow: auto;
   }
   &:before {
     content: "";

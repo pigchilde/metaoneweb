@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import PersonalSider from './components/PersonalSider';
 import FixedSider from './components/FixedSider';
 import { useEffect, useRef, useState } from 'react';
-import { connect, setLocale, useLocation } from 'umi';
+import { connect, setLocale } from 'umi';
 import moment from 'moment';
 import Cookies from 'js-cookie';
 // import 'moment/locale/en';
@@ -49,11 +49,20 @@ const BasicLayout = (props: any) => {
     if (token) {
       dispatch({
         type: 'login/getUserInfo',
-        payload: {
-          token,
-        },
       });
     }
+  }, []);
+
+  useEffect(() => {
+    // 获取社交媒体平台列表
+    dispatch({
+      type: 'common/getSocialMediaList',
+    });
+
+    // 获取站点信息
+    dispatch({
+      type: 'common/getPlatformInfo',
+    });
   }, []);
 
   setLocale('en-US', true);

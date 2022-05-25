@@ -8,25 +8,9 @@ interface objectT {
 
 const SocialMediaList = (props: objectT) => {
   const {
-    dispatch,
     common: { socialMediaList },
     className,
   } = props;
-  /**
-   * 获取社交媒体平台列表
-   */
-  const getSocialMediaList = () => {
-    dispatch({
-      type: 'common/getSocialMediaList',
-    });
-  };
-
-  useEffect(() => {
-    if (socialMediaList && socialMediaList.length) {
-      return;
-    }
-    getSocialMediaList();
-  }, []);
 
   return (
     <div className={`${styles['social-media']} ${className}`}>

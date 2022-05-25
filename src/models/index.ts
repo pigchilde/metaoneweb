@@ -27,6 +27,7 @@ export default {
         adviserList,
         managmentList,
         advisorList,
+        positionDicItem,
       ]: [
         initialStateT,
         initialStateT,
@@ -42,14 +43,16 @@ export default {
         call(indexService.getInvestmentAdviserList, payload),
         call(indexService.getMetaoneManagmentList, payload),
         call(indexService.getAdvisorList, payload),
+        call(indexService.getDicItem, payload),
       ]);
       return {
-        banner: banner,
-        videoList: videoList,
-        informationList: informationList,
-        adviserList: adviserList,
-        managmentList: managmentList,
-        advisorList: advisorList,
+        banner,
+        videoList,
+        informationList,
+        adviserList,
+        managmentList,
+        advisorList,
+        positionDicItem,
       };
     },
   },

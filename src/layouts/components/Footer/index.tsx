@@ -1,10 +1,17 @@
 import styles from './index.scss';
 import { Layout, Button } from 'antd';
-import { Link, useIntl, setLocale } from 'umi';
+import { Link, useIntl, setLocale, connect } from 'umi';
 import { useRef } from 'react';
 import SocialMediaList from '@/components/SocialMediaList';
 
-const Footer = () => {
+interface objectT {
+  [propName: string]: any;
+}
+
+const Footer = (props: objectT) => {
+  const {
+    common: { platformInfo },
+  } = props;
   const intl = useIntl();
   const lang = useRef('US');
 
@@ -16,12 +23,14 @@ const Footer = () => {
   return (
     <Layout.Footer className={styles['footer']}>
       <div className={styles['ft-l']}>
-        <Link to="" className={styles['logo']}>
-          <img src={require('@/assets/common/img/logo.png')} />
-        </Link>
+        <div className={styles['logo']}>
+          <Link to="/">
+            <img src={platformInfo.siteIcon} />
+          </Link>
+        </div>
         <div className={styles['cp']}>
           <p>© COPYRIGHT</p>
-          <p>2022 MetaOne Global Inc. All rights reserved</p>
+          <p>{platformInfo.siteCopyright}</p>
         </div>
       </div>
       <div className={styles['ft-r']}>
@@ -36,4 +45,6 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default connect(({ common }: { common: objectT }) => ({
+  common,
+}))(Footer);

@@ -145,7 +145,6 @@ export default {
   COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
   COMMON_NO_DATA: 'no data',
 
-  LANG_ENGLISH: 'English',
-  LANG_CHINESE_SIMPLIFIED: 'Chinese (Simplified)',
-  LANG_CHINESE_TRADITIONAL: 'Chinese (traditional)',
+  LANG_EN_US: 'English',
+  LANG_ZH_CN: 'Chinese (Simplified)',
 };

@@ -3,42 +3,29 @@ import { Layout, Button, message } from 'antd';
 import { Link, useIntl, setLocale, connect } from 'umi';
 import { useRef, useState } from 'react';
 import Cookies from 'js-cookie';
+import { LANG_LIST } from '@/utils/lang';
 
 interface objectT {
   [propName: string]: any;
 }
 
-const LANG_LIST = [
-  {
-    flag: 'EN',
-    localeFile: 'en-US',
-    localeItemId: 'LANG_ENGLISH',
-  },
-  // {
-  //   flag: 'CH',
-  //   localeFile: 'zh-CN',
-  //   localeItemId: 'LANG_CHINESE_SIMPLIFIED',
-  // },
-  // {
-  //   flag: 'CH',
-  //   localeFile: 'zh-CN',
-  //   localeItemId: 'LANG_CHINESE_TRADITIONAL',
-  // },
-];
-
 const Header = (props: objectT) => {
   const {
     login: { userInfo },
+    common: { platformInfo },
     dispatch,
   } = props;
   const intl = useIntl();
-  const [currLang, setCurrLang] = useState(LANG_LIST[0].flag);
+  const defaultLang = LANG_LIST.filter(
+    (lang: objectT) => lang.code === 'en-US',
+  )[0].code;
+  const [currLang, setCurrLang] = useState(defaultLang);
   const [isUcPage, setIsUcPage] = useState(false);
 
   //设置语言
   const setLang = (index: number) => {
-    setCurrLang(LANG_LIST[index].flag);
-    setLocale(LANG_LIST[index].localeFile, true);
+    setCurrLang(LANG_LIST[index].code);
+    setLocale(LANG_LIST[index].code, true);
   };
 
   /**
@@ -63,8 +50,8 @@ const Header = (props: objectT) => {
       <div className={styles['hd-wrapper']}>
         <div className={styles['hd-l']}>
           <Link to="/" className={styles['logo']}>
-            <img src={require('@/assets/common/img/logo.png')} />
-            <h1>{intl.formatMessage({ id: 'META_ONE' })}</h1>
+            <img src={platformInfo.siteIcon} />
+            <h1>{platformInfo.siteName}</h1>
           </Link>
           {/* <i className={styles['btn-menu']}></i> */}
           <nav className={styles['nav']}>
@@ -91,12 +78,19 @@ const Header = (props: objectT) => {
             </div>
           ) : null} */}
           <div className={`${styles['op-lang']} ${styles['has-dropdown']}`}>
-            <span className={styles['lang-name']}>{currLang}</span>
+            <span className={styles['lang-name']}>
+              {currLang.split('-')[1]}
+            </span>
             <div className={styles['dropdown']}>
               <ul>
-                {LANG_LIST.map((item: any, index: number) => (
+                {LANG_LIST.map((lang: any, index: number) => (
                   <li onClick={() => setLang(index)} key={index}>
-                    {intl.formatMessage({ id: item.localeItemId })}
+                    {intl.formatMessage({
+                      id: `LANG_${lang.code
+                        .split('-')
+                        .join('_')
+                        .toUpperCase()}`,
+                    })}
                   </li>
                 ))}
               </ul>
@@ -177,6 +171,9 @@ const Header = (props: objectT) => {
   );
 };
 
-export default connect(({ login }: { login: objectT }) => ({
-  login,
-}))(Header);
+export default connect(
+  ({ login, common }: { login: objectT; common: objectT }) => ({
+    login,
+    common,
+  }),
+)(Header);
