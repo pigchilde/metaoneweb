@@ -32,7 +32,7 @@ export const getUserInfo = async () => {
  * @returns 返回登出情况
  */
 export const logout: objectT = async () => {
-  return request(`/center/user/logout`, {
+  return authRequest(`/center/user/logout`, {
     method: 'POST',
   });
 };
