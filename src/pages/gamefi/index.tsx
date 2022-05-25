@@ -37,7 +37,7 @@ const GameFi = (props: objectT) => {
     }).then((res: objectT) => {
       const { code, data } = res;
       if (code == 0) {
-        setHotFilter(data[0].code);
+        setHotFilter(data[0].name);
         setSelectHotList(data);
         setHLoading(false);
       }
@@ -51,11 +51,7 @@ const GameFi = (props: objectT) => {
     }).then((res: objectT) => {
       setLoading(false);
       const { code, data } = res;
-      code === 0
-        ? setHotListDatas({ data })
-        : setHotListDatas({
-            data: [],
-          });
+      code === 0 ? setHotListDatas({ data }) : setHotListDatas({ data: [] });
     });
   }, [hotFilter]);
 
@@ -72,7 +68,7 @@ const GameFi = (props: objectT) => {
             >
               {selectHotList.map((item: objectT) => {
                 return (
-                  <Option value={item.code} key={item.code}>
+                  <Option value={item.name} key={item.name}>
                     {item.name}
                   </Option>
                 );
@@ -93,10 +89,10 @@ const GameFi = (props: objectT) => {
                 nextEl: `.${styles['btnNext']}`,
               }}
             >
-              {hotListDatas.data.map((item: objectT) => {
+              {hotListDatas.data.map((item: objectT, index: number) => {
                 return (
                   <SwiperSlide key={item.id}>
-                    <Banner key={item.id} datas={item} />
+                    <Banner datas={item} />
                   </SwiperSlide>
                 );
               })}

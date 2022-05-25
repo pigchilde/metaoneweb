@@ -193,6 +193,7 @@ const Filters = (props: objectT) => {
           <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
           <i className={`${icos['ico']} ${icos['ico-list']}`}></i>
           <Popover
+            overlayClassName={styles.filterPop}
             placement="bottomRight"
             content={popContent}
             title={GAMEFI_FILTERS_POPTITLE}

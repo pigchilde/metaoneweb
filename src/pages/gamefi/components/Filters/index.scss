@@ -32,40 +32,42 @@
     }
   }
 }
-
-:global {
-  .ant-popover-arrow {
-    display: none;
-  }
- 
-
-  .ant-checkbox-group-item {
-    min-width: 105px;
-    margin-bottom: 10px;
-  }
-
-  .ant-popover-inner {
-    background-color: #162b2f;
-    border-radius: 10px;
-    border: solid 2px #00cacb;
-    color: #fff;
-    padding: 5px 30px 0px;
-    width: 590px;
-  }
-
-  .ant-popover-title {
-    color: $white;
-    font-size: 20px;
-    line-height: 2;
-    font-weight: bold;
-    padding-left: 0;
-    border-bottom: 0;
-  }
-
-  .ant-popover-inner-content {
-    padding: 0;
+.filterPop{
+  :global {
+    .ant-popover-arrow {
+      display: none;
+    }
+   
+  
+    .ant-checkbox-group-item {
+      min-width: 105px;
+      margin-bottom: 10px;
+    }
+  
+    .ant-popover-inner {
+      background-color: #162b2f;
+      border-radius: 10px;
+      border: solid 2px #00cacb;
+      color: #fff;
+      padding: 5px 30px 0px;
+      width: 590px;
+    }
+  
+    .ant-popover-title {
+      color: $white;
+      font-size: 20px;
+      line-height: 2;
+      font-weight: bold;
+      padding-left: 0;
+      border-bottom: 0;
+    }
+  
+    .ant-popover-inner-content {
+      padding: 0;
+    }
   }
 }
+
 
 .checktitle {
   color: #feffff;

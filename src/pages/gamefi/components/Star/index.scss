@@ -1,14 +1,45 @@
 .handle {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .item {
+    margin-left: 20px;
     display: flex;
     align-items: center;
 
-    .item {
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
-
-        > span {
-            padding-left: 5px;
-        }
+    >span {
+      padding-left: 5px;
     }
+  }
+
+  :global {
+    .ant-btn {
+      background-color: transparent;
+      border: 0;
+      margin-left: 20px;
+      margin-right: 5px;
+      box-shadow: none !important;
+      color: transparent !important;
+    }
+  }
+
+  .itemstar {
+    display: block;
+    background: url("../../../../assets/gamefi/img/ico.png") no-repeat;
+    height: 33px;
+    width: 34px;
+    cursor: pointer;
+    background-position: -157px 0;
+  }
+
+  .itemheart {
+    background: url("../../../../assets/gamefi/img/ico.png") no-repeat;
+    height: 28px;
+    width: 33px;
+    display: block;
+    cursor: pointer;
+    background-position: -116px 0 !important;
+
+  }
 }
