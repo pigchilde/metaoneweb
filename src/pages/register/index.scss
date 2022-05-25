@@ -134,13 +134,37 @@
       display: none;
     }
     .ant-input,
-    .ant-input-affix-wrapper {
+    .ant-input-affix-wrapper,
+    .ant-select .ant-select-selector {
       background-color: transparent;
       border: 1px solid $green;
       font-size: 16px;
       padding: 8px 11px;
       color: $white;
       border-radius: 10px;
+    }
+    .ant-select .ant-select-selector {
+      height: 44px;
+      line-height: 44px;
+      .ant-select-selection-item {
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+      }
+    }
+    .ant-select {
+      .anticon {
+        color: #fff;
+        font-size: 16px;
+      }
+      .ant-select-clear {
+        background-color: #020611;
+        height: 24px;
+        width: 24px;
+      }
+      .ant-select-clear .anticon {
+        color: $green;
+      }
     }
     .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
       background-color: transparent;

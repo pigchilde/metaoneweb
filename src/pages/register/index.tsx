@@ -1,10 +1,11 @@
 import styles from './index.scss';
 import { useIntl, history } from 'umi';
 import { Tabs } from 'antd';
-import { Form, Input, Button, message } from 'antd';
-import { useState } from 'react';
+import { Form, Input, Button, message, Select } from 'antd';
+import { useEffect, useState } from 'react';
 import { connect } from 'dva';
 const { TabPane } = Tabs;
+const { Option } = Select;
 interface objectT {
   [propName: string]: any;
 }
@@ -13,6 +14,7 @@ const Register = (props: objectT) => {
   const [form] = Form.useForm();
   const intl = useIntl();
   const [loading, setLoading] = useState(false as boolean);
+  const [regionData, setRegionData] = useState([] as Array<objectT>);
   const [sendEmailTxt, setSendEmailTxt] = useState({
     txt: intl.formatMessage({
       id: 'REGISTER_SEND',
@@ -61,6 +63,11 @@ const Register = (props: objectT) => {
       bannerClass: 'sign-banner3',
     },
   ];
+
+  useEffect(() => {
+    getCuntry();
+  }, []);
+  /*tab切换*/
   const tabChange = (e: string) => {
     const currentDatas = tabDatas.find((i: objectT) => i.id == e);
     console.log(currentDatas, 4757);
@@ -74,48 +81,59 @@ const Register = (props: objectT) => {
     }
     setLoading(true);
     //验证验证码
+    // dispatch({
+    //   type: 'register/postCode',
+    //   payload: {
+    //     data: { email: values.email, code: values.verificationCode },
+    //   },
+    // }).then((result: objectT) => {
+    //   const { code: cCode, msg: cMsg } = result;
+    //   if (cCode === 0) {
+    //提交数据
     dispatch({
-      type: 'register/postCode',
+      type: 'register/postData',
       payload: {
-        data: { email: values.email, code: values.verificationCode },
+        data: { ...values, registerCategory: tabValues.id + '' },
       },
-    }).then((result: objectT) => {
-      const { code: cCode, msg: cMsg } = result;
-      if (cCode === 0) {
-        //提交数据
-        dispatch({
-          type: 'register/postData',
-          payload: {
-            data: { ...values, registerCategory: tabValues.id + '' },
-          },
-        }).then((res: objectT) => {
-          const { code, data, msg } = res;
-          if (code === 0) {
-            history.push(`/login`);
-          } else {
-            message.error({
-              content: msg,
-              style: {
-                marginTop: '20vh',
-              },
-            });
-          }
-
-          setLoading(false);
-        });
+    }).then((res: objectT) => {
+      const { code, data, msg } = res;
+      console.log(res, 5555);
+      if (code === 0) {
+        history.push(`/login`);
       } else {
         message.error({
-          content: cMsg,
+          content: msg,
           style: {
             marginTop: '20vh',
           },
         });
-        setLoading(false);
+      }
+
+      setLoading(false);
+    });
+    //   } else {
+    //     message.error({
+    //       content: cMsg,
+    //       style: {
+    //         marginTop: '20vh',
+    //       },
+    //     });
+    //     setLoading(false);
+    //   }
+    // });
+  };
+
+  /*获取地区*/
+  const getCuntry = () => {
+    dispatch({
+      type: 'register/getCuntry',
+      payload: {},
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        setRegionData(data);
       }
     });
-  };
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
   };
 
   /*获取验证码*/
@@ -187,7 +205,6 @@ const Register = (props: objectT) => {
               name="register"
               wrapperCol={{ span: 24 }}
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
               scrollToFirstError
             >
               <Form.Item
@@ -340,6 +357,39 @@ const Register = (props: objectT) => {
                       id: 'REGISTER_INVITATION_CODE',
                     })}
                   />
+                </Form.Item>
+              ) : (
+                ''
+              )}
+              {tabValues.name === 'Guild' ? (
+                <Form.Item
+                  label="country"
+                  name="country"
+                  rules={
+                    [
+                      // {
+                      //   required: true,
+                      //   message: intl.formatMessage({
+                      //     id: 'REGISTER_INVITATION_CODE_TIP',
+                      //   }),
+                      // },
+                    ]
+                  }
+                >
+                  <Select
+                    placeholder={intl.formatMessage({
+                      id: 'REGISTER_REGION',
+                    })}
+                    allowClear
+                  >
+                    {regionData.map((i: objectT) => {
+                      return (
+                        <Option value={i.code} key={i.code}>
+                          {i.name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
                 </Form.Item>
               ) : (
                 ''

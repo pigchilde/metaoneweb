@@ -25,3 +25,8 @@ export const postCode: objectT = async (params: objectT) => {
     data: params.data,
   });
 };
+export const getCuntry: objectT = async (params: objectT) => {
+  return request(`/center/dic/getDicItem/COMMON_COUNTRY`, {
+    method: 'GET',
+  });
+};

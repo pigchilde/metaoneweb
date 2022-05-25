@@ -122,6 +122,8 @@ export default {
   REGISTER_CONFIRM_PASSWORD_TIP: 'Please input your Confirm Password!',
   REGISTER_INVITATION_CODE: 'Invitation Code',
   REGISTER_INVITATION_CODE_TIP: 'Please input your Invitation Code!',
+  REGISTER_REGION: 'Region',
+  REGISTER_REGION_TIP: 'Please select your Region!',
   REGISTER_SUBMIT: 'submit',
 
   INDEX_VIDEO_SWIPER_TITLE: 'MetaOne RAZZEL DAZZEL SHOW',

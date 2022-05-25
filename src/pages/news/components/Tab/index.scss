@@ -19,6 +19,12 @@
       width: 100%;
       font-size: 20px;
       @extend %ellipsis-basic;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 16px;
+      }
     }
     .ant-tabs-tab + .ant-tabs-tab {
       margin-left: 19px;

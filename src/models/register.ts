@@ -40,5 +40,15 @@ export default {
       const data: initialStateT = yield call(registerService.postCode, payload);
       return data;
     },
+    *getCuntry(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        registerService.getCuntry,
+        payload,
+      );
+      return data;
+    },
   },
 };
