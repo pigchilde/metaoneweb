@@ -106,7 +106,7 @@ const Index = (props: objectT) => {
     <div>
       <section
         className={styles['banner']}
-        style={{ background: `url(${bannerData.img}) no-repeat` }}
+        style={{ backgroundImage: `url(${bannerData.backageImg})` }}
       >
         <div className={styles['wrapper']}>
           <div className={styles['info']}>
@@ -176,10 +176,12 @@ const Index = (props: objectT) => {
             {adviserList.length
               ? adviserList.map((item: any) => (
                   <figure key={item.id}>
-                    <img src={item.photo} alt={item.name} />
-                    <p className={styles['name']}>{item.name}</p>
-                    <div className={styles['intro']}>
-                      <p>{item.description}</p>
+                    <div className={styles['figure-inner']}>
+                      <img src={item.photo} alt={item.name} />
+                      <p className={styles['name']}>{item.name}</p>
+                      <div className={styles['intro']}>
+                        <p>{item.description}</p>
+                      </div>
                     </div>
                   </figure>
                 ))

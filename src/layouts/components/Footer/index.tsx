@@ -25,12 +25,12 @@ const Footer = (props: objectT) => {
       <div className={styles['ft-l']}>
         <div className={styles['logo']}>
           <Link to="/">
-            <img src={platformInfo.siteIcon} />
+            <img src={require('@/assets/common/img/logo.png')} />
           </Link>
         </div>
         <div className={styles['cp']}>
           <p>© COPYRIGHT</p>
-          <p>{platformInfo.siteCopyright}</p>
+          <p>2022 MetaOne Global Inc. All rights reserved</p>
         </div>
       </div>
       <div className={styles['ft-r']}>

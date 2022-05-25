@@ -50,7 +50,7 @@ const Header = (props: objectT) => {
       <div className={styles['hd-wrapper']}>
         <div className={styles['hd-l']}>
           <Link to="/" className={styles['logo']}>
-            <img src={platformInfo.siteIcon} />
+            <img src={require('@/assets/common/img/logo.png')} />
             <h1>{platformInfo.siteName}</h1>
           </Link>
           {/* <i className={styles['btn-menu']}></i> */}
