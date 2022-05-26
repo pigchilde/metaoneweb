@@ -2,8 +2,8 @@ import icos from '../../icon.scss';
 import styles from './index.scss';
 import { connect } from 'dva';
 import { useState, useEffect } from 'react';
-import { Popover, Button } from 'antd';
-import { useIntl, Link } from 'umi';
+import { Popover, Popconfirm, Button } from 'antd';
+import { useIntl, Link, history } from 'umi';
 interface objectT {
   [propName: string]: any;
 }
@@ -95,7 +95,9 @@ const Stars = (props: objectT) => {
       </Link>
     </div>
   );
-
+  const toLogin = () => {
+    history.push(`/login`);
+  };
   return (
     <div className={styles['handle']}>
       {userInfo.uid ? (
@@ -121,31 +123,33 @@ const Stars = (props: objectT) => {
         </>
       ) : (
         <>
-          <Popover
-            placement="topLeft"
-            content={popContent}
-            trigger={['focus', 'click']}
+          <Popconfirm
+            placement="topRight"
+            okText={intl.formatMessage({ id: 'SIGN_IN' })}
+            title="Please log in before operation."
+            onConfirm={toLogin}
           >
             <Button
               type="link"
               className={`${icos['ico']} ${styles['itemheart']}`}
             >
-              0
+              ''
             </Button>
-          </Popover>
+          </Popconfirm>
           {likeCount}
-          <Popover
+          <Popconfirm
             placement="topRight"
-            content={popContent}
-            trigger={['focus', 'click']}
+            onConfirm={toLogin}
+            title="Please log in before operation."
+            okText={intl.formatMessage({ id: 'SIGN_IN' })}
           >
             <Button
               type="link"
               className={`${icos['ico']} ${styles['itemstar']}`}
             >
-              0
+              ''
             </Button>
-          </Popover>
+          </Popconfirm>
           {starCount}
         </>
       )}
