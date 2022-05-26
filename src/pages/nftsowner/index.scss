@@ -1,0 +1,399 @@
+.gamers-list {
+  height: 674px;
+  margin-bottom: 110px;
+  h3 {
+    font-size: 50px;
+    line-height: 60px;
+    color: $white;
+    margin: 110px 0 20px 20px;
+  }
+  .gamers-list-con {
+    width: 100%;
+    display: flex;
+    float: left;
+    dl {
+      padding-top: 233px;
+      dt {
+        span {
+          display: block;
+          text-align: center;
+        }
+        span.avatar {
+          width: 55px;
+          height: 55px;
+          margin: 0 auto 13px;
+        }
+        span.name {
+          font-size: 19px;
+          line-height: 36px;
+        }
+        span.score {
+          font-size: 26px;
+          line-height: 36px;
+          margin-bottom: 21px;
+          i {
+            font-size: 14px;
+            margin-left: 10px;
+          }
+        }
+      }
+      dd.img {
+        margin: 0 auto;
+        background: url(../../assets/gamers/img/gamers_sprite.png);
+      }
+      dd.txt {
+        margin-top: 20px;
+        text-align: center;
+      }
+    }
+    dl:nth-child(1) {
+      order: 2;
+      padding-top: 150px;
+      dt {
+        span.name {
+          font-size: 26px;
+          line-height: 36px;
+        }
+        span.score {
+          font-size: 35px;
+          line-height: 36px;
+          margin-bottom: 21px;
+        }
+      }
+      dd.img {
+        width: 238px;
+        height: 173px;
+        background-position: 0 0;
+      }
+      margin-right: 23px;
+    }
+    dl:nth-child(2) {
+      order: 1;
+
+      dd.img {
+        width: 149px;
+        height: 130px;
+        background-position: -265px 0;
+      }
+      margin-right: 23px;
+    }
+    dl:nth-child(3) {
+      order: 3;
+      dd.img {
+        width: 113px;
+        height: 113px;
+        background-position: -458px 0;
+      }
+    }
+    .gamers-list-table {
+      order: 4;
+      margin-left: 75px;
+      height: 605px;
+      background-color: #061216;
+      border-radius: 10px;
+      border: solid 0px #ffffff;
+      flex-grow: 1;
+      padding: 24px 15px;
+
+      :global {
+        .ant-tabs-top > .ant-tabs-nav::before {
+          border: none;
+        }
+        .ant-tabs-nav-list {
+          height: 52px;
+          .ant-tabs-tab {
+            margin-left: 0;
+          }
+          .ant-tabs-ink-bar {
+            display: none;
+          }
+          .ant-tabs-tab-active {
+            height: 52px;
+            padding: 0;
+            background: none;
+            .ant-tabs-tab-btn {
+              background-color: #00cacb;
+              border-radius: 10px;
+              padding: 0 15px;
+              height: 52px;
+            }
+          }
+          .ant-tabs-tab-btn {
+            padding: 0 15px;
+            height: 52px;
+            border-radius: 10px;
+            border: solid 1px #00cacb;
+            display: inline-block;
+            line-height: 52px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .table-list {
+        min-width: 540px;
+        li {
+          height: 62px;
+          background-color: #00191c;
+          border-radius: 10px;
+          border: solid 0px #ffffff;
+          margin-bottom: 9px;
+          padding: 0 25px;
+          font-size: 20px;
+          line-height: 62px;
+          min-width: 540px;
+          span {
+            display: block;
+            float: left;
+          }
+          span.num {
+            width: 22px;
+            text-align: center;
+          }
+          span.avatar {
+            img {
+              width: 42px;
+              height: 42px;
+            }
+            margin: 0 14px 0 20px;
+          }
+          span.info {
+            font-size: 20px;
+            line-height: 20px;
+            i {
+              font-size: 13px;
+              max-width: 200px;
+            }
+            padding: 10px 0;
+          }
+          span.score {
+            float: right;
+            font-size: 20px;
+            i {
+              font-size: 12px;
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.gamers-bridge {
+  margin-bottom: 120px;
+  h3 {
+    font-size: 50px;
+    color: $white;
+    text-align: center;
+  }
+  p.gamers-bridge-des {
+    font-size: 26px;
+    line-height: 36px;
+    text-align: center;
+    width: 1048px;
+    margin: 0 auto;
+  }
+  ul.gamers-bridge-con {
+    display: flex;
+    margin-top: 21px;
+    justify-content: space-evenly;
+    li {
+      flex-shrink: 1;
+      width: 341px;
+      span {
+        display: block;
+        text-align: center;
+      }
+      span.img {
+        margin-bottom: 33px;
+        background-image: url(../../assets/gamers/img/gamers_sprite.png);
+        height: 295px;
+        margin: 0 auto;
+      }
+      span.title {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+      span.des {
+        font-size: 22px;
+        line-height: 30px;
+      }
+      &:nth-child(1) {
+        span.img {
+          width: 259px;
+          background-position: 0 -201px;
+        }
+      }
+      &:nth-child(2) {
+        span.img {
+          width: 287px;
+          background-position: -259px -200px;
+        }
+      }
+      &:nth-child(3) {
+        span.img {
+          width: 313px;
+          background-position: -546px -200px;
+        }
+      }
+      &:nth-child(4) {
+        span.img {
+          width: 289px;
+          background-position: -858px -200px;
+        }
+      }
+    }
+  }
+}
+.gamers-training {
+  background: url(../../assets/gamers/img/game-training-bg1.png) repeat-x;
+  height: 935px;
+  .gamers-training-bg {
+    background: url(../../assets/gamers/img/game-training-bg2.png) no-repeat;
+    padding-top: 170px;
+    h3 {
+      font-size: 50px;
+      line-height: 1.8;
+      color: $white;
+      margin-left: 20px;
+      @include respond-to(lg) {
+        margin: 0 0 -70px 70px;
+      }
+    }
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      li {
+        margin-right: 25px;
+        transform-origin: center;
+        transition: transform 0.35s;
+        flex-shrink: 1;
+        span {
+          flex-shrink: 1;
+          width: 375px;
+          height: 684px;
+          display: block;
+          background: url(../../assets/gamers/img/gamers_sprite.png) no-repeat 0 -520px;
+          margin-top: -135px;
+          margin-left: auto;
+          margin-right: auto;
+          position: relative;
+
+          p {
+            font-size: 35px;
+            line-height: 48px;
+            text-align: center;
+            top: 439px;
+            padding-left: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+          }
+        }
+        &:nth-child(1) {
+          span {
+            background-position: -1128px -520px;
+          }
+        }
+        &:nth-child(2) {
+          span {
+            background-position: -753px -520px;
+          }
+        }
+        &:nth-child(3) {
+          span {
+            background-position: -376px -520px;
+          }
+        }
+        &:nth-child(4) {
+          margin-right: 0;
+        }
+      }
+      @include respond-to(lg) {
+        transform: scale(0.8);
+      }
+      @include respond-to(md) {
+        transform: scale(0.7);
+      }
+    }
+  }
+}
+
+.gamers-tutorial {
+  margin: 132px 0;
+  h3 {
+    font-size: 50px;
+    line-height: 1.8;
+    color: $white;
+    margin-left: 40px;
+  }
+  p.title-des {
+    font-size: 26px;
+    line-height: 36px;
+    margin-left: 40px;
+  }
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-shrink: 1;
+
+    li {
+      margin-right: 60px;
+      span {
+        display: block;
+        width: 253px;
+        height: 334px;
+        background: url(../../assets/gamers/img/gamers_sprite.png) no-repeat 0 -1262px;
+        margin-top: 90px;
+      }
+      &:nth-child(1) {
+        span {
+          width: 304px;
+          background-position: -1012px -1262px;
+        }
+        p {
+          width: 253px;
+          margin: 0 auto;
+        }
+      }
+      &:nth-child(2) {
+        span {
+          background-position: -759px -1262px;
+        }
+      }
+      &:nth-child(3) {
+        span {
+          background-position: -506px -1262px;
+        }
+      }
+      &:nth-child(4) {
+        span {
+          background-position: -253px -1262px;
+        }
+      }
+      &:nth-child(5) {
+        margin-right: 0;
+      }
+
+      p.title {
+        font-size: 30px;
+        padding: 20px;
+        text-align: center;
+      }
+      p.des {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+    @include respond-to(lg) {
+      transform: scale(0.8);
+    }
+    @include respond-to(md) {
+      transform: scale(0.7);
+      li span {
+        margin-top: 0;
+      }
+    }
+  }
+}

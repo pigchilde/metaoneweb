@@ -1,0 +1,48 @@
+@import '~@/themes/common.scss';
+
+.banner {
+  margin: 35px 0;
+  height: 810px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  .wrap_bg {
+    padding-left: 20px;
+    min-width: 1200px;
+    width: 90%;
+    height: 810px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .banner-title {
+    h2 {
+      font-size: 130px;
+      color: #00cacb;
+      line-height: 1;
+    }
+    p {
+      font-size: 26px;
+      line-height: 60px;
+      margin-bottom: 20px;
+    }
+  }
+  .banner-con {
+    max-width: 60%;
+    h2 {
+      font-size: 55px;
+      line-height: 60px;
+      color: $white;
+    }
+    p {
+      font-size: 30px;
+      line-height: 36px;
+      width: 746px;
+      margin-top: 18px;
+      max-height: 400px;
+      overflow: hidden;
+    }
+  }
+}
