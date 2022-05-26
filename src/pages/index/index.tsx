@@ -108,7 +108,10 @@ const Index = (props: objectT) => {
         className={styles['banner']}
         style={{ backgroundImage: `url(${bannerData.backageImg})` }}
       >
-        <div className={styles['wrapper']}>
+        <div
+          className={styles['wrapper']}
+          style={{ backgroundImage: `url(${bannerData.img})` }}
+        >
           <div className={styles['info']}>
             <h2 className={styles['cm-tit']}>{bannerData.title}</h2>
             <p className={styles['desc']}>{bannerData.content}</p>

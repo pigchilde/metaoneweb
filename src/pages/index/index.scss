@@ -22,6 +22,8 @@
     display: flex;
     align-items:flex-end;
     justify-content:flex-start;
+    background-repeat: no-repeat;
+    background-position: right center;
   }
   .info {
     width: 700px;
@@ -241,10 +243,7 @@
     width: 30%;
     padding: 50px 20px;
     text-align: center;
-  }
-  a {
-    display: block;
-    width: 100%;
+    overflow: hidden;
   }
   img {
     max-width: 100%;
