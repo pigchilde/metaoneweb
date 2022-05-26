@@ -40,11 +40,12 @@ const Gamers = (props: objectT) => {
   }, []); */
   return (
     <>
-      <div>
-        <video controls width="250">
-          <source src={bgVideo} type="video/mp4" />
-          Sorry, your browser doesn't support embedded videos.
-        </video>
+      <div className={styles['video']}>
+        <video src={bgVideo} autoPlay loop muted playsInline></video>
+        <div className={styles['video_txt']}>
+          <h1>NFTs Owner</h1>
+          <h2>coming soon</h2>
+        </div>
       </div>
     </>
   );

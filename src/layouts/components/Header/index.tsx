@@ -57,7 +57,9 @@ const Header = (props: objectT) => {
           <nav className={styles['nav']}>
             <Link to="/guilds">{intl.formatMessage({ id: 'GUILDS' })}</Link>
             <Link to="/gamers">{intl.formatMessage({ id: 'GAMERS' })}</Link>
-            <Link to="">{intl.formatMessage({ id: 'NFTS_OWNER' })}</Link>
+            <Link to="/nftsowner">
+              {intl.formatMessage({ id: 'NFTS_OWNER' })}
+            </Link>
             <Link to="/gamefi">{intl.formatMessage({ id: 'GameFi' })}</Link>
             <Link to="/news">{intl.formatMessage({ id: 'ANNOUNCEMENT' })}</Link>
             <a href="https://metaone.gg/market" target="_blank">

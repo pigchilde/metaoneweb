@@ -1,3 +1,45 @@
+.video {
+  position: relative;
+  video {
+    //position: fixed;
+    /* right: 0px;
+    bottom: 0px; */
+    width: 100%;
+    overflow: hidden;
+  }
+  .video_txt {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 110px;
+    z-index: 11;
+    text-align: center;
+
+    h1 {
+      font-size: 70px;
+      color: #28a6f0;
+      width: 100%;
+      text-align: center;
+      z-index: 13;
+    }
+    h2 {
+      font-size: 35px;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      z-index: 13;
+    }
+  }
+}
+
+.video::-webkit-scrollbar {
+  display: none;
+}
+
 .gamers-list {
   height: 674px;
   margin-bottom: 110px;

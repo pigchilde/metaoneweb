@@ -8,14 +8,19 @@ interface objectT {
 const Banner = (props: objectT) => {
   const intl = useIntl();
   const {
-    data: { title, backageImg, content, totalGamers },
+    data: { title, backageImg, img, content, totalGamers },
   } = props;
-  const background = {
-    background: `url(${backageImg}) no-repeat right 0`,
+  const background1 = {
+    background: `url(${backageImg}) no-repeat`,
+    backgroundSize: 'cover',
+  };
+
+  const background2 = {
+    background: `url(${img}) no-repeat right 0`,
   };
   return (
-    <header className={styles['banner']}>
-      <div className={`wrapper ${styles['wrap_bg']}`} style={background}>
+    <header className={styles['banner']} style={background1}>
+      <div className={`wrapper ${styles['wrap_bg']}`} style={background2}>
         <div className={styles['banner-title']}>
           <h2>{totalGamers}</h2>
           <p>
