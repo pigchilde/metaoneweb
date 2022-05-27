@@ -11,8 +11,7 @@ const Banner = (props: objectT) => {
     data: { title, backageImg, img, content, newGuilds },
   } = props;
   const background1 = {
-    background: `url(${backageImg}) no-repeat`,
-    backgroundSize: 'cover',
+    backgroundImage: `url(${backageImg})`,
   };
 
   const background2 = {

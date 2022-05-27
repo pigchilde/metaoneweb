@@ -23,7 +23,7 @@ export default defineConfig({
   hash: true,
   proxy: {
     '/center': {
-      target: 'http://119.8.171.8',
+      target: 'http://119.8.171.8/',
       changeOrigin: true,
     },
   },

@@ -62,7 +62,7 @@ const Gamers = (props: objectT) => {
               <dd className={styles['img']}></dd>
               <dd className={styles['txt']}>
                 Guild:Guild Name <br />
-                Favorite games:RPG、ACT、AVG
+                FAV GamesRPG、ACT、AVG
               </dd>
             </dl>
             <dl>
@@ -78,7 +78,7 @@ const Gamers = (props: objectT) => {
               <dd className={styles['img']}></dd>
               <dd className={styles['txt']}>
                 Guild:Guild Name <br />
-                Favorite games:RPG、ACT、AVG
+                FAV GamesRPG、ACT、AVG
               </dd>
             </dl>
             <dl>
@@ -94,7 +94,7 @@ const Gamers = (props: objectT) => {
               <dd className={styles['img']}></dd>
               <dd className={styles['txt']}>
                 Guild:Guild Name <br />
-                Favorite games:RPG、ACT、AVG
+                FAV GamesRPG、ACT、AVG
               </dd>
             </dl>
             <div className={styles['gamers-list-table']}>
@@ -122,7 +122,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -136,7 +136,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -150,7 +150,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -164,7 +164,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -178,7 +178,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -192,7 +192,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -206,7 +206,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -224,7 +224,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name1
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -238,7 +238,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -252,7 +252,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -266,7 +266,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -280,7 +280,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -294,7 +294,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>
@@ -308,7 +308,7 @@ const Gamers = (props: objectT) => {
                       <span className={styles['info']}>
                         Gamer Name
                         <br />
-                        <i>Guild:Guild Name Favorite games:RPG、ACT、AVG</i>
+                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
                       </span>
                       <span className={styles['score']}>
                         7700<i>USDT</i>

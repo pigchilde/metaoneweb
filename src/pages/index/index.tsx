@@ -39,7 +39,7 @@ const Index = (props: objectT) => {
     dispatch({
       type: 'news/getList',
       payload: {
-        id: 1001,
+        id: 10,
         data: {
           pageNum: 1,
           pageSize: 5,
