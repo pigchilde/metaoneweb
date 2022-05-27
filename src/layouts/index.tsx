@@ -68,7 +68,7 @@ const BasicLayout = (props: any) => {
   setLocale('en-US', true);
   return (
     <Layout className={styles['page-layout']} ref={pageRef}>
-      <Header />
+      <Header pathname={pathname} />
 
       {location.pathname.indexOf('/personal') > -1 ? (
         <Layout>

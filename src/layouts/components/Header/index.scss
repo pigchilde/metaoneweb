@@ -57,7 +57,7 @@
     color: $white;
     margin-left: 36px;
     line-height: 33px;
-    &:hover {
+    &:hover, &.on {
       color: $green;
     }
   }

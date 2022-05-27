@@ -1,7 +1,7 @@
 import styles from './index.scss';
 import { Layout, Button, message } from 'antd';
-import { Link, useIntl, setLocale, connect } from 'umi';
-import { useRef, useState } from 'react';
+import { Link, useIntl, setLocale, connect, history } from 'umi';
+import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { LANG_LIST } from '@/utils/lang';
 
@@ -11,6 +11,7 @@ interface objectT {
 
 const Header = (props: objectT) => {
   const {
+    pathname,
     login: { userInfo },
     common: { platformInfo },
     dispatch,
@@ -55,13 +56,36 @@ const Header = (props: objectT) => {
           </Link>
           {/* <i className={styles['btn-menu']}></i> */}
           <nav className={styles['nav']}>
-            <Link to="/guilds">{intl.formatMessage({ id: 'GUILDS' })}</Link>
-            <Link to="/gamers">{intl.formatMessage({ id: 'GAMERS' })}</Link>
-            <Link to="/nftsowner">
+            <Link
+              to="/guilds"
+              className={pathname === '/guilds' ? styles['on'] : ''}
+            >
+              {intl.formatMessage({ id: 'GUILDS' })}
+            </Link>
+            <Link
+              to="/gamers"
+              className={pathname === '/gamers' ? styles['on'] : ''}
+            >
+              {intl.formatMessage({ id: 'GAMERS' })}
+            </Link>
+            <Link
+              to="/nftsowner"
+              className={pathname === '/nftsowner' ? styles['on'] : ''}
+            >
               {intl.formatMessage({ id: 'NFTS_OWNER' })}
             </Link>
-            <Link to="/gamefi">{intl.formatMessage({ id: 'GameFi' })}</Link>
-            <Link to="/news">{intl.formatMessage({ id: 'ANNOUNCEMENT' })}</Link>
+            <Link
+              to="/gamefi"
+              className={pathname === '/gamefi' ? styles['on'] : ''}
+            >
+              {intl.formatMessage({ id: 'GameFi' })}
+            </Link>
+            <Link
+              to="/news"
+              className={pathname === '/news' ? styles['on'] : ''}
+            >
+              {intl.formatMessage({ id: 'ANNOUNCEMENT' })}
+            </Link>
             <a href="https://metaone.gg/market" target="_blank">
               {intl.formatMessage({ id: 'NFTS_HUB' })}
             </a>
