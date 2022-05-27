@@ -19,7 +19,7 @@ export default {
   SIGN_TAB_GUILD: 'Guild',
   SIGN_TAB_NFT: 'NFTs Owner',
   SIGN_TAB_GAME_TIP:
-    'Interested to be one of the firsts guilds of metaone? please leave your details below.',
+    'Interested to be one of the first guilds of metaone? please leave your details below.',
   PERSONAL_BACK: 'BACK',
   PERSONAL_GUILD_BACK: 'GUILD INFORMATION',
   PERSONAL_GUILD_ADDRESS: 'Lessess Address:',
@@ -126,7 +126,7 @@ export default {
   REGISTER_REGION_TIP: 'Please select your Region!',
   REGISTER_SUBMIT: 'submit',
 
-  INDEX_VIDEO_SWIPER_TITLE: 'MetaOne RAZZEL DAZZEL SHOW',
+  INDEX_VIDEO_SWIPER_TITLE: 'About MetaOne',
   INDEX_VIDEO_SWIPER_DESCRIPTION: 'the network for the new generation',
   INDEX_NEWS_SWIPER_TOP_TEXT: 'Focus On',
   INDEX_NEWS_SWIPER_TITLE: 'Our Latest News',

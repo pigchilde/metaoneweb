@@ -10,10 +10,10 @@ const Banner = () => {
             id: 'NEW_h2',
           })}
         </h2>
-        <p className={`${styles['banner-p']}`}>
+        {/* <p className={`${styles['banner-p']}`}>
           #Metaone #GameFi #NFTs #guilds #community #BlockchainGaming
           https://t.co/7ToJurhNxs
-        </p>
+        </p> */}
       </div>
     </header>
   );
