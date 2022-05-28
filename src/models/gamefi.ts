@@ -28,8 +28,8 @@ export default {
         console.log(payload, 'payload');
         const data: initialStateT = yield call(
           gameFiService.getHotList,
-          'LIKE',
-          // payload
+          // 'LIKE',
+          payload,
         );
         return data;
       } catch (err) {

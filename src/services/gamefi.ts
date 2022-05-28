@@ -5,7 +5,6 @@ interface objectT {
   [propName: string]: any;
 }
 export const getList: objectT = async (params: objectT) => {
-  console.log('getlist', params);
   return request(`/center/game/list?${stringify(params.data)}`, {
     method: 'GET',
   });

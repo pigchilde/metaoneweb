@@ -23,8 +23,8 @@ const GameFi = (props: objectT) => {
   const [hotListDatas, setHotListDatas] = useState<objectT>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [hloading, setHLoading] = useState<boolean>(true);
-  const [hotFilter, setHotFilter] = useState<string>();
-  const [selectHotList, setSelectHotList] = useState([]);
+  const [hotFilter, setHotFilter] = useState<string>('LIKE');
+  const [selectHotList, setSelectHotList] = useState<Array>([]);
   const { Option } = Select;
   const changeHotFilter = (value: any) => {
     setHotFilter(value);
@@ -37,8 +37,25 @@ const GameFi = (props: objectT) => {
     }).then((res: objectT) => {
       const { code, data } = res;
       if (code == 0) {
-        setHotFilter(data[0].name);
-        setSelectHotList(data);
+        const tmpData = [
+          {
+            code: 'LIKE',
+            name: 'LIKE',
+            sort: 1,
+            pcode: 'gms_game_popular_category',
+            languageDictItems: [],
+          },
+          {
+            code: 'STAR',
+            name: 'STAR',
+            sort: 2,
+            pcode: 'gms_game_popular_category',
+            languageDictItems: [],
+          },
+        ];
+        console.log('ee', data);
+        setHotFilter(tmpData[0].name);
+        setSelectHotList(tmpData);
         setHLoading(false);
       }
     });

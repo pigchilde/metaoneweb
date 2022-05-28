@@ -106,6 +106,7 @@
   .intro-box {
     margin-left: 30px;
     font-size: 24px;
+    width: 500px;
   }
 
   .introhead {
@@ -129,18 +130,18 @@
 
   .line {
     display: flex;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 5px;
   }
 
   .linelabel {
     @include ellipsis();
-    width: 55%;
+    width: 50%;
   }
 
   .linetext {
     @include ellipsis();
-    width: 45%;
+    width: 50%;
     font-weight: bold;
   }
 

@@ -176,7 +176,7 @@ const Filters = (props: objectT) => {
             })}
           </Select>
 
-          <label>{GAMEFI_FILTERS_PERPAGR}</label>
+          {/* <label>{GAMEFI_FILTERS_PERPAGR}</label>
           <Select
             onChange={changePerFilter}
             suffixIcon={<CaretDownOutlined />}
@@ -189,10 +189,10 @@ const Filters = (props: objectT) => {
                 </Option>
               );
             })}
-          </Select>
-          <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
-          <i className={`${icos['ico']} ${icos['ico-list']}`}></i>
-          <Popover
+          </Select> */}
+          {/* <i className={`${icos['ico']} ${icos['ico-blocks']}`}></i>
+          <i className={`${icos['ico']} ${icos['ico-list']}`}></i> */}
+          {/* <Popover
             overlayClassName={styles.filterPop}
             placement="bottomRight"
             content={popContent}
@@ -201,7 +201,7 @@ const Filters = (props: objectT) => {
             onVisibleChange={popVisibleChange}
           >
             <Button type="primary">{GAMEFI_FILTERS_BTN}</Button>
-          </Popover>
+          </Popover> */}
         </aside>
       </div>
       <div className={`${styles['list-wrapper']}`}>
