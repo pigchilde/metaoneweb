@@ -15,19 +15,32 @@
   .setting-con {
     margin-top: 40px;
   }
-
+  .avatar {
+    text-align: center;
+  }
+  .avatar-uploader {
+    display: inline-block;
+  }
   :global {
     .ant-avatar {
       display: block;
       margin: 0 auto;
     }
-
+    .ant-upload {
+      overflow: hidden;
+    }
     p {
       margin-top: 15px;
       font-size: 30px;
       line-height: 48px;
       color: $white;
       text-align: center;
+      @include respond-to(lg) {
+        font-size: 20px;
+      }
+      @include respond-to(md) {
+        font-size: 16px;
+      }
     }
 
     .ant-col-19 {
@@ -79,7 +92,22 @@
         margin-right: 20px;
         border-color: #c8354e;
       }
-
+      @include respond-to(lg) {
+        label,
+        input,
+        .ant-btn,
+        textarea {
+          font-size: 20px;
+        }
+      }
+      @include respond-to(md) {
+        label,
+        input,
+        .ant-btn,
+        textarea {
+          font-size: 16px;
+        }
+      }
       .ant-btn-default {
         background: transparent;
         color: $white;
@@ -99,7 +127,6 @@
 
 :global {
   .pop-pwd {
-
     .ant-modal {
       padding-bottom: 0;
       border: 1px solid $green;
@@ -113,7 +140,6 @@
       .anticon {
         color: $green;
         font-size: 26px;
-
       }
     }
 
@@ -161,10 +187,9 @@
       text-align: center;
       font-size: 32px;
       line-height: 46px;
-
     }
 
-    .ant-form-item-label>label {
+    .ant-form-item-label > label {
       color: $white;
       font-size: 20px;
     }

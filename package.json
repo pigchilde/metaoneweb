@@ -25,6 +25,7 @@
     "@ant-design/pro-layout": "^6.5.0",
     "@umijs/plugin-sass": "^1.1.1",
     "antd": "^4.20.1",
+    "esdk-obs-browserjs": "^3.22.3",
     "file-loader": "^6.2.0",
     "jsencrypt": "^3.2.1",
     "moment": "^2.29.3",

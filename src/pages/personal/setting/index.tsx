@@ -1,11 +1,46 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
-import { Form, Input, Button, Avatar, Row, Col, Modal } from 'antd';
-import { useState } from 'react';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+  Form,
+  Input,
+  Button,
+  Avatar,
+  Row,
+  Col,
+  Modal,
+  Upload,
+  message,
+} from 'antd';
+import { connect } from 'dva';
+import { SetStateAction, useEffect, useState } from 'react';
+import ObsClient from 'esdk-obs-browserjs';
+interface objectT {
+  [propName: string]: any;
+}
+function getBase64(img: Blob, callback: any) {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
 
-const setting = () => {
+function beforeUpload(file: Blob) {
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+  if (!isJpgOrPng) {
+    message.error('You can only upload JPG/PNG file!');
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error('Image must smaller than 2MB!');
+  }
+  return isJpgOrPng && isLt2M;
+}
+const Setting = (props: objectT) => {
+  const { dispatch } = props;
   const intl = useIntl();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+  const [loading, setLoading] = useState(false as boolean);
 
   const { TextArea } = Input;
   const onFinish = (values: any) => {
@@ -26,6 +61,80 @@ const setting = () => {
     setIsModalVisible(false);
   };
 
+  const upload = (file: { name: string }) => {
+    const that = this;
+    const bucketName = ''; // 桶名
+    const serverUrl = 'https://static.metaone.gg'; // 服务器地址
+    console.log(23234324, file);
+    // 后端生成秘钥，调取接口进行获取
+    var obsClient = new ObsClient({
+      access_key_id: 'UTGV3KMVFNK1OBH57Y06',
+      secret_access_key: '8SNqzncfqhuIftDPGWiAvIqdE5Zrzwf0uW58kuxD',
+      server: serverUrl,
+    });
+    obsClient.putObject(
+      {
+        Bucket: '', // 桶名
+        Key: 'avatar/' + file.name,
+        SourceFile: file,
+        Metadata: {
+          property: 'property-value',
+        },
+      },
+      function (
+        err: string,
+        result: {
+          CommonMsg: { Status: number; Code: string; Message: string };
+        },
+      ) {
+        if (err) {
+          console.error('Error-->' + err);
+        } else {
+          if (result.CommonMsg.Status < 300) {
+            // 上传成功后，文件地址
+            const fileUrl =
+              'https://' + bucketName + '.' + serverUrl + '/' + file.name;
+          } else {
+            console.log('Code-->' + result.CommonMsg.Code);
+            console.log('Message-->' + result.CommonMsg.Message);
+          }
+        }
+      },
+    );
+  };
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+  const handleChange = (info: {
+    file: { status: string; originFileObj: { name: string } };
+  }) => {
+    if (info.file.status === 'uploading') {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      upload(info.file.originFileObj);
+      getBase64(info.file.originFileObj, (imageUrl: SetStateAction<string>) => {
+        setImageUrl(imageUrl);
+        setLoading(false);
+      });
+    }
+  };
+  useEffect(() => {
+    dispatch({
+      type: 'setting/getInfo',
+      payload: {},
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        // setRegionData(data);
+      }
+    });
+  }, []);
   return (
     <div className={styles['setting']}>
       <Form
@@ -38,8 +147,22 @@ const setting = () => {
       >
         <Row className={styles['setting-con']}>
           <Col span={5}>
-            <Form.Item label="" name="" className="avatar">
-              <Avatar size={163} src="http://dummyimage.com/163x163" />
+            <Form.Item label="" name="" className={styles['avatar']}>
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className={styles['avatar-uploader']}
+                showUploadList={false}
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+              >
+                {imageUrl ? (
+                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
+
               <p>Edit Your Logo</p>
             </Form.Item>
           </Col>
@@ -135,4 +258,7 @@ const setting = () => {
     </div>
   );
 };
-export default setting;
+
+export default connect(({ setting }: { setting: objectT }) => ({
+  setting,
+}))(Setting);
