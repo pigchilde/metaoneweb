@@ -1,16 +1,25 @@
 import styles from './index.scss';
-import { useIntl } from 'umi';
+import { useState, useEffect } from 'react';
+import { connect } from 'dva';
+import { useIntl, history } from 'umi';
 import { Tabs, Table } from 'antd';
-
-const GuildList = () => {
+interface objectT {
+  [propName: string]: any;
+}
+const GuildList = (props: objectT) => {
   const intl = useIntl();
+  const { dispatch, gamefi = {} } = props;
+  const [listDatas, setListDatas] = useState([]);
+
   const { TabPane } = Tabs;
   const tabClick = () => {};
+
   const columns = [
     {
       title: 'Rank',
-      dataIndex: 'rank',
-      key: 'rank',
+      render: (text: any, record: any, index: any) => {
+        return index + 1;
+      },
     },
     {
       title: 'Name',
@@ -21,11 +30,17 @@ const GuildList = () => {
       title: 'Total Yield(USDT)',
       dataIndex: 'total',
       key: 'total',
+      render: () => {
+        return '0 USDT';
+      },
     },
     {
       title: 'Hours Played(h)',
       dataIndex: 'hours',
       key: 'hours',
+      render: () => {
+        return '0 h';
+      },
     },
     {
       title: 'Released Date',
@@ -33,22 +48,61 @@ const GuildList = () => {
       key: 'date',
     },
   ];
-  const data = [
+  const columns2 = [
     {
-      rank: '1',
-      name: 'AAAA',
-      total: '502.15',
-      hours: '5482',
-      date: '5482',
+      title: 'Rank',
+      render: (text: any, record: any, index: any) => {
+        return index + 1;
+      },
     },
     {
-      rank: '2',
-      name: 'AAAA',
-      total: '502.15',
-      hours: '5482',
-      date: '5482',
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'DAU',
+      dataIndex: 'DAU',
+      key: 'DAU',
+      render: () => {
+        return '0';
+      },
+    },
+    {
+      title: 'Tranding Volume',
+      dataIndex: 'Tranding Volume',
+      key: 'Tranding Volume',
+      render: () => {
+        return '0 USDT';
+      },
+    },
+    {
+      title: 'Yestoday revunue',
+      dataIndex: 'date',
+      key: 'date',
+      render: () => {
+        return '0 USDT';
+      },
     },
   ];
+  const [params, setParams] = useState<objectT>({
+    pageNum: 1,
+    pageSize: 100,
+  });
+  const toDetail = (record: any) => {
+    history.push(`/personal/gamelist/${record.id}`);
+  };
+  useEffect(() => {
+    dispatch({
+      type: 'gamefi/getList',
+      payload: {
+        data: params,
+      },
+    }).then((res: objectT) => {
+      const { data } = res;
+      setListDatas(data);
+    });
+  }, []);
   return (
     <div className={styles['game-list']}>
       <Tabs defaultActiveKey="1" onChange={tabClick}>
@@ -60,7 +114,15 @@ const GuildList = () => {
         >
           <Table
             columns={columns}
-            dataSource={data}
+            rowKey={'id'}
+            onRow={(record) => {
+              return {
+                onClick: () => {
+                  toDetail(record);
+                }, // 点击行
+              };
+            }}
+            dataSource={listDatas}
             pagination={{ position: ['bottomCenter'] }}
           />
         </TabPane>
@@ -71,8 +133,16 @@ const GuildList = () => {
           key="2"
         >
           <Table
-            columns={columns}
-            dataSource={data}
+            rowKey={'id'}
+            onRow={(record) => {
+              return {
+                onClick: () => {
+                  toDetail(record);
+                }, // 点击行
+              };
+            }}
+            columns={columns2}
+            dataSource={listDatas}
             pagination={{ position: ['bottomCenter'] }}
           />
         </TabPane>
@@ -80,4 +150,7 @@ const GuildList = () => {
     </div>
   );
 };
-export default GuildList;
+
+export default connect(({ gamefi }: { gamefi: objectT }) => ({
+  gamefi,
+}))(GuildList);
