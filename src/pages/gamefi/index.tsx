@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { Button, Select } from 'antd';
+import { Button, Select, Image } from 'antd';
 import {
   CaretDownOutlined,
   LeftOutlined,
@@ -8,12 +8,10 @@ import {
 import { connect } from 'dva';
 import React, { useEffect, useState } from 'react';
 import Filters from './components/Filters';
-import Banner from './components/Banner';
 import Empty from '@/components/Empty';
+import BannerHot from './components/BannerHot';
 import Loading from '@/components/Loading';
 import 'swiper/swiper.scss';
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 
 interface objectT {
   [propName: string]: any;
@@ -24,11 +22,12 @@ const GameFi = (props: objectT) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [hloading, setHLoading] = useState<boolean>(true);
   const [hotFilter, setHotFilter] = useState<string>('LIKE');
-  const [selectHotList, setSelectHotList] = useState<Array>([]);
+  const [selectHotList, setSelectHotList] = useState<objectT[]>([]);
   const { Option } = Select;
   const changeHotFilter = (value: any) => {
     setHotFilter(value);
   };
+
   useEffect(() => {
     setHLoading(true);
     dispatch({
@@ -53,7 +52,6 @@ const GameFi = (props: objectT) => {
             languageDictItems: [],
           },
         ];
-        console.log('ee', data);
         setHotFilter(tmpData[0].name);
         setSelectHotList(tmpData);
         setHLoading(false);
@@ -98,29 +96,7 @@ const GameFi = (props: objectT) => {
         {loading ? (
           <Loading />
         ) : hotListDatas.data?.length > 0 ? (
-          <React.Fragment>
-            <Swiper
-              modules={[Navigation]}
-              navigation={{
-                prevEl: `.${styles['btnPre']}`,
-                nextEl: `.${styles['btnNext']}`,
-              }}
-            >
-              {hotListDatas.data.map((item: objectT, index: number) => {
-                return (
-                  <SwiperSlide key={item.id}>
-                    <Banner datas={item} />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            <div className={styles['btnPre']}>
-              <Button type="primary" shape="circle" icon={<LeftOutlined />} />
-            </div>
-            <div className={styles['btnNext']}>
-              <Button type="primary" shape="circle" icon={<RightOutlined />} />
-            </div>
-          </React.Fragment>
+          <BannerHot hotListDatas={hotListDatas.data}></BannerHot>
         ) : (
           <Empty />
         )}

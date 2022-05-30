@@ -54,7 +54,10 @@ const Helps = (props: objectT) => {
             {listDatas.data.map((item: objectT) => {
               return (
                 <Panel header={item.title} key={item.id}>
-                  <article className={styles.article}>{item.content}</article>
+                  <article
+                    className={styles.article}
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                  ></article>
                 </Panel>
               );
             })}
