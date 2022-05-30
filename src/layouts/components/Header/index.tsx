@@ -23,6 +23,14 @@ const Header = (props: objectT) => {
   const [currLang, setCurrLang] = useState(defaultLang);
   const [isUcPage, setIsUcPage] = useState(false);
 
+  useEffect(() => {
+    if (location.href.indexOf('/personal/') > -1) {
+      setIsUcPage(true);
+    } else {
+      setIsUcPage(false);
+    }
+  }, [pathname]);
+
   //设置语言
   const setLang = (index: number) => {
     setCurrLang(LANG_LIST[index].code);

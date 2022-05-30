@@ -16,6 +16,9 @@ const personalSideer = (props: objectT) => {
     if (key === '2') {
       history.push('/personal/gameInfo');
     }
+    if (key === '4') {
+      history.push('/personal/nftAssets');
+    }
     if (key === '5') {
       history.push('/personal/setting');
     }

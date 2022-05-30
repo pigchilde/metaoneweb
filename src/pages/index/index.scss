@@ -113,7 +113,7 @@
 }
 
 .advisors {
-  margin-bottom: 130px;
+  margin-bottom: 80px;
   padding-top: 100px;
   .wrapper {
     width: auto;
@@ -127,6 +127,12 @@
       width: 283px;
       height: 600px;
       margin-bottom: 50px;
+      @include respond-to(lg) {
+        width: 220px;
+      }
+      @include respond-to(md) {
+        width: 180px;
+      }
     }
   }
   .cm-tit {
@@ -186,6 +192,12 @@
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 30px;
+    @include respond-to(lg) {
+      height: 220px;
+    }
+    @include respond-to(md) {
+      height: 180px;
+    }
   }
   .name {
     font-size: 24px;

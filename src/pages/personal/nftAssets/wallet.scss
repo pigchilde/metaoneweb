@@ -1,0 +1,169 @@
+.back {
+  display: block;
+  padding: 10px 0 0 14px;
+  font-size: 25px;
+  color: #ffffff;
+  vertical-align: top;
+}
+.main {
+  padding: 80px 14px 0;
+  display: flex;
+}
+.img-box {
+  width: 519px;
+  height: 557px;
+  border-radius: 4px;
+  border: solid 3px #006366;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+.radio-btn {
+  :global {
+    .ant-radio-button-wrapper {
+      width: 207px;
+      height: 52px;
+      border-radius: 10px;
+      border: solid 3px $green;
+      font-size: 20px;
+      text-align: center;
+      line-height: 48px;
+      background: transparent;
+      color: $white;
+      &:before {
+        display: none;
+      }
+      &:focus {
+        outline: none;
+        border: none;
+      }
+      &:focus-within {
+        box-shadow: none;
+      }
+    }
+    .ant-radio-button-wrapper-checked {
+      background-color: $green;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+.lessess-address {
+  margin: 12px 0;
+  font-size: 22px;
+  line-height: 48px;
+  color: $white;
+  span {
+    color: $green;
+  }
+}
+.rounded-rectangle {
+  width: 880px;
+  height: 432px;
+  border-radius: 4px;
+  border: solid 3px #006366;
+  @include respond-to(lg) {
+    width: 700px;
+  }
+  @include respond-to(md) {
+    width: 600px;
+  }
+}
+.tab-box {
+  :global {
+    .ant-tabs-nav-list {
+      justify-content: left;
+    }
+    .ant-tabs-nav {
+      padding-left: 30px;
+    }
+    .ant-tabs-tab {
+      font-size: 26px;
+      padding: 12px 10px;
+      margin-right: 20px;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active {
+      background: transparent;
+    }
+    .ant-tabs-nav::before {
+      border-bottom: 2px solid #006366;
+    }
+    .ant-tabs-nav .ant-tabs-ink-bar {
+      height: 5px;
+    }
+  }
+}
+.tabs-item {
+  display: flex;
+  font-size: 22px;
+  padding-top: 15px;
+  .item1 {
+    width: 30%;
+    text-align: center;
+    @extend %ellipsis-basic;
+  }
+  .item2 {
+    width: 70%;
+    @extend %ellipsis-basic;
+  }
+}
+.cancel-btn {
+  margin: 40px 0 0 40px;
+  width: 427px;
+  height: 55px;
+  background-color: $red;
+  border-radius: 10px;
+  font-size: 20px;
+  color: $white;
+  border: none;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+    background-color: $red;
+  }
+}
+.content-box {
+  margin-left: 16px;
+}
+.form-main {
+  margin: 10px 35px;
+  .cancel-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+  :global {
+    .ant-form-horizontal .ant-form-item-label {
+      text-align: left;
+      label {
+        display: inline-block;
+        color: $white;
+        font-size: 20px;
+        line-height: 40px;
+        &:before {
+          display: none;
+        }
+      }
+    }
+    .ant-input,
+    .ant-input-affix-wrapper {
+      background-color: transparent;
+      border: 1px solid $green;
+      font-size: 20px;
+      padding: 5px 11px;
+      color: $white;
+    }
+    .ant-input-password-icon.anticon {
+      color: $white;
+    }
+    .ant-form-item {
+      margin-bottom: 27px;
+    }
+    .ant-form-item .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+}
