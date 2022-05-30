@@ -146,4 +146,8 @@ export default {
 
   LANG_EN_US: 'English',
   LANG_ZH_CN: 'Chinese (Simplified)',
+
+  NFTSOWNER_VOLUME: 'Total NFTs Volume',
+  NFTSOWNER_TRANSACTIONS: 'Total NFTs Transactions',
+  NFTSOWNER_NFTS_OWNERS_EARNINGS: 'NFTs Owners earnings',
 };

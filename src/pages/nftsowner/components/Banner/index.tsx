@@ -8,7 +8,7 @@ interface objectT {
 const Banner = (props: objectT) => {
   const intl = useIntl();
   const {
-    data: { title, backageImg, content, totalGamers },
+    data: { title, backageImg, content, transactions, volume },
   } = props;
   const background = {
     background: `url(${backageImg}) no-repeat right 0`,
@@ -17,10 +17,16 @@ const Banner = (props: objectT) => {
     <header className={styles['banner']}>
       <div className={`wrapper ${styles['wrap_bg']}`} style={background}>
         <div className={styles['banner-title']}>
-          <h2>{totalGamers}</h2>
+          <h2>{volume}</h2>
           <p>
             {intl.formatMessage({
-              id: 'GAMERS_BANNER_TITLE',
+              id: 'NFTSOWNER_VOLUME',
+            })}
+          </p>
+          <h2>{transactions}</h2>
+          <p>
+            {intl.formatMessage({
+              id: 'NFTSOWNER_TRANSACTIONS',
             })}
           </p>
         </div>

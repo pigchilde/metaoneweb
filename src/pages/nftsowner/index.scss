@@ -1,46 +1,26 @@
-.video {
-  position: relative;
-  video {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    overflow: hidden;
-    transform: translate(-50%, -50%);
+.news-swiper {
+  height: 920px;
+  overflow: hidden;
+  background: #0d122c url('~@/assets/index/img/bg-news.jpg') bottom right
+    no-repeat;
+  margin-bottom: 108px;
+  .txt-top {
+    font-size: 40px;
+    line-height: 40px;
+    margin: 82px 0 18px;
   }
-  .video_txt {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    text-align: center;
-
-    h1 {
-      font-size: 70px;
-      color: #28a6f0;
-      width: 100%;
-      text-align: center;
-      z-index: 13;
-    }
-    h2 {
-      font-size: 35px;
-      color: #fff;
-      width: 100%;
-      text-align: center;
-      z-index: 13;
-    }
+  .tit {
+    font-size: 100px;
+    line-height: 48px;
+    margin-bottom: 26px;
+    color: $white;
   }
-}
-
-.video::-webkit-scrollbar {
-  display: none;
+  .desc {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 33px;
+    width: 720px;
+  }
 }
 
 .gamers-list {
