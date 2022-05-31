@@ -1,13 +1,21 @@
 import styles from './index.scss';
-import defaultAvatar from '../../../assets/personal/pic/avatar.jpg';
-import { Layout, Menu } from 'antd';
-import { history } from 'umi';
+import defaultAvatar from '../../../assets/common/pic/avatar.png';
+import { Layout, Menu, message } from 'antd';
+import { history, connect } from 'umi';
+import Cookies from 'js-cookie';
 interface objectT {
   [propName: string]: any;
 }
 
 const personalSideer = (props: objectT) => {
-  const { onCollapse, collapsed } = props;
+  const {
+    onCollapse,
+    collapsed,
+    dispatch,
+    login: { userInfo },
+    common: { platformInfo },
+  } = props;
+
   const onMenuSelect = (i: objectT) => {
     const { key } = i;
     if (key === '1') {
@@ -23,6 +31,22 @@ const personalSideer = (props: objectT) => {
       history.push('/personal/setting');
     }
   };
+  /**
+   * 处理登出
+   */
+  const handleLogout = () => {
+    dispatch({
+      type: 'login/logout',
+    }).then((res: objectT) => {
+      if (!res.code) {
+        // 登出成功
+        Cookies.remove('token');
+        window.location.href = '//' + window.location.host + '/login';
+      } else {
+        message.error(res.msg);
+      }
+    });
+  };
   return (
     <div className={styles['sider']}>
       <span
@@ -34,9 +58,13 @@ const personalSideer = (props: objectT) => {
           collapsed ? styles['user-close'] : ''
         }`}
       >
-        <img src={defaultAvatar} alt="" className={styles['avater']} />
+        <img
+          src={userInfo.avatar ? userInfo.avatar : defaultAvatar}
+          alt=""
+          className={styles['avater']}
+        />
         <p className={styles['name']}>
-          <span>sdfsdfsdfffffffdsdkjfhskjh健康的护肤更快速的减肥fff</span>
+          <span> {userInfo.nickName}</span>
         </p>
       </div>
       <Menu
@@ -86,10 +114,17 @@ const personalSideer = (props: objectT) => {
         className={`${styles['sign-out']} ${
           collapsed ? styles['sign-close'] : ''
         }`}
+        onClick={handleLogout}
       >
         Sign Out
       </span>
     </div>
   );
 };
-export default personalSideer;
+
+export default connect(
+  ({ login, common }: { login: objectT; common: objectT }) => ({
+    login,
+    common,
+  }),
+)(personalSideer);
