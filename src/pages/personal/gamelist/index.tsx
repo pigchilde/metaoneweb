@@ -19,9 +19,9 @@ const gameList = (props: objectT) => {
     },
   } = props;
   const [role, setRole] = useState('GAMERS');
-  useEffect(() => {
-    roles && setRole(roles[0].code);
-  }, []);
+  // useEffect(() => {
+  //   roles && setRole(roles[0].code);
+  // }, []);
   return (
     <>
       <Link to="/" className={styles['back']}>
