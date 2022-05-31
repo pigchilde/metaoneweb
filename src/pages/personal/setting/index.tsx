@@ -47,8 +47,18 @@ const Setting = (props: objectT) => {
     }).then((res: objectT) => {
       const { code, data = [] } = res;
       if (code === 0) {
-        // message;
+        message.success(
+          intl.formatMessage({
+            id: 'SETTING_SUCCESS',
+          }),
+        );
+        setTimeout(() => {
+          window.location.href = window.location.href;
+        }, 1000);
+
         // setRegionData(data);
+      } else {
+        message.error(res.msg);
       }
       setSubmit(false);
     });
@@ -148,11 +158,22 @@ const Setting = (props: objectT) => {
                     id: 'SETTING_CATEGORY',
                   })}
                 >
-                  <Input
+                  <Select
                     placeholder={intl.formatMessage({
                       id: 'SETTING_CATEGORY_TIPS',
                     })}
-                  />
+                    allowClear
+                  >
+                    <Option value="RPG" key="RPG">
+                      RPG
+                    </Option>
+                    <Option value="RTS" key="RTS">
+                      RTS
+                    </Option>
+                    <Option value="AVG" key="AVG">
+                      AVG
+                    </Option>
+                  </Select>
                 </Form.Item>
 
                 <Form.Item
