@@ -1,7 +1,7 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  title: 'META ONE',
+  title: 'MetaOne',
   locale: {
     default: 'en-US',
   },
