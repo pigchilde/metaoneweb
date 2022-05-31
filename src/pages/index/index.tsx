@@ -35,7 +35,7 @@ const Index = (props: objectT) => {
   };
 
   // 获取最新新闻列表
-  const getNewsList = () => {
+  /* const getNewsList = () => {
     dispatch({
       type: 'news/getList',
       payload: {
@@ -50,7 +50,7 @@ const Index = (props: objectT) => {
         setNewsList(res.data);
       }
     });
-  };
+  }; */
 
   useEffect(() => {
     setLoading(true);
@@ -64,6 +64,7 @@ const Index = (props: objectT) => {
       const {
         banner,
         videoList,
+        newsList,
         informationList,
         adviserList,
         managmentList,
@@ -76,6 +77,10 @@ const Index = (props: objectT) => {
 
       if (videoList.code === 0) {
         setVideoAutoList(videoList.data);
+      }
+
+      if (newsList.code === 0) {
+        setNewsList(newsList.data);
       }
 
       if (informationList.code === 0) {
@@ -98,8 +103,6 @@ const Index = (props: objectT) => {
       }
       setLoading(false);
     });
-
-    getNewsList();
   }, []);
 
   return (

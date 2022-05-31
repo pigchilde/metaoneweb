@@ -23,6 +23,7 @@ export default {
       const [
         banner,
         videoList,
+        newsList,
         informationList,
         adviserList,
         managmentList,
@@ -36,9 +37,11 @@ export default {
         initialStateT,
         initialStateT,
         initialStateT,
+        initialStateT,
       ] = yield all([
         call(indexService.getHomeBanner, payload),
         call(indexService.getHomeVideoAutoList, payload),
+        call(indexService.getNewsBroadcast, payload),
         call(indexService.getHomeInformationList, payload),
         call(indexService.getInvestmentAdviserList, payload),
         call(indexService.getMetaoneManagmentList, payload),
@@ -48,6 +51,7 @@ export default {
       return {
         banner,
         videoList,
+        newsList,
         informationList,
         adviserList,
         managmentList,

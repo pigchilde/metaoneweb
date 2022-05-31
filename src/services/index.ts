@@ -50,3 +50,10 @@ export const getDicItem: objectT = async (params: objectT) => {
     method: 'GET',
   });
 };
+
+export const getNewsBroadcast: objectT = async (params: objectT) => {
+  const { dicCode } = params;
+  return request(`/center/news/newsBroadcast`, {
+    method: 'GET',
+  });
+};
