@@ -170,12 +170,12 @@ const Header = (props: objectT) => {
                   <div className={styles['dropdown']}>
                     <ul>
                       <li>
-                        <Link to="">
+                        <Link to="/personal/info">
                           {intl.formatMessage({ id: 'COMMON_MENU_MAIN' })}
                         </Link>
                       </li>
                       <li>
-                        <Link to="">
+                        <Link to="/personal/setting">
                           {intl.formatMessage({ id: 'COMMON_MENU_SETTINGS' })}
                         </Link>
                       </li>

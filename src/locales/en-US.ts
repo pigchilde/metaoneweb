@@ -138,7 +138,7 @@ export default {
   INDEX_BANNER_BUTTON: 'whitepaper',
 
   COMMON_TO_TOP: 'TOP',
-  COMMON_MENU_MAIN: 'Main',
+  COMMON_MENU_MAIN: 'Infomation',
   COMMON_MENU_SETTINGS: 'Settings',
   COMMON_MENU_SIGN_OUT: 'Sign Out',
   COMMON_BUTTON_INVITE_USER: 'Invite User',
