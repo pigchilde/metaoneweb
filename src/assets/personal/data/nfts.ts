@@ -524,7 +524,7 @@ const NFTList: NFT[] = [
     isMeRented: false,
     name: '27773',
     game: 'AOT',
-    image: '/_next/static/media/27773.9eb9bb94.png',
+    image: tank_27773,
     quality: 'legendary',
     attr: {
       HP: 810,
@@ -556,30 +556,63 @@ const NFTList: NFT[] = [
 
 export function queryMyNFT() {
   // if (accountInWhiteList()) {
-  //   const data = NFTList.filter((item) => !item.isMeRented);
-  //   return data;
+  let data = NFTList.filter((item) => !item.isMeRented);
+  data = data.map((item) => {
+    const model = Mock.Random.integer(0, 1);
+    item.leaseInfo = Mock.mock({
+      'id|+1': 1,
+      // 租赁模式: 0 rent model  1 share model
+      model,
+      nftId: item.id,
+      // 出租金额 USDT/Day
+      'interest|1-10.1-3': 2,
+      'shareProportion|1-20': 5,
+      'shareDeposit|1-100': 50,
+      'leastTerm|1-5': 1,
+      'longestTerm|10-30': 10,
+      // 目标承租人 0 All guildss
+      'targetRenter|0-1': 0,
+    });
+    return item;
+  });
+  return data;
   // }
   // return [];
 }
 
 export function queryMyRentNFT() {
   // if (accountInWhiteList()) {
-  //   let data = NFTList.filter((item) => item.isMeRented);
-  //   data = data.map((item) => {
-  //     item.status = 2;
-  //     item.rentInfo = Mock.mock({
-  //       "id|+1": 1,
-  //       // 租赁模式: 0 rent model  1 share model
-  //       "model|0-1": 0,
-  //       rentTime: new Date(),
-  //       "rentDays|1-30": 1,
-  //       // 承租人地址
-  //       renter: "0xac3Ba799055Bb644a7D35d862ea74C90c5b3AD44",
-  //     });
-  //     return item;
-  //   });
+  let data = NFTList.filter((item) => item.isMeRented);
+  data = data.map((item) => {
+    item.status = 2;
+    const model = Mock.Random.integer(0, 1);
+    item.leaseInfo = Mock.mock({
+      'id|+1': 1,
+      // 租赁模式: 0 rent model  1 share model
+      model,
+      nftId: item.id,
+      // 出租金额 USDT/Day
+      'interest|1-10.1-3': 2,
+      'shareProportion|1-20': 5,
+      'shareDeposit|1-100': 50,
+      'leastTerm|1-5': 1,
+      'longestTerm|10-30': 10,
+      // 目标承租人 0 All guildss
+      'targetRenter|0-1': 0,
+    });
+    item.rentInfo = Mock.mock({
+      'id|+1': 1,
+      // 租赁模式: 0 rent model  1 share model
+      'model|0-1': 0,
+      rentTime: new Date(),
+      'rentDays|1-30': 1,
+      // 承租人地址
+      renter: '0xac3Ba799055Bb644a7D35d862ea74C90c5b3AD44',
+    });
+    return item;
+  });
 
-  //   return data;
+  return data;
   // }
   return [];
 }

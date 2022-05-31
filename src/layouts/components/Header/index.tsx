@@ -157,7 +157,12 @@ const Header = (props: objectT) => {
                   className={`${styles['signed']} ${styles['has-dropdown']}`}
                 >
                   <div className={styles['avatar']}>
-                    <img src={require('@/assets/common/pic/avatar.png')} />
+                    <img
+                      src={
+                        userInfo.avatar ||
+                        require('@/assets/common/pic/avatar.png')
+                      }
+                    />
                   </div>
                   <span className={styles['username']}>
                     {userInfo.nickName}

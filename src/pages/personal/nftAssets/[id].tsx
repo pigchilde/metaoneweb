@@ -1,42 +1,38 @@
 import { Link } from 'umi';
-import styles from './wallet.scss';
+import styles from './detail.scss';
 import { useIntl } from 'umi';
-import defaultPic from '../../../assets/personal/pic/avatar.jpg';
-import { Button, Radio, Tabs, Input, Form } from 'antd';
+import { Radio } from 'antd';
 import { useEffect, useState } from 'react';
-const { TabPane } = Tabs;
-import {
-  queryMarketNFTById,
-  queryNFTDetailsById,
-} from '@/assets/personal/data/nfts';
+import NFTInfo from './components/NFTInfo';
+import { queryNFTDetailsById } from '@/assets/personal/data/nfts';
+import OrderInfo from './components/OrderInfo';
 interface objectT {
   [propName: string]: any;
 }
 
-const guild = (props: objectT) => {
+const NFTDetail = (props: objectT) => {
   const {
     match: { params },
   } = props;
-  const [radioValue, setRadioValue] = useState('large' as string);
-  const [marketNFT, setMarketNFT] = useState<any>({});
+  const [radioValue, setRadioValue] = useState('nft');
+  const [itemInfo, setItemInfo] = useState<any>({});
   const intl = useIntl();
   // 获取nft数据
-  const getMarketNFT = () => {
-    queryMarketNFTById(params.id).then((res) => {
+  const getNFTDetails = () => {
+    queryNFTDetailsById(params.id).then((res) => {
       console.log(res.data);
-      setMarketNFT(res.data);
+      setItemInfo(res.data);
     });
   };
 
   useEffect(() => {
-    getMarketNFT();
+    getNFTDetails();
   }, []);
 
   const handleSizeChange = (e: objectT) => {
     const { target } = e;
     setRadioValue(target.value);
   };
-  const tabChange = () => {};
   const onFinish = (values: any) => {
     console.log('Success:', values);
   };
@@ -53,7 +49,7 @@ const guild = (props: objectT) => {
       </Link>
       <section className={styles['main']}>
         <div className={styles['img-box']}>
-          <img src={marketNFT.image || defaultPic} alt="" />
+          <img src={itemInfo.image} alt="" />
         </div>
         <div className={styles['content-box']}>
           <Radio.Group
@@ -61,111 +57,27 @@ const guild = (props: objectT) => {
             onChange={handleSizeChange}
             className={styles['radio-btn']}
           >
-            <Radio.Button value="large">
+            <Radio.Button value="nft">
               {intl.formatMessage({
                 id: 'PERSONAL_GUILD_RADIO1',
               })}
             </Radio.Button>
-            <Radio.Button value="default">
-              {intl.formatMessage({
-                id: 'PERSONAL_GUILD_RADIO2',
-              })}
-            </Radio.Button>
+            {itemInfo.leaseInfo ? (
+              <Radio.Button value="order">
+                {intl.formatMessage({
+                  id: 'PERSONAL_GUILD_RADIO2',
+                })}
+              </Radio.Button>
+            ) : null}
           </Radio.Group>
-          <p className={styles['lessess-address']}>
-            {intl.formatMessage({
-              id: 'PERSONAL_GUILD_ADDRESS',
-            })}
-            <span> kjlsdjgkjsdgfjgdfjhdjhfgdhjfgdhjfgj</span>
-          </p>
-          <div className={styles['rounded-rectangle']}>
-            <Tabs
-              defaultActiveKey="1"
-              onChange={tabChange}
-              className={styles['tab-box']}
-            >
-              <TabPane
-                tab={intl.formatMessage({
-                  id: 'PERSONAL_GUILD_TABS1',
-                })}
-                key="1"
-              ></TabPane>
-              <TabPane
-                tab={intl.formatMessage({
-                  id: 'PERSONAL_GUILD_TABS1',
-                })}
-                key="2"
-              ></TabPane>
-            </Tabs>
-            {radioValue === 'large' ? (
-              <div className={styles['tabs-main']}>
-                <p className={styles['tabs-item']}>
-                  <span className={styles['item1']}>sdfsdfsdfsdf</span>
-                  <span className={styles['item2']}>
-                    dddddddddddddddddddddddddddd dddddddddddddd dddddddddddddd
-                  </span>
-                </p>
-                <p className={styles['tabs-item']}>
-                  <span className={styles['item1']}>sdfsdfsdfsdf</span>
-                  <span className={styles['item2']}>sdfsfsdfds</span>
-                </p>
-                <p className={styles['tabs-item']}>
-                  <span className={styles['item1']}>sdfsdfsdfsdf</span>
-                  <span className={styles['item2']}>sdfsfsdfds</span>
-                </p>
-                <Button type="primary" className={styles['cancel-btn']}>
-                  {intl.formatMessage({
-                    id: 'PERSONAL_GUILD_BTN',
-                  })}
-                </Button>
-              </div>
-            ) : (
-              <div className={styles['form-main']}>
-                <Form
-                  name="basic"
-                  labelCol={{ span: 6 }}
-                  wrapperCol={{ span: 18 }}
-                  initialValues={{ remember: true }}
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                  autoComplete="off"
-                >
-                  <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Please input your username!',
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Name" />
-                  </Form.Item>
-                  <Form.Item
-                    label="Email"
-                    name="Email"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Please input your username!',
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Email" />
-                  </Form.Item>
-                </Form>
-                <Button type="primary" className={styles['cancel-btn']}>
-                  {intl.formatMessage({
-                    id: 'PERSONAL_GUILD_BTN1',
-                  })}
-                </Button>
-              </div>
-            )}
-          </div>
+          {radioValue === 'nft' ? (
+            <NFTInfo data={itemInfo} />
+          ) : (
+            <OrderInfo data={itemInfo} />
+          )}
         </div>
       </section>
     </>
   );
 };
-export default guild;
+export default NFTDetail;

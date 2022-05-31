@@ -7,12 +7,13 @@ import { useState } from 'react';
 import tmp from '@/assets/ntf/pic/tanks2.png';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { history } from 'umi';
+import moment from 'moment';
 interface objectT {
   [propName: string]: any;
 }
 
 const WalletList = (props: objectT) => {
-  const { datas = {} } = props;
+  const { datas = {}, listIndex } = props;
   const split_array = (arr: any, len: number) => {
     let a_len = arr.length;
     let result = [];
@@ -35,8 +36,8 @@ const WalletList = (props: objectT) => {
           <Swiper
             modules={[Navigation]}
             navigation={{
-              prevEl: `.${styles['btn-prev']}`,
-              nextEl: `.${styles['btn-next']}`,
+              prevEl: `.btn-prev-${listIndex}`,
+              nextEl: `.btn-next-${listIndex}`,
             }}
           >
             {mapList.map((plist: any, index: number) => {
@@ -80,10 +81,34 @@ const WalletList = (props: objectT) => {
                               </div>
                             </div>
                           </div>
-
-                          <div className={styles[`${item.type}`]}>
-                            <Button type="primary">Listed</Button>
-                          </div>
+                          {listIndex === 1 ? (
+                            <div
+                              className={`${
+                                index === 0 || index === 1
+                                  ? styles['red']
+                                  : index === 4
+                                  ? styles['yellow']
+                                  : ''
+                              }`}
+                            >
+                              <Button type="primary">
+                                {index === 0 || index === 1
+                                  ? 'Listed'
+                                  : index === 4
+                                  ? 'Idle'
+                                  : 'Leased'}
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className={styles['default']}>
+                              <Button>
+                                End Date:{' '}
+                                {moment(item.rentInfo.rentTime).format(
+                                  'YYYY/MM/DD HH:mm:ss',
+                                )}
+                              </Button>
+                            </div>
+                          )}
                         </li>
                       );
                     })}
@@ -94,10 +119,10 @@ const WalletList = (props: objectT) => {
           </Swiper>
           {mapList.length > 1 ? (
             <div className={styles['swiper-ctrl']}>
-              <span className={styles['btn-prev']}>
+              <span className={`${styles['btn-prev']} btn-prev-${listIndex}`}>
                 <LeftOutlined />
               </span>
-              <span className={styles['btn-next']}>
+              <span className={`${styles['btn-next']} btn-next-${listIndex}`}>
                 <RightOutlined />
               </span>
             </div>
