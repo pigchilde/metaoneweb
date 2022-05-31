@@ -14,7 +14,7 @@ interface objectT {
 const GamerList = (props: objectT) => {
   const intl = useIntl();
   const { dispatch, gamefi = {} } = props;
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [params, setParams] = useState<objectT>({
     pageNum: 1,
     pageSize: 100,
@@ -35,6 +35,12 @@ const GamerList = (props: objectT) => {
   const toDetail = (id: string) => {
     history.push(`/personal/gamelist/${id}`);
   };
+  const toPalyGame = (link: string, e: any) => {
+    //
+    e.stopPropagation();
+    window.open(link);
+    return false;
+  };
   useEffect(() => {
     dispatch({
       type: 'gamefi/getList',
@@ -45,6 +51,8 @@ const GamerList = (props: objectT) => {
       const { data } = res;
       const list = random(data);
       setListDatas({ data: list });
+
+      setLoading(false);
     });
   }, []);
   const list = listDatas?.data?.map((item: objectT) => {
@@ -65,7 +73,17 @@ const GamerList = (props: objectT) => {
         </div>
         <div className={styles['text']}>
           <h6 className={styles['name']}>{item.name}</h6>
-          <Button type="primary">Play</Button>
+          <Button type="primary">
+            <a
+              onClick={(e) => {
+                toPalyGame(item.gameHomePage, e);
+              }}
+            >
+              {intl.formatMessage({
+                id: 'PERSONAL_GAMEINFO_PLAY',
+              })}
+            </a>
+          </Button>
         </div>
       </div>
     );

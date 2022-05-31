@@ -2,6 +2,8 @@
   margin-top: 12px;
   margin-bottom: 20px;
   margin-right: 24px;
+  position: relative;
+  min-height: 100px;
 }
 
 .list-wrap {
@@ -42,6 +44,7 @@
     margin-right: 24px;
     margin-bottom: 27px;
     max-width: 46%;
+    cursor: pointer;
 
     .text {
       margin-top: 10px;

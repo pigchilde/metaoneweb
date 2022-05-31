@@ -19,10 +19,10 @@ const personalSideer = (props: objectT) => {
   const onMenuSelect = (i: objectT) => {
     const { key } = i;
     if (key === '1') {
-      history.push('/personal/guild');
+      history.push('/personal/info');
     }
     if (key === '2') {
-      history.push('/personal/gameInfo');
+      history.push('/personal/gamelist');
     }
     if (key === '4') {
       history.push('/personal/nftAssets');

@@ -220,7 +220,7 @@ const BannerDetail = (props: objectT) => {
             </label>
             <span className={styles.linetext}>$129,802,34</span>
           </div>
-          <div className={styles.line}>
+        <div className={styles.line}>
             <label className={styles.linelabel}>
               {GAMEFI_DETAIL_BANNER_Fully}
             </label>
@@ -233,9 +233,14 @@ const BannerDetail = (props: objectT) => {
             <span className={styles.linetext}>Upcoming</span>
           </div>
         </section>
+        */}
         <section className={styles.btns}>
-          <Button type="primary">{GAMEFI_DETAIL_BANNER_BTN2}</Button>
-        </section> */}
+          <Button type="primary">
+            <a href={datas.gameHomePage} target="_blank">
+              {GAMEFI_DETAIL_BANNER_BTN2}
+            </a>
+          </Button>
+        </section>
       </aside>
     </div>
   );

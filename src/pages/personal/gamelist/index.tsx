@@ -18,7 +18,7 @@ const gameList = (props: objectT) => {
       userInfo: { roles },
     },
   } = props;
-  const [role, setRole] = useState('Guild');
+  const [role, setRole] = useState('GAMERS');
   useEffect(() => {
     roles && setRole(roles[0].code);
   }, []);

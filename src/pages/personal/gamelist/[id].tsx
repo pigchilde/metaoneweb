@@ -1,6 +1,6 @@
 import styles from './index.scss';
 import { connect } from 'dva';
-import { useIntl, Link } from 'umi';
+import { useIntl, Link, history } from 'umi';
 import { useEffect, useState } from 'react';
 import { Tabs, Table } from 'antd';
 
@@ -127,10 +127,13 @@ const Detail = (props: objectT) => {
   const [loading, setLoading] = useState(true as boolean);
   const [gameDatas, setGameDatas] = useState({} as objectT);
   const { params = {} } = match;
-  const [role, setRole] = useState('Guild');
+  const [role, setRole] = useState('GAMERS');
+  const goBack = () => {
+    history.goBack();
+  };
   const list = useEffect(() => {
-    setLoading(true);
-    roles && setRole(roles[0].code);
+    // setLoading(true);
+    // roles && setRole(roles[0].code);
 
     dispatch({
       type: 'gamefi/getData',
@@ -147,9 +150,9 @@ const Detail = (props: objectT) => {
   }, [params.id]);
   return (
     <>
-      <Link to="/personal/gamelist/" className={styles['back']}>
+      <div className={styles['back']} onClick={goBack}>
         {'< BACK'}
-      </Link>
+      </div>
       <div className={styles['game-info']}>
         <ul className={styles['nft-info']}>
           <li className={styles['img']}>
@@ -169,7 +172,7 @@ const Detail = (props: objectT) => {
               </dd>
               <dd className={styles['des']}>{gameDatas.description}</dd>
               <dd className={styles['button']}>
-                <a href="###">
+                <a href={gameDatas.gameHomePage} target="_blank">
                   {intl.formatMessage({
                     id: 'PERSONAL_GAMEINFO_PLAY',
                   })}

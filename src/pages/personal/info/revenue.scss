@@ -1,126 +1,37 @@
 $white-game-info: #eaffff;
-
 .back {
   display: block;
   padding: 10px 0 0 14px;
   font-size: 25px;
   color: #ffffff;
   vertical-align: top;
-  cursor: pointer;
-  &:hover{
-    color: $green;
-  }
 }
-
 .game-info {
   padding-right: 24px;
-
-  ul.nft-info {
-    display: flex;
-    margin: 10px 0;
-    align-items: center;
-
-    li {
-      &.img {
-        margin-right: 16px;
-        width: 430px;
-        height: 207px;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-      }
-
-      &.nft-info-con {
-        border-radius: 4px;
-        border: solid 2px #006366;
-        padding: 26px 38px;
-        position: relative;
-        width: calc(100% - 440px);
-      }
-
-      dl {
-        dt {
-          font-size: 28px;
-          line-height: 1.8;
-        }
-
-        dd {
-          font-size: 16px;
-          line-height: 23px;
-
-          ul {
-            display: flex;
-            flex-wrap: wrap;
-            width: calc(100% - 216px);
-            align-items: center;
-            justify-content: flex-start;
-
-            li {
-              font-size: 16px;
-              line-height: 1.8;
-              width: 33%;
-              height: 29px;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-            }
-          }
-
-          &.button {
-            position: absolute;
-            right: 38px;
-            top: 26px;
-
-            a {
-              display: block;
-              width: 178px;
-              height: 59px;
-              background-color: #bb7924;
-              border-radius: 10px;
-              font-size: 20px;
-              line-height: 59px;
-              text-align: center;
-              color: $white;
-            }
-          }
-        }
-      }
-    }
-  }
 }
-
 .game-data {
   display: flex;
-  // justify-content: space-evenly;
-  flex-shrink: 0;
-  flex-grow: 0;
-
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: -25px;
   li {
     border-radius: 4px;
     border: solid 2px #006366;
     padding: 20px;
-    // flex: 1;
-    width: 25%;
-    margin-right: 25px;
-
+    flex: 1;
+    margin-left: 25px;
+    margin-bottom: 10px;
     &:nth-child(4) {
       margin-right: 0;
     }
-
     span {
       display: block;
-
       &.title {
         font-size: 18px;
         line-height: 24px;
         color: $white-game-info;
         margin-bottom: 10px;
       }
-
       &.data {
         i.num {
           font-size: 37px;
@@ -129,14 +40,12 @@ $white-game-info: #eaffff;
           letter-spacing: 1px;
           color: #00cacb;
         }
-
         i.name {
           margin-left: 23px;
           font-size: 18px;
           line-height: 24px;
           color: $white-game-info;
         }
-
         i.status {
           margin-left: 18px;
           font-size: 18px;
@@ -147,24 +56,23 @@ $white-game-info: #eaffff;
     }
   }
 }
-
 .game-list {
   background-color: #061216;
   border-radius: 4px;
   border: solid 2px #006366;
   margin-top: 12px;
   padding: 13px 18px;
-
   :global {
-    .ant-tabs-top>.ant-tabs-nav::before {
+    .ant-select{
+      width: 170px !important;
+    }
+    .ant-tabs-top > .ant-tabs-nav::before {
       border: none;
     }
-
     .ant-tabs-nav-list {
       justify-content: flex-start;
       padding: 0;
       border: none;
-
       .ant-tabs-tab {
         width: 178px;
         height: 53px;
@@ -175,24 +83,21 @@ $white-game-info: #eaffff;
         display: block;
         margin-left: 0;
       }
-
       .ant-tabs-tab-active {
         background-color: #00cacb;
       }
-
       .ant-tabs-ink-bar {
         display: none;
       }
     }
-
     .ant-table {
       color: $white-game-info;
 
       table {
         text-align: center;
         background: #061216;
-        border-collapse: collapse;
-
+        border-collapse: separate;
+        border-spacing: 0 8px;
         th {
           background: #061216;
           color: $white-game-info;
@@ -204,35 +109,35 @@ $white-game-info: #eaffff;
           padding: 0 16px;
           margin-bottom: 5px;
         }
-
         tr.ant-table-row {
           border-collapse: separate;
-          background-color: #061c1f;
-          border-radius: 4px;
-          border: solid 0.3px #ffffff;
 
+          border-radius: 4px;
+          // border: solid 0.3px #ffffff;
+          box-shadow: 0 0 3px 1px rgba($color: $green, $alpha: 0.2);
           td {
+            background-color: #061c1f;
             height: 38px;
             line-height: 38px;
             padding: 0 16px;
             margin-top: 5px;
           }
         }
-
-        .ant-table-tbody>tr>td {
-          /* border: none; */
+        .ant-table-tbody > tr > td {
+          // /* border: none; */
+          border: none;
         }
-
-        .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+        .ant-table-tbody > tr > td.ant-table-cell-row-hover {
           background: #bb7824;
         }
       }
     }
-
+    td.ant-table-column-sort {
+      background-color: transparent;
+    }
     .ant-pagination {
       text-align: center;
     }
-
     .ant-pagination-prev .ant-pagination-item-link,
     .ant-pagination-next .ant-pagination-item-link,
     .ant-pagination-item,
@@ -242,17 +147,14 @@ $white-game-info: #eaffff;
 
       // background-color:transparent;
     }
-
     .ant-pagination-item {
       background: transparent;
-
       a {
         color: $green;
       }
 
       // color: #fff !important;
     }
-
     .ant-pagination-prev .ant-pagination-item-link,
     .ant-pagination-next .ant-pagination-item-link {
       background: transparent;
@@ -263,47 +165,48 @@ $white-game-info: #eaffff;
     .ant-pagination-item-container .ant-pagination-item-ellipsis {
       color: $green;
     }
-
     .ant-pagination-jump-prev:hover .ant-pagination-item-ellipsis,
     .ant-pagination-jump-next:hover .ant-pagination-item-ellipsis {
       color: #fff;
     }
-
     .ant-pagination-item:hover a {
       color: #fff;
     }
-
     .ant-pagination-item-active {
       a {
         color: #fff;
       }
-
       background: $green;
     }
-
     .ant-select:not(.ant-select-customize-input) .ant-select-selector {
       background-color: #000;
       color: $green;
       border: solid 2px $green;
       border-radius: 6px;
     }
-
     .ant-select-arrow {
       color: $green;
     }
-
     .ant-pagination-options-size-changer.ant-select {
       display: none;
     }
-
     .ant-pagination-options-quick-jumper {
       color: $green;
     }
-
     .ant-pagination-options-quick-jumper input {
       background-color: #000;
       border: solid 2px $green;
       color: $green;
     }
   }
+}
+.header {
+  margin-bottom: 20px;
+  h6 {
+    color: $white;
+    font-size: 26px;
+    line-height: 30px;
+    margin-right: 20px;
+  }
+  display: flex;
 }
