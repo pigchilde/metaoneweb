@@ -78,22 +78,22 @@ const personalSideer = (props: objectT) => {
             icon: (
               <span className={`${styles['ico1']} ${styles['ico']}`}></span>
             ),
-            label: 'Guild Information',
+            label: 'My Infomation',
           },
           {
             key: '2',
             icon: (
               <span className={`${styles['ico2']} ${styles['ico']}`}></span>
             ),
-            label: 'List Of Games',
+            label: 'My GameList',
           },
-          {
-            key: '3',
-            icon: (
-              <span className={`${styles['ico3']} ${styles['ico']}`}></span>
-            ),
-            label: 'Guild Management',
-          },
+          // {
+          //   key: '3',
+          //   icon: (
+          //     <span className={`${styles['ico3']} ${styles['ico']}`}></span>
+          //   ),
+          //   label: 'Guild Management',
+          // },
           {
             key: '4',
             icon: (
