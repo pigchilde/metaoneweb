@@ -34,24 +34,6 @@ const Index = (props: objectT) => {
     setLocale(lang, true);
   };
 
-  // 获取最新新闻列表
-  /* const getNewsList = () => {
-    dispatch({
-      type: 'news/getList',
-      payload: {
-        id: 10,
-        data: {
-          pageNum: 1,
-          pageSize: 5,
-        },
-      },
-    }).then((res: any) => {
-      if (!res.code) {
-        setNewsList(res.data);
-      }
-    });
-  }; */
-
   useEffect(() => {
     setLoading(true);
 
