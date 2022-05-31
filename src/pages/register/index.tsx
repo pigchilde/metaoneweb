@@ -23,6 +23,7 @@ const Register = (props: objectT) => {
   } as objectT);
   const [tabValues, setTabValues] = useState({
     id: 1,
+    code: 'GAMERS',
     name: intl.formatMessage({
       id: 'SIGN_TAB_GAME',
     }),
@@ -31,9 +32,10 @@ const Register = (props: objectT) => {
     }),
     bannerClass: 'sign-banner1',
   } as objectT);
-  const tabDatas = [
+  const [tabDatas, setTabDatas] = useState([
     {
       id: 1,
+      code: 'GAMERS',
       name: intl.formatMessage({
         id: 'SIGN_TAB_GAME',
       }),
@@ -44,6 +46,7 @@ const Register = (props: objectT) => {
     },
     {
       id: 2,
+      code: 'GUILD',
       name: intl.formatMessage({
         id: 'SIGN_TAB_GUILD',
       }),
@@ -54,6 +57,7 @@ const Register = (props: objectT) => {
     },
     {
       id: 3,
+      code: 'NFTS_OWNER',
       name: intl.formatMessage({
         id: 'SIGN_TAB_NFT',
       }),
@@ -62,15 +66,15 @@ const Register = (props: objectT) => {
       }),
       bannerClass: 'sign-banner3',
     },
-  ];
+  ] as Array<objectT>);
 
   useEffect(() => {
     getCuntry();
+    getTabDatas();
   }, []);
   /*tab切换*/
   const tabChange = (e: string) => {
-    const currentDatas = tabDatas.find((i: objectT) => i.id == e);
-    console.log(currentDatas, 4757);
+    const currentDatas = tabDatas.find((i: objectT) => i.code == e);
     setTabValues(currentDatas ? currentDatas : {});
     form.resetFields();
   };
@@ -81,53 +85,75 @@ const Register = (props: objectT) => {
     }
     setLoading(true);
     //验证验证码
-    // dispatch({
-    //   type: 'register/postCode',
-    //   payload: {
-    //     data: { email: values.email, code: values.verificationCode },
-    //   },
-    // }).then((result: objectT) => {
-    //   const { code: cCode, msg: cMsg } = result;
-    //   if (cCode === 0) {
-    //提交数据
     dispatch({
-      type: 'register/postData',
+      type: 'register/postCode',
       payload: {
-        data: { ...values, registerCategory: tabValues.id + '' },
+        data: { email: values.email, code: values.verificationCode },
       },
-    }).then((res: objectT) => {
-      const { code, data, msg } = res;
-      console.log(res, 5555);
-      if (code === 0) {
-        history.push(`/login`);
+    }).then((result: objectT) => {
+      const { code: cCode, msg: cMsg } = result;
+      if (cCode === 0) {
+        //提交数据
+
+        dispatch({
+          type: 'register/postData',
+          payload: {
+            data: { ...values, registerCategory: tabValues.code },
+          },
+        }).then((res: objectT) => {
+          const { code, data, msg } = res;
+          if (code === 0) {
+            history.push(`/login`);
+          } else {
+            message.error({
+              content: msg,
+              style: {
+                marginTop: '20vh',
+              },
+            });
+          }
+
+          setLoading(false);
+        });
       } else {
         message.error({
-          content: msg,
+          content: cMsg,
           style: {
             marginTop: '20vh',
           },
         });
+        setLoading(false);
       }
-
-      setLoading(false);
     });
-    //   } else {
-    //     message.error({
-    //       content: cMsg,
-    //       style: {
-    //         marginTop: '20vh',
-    //       },
-    //     });
-    //     setLoading(false);
-    //   }
-    // });
+  };
+  // ;
+  /*获取tab*/
+  const getTabDatas = () => {
+    dispatch({
+      type: 'register/getCuntry',
+      payload: { id: 'ROLE_REGISTER_CATEGORY' },
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        const newArr = tabDatas.map((i: objectT) => {
+          data.map((j: objectT) => {
+            if (i.code === j.code) {
+              i.name = j.name;
+            }
+            return '';
+          });
+          return i;
+        });
+        setTabDatas(newArr);
+      }
+    });
   };
 
   /*获取地区*/
   const getCuntry = () => {
     dispatch({
       type: 'register/getCuntry',
-      payload: {},
+      payload: { id: 'COMMON_COUNTRY' },
     }).then((res: objectT) => {
       const { code, data = [] } = res;
       if (code === 0) {
@@ -146,7 +172,7 @@ const Register = (props: objectT) => {
     dispatch({
       type: 'register/postEmial',
       payload: {
-        data: { code: tabValues.id + '', email: emailData.email },
+        data: { code: tabValues.code, email: emailData.email },
       },
     }).then((res: objectT) => {
       const { code, data, msg } = res;
@@ -191,7 +217,7 @@ const Register = (props: objectT) => {
             className={styles['tab-box']}
           >
             {tabDatas.map((i: objectT) => {
-              return <TabPane tab={i.name} key={i.id}></TabPane>;
+              return <TabPane tab={i.name} key={i.code}></TabPane>;
             })}
           </Tabs>
           <div className={styles['form-box']}>
@@ -337,7 +363,7 @@ const Register = (props: objectT) => {
                   })}
                 />
               </Form.Item>
-              {tabValues.name === 'Gamer' ? (
+              {tabValues.code === 'GAMERS' ? (
                 <Form.Item
                   label="invitationCode"
                   name="invitationCode"
@@ -361,7 +387,7 @@ const Register = (props: objectT) => {
               ) : (
                 ''
               )}
-              {tabValues.name === 'Guild' ? (
+              {tabValues.code === 'GUILD' ? (
                 <Form.Item
                   label="country"
                   name="country"

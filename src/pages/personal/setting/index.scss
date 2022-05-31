@@ -73,6 +73,12 @@
         font-size: 27px;
         background: none;
         margin-bottom: 35px;
+        @include respond-to(lg) {
+          font-size: 20px;
+        }
+        @include respond-to(md) {
+          font-size: 16px;
+        }
       }
 
       textarea {
@@ -82,6 +88,12 @@
         font-size: 27px;
         background: none;
         margin-bottom: 35px;
+        @include respond-to(lg) {
+          font-size: 20px;
+        }
+        @include respond-to(md) {
+          font-size: 16px;
+        }
       }
 
       .ant-btn {
@@ -122,6 +134,43 @@
         background-color: #c8354e;
       }
     }
+    .ant-select .ant-select-selector {
+      background-color: transparent;
+      border: 2px solid #006366;
+      font-size: 27px;
+      padding: 10px 11px 6px;
+      color: $white;
+      @include respond-to(lg) {
+        font-size: 20px;
+      }
+      @include respond-to(md) {
+        font-size: 16px;
+      }
+    }
+    .ant-select .ant-select-selector {
+      height: 59px;
+      line-height: 59px;
+      .ant-select-selection-item {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+    .ant-select {
+      .anticon {
+        color: #fff;
+        font-size: 16px;
+      }
+      .ant-select-clear {
+        margin-top: -10px;
+        background-color: #020611;
+        height: 24px;
+        width: 24px;
+      }
+      .ant-select-clear .anticon {
+        color: $green;
+      }
+    }
   }
 }
 
@@ -160,6 +209,13 @@
       color: #a6a6a6;
       font-size: 20px;
       background: none;
+      line-height: 40px;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 14px;
+      }
     }
 
     .ant-input-password .anticon-eye-invisible {
@@ -187,11 +243,23 @@
       text-align: center;
       font-size: 32px;
       line-height: 46px;
+      @include respond-to(lg) {
+        font-size: 28px;
+      }
+      @include respond-to(md) {
+        font-size: 24px;
+      }
     }
 
     .ant-form-item-label > label {
       color: $white;
       font-size: 20px;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 14px;
+      }
     }
 
     .ant-btn {

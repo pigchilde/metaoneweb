@@ -50,5 +50,12 @@ export default {
       );
       return data;
     },
+    *getDic(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(registerService.getDic, payload);
+      return data;
+    },
   },
 };

@@ -30,5 +30,32 @@ export default {
       const data: initialStateT = yield call(registerService.getInfo, payload);
       return data;
     },
+    *putAvatars(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        registerService.putAvatars,
+        payload,
+      );
+      return data;
+    },
+    *changePassword(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        registerService.changePassword,
+        payload,
+      );
+      return data;
+    },
+    *siginOut(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(registerService.siginOut, payload);
+      return data;
+    },
   },
 };
