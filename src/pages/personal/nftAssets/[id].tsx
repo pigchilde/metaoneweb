@@ -5,7 +5,10 @@ import defaultPic from '../../../assets/personal/pic/avatar.jpg';
 import { Button, Radio, Tabs, Input, Form } from 'antd';
 import { useEffect, useState } from 'react';
 const { TabPane } = Tabs;
-import { queryMarketNFTById } from '@/assets/personal/data/nfts';
+import {
+  queryMarketNFTById,
+  queryNFTDetailsById,
+} from '@/assets/personal/data/nfts';
 interface objectT {
   [propName: string]: any;
 }
@@ -20,6 +23,7 @@ const guild = (props: objectT) => {
   // 获取nft数据
   const getMarketNFT = () => {
     queryMarketNFTById(params.id).then((res) => {
+      console.log(res.data);
       setMarketNFT(res.data);
     });
   };

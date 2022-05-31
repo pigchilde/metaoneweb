@@ -1,13 +1,10 @@
 import styles from './index.scss';
-import Banner from './components/Banner';
-import { useIntl } from 'umi';
-import avater from '../../assets/gamers/pic/avater.png';
-import PhotoText from '@/components/PhotoText';
-import { Tabs } from 'antd';
+import { useIntl, Link } from 'umi';
+import { Pagination, Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
-import CustomSwiper from '@/components/CustomSwiper';
 import Loading from '@/components/Loading';
+import PaginationItem from '@/components/Pagination';
 
 const { TabPane } = Tabs;
 
@@ -20,7 +17,7 @@ const Nftsowners = (props: objectT) => {
   const { dispatch } = props;
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
-  const [newsList, setNewsList] = useState({} as objectT);
+  const [newsList, setNewsList] = useState<objectT[]>([]);
   const [informationList, setInformationList] = useState({} as objectT);
 
   useEffect(() => {
@@ -34,9 +31,10 @@ const Nftsowners = (props: objectT) => {
       if (banner.code === 0) {
         setBannerData(banner.data);
       }
-      if (news.code === 0) {
-        setNewsList(news.data);
-      }
+      // if (news.code === 0) {
+      //   setNewsList(news.data);
+      // }
+      setNewsList([{}, {}, {}, {}]);
       if (list.code === 0) {
         setInformationList(list.data);
       }
@@ -45,323 +43,45 @@ const Nftsowners = (props: objectT) => {
   }, []);
   return (
     <>
-      <Banner data={bannerData} />
-      <section className={`${styles['main']} wrapper`}>
-        <section className={styles['gamers-list']}>
-          <h3>
-            {intl.formatMessage({
-              id: 'NFTSOWNER_NFTS_OWNERS_EARNINGS',
-            })}
-          </h3>
-          <div className={styles['gamers-list-con']}>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>OwnerName</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>Prime NFTS:RPG、ACT、AVG</dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>OwnerName</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>Prime NFTS:RPG、ACT、AVG</dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>OwnerName</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>Prime NFTS:RPG、ACT、AVG</dd>
-            </dl>
-            <div className={styles['gamers-list-table']}>
-              <Tabs defaultActiveKey="1">
-                {/* <ul className={styles['table-tab']}>
-                  <li className={styles['active']}>
-                    {intl.formatMessage({
-                      id: 'GAMERS_List_TAB1',
-                    })}
-                  </li>
-                  <li>
-                    {intl.formatMessage({
-                      id: 'GAMERS_List_TAB2',
-                    })}
-                  </li>
-                </ul> */}
-                <TabPane
-                  tab={intl.formatMessage({
-                    id: 'GAMERS_List_TAB1',
-                  })}
-                  key="1"
-                >
-                  <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                  </ul>
-                </TabPane>
-                <TabPane
-                  tab={intl.formatMessage({
-                    id: 'GAMERS_List_TAB2',
-                  })}
-                  key="2"
-                >
-                  <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName1
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        OwnerName
-                        <br />
-                        <i>Prime NFTS:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                  </ul>
-                </TabPane>
-              </Tabs>
-            </div>
-          </div>
-        </section>
-      </section>
-      <section className={styles['news-swiper']}>
-        <div className={styles['wrapper']}>
-          <p className={styles['txt-top']}>
-            {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_TOP_TEXT' })}
+      <section className={styles['main']}>
+        <div className="wrapper">
+          <h2 className={styles['sec-tit']}>About MetaOne NFT’s Owner</h2>
+          <p className={styles['sec-desc']}>
+            MetaOne provides professional and valuable NFT investment data
+            analysis and information.
           </p>
-          <h3 className={styles['tit']}>
-            {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_TITLE' })}
-          </h3>
-          <p className={styles['desc']}>
-            {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_DESCRIPTION' })}
-          </p>
-          <div className={styles['swiper']}>
-            <CustomSwiper
-              type="image"
-              datas={newsList}
-              moreLink="/news?tab=1001"
-            ></CustomSwiper>
+          <div className={styles['news-list']}>
+            {newsList && newsList.length
+              ? newsList.map((item: objectT, index: number) => (
+                  <Link to="">
+                    <figure>
+                      <div className={styles['hd']}>
+                        <h3 className={styles['tit']}>
+                          How to be a NFT’s owner in MetaOne ?How to be a NFT’s
+                          owner in MetaOne ?How to be a NFT’s owner in MetaOne ?
+                        </h3>
+                        <p className={styles['desc']}>
+                          MetaOne aims to be the world’s leading GameFi, guild
+                          management and analytics platform. Recently it
+                          announced the close of its seed round led by Infinity
+                          Ventures .
+                        </p>
+                        <time>May 31 2022</time>
+                      </div>
+                      <div className={styles['img-wrap']}>
+                        <img
+                          src={require(`@/assets/nftsowner/pic/news-${
+                            index + 1
+                          }.jpg`)}
+                        />
+                      </div>
+                    </figure>
+                  </Link>
+                ))
+              : null}
           </div>
+          <PaginationItem />
         </div>
-      </section>
-      <section className={`${styles['main']} wrapper`}>
-        {loading ? (
-          <Loading></Loading>
-        ) : informationList.length ? (
-          informationList.map((item: objectT, index: number) => {
-            return informationList.length - 1 !== index ? (
-              <div key={item.id}>
-                <PhotoText datas={item} />
-              </div>
-            ) : (
-              <PhotoText datas={item} key="index" />
-            );
-          })
-        ) : (
-          ''
-        )}
       </section>
     </>
   );

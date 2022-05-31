@@ -585,7 +585,7 @@ export function queryMyRentNFT() {
 }
 
 export async function queryNFTDetailsById(id: number) {
-  const nft = NFTList.find((item) => item.id === id);
+  const nft = NFTList.find((item) => item.id == id);
   if (nft) {
     const { status } = nft;
     let data = nft;
