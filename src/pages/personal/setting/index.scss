@@ -35,8 +35,14 @@
       display: block;
       margin: 0 auto;
     }
-    .ant-upload {
+    .ant-upload.ant-upload-select-picture-card .ant-upload {
+      display: block;
+      height: 100%;
+      width: 100%;
       overflow: hidden;
+    }
+    .anticon-plus {
+      margin-top: 30px;
     }
     p {
       margin-top: 15px;

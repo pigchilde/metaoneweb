@@ -30,6 +30,7 @@ const Setting = (props: objectT) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [regionData, setRegionData] = useState([] as Array<objectT>);
   const [isSubmit, setSubmit] = useState(false as boolean);
+
   const { TextArea } = Input;
   const onFinish = (values: any) => {
     if (isSubmit) {
@@ -56,7 +57,7 @@ const Setting = (props: objectT) => {
           }),
         );
         setTimeout(() => {
-          // window.location.href = window.location.href;
+          window.location.href = window.location.href;
         }, 1000);
       } else {
         message.error(res.msg);
@@ -96,7 +97,7 @@ const Setting = (props: objectT) => {
       if (code === 0) {
         form.setFieldsValue({
           nickName: data.nickName,
-          category: data.category,
+          gameType: data.gameType,
           telegramId: data.telegramId,
           contacts: data.contacts,
           country: data.country,

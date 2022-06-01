@@ -1,9 +1,14 @@
 import { Upload, message } from 'antd';
 import { SetStateAction, useEffect, useState } from 'react';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+  LoadingOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
 import styles from './index.scss';
 import { connect } from 'dva';
 import ObsClient from 'esdk-obs-browserjs';
+
 function getBase64(img: any, callback: any) {
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
@@ -26,7 +31,7 @@ interface objectT {
 }
 const ObsUpload = (props: objectT) => {
   const { dispatch, userInfo = {} } = props;
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState('' as string);
   const [loading, setLoading] = useState(false as boolean);
   const upload = (file: { name: string }) => {
     const that = this;
@@ -100,6 +105,7 @@ const ObsUpload = (props: objectT) => {
       });
     }
   };
+
   return (
     <Upload
       name="avatar"
@@ -109,8 +115,17 @@ const ObsUpload = (props: objectT) => {
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
-      {imageUrl ? (
-        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+      {imageUrl || userInfo.avatar ? (
+        <div className={styles['img-box']}>
+          <span className={styles['img-hover']}>
+            <UploadOutlined />
+          </span>
+          <img
+            src={imageUrl || userInfo.avatar}
+            alt="avatar"
+            style={{ width: '100%' }}
+          />
+        </div>
       ) : (
         uploadButton
       )}

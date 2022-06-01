@@ -176,4 +176,5 @@ export default {
   SETTING_REPASSWORD: 'Reconfirm Password',
   SETTING_REPASSWORD_TIPS: 'Please  reconfirm password',
   SETTING_REPASSWORD_TIPS1: 'Please reconfirm password',
+  SETTING_SUCCESS: 'success',
 };
