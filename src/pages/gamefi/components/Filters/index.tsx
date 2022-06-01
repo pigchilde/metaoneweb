@@ -49,7 +49,8 @@ const Filters = (props: objectT) => {
   const [params, setParams] = useState<objectT>({
     pageNum: 1,
     pageSize: 10,
-    orderByType: 'Newest',
+    // order:'newwest',
+    // orderByType: 'desc',
   });
 
   const pageSizes = [10, 20, 30];
