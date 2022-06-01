@@ -13,6 +13,7 @@ const CODE_REMAIN_TIME = 60;
 const Password = (props: any) => {
   const { dispatch } = props;
   const [form] = Form.useForm();
+  const intl = useIntl();
   const { getFieldError, getFieldValue } = form;
   const [codeRemainTime, setCodeRemainTime] = useState(0);
   const [canSendCode, setCanSendCode] = useState(false);
@@ -150,7 +151,29 @@ const Password = (props: any) => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({
+                id: 'REGISTER_PASSWORD_TIP',
+              }),
+              whitespace: true,
+            },
+            {
+              min: 7,
+              message: intl.formatMessage({
+                id: 'REGISTER_PASSWORD_TIP2',
+              }),
+            },
+            {
+              pattern:
+                /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{6,20}$/,
+              message: intl.formatMessage({
+                id: 'REGISTER_PASSWORD_TIP3',
+              }),
+            },
+          ]}
+          hasFeedback
         >
           <Input.Password placeholder="Your Password" />
         </Form.Item>
