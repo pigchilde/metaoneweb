@@ -42,7 +42,10 @@ const Setting = (props: objectT) => {
     }
     setSubmit(true);
     dispatch({
-      type: 'setting/putInfo',
+      type:
+        roles.length && roles[0].code === 'GUILD'
+          ? 'setting/putGuildInfo'
+          : 'setting/putInfo',
       payload: { data: values },
     }).then((res: objectT) => {
       const { code, data = [] } = res;
@@ -53,10 +56,8 @@ const Setting = (props: objectT) => {
           }),
         );
         setTimeout(() => {
-          window.location.href = window.location.href;
+          // window.location.href = window.location.href;
         }, 1000);
-
-        // setRegionData(data);
       } else {
         message.error(res.msg);
       }
@@ -110,7 +111,7 @@ const Setting = (props: objectT) => {
       <Row className={styles['setting-con']}>
         <Col span={5}>
           <div className={styles['avatar']}>
-            <ObsUpload></ObsUpload>
+            <ObsUpload userInfo={userInfo}></ObsUpload>
 
             <p>Edit Your Logo</p>
           </div>
@@ -126,7 +127,7 @@ const Setting = (props: objectT) => {
             form={form}
           >
             <Form.Item
-              name="nickName"
+              // name="nickName"
               label={intl.formatMessage({
                 id: 'SETTING_NICKNAME',
               })}
@@ -135,6 +136,7 @@ const Setting = (props: objectT) => {
                 placeholder={intl.formatMessage({
                   id: 'SETTING_NICKNAME_TIPS',
                 })}
+                value={`${userInfo.nickName} (${userInfo.username})`}
                 disabled
               />
             </Form.Item>
@@ -153,7 +155,7 @@ const Setting = (props: objectT) => {
             {roles.length && roles[0].code === 'GUILD' ? (
               <>
                 <Form.Item
-                  name="category"
+                  name="gameType"
                   label={intl.formatMessage({
                     id: 'SETTING_CATEGORY',
                   })}
@@ -219,7 +221,6 @@ const Setting = (props: objectT) => {
               label={intl.formatMessage({
                 id: 'SETTING_DESCRIPTION',
               })}
-              /* className={styles['setting-textArea']} */
               className="setting-textarea"
             >
               <TextArea

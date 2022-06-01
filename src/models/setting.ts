@@ -57,5 +57,15 @@ export default {
       const data: initialStateT = yield call(registerService.siginOut, payload);
       return data;
     },
+    *putGuildInfo(
+      { payload, callback }: initialStateT,
+      { call, put }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        registerService.putGuildInfo,
+        payload,
+      );
+      return data;
+    },
   },
 };

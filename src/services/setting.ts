@@ -19,6 +19,13 @@ export const putInfo: objectT = async (params: objectT) => {
     data: params.data,
   });
 };
+//公会信息修改
+export const putGuildInfo: objectT = async (params: objectT) => {
+  return authRequest(`/center/info-settings/guild`, {
+    method: 'PUT',
+    data: params.data,
+  });
+};
 //获取信息
 export const getInfo: objectT = async (params: objectT) => {
   return authRequest(`/center/info-settings/profile`, {

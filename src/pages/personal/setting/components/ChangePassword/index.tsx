@@ -94,6 +94,19 @@ const ChangePassword = (props: objectT) => {
                 id: 'SETTING_PASSWORD_TIPS',
               }),
             },
+            {
+              min: 7,
+              message: intl.formatMessage({
+                id: 'REGISTER_PASSWORD_TIP2',
+              }),
+            },
+            {
+              pattern:
+                /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{6,20}$/,
+              message: intl.formatMessage({
+                id: 'REGISTER_PASSWORD_TIP3',
+              }),
+            },
           ]}
         >
           <Input.Password

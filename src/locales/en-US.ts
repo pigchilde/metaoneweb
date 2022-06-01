@@ -118,6 +118,9 @@ export default {
   REGISTER_PASSWORD: 'Password',
   REGISTER_PASSWORD_TIP: 'Please input your Password!',
   REGISTER_PASSWORD_TIP1: 'The two passwords that you entered do not match!',
+  REGISTER_PASSWORD_TIP2: 'Your password must be 7 or more characters.',
+  REGISTER_PASSWORD_TIP3:
+    'Contains at least numbers and letters, can have characters',
   REGISTER_CONFIRM_PASSWORD: 'Confirm Password',
   REGISTER_CONFIRM_PASSWORD_TIP: 'Please input your Confirm Password!',
   REGISTER_INVITATION_CODE: 'Invitation Code',

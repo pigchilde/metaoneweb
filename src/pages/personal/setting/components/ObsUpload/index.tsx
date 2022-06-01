@@ -25,7 +25,7 @@ interface objectT {
   [propName: string]: any;
 }
 const ObsUpload = (props: objectT) => {
-  const { dispatch } = props;
+  const { dispatch, userInfo = {} } = props;
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false as boolean);
   const upload = (file: { name: string }) => {
@@ -41,7 +41,7 @@ const ObsUpload = (props: objectT) => {
     obsClient.putObject(
       {
         Bucket: bucketName, // 桶名
-        Key: 'avatar/' + file.name,
+        Key: 'avatar/' + userInfo.uid + file.name,
         SourceFile: file,
         Metadata: {
           property: 'property-value',
@@ -58,11 +58,12 @@ const ObsUpload = (props: objectT) => {
         } else {
           if (result.CommonMsg.Status < 300) {
             // 上传成功后，文件地址
-            const fileUrl = 'https://static.metaone.gg/avatar/' + file.name;
+            const fileUrl =
+              'https://static.metaone.gg/avatar/' + userInfo.uid + file.name;
             setImageUrl(fileUrl);
             dispatch({
               type: 'setting/putAvatars',
-              payload: { data: { avatar: fileUrl } },
+              payload: { data: { avatras: fileUrl } },
             }).then((res: objectT) => {
               const { code, data = [] } = res;
               if (code === 0) {

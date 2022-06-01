@@ -242,6 +242,7 @@ const Register = (props: objectT) => {
                     message: intl.formatMessage({
                       id: 'REGISTER_NAME_TIP',
                     }),
+                    whitespace: true,
                   },
                 ]}
               >
@@ -318,6 +319,20 @@ const Register = (props: objectT) => {
                     required: true,
                     message: intl.formatMessage({
                       id: 'REGISTER_PASSWORD_TIP',
+                    }),
+                    whitespace: true,
+                  },
+                  {
+                    min: 7,
+                    message: intl.formatMessage({
+                      id: 'REGISTER_PASSWORD_TIP2',
+                    }),
+                  },
+                  {
+                    pattern:
+                      /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{6,20}$/,
+                    message: intl.formatMessage({
+                      id: 'REGISTER_PASSWORD_TIP3',
                     }),
                   },
                 ]}
