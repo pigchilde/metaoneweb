@@ -21,16 +21,18 @@ const gameList = (props: objectT) => {
   const [backTitle, setTitle] = useState('');
   const [role, setRole] = useState('GAMERS');
   useEffect(() => {
-    switch (roles[0].code) {
-      case 'GAMERS':
-        setTitle('MY GAME LIST');
-        break;
-      default:
-        setTitle('LIST OF GAMES');
-        break;
+    if (roles) {
+      setRole(roles[0].code);
+      switch (roles[0].code) {
+        case 'GAMERS':
+          setTitle('MY GAME LIST');
+          break;
+        default:
+          setTitle('LIST OF GAMES');
+          break;
+      }
     }
-    roles && setRole(roles[0].code);
-  }, []);
+  }, [roles]);
   return (
     <>
       <Link to="/" className={styles['back']}>

@@ -10,7 +10,71 @@ interface objectT {
 const TableList = () => {
   const { TabPane } = Tabs;
   const intl = useIntl();
-  const listDatas: readonly any[] | undefined = [];
+  const listDatas = [
+    {
+      name: 'Scott Brown',
+      total: '155',
+      hours: '11',
+      date: '19',
+      date2: '4',
+    },
+    {
+      name: 'Karen Jones',
+      total: '148',
+      hours: '31',
+      date: '141',
+      date2: '11',
+    },
+    {
+      name: 'Betty Lee',
+      total: '145',
+      hours: '48',
+      date: '56',
+      date2: '3',
+    },
+    {
+      name: 'Matthew Jackson',
+      total: '142',
+      hours: '8',
+      date: '87',
+      date2: '8',
+    },
+    {
+      name: 'Joseph Taylor',
+      total: '130',
+      hours: '13',
+      date: '86',
+      date2: '8',
+    },
+    {
+      name: 'Melissa Johnson',
+      total: '118',
+      hours: '17',
+      date: '100',
+      date2: '10',
+    },
+    {
+      name: 'Margaret Garcia',
+      total: '117',
+      hours: '14',
+      date: '53',
+      date2: '6',
+    },
+    {
+      name: 'Nancy Johnson',
+      total: '116',
+      hours: '15',
+      date: '18',
+      date2: '9',
+    },
+    {
+      name: 'Michael Williams',
+      total: '116',
+      hours: '28',
+      date: '36',
+      date2: '25',
+    },
+  ];
   const columns = [
     {
       title: 'Rank',
@@ -27,27 +91,33 @@ const TableList = () => {
       title: 'Total Yield',
       dataIndex: 'total',
       key: 'total',
-      render: () => {
-        return '0 USDT';
+      render: (text: any) => {
+        return `${text} USDT`;
       },
     },
     {
       title: 'Hours Played',
       dataIndex: 'hours',
       key: 'hours',
-      render: () => {
-        return '0 h';
+      render: (text: any) => {
+        return `${text} h`;
       },
     },
     {
       title: 'Last Week Yield',
       dataIndex: 'date',
       key: 'date',
+      render: (text: any) => {
+        return `${text} USDT`;
+      },
     },
     {
       title: 'Last Week Hours Played',
       dataIndex: 'date2',
       key: 'date2',
+      render: (text: any) => {
+        return `${text} h`;
+      },
     },
   ];
   const columns2 = [
@@ -66,27 +136,33 @@ const TableList = () => {
       title: 'Total Yield',
       dataIndex: 'Total Yield',
       key: 'DTotal Total Yield',
-      render: () => {
-        return '0';
+      render: (text: any) => {
+        return `${text} USDT`;
       },
     },
     {
       title: 'Hours Played',
       dataIndex: 'Tranding Volume',
       key: 'Tranding Volume',
-      render: () => {
-        return '0 USDT';
+      render: (text: any) => {
+        return `${text} h`;
       },
     },
     {
       title: 'Last Week Yield',
       dataIndex: 'date',
       key: 'date',
+      render: (text: any) => {
+        return `${text} USDT`;
+      },
     },
     {
       title: 'Last Week Hours Played',
       dataIndex: 'date2',
       key: 'date2',
+      render: (text: any) => {
+        return `${text} h`;
+      },
     },
   ];
   const tabClick = () => {};
