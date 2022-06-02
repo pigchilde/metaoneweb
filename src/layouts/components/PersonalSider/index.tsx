@@ -3,11 +3,14 @@ import defaultAvatar from '../../../assets/common/pic/avatar.png';
 import { Layout, Menu, message } from 'antd';
 import { history, connect } from 'umi';
 import Cookies from 'js-cookie';
+import { useIntl } from 'umi';
+
 interface objectT {
   [propName: string]: any;
 }
 
 const personalSideer = (props: objectT) => {
+  const intl = useIntl();
   const {
     onCollapse,
     collapsed,
@@ -15,6 +18,103 @@ const personalSideer = (props: objectT) => {
     login: { userInfo },
     common: { platformInfo },
   } = props;
+  const { roles = [] } = userInfo;
+  const gameMenu = [
+    {
+      key: '1',
+      icon: <span className={`${styles['ico1']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_MY_INFO',
+      }),
+    },
+    {
+      key: '2',
+      icon: <span className={`${styles['ico2']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_MY_GAMELIST',
+      }),
+    },
+    // {
+    //   key: '3',
+    //   icon: <span className={`${styles['ico3']} ${styles['ico']}`}></span>,
+    //   label: 'Guild Management',
+    // },
+    {
+      key: '4',
+      icon: <span className={`${styles['ico4']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_NFT_ASSETS',
+      }),
+    },
+    {
+      key: '5',
+      icon: <span className={`${styles['ico5']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_SETTING',
+      }),
+    },
+  ];
+  const guidMenu = [
+    {
+      key: '1',
+      icon: <span className={`${styles['ico1']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_GUILD_INFO',
+      }),
+    },
+    {
+      key: '2',
+      icon: <span className={`${styles['ico2']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_LIST_GAMES',
+      }),
+    },
+    {
+      key: '3',
+      icon: <span className={`${styles['ico3']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_GUILD_MANAGEMENT',
+      }),
+    },
+    {
+      key: '4',
+      icon: <span className={`${styles['ico4']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_NFT_ASSETS',
+      }),
+    },
+    {
+      key: '5',
+      icon: <span className={`${styles['ico5']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_SETTING',
+      }),
+    },
+  ];
+  const ownerMenu = [
+    {
+      key: '1',
+      icon: <span className={`${styles['ico1']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_MY_INFO',
+      }),
+    },
+
+    {
+      key: '4',
+      icon: <span className={`${styles['ico4']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_NFT_ASSETS',
+      }),
+    },
+    {
+      key: '5',
+      icon: <span className={`${styles['ico5']} ${styles['ico']}`}></span>,
+      label: intl.formatMessage({
+        id: 'PSIDER_SETTING',
+      }),
+    },
+  ];
 
   const onMenuSelect = (i: objectT) => {
     const { key } = i;
@@ -23,6 +123,9 @@ const personalSideer = (props: objectT) => {
     }
     if (key === '2') {
       history.push('/personal/gamelist');
+    }
+    if (key === '3') {
+      history.push('/personal/guild/management');
     }
     if (key === '4') {
       history.push('/personal/nftAssets');
@@ -72,43 +175,13 @@ const personalSideer = (props: objectT) => {
         defaultSelectedKeys={['1']}
         className={styles['menu']}
         onSelect={onMenuSelect}
-        items={[
-          {
-            key: '1',
-            icon: (
-              <span className={`${styles['ico1']} ${styles['ico']}`}></span>
-            ),
-            label: 'My Infomation',
-          },
-          {
-            key: '2',
-            icon: (
-              <span className={`${styles['ico2']} ${styles['ico']}`}></span>
-            ),
-            label: 'My GameList',
-          },
-          // {
-          //   key: '3',
-          //   icon: (
-          //     <span className={`${styles['ico3']} ${styles['ico']}`}></span>
-          //   ),
-          //   label: 'Guild Management',
-          // },
-          {
-            key: '4',
-            icon: (
-              <span className={`${styles['ico4']} ${styles['ico']}`}></span>
-            ),
-            label: 'NFT Assets',
-          },
-          {
-            key: '5',
-            icon: (
-              <span className={`${styles['ico5']} ${styles['ico']}`}></span>
-            ),
-            label: 'Settings',
-          },
-        ]}
+        items={
+          roles.length && roles[0].code === 'GUILD'
+            ? guidMenu
+            : roles.length && roles[0].code === 'GAMERS'
+            ? gameMenu
+            : ownerMenu
+        }
       />
       <span
         className={`${styles['sign-out']} ${
