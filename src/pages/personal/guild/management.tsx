@@ -1,12 +1,21 @@
 import styles from './yield.scss';
 import { useIntl, Link } from 'umi';
 import { Tabs, Table, Tag, Select } from 'antd';
+import { useEffect, useState } from 'react';
+import { connect } from 'dva';
 const { Option } = Select;
 
 interface objectT {
   [propName: string]: any;
 }
-const Yield = () => {
+const Management = (props: objectT) => {
+  const {
+    dispatch,
+    login: {
+      userInfo: { roles },
+    },
+  } = props;
+  const [guildInfo, setGuildInfo] = useState<objectT>({});
   const intl = useIntl();
 
   const { TabPane } = Tabs;
@@ -105,6 +114,13 @@ const Yield = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch({
+      type: 'guilds/getGuildRoleInfo',
+    }).then((res: objectT) => {
+      setGuildInfo(res.data);
+    });
+  }, []);
   return (
     <>
       <span className={styles['back']}>
@@ -144,7 +160,7 @@ const Yield = () => {
               })}
             </span>
             <span className={styles['data']}>
-              <i className={styles['num']}>JKHGu7567J</i>
+              <i className={styles['num']}>{guildInfo?.invitationCode}</i>
             </span>
           </li>
         </ul>
@@ -167,4 +183,18 @@ const Yield = () => {
     </>
   );
 };
-export default Yield;
+export default connect(
+  ({
+    gamefi,
+    guilds,
+    login,
+  }: {
+    gamefi: objectT;
+    guilds: objectT;
+    login: objectT;
+  }) => ({
+    gamefi,
+    guilds,
+    login,
+  }),
+)(Management);
