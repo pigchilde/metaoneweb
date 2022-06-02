@@ -1,0 +1,134 @@
+
+.lessess-address {
+  margin: 12px 0;
+  font-size: 22px;
+  line-height: 48px;
+  color: $white;
+  span {
+    color: $green;
+  }
+}
+.rounded-rectangle {
+  width: 880px;
+  height: 462px;
+  border-radius: 4px;
+  border: solid 3px #006366;
+  @include respond-to(lg) {
+    width: 700px;
+  }
+  @include respond-to(md) {
+    width: 600px;
+  }
+}
+.form-main {
+  margin: 10px 35px;
+  .cancel-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+  :global {
+    .ant-form-horizontal .ant-form-item-label {
+      text-align: left;
+      label {
+        display: inline-block;
+        color: $white;
+        font-size: 20px;
+        line-height: 40px;
+        &:before {
+          display: none;
+        }
+      }
+    }
+    .ant-input,
+    .ant-input-affix-wrapper {
+      background-color: transparent !important;
+      border: 1px solid $green;
+      font-size: 20px;
+      padding: 5px 11px;
+      color: $white;
+    }
+    .ant-input-password-icon.anticon {
+      color: $white;
+    }
+    .ant-form-item {
+      margin-bottom: 27px;
+    }
+    .ant-form-item .ant-form-item {
+      margin-bottom: 0;
+    }
+    .ant-dropdown-trigger {
+      margin: 0 18px;
+      padding: 5px 16px;
+
+      border-radius: 2px;
+      border: solid 1px $green;
+    }
+
+    .ant-select {
+      border-radius: 2px;
+      border: solid 1px $green;
+      min-width: 100px;
+    }
+
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+      height: 40px;
+      font-size: 20px;
+      span {
+        line-height: 40px;
+      }
+      input {
+        height: 40px;
+        font-size: 20px;
+      }
+    }
+
+    .ant-select-arrow .anticon:not(.ant-select-suffix) {
+      color: $green;
+      font-size: 18px;
+    }
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+      background-color: transparent;
+      border: 0;
+    }
+
+    .ant-select-selection-item {
+      color: $white;
+    }
+
+    .ant-dropdown-menu {
+      border-radius: 2px;
+      border: solid 1px $green;
+    }
+
+    .ant-space-item {
+      color: $white;
+    }
+
+    .ant-form {
+      label {
+        font-size: 20px;
+        color: $white;
+      }
+    }
+    .ant-radio-inner {
+      background-color: transparent;
+      border-color: $green;
+    }
+    .ant-radio-checked::after {
+      animation: none;
+    }
+  }
+}
+
+.btn {
+  margin: 10px 0 0 30px;
+  width: 427px;
+  height: 55px;
+  border-radius: 10px;
+  font-size: 20px;
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+  }
+}
