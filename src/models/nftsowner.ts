@@ -32,6 +32,8 @@ export default {
         call(nftsOwnerService.getNftsOwnerNews, payload),
         call(nftsOwnerService.getNftsOwnerInformationList, payload),
       ]);
+
+      console.log(news, 'news');
       return { banner: banner, news: news, list: list };
     },
   },

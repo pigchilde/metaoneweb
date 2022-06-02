@@ -54,10 +54,10 @@ const Nftsowners = (props: objectT) => {
       if (banner.code === 0) {
         setBannerData(banner.data);
       }
-      // if (news.code === 0) {
-      //   setNewsList(news.data);
-      // }
-      setNewsList(newsListData);
+      if (news.code === 0) {
+        setNewsList(news.data);
+      }
+      // setNewsList(newsListData);
       if (list.code === 0) {
         setInformationList(list.data);
       }
@@ -77,19 +77,15 @@ const Nftsowners = (props: objectT) => {
             <div className={styles['news-list']}>
               {newsList && newsList.length
                 ? newsList.map((item: objectT, index: number) => (
-                    <Link to="">
+                    <Link to="###">
                       <figure>
                         <div className={styles['hd']}>
                           <h3 className={styles['tit']}>{item.title}</h3>
-                          <p className={styles['desc']}>{item.description}</p>
+                          <p className={styles['desc']}>{item.outline}</p>
                           <time>May 31 2022</time>
                         </div>
                         <div className={styles['img-wrap']}>
-                          <img
-                            src={require(`@/assets/nftsowner/pic/news-${
-                              index + 1
-                            }.jpg`)}
-                          />
+                          <img src={item.img} />
                         </div>
                       </figure>
                     </Link>
@@ -107,7 +103,7 @@ const Nftsowners = (props: objectT) => {
               }}
             />
           </section>
-          <section className={styles['sec-video-text']}>
+          {/*  <section className={styles['sec-video-text']}>
             <PhotoText
               datas={{
                 title: 'How To List Your NFT’s In MetaOne?',
@@ -124,7 +120,7 @@ const Nftsowners = (props: objectT) => {
                 layoutCategory: 11,
               }}
             />
-          </section>
+          </section> */}
         </div>
       </div>
     </>
