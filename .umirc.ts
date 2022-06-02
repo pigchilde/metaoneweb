@@ -24,6 +24,7 @@ export default defineConfig({
   proxy: {
     '/center': {
       target: 'http://47.106.90.119:8000',
+      // target: 'http://119.8.171.8/',
       changeOrigin: true,
     },
   },

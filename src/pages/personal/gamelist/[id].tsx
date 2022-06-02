@@ -133,7 +133,7 @@ const Detail = (props: objectT) => {
   };
   const list = useEffect(() => {
     // setLoading(true);
-    // roles && setRole(roles[0].code);
+    roles && setRole(roles[0].code);
 
     dispatch({
       type: 'gamefi/getData',
