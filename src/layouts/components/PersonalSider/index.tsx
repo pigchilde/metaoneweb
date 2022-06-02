@@ -4,6 +4,7 @@ import { Layout, Menu, message } from 'antd';
 import { history, connect } from 'umi';
 import Cookies from 'js-cookie';
 import { useIntl } from 'umi';
+import { useEffect, useState } from 'react';
 
 interface objectT {
   [propName: string]: any;
@@ -18,7 +19,30 @@ const personalSideer = (props: objectT) => {
     login: { userInfo },
     common: { platformInfo },
   } = props;
+  const [current, setCurrent] = useState('1' as string);
   const { roles = [] } = userInfo;
+  const menuLink = [
+    {
+      key: '1',
+      link: '/personal/info',
+    },
+    {
+      key: '2',
+      link: '/personal/gamelist',
+    },
+    {
+      key: '3',
+      link: '/personal/guild/management',
+    },
+    {
+      key: '4',
+      link: '/personal/nftAssets',
+    },
+    {
+      key: '5',
+      link: '/personal/setting',
+    },
+  ];
   const gameMenu = [
     {
       key: '1',
@@ -34,11 +58,7 @@ const personalSideer = (props: objectT) => {
         id: 'PSIDER_MY_GAMELIST',
       }),
     },
-    // {
-    //   key: '3',
-    //   icon: <span className={`${styles['ico3']} ${styles['ico']}`}></span>,
-    //   label: 'Guild Management',
-    // },
+
     {
       key: '4',
       icon: <span className={`${styles['ico4']} ${styles['ico']}`}></span>,
@@ -118,20 +138,10 @@ const personalSideer = (props: objectT) => {
 
   const onMenuSelect = (i: objectT) => {
     const { key } = i;
-    if (key === '1') {
-      history.push('/personal/info');
-    }
-    if (key === '2') {
-      history.push('/personal/gamelist');
-    }
-    if (key === '3') {
-      history.push('/personal/guild/management');
-    }
-    if (key === '4') {
-      history.push('/personal/nftAssets');
-    }
-    if (key === '5') {
-      history.push('/personal/setting');
+    setCurrent(key);
+    const data = menuLink.find((i: objectT) => i.key === key);
+    if (data?.link) {
+      history.push(data?.link);
     }
   };
   /**
@@ -150,6 +160,13 @@ const personalSideer = (props: objectT) => {
       }
     });
   };
+
+  useEffect(() => {
+    // setCurrent;
+    const url = window.location.href;
+    const data = menuLink.find((i: objectT) => url.indexOf(i.link) > -1);
+    setCurrent(data ? data.key : '1');
+  }, []);
   return (
     <div className={styles['sider']}>
       <span
@@ -175,6 +192,7 @@ const personalSideer = (props: objectT) => {
         defaultSelectedKeys={['1']}
         className={styles['menu']}
         onSelect={onMenuSelect}
+        selectedKeys={[current]}
         items={
           roles.length && roles[0].code === 'GUILD'
             ? guidMenu

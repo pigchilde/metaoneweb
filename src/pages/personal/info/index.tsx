@@ -1,19 +1,19 @@
 import { Link } from 'umi';
 import styles from './index.scss';
 import { useIntl } from 'umi';
-import { Button, Radio, Tabs, Select, Image } from 'antd';
+import { Button, message, Radio, Tabs, Select, Image } from 'antd';
 import { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/plots';
 import { Line } from '@ant-design/plots';
 import { history } from 'umi';
 import { connect } from 'dva';
+import copy from 'copy-to-clipboard';
 const { TabPane } = Tabs;
 const { Option } = Select;
 import Loading from '@/components/Loading';
 interface objectT {
   [propName: string]: any;
 }
-
 const myInfo = (props: objectT) => {
   const {
     dispatch,
@@ -27,6 +27,7 @@ const myInfo = (props: objectT) => {
   const [lineData, setLineData] = useState([]);
   const [listDatas, setListDatas] = useState<objectT>({});
   const [backTitle, setTitle] = useState('');
+  const [guildInfo, setGuildInfo] = useState<objectT>({});
 
   const toDetail = (id: string) => {
     history.push(`/personal/gamelist/${id}`);
@@ -47,38 +48,7 @@ const myInfo = (props: objectT) => {
     }
     return arrNew;
   };
-  useEffect(() => {
-    asyncFetch();
-    // roles && setRole(roles[0].code);
-    // switch (roles[0].code) {
-    //   case 'GAMERS': //玩家
-    //     break;
-    //   case 'NFTS_OWNER': //NTF
-    //     break;
-    //   case 'GUILD': //工会
-    //     break;
-    // }
-    dispatch({
-      type: 'guilds/getGuildRoleInfo',
-    }).then((res: objectT) => {
-      console.log('getGuildRoleInfo', res);
-    });
 
-    dispatch({
-      type: 'gamefi/getList',
-      payload: {
-        data: {
-          pageNum: 1,
-          pageSize: 10,
-        },
-      },
-    }).then((res: objectT) => {
-      const { data } = res;
-      const list = data.length > 3 ? random(data) : data;
-      setListDatas({ data: list });
-      setLoading(false);
-    });
-  }, []);
   const asyncFetch = () => {
     fetch(
       'https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json',
@@ -162,6 +132,83 @@ const myInfo = (props: objectT) => {
       },
     ],
   };
+  useEffect(() => {
+    asyncFetch();
+    dispatch({
+      type: 'gamefi/getList',
+      payload: {
+        data: {
+          pageNum: 1,
+          pageSize: 10,
+        },
+      },
+    }).then((res: objectT) => {
+      const { data } = res;
+      const list = data.length > 3 ? random(data) : data;
+      setListDatas({ data: list });
+      setLoading(false);
+    });
+  }, []);
+  useEffect(() => {
+    if (roles) {
+      setRole(roles[0].code);
+      switch (roles[0].code) {
+        case 'GAMERS':
+          setTitle('MY INFOMATION');
+          break;
+        case 'NFTS_OWNER':
+          setTitle('OWNER INFOMATION');
+          break;
+        case 'GUILD':
+          setTitle('GUILD INFOMATION');
+          dispatch({
+            type: 'guilds/getGuildRoleInfo',
+          }).then((res: objectT) => {
+            setGuildInfo(res.data);
+          });
+          break;
+      }
+    }
+  }, [roles]);
+  const copyMsg = (msg: any, tip: string) => {
+    copy(msg);
+    message.info(tip);
+  };
+  const header = () => {
+    if (role == 'GUILD') {
+      const code = guildInfo.invitationCode;
+      const link = window.location.origin + guildInfo.invitationCodeLink;
+      return (
+        <div className={styles['box']}>
+          <p className={styles['txt-item']}>
+            <span>Guild invitation code:</span>
+            <span className={styles['link']}> {code}</span>
+            <Button
+              type="primary"
+              onClick={() => {
+                copyMsg(code, 'Invitation code copied to clipboard');
+              }}
+            >
+              copy code
+            </Button>
+          </p>
+          <p className={styles['txt-item']}>
+            <span>Guild invitation link:</span>
+            <span className={styles['link']}>{link}</span>
+            <Button
+              type="primary"
+              onClick={() => {
+                copyMsg(link, 'Invitation link copied to clipboard');
+              }}
+            >
+              copy link
+            </Button>
+          </p>
+        </div>
+      );
+    }
+  };
+
   const list = listDatas?.data?.map((item: objectT) => {
     return (
       <div
@@ -204,20 +251,10 @@ const myInfo = (props: objectT) => {
   return (
     <>
       <Link to="/" className={styles['back']}>
-        {'< '}
-        MY INFOMATION
+        {`< ${backTitle}`}
       </Link>
       <div className={styles['main']}>
-        <div className={styles['box']}>
-          <p className={styles['txt-item']}>
-            <span>Guild name:</span>
-            <span>guild1</span>
-          </p>
-          <p className={styles['txt-item']}>
-            <span>Guild invitation code:</span>
-            <span className={styles['link']}>ER5FVL8B</span>
-          </p>
-        </div>
+        {header()}
         <div className={styles['box']}>
           <ul className={styles['ico-list']}>
             <li
@@ -238,10 +275,18 @@ const myInfo = (props: objectT) => {
             </li>
           </ul>
         </div>
-        <header className={styles['list-header']}>Recent Game Played</header>
-        <div className={styles['list-wrap']}>
-          {loading ? <Loading /> : listDatas.data?.length > 0 ? list : ''}
-        </div>
+        {role == 'GAMERS' ? (
+          <>
+            <header className={styles['list-header']}>
+              Recent Game Played
+            </header>
+            <div className={styles['list-wrap']}>
+              {loading ? <Loading /> : listDatas.data?.length > 0 ? list : ''}
+            </div>
+          </>
+        ) : (
+          ''
+        )}
 
         <div className={styles['chart-box']}>
           <div className={`${styles['box']} ${styles['box1']}`}>
