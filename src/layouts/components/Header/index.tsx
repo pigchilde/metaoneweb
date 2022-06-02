@@ -94,9 +94,12 @@ const Header = (props: objectT) => {
             >
               {intl.formatMessage({ id: 'ANNOUNCEMENT' })}
             </Link>
-            <a href="http://test2.metaone.gg:3389/" target="_blank">
+            <Link
+              to="/nfts"
+              className={pathname === '/nfts' ? styles['on'] : ''}
+            >
               {intl.formatMessage({ id: 'NFTS_HUB' })}
-            </a>
+            </Link>
             <a href="https://metaone.gg/staking" target="_blank">
               {intl.formatMessage({ id: 'STAKING' })}
             </a>
