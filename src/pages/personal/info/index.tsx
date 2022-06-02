@@ -49,15 +49,15 @@ const myInfo = (props: objectT) => {
   };
   useEffect(() => {
     asyncFetch();
-    roles && setRole(roles[0].code);
-    switch (roles[0].code) {
-      case 'GAMERS': //玩家
-        break;
-      case 'NFTS_OWNER': //NTF
-        break;
-      case 'GUILD': //工会
-        break;
-    }
+    // roles && setRole(roles[0].code);
+    // switch (roles[0].code) {
+    //   case 'GAMERS': //玩家
+    //     break;
+    //   case 'NFTS_OWNER': //NTF
+    //     break;
+    //   case 'GUILD': //工会
+    //     break;
+    // }
     dispatch({
       type: 'guilds/getGuildRoleInfo',
     }).then((res: objectT) => {
