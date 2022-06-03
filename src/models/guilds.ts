@@ -29,6 +29,14 @@ export default {
       ]);
       return { banner: banner, list: list };
     },
+    *joinGuild(
+      { payload, callback }: initialStateT,
+      { call, put, all }: initialStateT,
+    ) {
+      // console.log('payload',payload)
+      const data: initialStateT = yield call(guildsService.joinGuild, payload);
+      return data;
+    },
     *getGuildRoleInfo(
       { payload, callback }: initialStateT,
       { call, put, all }: initialStateT,
@@ -38,11 +46,6 @@ export default {
         payload,
       );
       return data;
-      // const [banner, list]: [initialStateT, initialStateT] = yield all([
-      //   call(guildsService.getGuildsBanner, payload),
-      //   call(guildsService.getGuildsInformationList, payload),
-      // ]);
-      // return { banner: banner, list: list };
     },
     /* *getGamersBanner(
       { payload, callback }: initialStateT,

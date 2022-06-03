@@ -177,7 +177,7 @@ const myInfo = (props: objectT) => {
   const header = () => {
     if (role == 'GUILD') {
       const code = guildInfo.invitationCode;
-      const link = window.location.origin + guildInfo.invitationCodeLink;
+      const link = `${window.location.origin}/personal/joinguild/?invitationCode=${guildInfo.invitationCode}`;
       return (
         <div className={styles['box']}>
           <p className={styles['txt-item']}>
