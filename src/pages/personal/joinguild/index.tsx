@@ -20,21 +20,17 @@ const joinGuild = (props: objectT) => {
       type: 'guilds/joinGuild',
       payload: { invitationCode },
     }).then((res: objectT) => {
-      const { code } = res;
+      const { code, msg } = res;
       if (code == 0) {
         setLoading(false);
         message.info('Success to join').then(() => {
           history.push('/');
         });
       } else {
-        //   message.error('Join the failure');
+        setLoading(false);
+        message.error(msg, 5);
       }
     });
-    // if (userInfo?.uid) {
-
-    // } else {
-    //   history.push('/login');
-    // }
   }, []);
 
   return <>{loading ? <Loading /> : ''}</>;
