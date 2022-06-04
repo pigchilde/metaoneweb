@@ -21,3 +21,13 @@ export const getGuildRoleInfo: objectT = async (params: objectT) => {
     method: 'GET',
   });
 };
+export const joinGuild: objectT = async (params: objectT) => {
+  console.log('params', params);
+  return authRequest(
+    `/center/guild/join?invitationCode=${params.invitationCode}`,
+    {
+      method: 'POST',
+      data: params,
+    },
+  );
+};

@@ -10,10 +10,10 @@ const Revenue = () => {
   const intl = useIntl();
 
   const { TabPane } = Tabs;
-  function tabClick(key) {
+  function tabClick(key: any) {
     console.log(key);
   }
-  const handleSelectChange = (e) => {
+  const handleSelectChange = (e: any) => {
     console.log(e);
   };
 

@@ -177,33 +177,160 @@ const myInfo = (props: objectT) => {
   const header = () => {
     if (role == 'GUILD') {
       const code = guildInfo.invitationCode;
-      const link = window.location.origin + guildInfo.invitationCodeLink;
+      const link = `${window.location.origin}/personal/joinguild/?invitationCode=${guildInfo.invitationCode}`;
       return (
         <div className={styles['box']}>
           <p className={styles['txt-item']}>
             <span>Guild invitation code:</span>
             <span className={styles['link']}> {code}</span>
-            <Button
-              type="primary"
+            <span
+              className={styles['copy']}
               onClick={() => {
                 copyMsg(code, 'Invitation code copied to clipboard');
               }}
             >
-              copy code
-            </Button>
+              {intl.formatMessage({
+                id: 'PERSONAL_GUILD_COPY',
+              })}
+            </span>
           </p>
           <p className={styles['txt-item']}>
             <span>Guild invitation link:</span>
             <span className={styles['link']}>{link}</span>
-            <Button
-              type="primary"
+            <span
+              className={styles['copy']}
               onClick={() => {
                 copyMsg(link, 'Invitation link copied to clipboard');
               }}
             >
-              copy link
-            </Button>
+              {intl.formatMessage({
+                id: 'PERSONAL_GUILD_COPY1',
+              })}
+            </span>
           </p>
+        </div>
+      );
+    }
+  };
+  const navList = () => {
+    if (role == 'GAMERS') {
+      return (
+        <div className={styles['box']}>
+          <ul className={styles['ico-list']}>
+            <li
+              className={`${styles['ico-item']} ${styles['ico-item1']}  ${styles['cursor']}`}
+              onClick={toPage}
+            >
+              <p className={styles['txt']}>Recent Game Played </p>
+              <p className={styles['txt1']}>
+                <strong>USDT 0</strong>
+              </p>
+            </li>
+            <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
+              <p className={styles['txt']}>Last Login</p>
+              <p className={styles['txt1']}>
+                <strong>Feb 3, 2022</strong>
+              </p>
+            </li>
+          </ul>
+        </div>
+      );
+    } else if (role == 'GUILD') {
+      return (
+        <>
+          <div className={styles['box']}>
+            <p className={styles['txt-wallet']}>
+              <span>
+                {intl.formatMessage({
+                  id: 'PERSONAL_GUILD_TXT3',
+                })}
+              </span>
+              <Link to={`/personal/info`} className={styles['view']}>
+                {intl.formatMessage({
+                  id: 'PERSONAL_GUILD_VIEW',
+                })}
+              </Link>
+            </p>
+          </div>
+          <div className={styles['box']}>
+            <ul className={styles['ico-list']}>
+              <li className={`${styles['ico-item']} ${styles['ico-item1']}`}>
+                <p className={styles['txt']}>
+                  {intl.formatMessage({
+                    id: 'PERSONAL_GUILD_TXT4',
+                  })}
+                </p>
+                <p className={styles['txt1']}>
+                  <strong>87</strong>
+                </p>
+              </li>
+              <li
+                className={`${styles['ico-item']} ${styles['ico-item2']}  ${styles['cursor']}`}
+                onClick={toPage}
+              >
+                <p className={styles['txt']}>
+                  {intl.formatMessage({
+                    id: 'PERSONAL_GUILD_TXT5',
+                  })}
+                </p>
+                <p className={styles['txt1']}>
+                  <strong>2866.29</strong>
+                </p>
+              </li>
+              <li className={`${styles['ico-item']} ${styles['ico-item3']}`}>
+                <p className={styles['txt']}>
+                  {intl.formatMessage({
+                    id: 'PERSONAL_GUILD_TXT6',
+                  })}
+                </p>
+                <p className={styles['txt1']}>
+                  <strong>NO.15</strong>
+                </p>
+              </li>
+              <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
+                <p className={styles['txt']}>
+                  {intl.formatMessage({
+                    id: 'PERSONAL_GUILD_TXT7',
+                  })}
+                </p>
+                <p className={styles['txt1']}>
+                  <strong>0</strong>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </>
+      );
+    } else if (role == 'NFTS_OWNER') {
+      return (
+        <div className={styles['box']}>
+          <ul className={styles['ico-list']}>
+            <li
+              onClick={toPage}
+              className={`${styles['ico-item']} ${styles['ico-item2']}  ${styles['cursor']}`}
+            >
+              <p className={styles['txt']}>
+                {intl.formatMessage({
+                  id: 'PERSONAL_GUILD_TXT5',
+                })}
+              </p>
+              <p className={styles['txt1']}>
+                <strong>2866.29</strong>
+              </p>
+            </li>
+            <li className={`${styles['ico-item']} ${styles['ico-item1']}`}>
+              <p className={styles['txt']}>My NTFS </p>
+              <p className={styles['txt1']}>
+                <strong>123</strong>
+              </p>
+            </li>
+            <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
+              <p className={styles['txt']}>My Wallets</p>
+              <p className={styles['txt1']}>
+                <strong>0</strong>
+              </p>
+            </li>
+          </ul>
         </div>
       );
     }
@@ -255,26 +382,7 @@ const myInfo = (props: objectT) => {
       </Link>
       <div className={styles['main']}>
         {header()}
-        <div className={styles['box']}>
-          <ul className={styles['ico-list']}>
-            <li
-              className={`${styles['ico-item']} ${styles['ico-item1']}`}
-              onClick={toPage}
-            >
-              <p className={styles['txt']}>Recent Game Played </p>
-              <p className={styles['txt1']}>
-                <strong>USDT 0</strong>
-              </p>
-            </li>
-
-            <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
-              <p className={styles['txt']}>Last Login</p>
-              <p className={styles['txt1']}>
-                <strong>Feb 3, 2022</strong>
-              </p>
-            </li>
-          </ul>
-        </div>
+        {navList()}
         {role == 'GAMERS' ? (
           <>
             <header className={styles['list-header']}>
@@ -287,7 +395,6 @@ const myInfo = (props: objectT) => {
         ) : (
           ''
         )}
-
         <div className={styles['chart-box']}>
           <div className={`${styles['box']} ${styles['box1']}`}>
             <h6 className={styles['title']}>

@@ -20,7 +20,6 @@ const NFTDetail = (props: objectT) => {
   // 获取nft数据
   const getNFTDetails = () => {
     queryNFTDetailsById(params.id).then((res) => {
-      console.log(res.data);
       setItemInfo(res.data);
     });
   };
