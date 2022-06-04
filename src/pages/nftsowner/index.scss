@@ -3,19 +3,20 @@
 }
 
 .sec-news {
-  background: url('~@/assets/nftsowner/img/bg.jpg') #02041d right center no-repeat;
+  background: url('~@/assets/nftsowner/img/bg.jpg') #02041d right center
+    no-repeat;
   background-size: cover;
   padding-bottom: 63px;
 
   .sec-tit {
-    font-size: 100px;
+    font-size: 55px;
     color: $white;
     font-weight: bold;
     letter-spacing: -4px;
     line-height: 105px;
     padding-top: 37px;
   }
-  
+
   .sec-desc {
     font-size: 30px;
     color: $white;
@@ -87,10 +88,11 @@
     padding: 200px 0;
   }
   &:after {
-    content: "";
+    content: '';
     display: block;
     height: 24px;
-    background: url('~@/assets/nftsowner/img/divi_line.png') center center no-repeat;
+    background: url('~@/assets/nftsowner/img/divi_line.png') center center
+      no-repeat;
   }
   &:nth-of-type(2) {
     section {

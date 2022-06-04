@@ -7,6 +7,7 @@ import { Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
+import Empty from '@/components/Empty';
 
 const { TabPane } = Tabs;
 interface objectT {
@@ -19,6 +20,7 @@ const Gamers = (props: objectT) => {
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
   const [informationList, setInformationList] = useState({} as objectT);
+  const [top3, setTop3] = useState({} as objectT);
 
   useEffect(() => {
     setLoading(true);
@@ -37,6 +39,150 @@ const Gamers = (props: objectT) => {
       setLoading(false);
     });
   }, []);
+
+  const weekTop3 = [
+    {
+      name: 'Lucky',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 238,
+    },
+    {
+      name: 'CROSS',
+      guild: 'B.C.A.',
+      favGames: 'RaceFi、SolChicks',
+      usdt: 212,
+    },
+    {
+      name: 'TheEggman ',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 203,
+    },
+  ];
+
+  const weekTop4To10 = [
+    {
+      name: 'Moon',
+      guild: 'HEROES',
+      favGames: 'Zombie World Z ',
+      usdt: 197,
+    },
+    {
+      name: 'HOHO',
+      guild: 'B.C.A.',
+      favGames: 'RaceFi、SolChicks',
+      usdt: 191,
+    },
+    {
+      name: 'YouHornV2',
+      guild: 'Sliverhand',
+      favGames: 'Age of Tanks',
+      usdt: 188,
+    },
+    {
+      name: 'Lanzzi',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 186,
+    },
+    {
+      name: 'Foggy',
+      guild: 'King Of Legend',
+      favGames: 'Seoul Stars',
+      usdt: 182,
+    },
+    {
+      name: 'RRC',
+      guild: 'SMTH',
+      favGames: 'The Killbox',
+      usdt: 179,
+    },
+    {
+      name: 'Simon',
+      guild: 'ZIXIA',
+      favGames: 'The Next War',
+      usdt: 177,
+    },
+  ];
+
+  const overAllTop3 = [
+    {
+      name: 'TheEggman',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 3507,
+    },
+    {
+      name: 'Lanzzi',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 3044,
+    },
+    {
+      name: 'YeoRae',
+      guild: 'TTGS',
+      favGames: 'Seoul Stars',
+      usdt: 2761,
+    },
+  ];
+
+  const overAllTop4To10 = [
+    {
+      name: 'CROSS',
+      guild: 'B.C.A.',
+      favGames: 'RaceFi、SolChicks',
+      usdt: 2399,
+    },
+    {
+      name: 'Lucky',
+      guild: 'Accelerate',
+      favGames: 'Age of Tanks',
+      usdt: 1974,
+    },
+    {
+      name: 'YouHornV2',
+      guild: 'Sliverhand',
+      favGames: 'Age of Tanks',
+      usdt: 1746,
+    },
+    {
+      name: 'LeoQuixere',
+      guild: 'GTA',
+      favGames: 'The Next Wa',
+      usdt: 1535,
+    },
+    {
+      name: 'HOHO',
+      guild: 'B.C.A.',
+      favGames: 'RaceFi、SolChicks',
+      usdt: 1329,
+    },
+    {
+      name: 'Nemisis120',
+      guild: 'Risen',
+      favGames: 'The Killbox',
+      usdt: 1311,
+    },
+    {
+      name: 'Moon',
+      guild: 'HEROES',
+      favGames: 'Zombie World Z ',
+      usdt: 1297,
+    },
+  ];
+
+  useEffect(() => {
+    setTop3(weekTop3);
+  }, []);
+
+  const onTabChange = (e) => {
+    if (e === '1') {
+      setTop3(weekTop3);
+    } else {
+      setTop3(overAllTop3);
+    }
+  };
   return (
     <>
       {<Banner data={bannerData} />}
@@ -49,271 +195,91 @@ const Gamers = (props: objectT) => {
             })}
           </h3>
           <div className={styles['gamers-list-con']}>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                Guild:Guild Name <br />
-                FAV GamesRPG、ACT、AVG
-              </dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                Guild:Guild Name <br />
-                FAV GamesRPG、ACT、AVG
-              </dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                Guild:Guild Name <br />
-                FAV GamesRPG、ACT、AVG
-              </dd>
-            </dl>
+            {loading ? (
+              <Loading></Loading>
+            ) : top3?.length ? (
+              top3.map((item: objectT, index: number) => {
+                return (
+                  <dl key={index}>
+                    <dt>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['name']}>{item.name}</span>
+                      <span className={styles['score']}>
+                        {item.usdt}
+                        <i>USDT</i>
+                      </span>
+                    </dt>
+                    <dd className={styles['img']}></dd>
+                    <dd className={styles['txt']}>
+                      Guild:{item.guild} <br />
+                      FAV Games:{item.favGames}
+                    </dd>
+                  </dl>
+                );
+              })
+            ) : (
+              <Empty></Empty>
+            )}
             <div className={styles['gamers-list-table']}>
-              {/* <ul className={styles['table-tab']}>
-                <li className={styles['active']}>
-                  {intl.formatMessage({
-                    id: 'GAMERS_List_TAB1',
-                  })}
-                </li>
-                <li>
-                  {intl.formatMessage({
-                    id: 'GAMERS_List_TAB2',
-                  })}
-                </li>
-              </ul>
-               */}
-              <Tabs defaultActiveKey="1">
+              <Tabs defaultActiveKey="1" onChange={onTabChange}>
                 <TabPane tab="Weekly List" key="1">
                   <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : weekTop4To10?.length ? (
+                      weekTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li key={index}>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>Guild:{item.guild} FAV Games:item.favGames</i>
+                            </span>
+                            <span className={styles['score']}>
+                              {item.usdt}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
                   </ul>
                 </TabPane>
                 <TabPane tab="Overall List" key="2">
                   <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name1
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>Guild:Guild Name FAV GamesRPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : overAllTop4To10?.length ? (
+                      overAllTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li key={index}>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>Guild:{item.guild} FAV Games:item.favGames</i>
+                            </span>
+                            <span className={styles['score']}>
+                              {item.usdt}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
                   </ul>
                 </TabPane>
               </Tabs>

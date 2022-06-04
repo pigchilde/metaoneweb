@@ -7,7 +7,8 @@
 }
 
 .cm-tit {
-  font-size: 50px;
+  font-size: 55px;
+  font-weight: bold;
   color: $white;
 }
 
@@ -41,6 +42,7 @@
     margin-bottom: 48px;
     letter-spacing: -1px;
     @include lineRow(8);
+    font-weight: 300;
   }
   .btn-download {
     width: 197px;
@@ -77,10 +79,13 @@
   .cm-tit {
     margin: 90px 0 15px;
     line-height: 48px;
+    font-weight: bold;
+    font-size: 50px;
   }
   .desc {
     font-size: 30px;
     line-height: 36px;
+    font-weight: 300;
   }
 }
 
@@ -92,17 +97,20 @@
   margin-bottom: 108px;
   .txt-top {
     font-size: 40px;
+    font-weight: 400;
     line-height: 40px;
     margin: 82px 0 18px;
   }
   .tit {
     font-size: 100px;
+    font-weight: bold;
     line-height: 48px;
     margin-bottom: 26px;
     color: $white;
   }
   .desc {
     font-size: 30px;
+    font-weight: 300;
     line-height: 36px;
     margin-bottom: 33px;
     width: 720px;
@@ -203,7 +211,6 @@
   .name {
     font-size: 24px;
     line-height: 30px;
-    word-break: break-all;
     margin-bottom: 25px;
   }
   .intro {

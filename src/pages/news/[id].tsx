@@ -47,7 +47,7 @@ const Detail = (props: objectT) => {
         <article className={styles['article-page']}>
           <h3>{newDatas.title}</h3>
           <span className={styles['time']}>
-            {moment(newDatas.createTime).format('LL')}
+            {moment(newDatas.newsTime).format('LL')}
           </span>
           <div dangerouslySetInnerHTML={{ __html: newDatas.content }}></div>
         </article>

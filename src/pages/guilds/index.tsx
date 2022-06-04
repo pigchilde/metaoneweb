@@ -7,6 +7,7 @@ import { Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
+import Empty from '@/components/Empty';
 
 const { TabPane } = Tabs;
 
@@ -20,6 +21,7 @@ const Guilds = (props: objectT) => {
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
   const [informationList, setInformationList] = useState({} as objectT);
+  const [top3, setTop3] = useState({} as objectT);
 
   useEffect(() => {
     setLoading(true);
@@ -38,6 +40,171 @@ const Guilds = (props: objectT) => {
       setLoading(false);
     });
   }, []);
+
+  const weekTop3 = [
+    {
+      name: 'AMU',
+      size: 832,
+      from: 'SG',
+      gameType: 'SLG、TCG、AVG',
+      usdt: 1207,
+    },
+    {
+      name: 'B.C.A.',
+      size: 776,
+      from: 'MY',
+      gameType: 'SLG、SIM、CAG',
+      usdt: 1131,
+    },
+    {
+      name: 'HEROES',
+      size: 735,
+      from: 'CN',
+      gameType: 'PZL、TAB、RTS',
+      usdt: 1034,
+    },
+  ];
+
+  const weekTop4To10 = [
+    {
+      name: 'King Of Legend',
+      size: 692,
+      from: 'US',
+      gameType: 'RTS、TCG、TAB',
+      usdt: 993,
+    },
+    {
+      name: 'SliverLand',
+      size: 665,
+      from: 'KP',
+      gameType: 'CAG、TAB、SLG',
+      usdt: 928,
+    },
+    {
+      name: 'TTGS',
+      size: 637,
+      from: 'KH',
+      gameType: 'PZL、SIM、MSC',
+      usdt: 875,
+    },
+    {
+      name: 'SMTH',
+      size: 611,
+      from: 'SG',
+      gameType: 'SLG、AVG、PZL',
+      usdt: 837,
+    },
+    {
+      name: 'ZIXIA',
+      size: 570,
+      from: 'JP',
+      gameType: 'STG、SIM、MSC',
+      usdt: 806,
+    },
+    {
+      name: 'Free World',
+      size: 563,
+      from: 'LA',
+      gameType: 'SLG、STG、RTS',
+      usdt: 779,
+    },
+    {
+      name: 'Destiny',
+      size: 559,
+      from: 'HK-CN',
+      gameType: 'TCG、SIM、CAG',
+      usdt: 751,
+    },
+  ];
+
+  const overAllTop3 = [
+    {
+      name: 'AMU',
+      size: 832,
+      from: 'SG',
+      gameType: 'SLG、TCG、AVG',
+      usdt: 17998,
+    },
+    {
+      name: 'B.C.A.',
+      size: 776,
+      from: 'MY',
+      gameType: 'SLG、SIM、CAG',
+      usdt: 15437,
+    },
+    {
+      name: 'TTGS',
+      size: 637,
+      from: 'KH',
+      gameType: 'PZL、SIM、MSC',
+      usdt: 13904,
+    },
+  ];
+
+  const overAllTop4To10 = [
+    {
+      name: 'GTA',
+      size: 591,
+      from: 'US',
+      gameType: 'STG、SIM、MSC',
+      usdt: 11796,
+    },
+    {
+      name: 'SliverLand',
+      size: 665,
+      from: 'KP',
+      gameType: 'CAG、TAB、SLG',
+      usdt: 10880,
+    },
+    {
+      name: 'HEROES',
+      size: 735,
+      from: 'CN',
+      gameType: 'PZL、TAB、RTS ',
+      usdt: 10427,
+    },
+    {
+      name: 'Risen',
+      size: 493,
+      from: 'KH',
+      gameType: 'TCG、SIM、CAG',
+      usdt: 9979,
+    },
+    {
+      name: 'King Of Legend',
+      size: 692,
+      from: 'US',
+      gameType: 'RTS、TCG、TAB',
+      usdt: 9910,
+    },
+    {
+      name: 'SMTH',
+      size: 611,
+      from: 'SG',
+      gameType: 'SLG、AVG、PZL',
+      usdt: 9825,
+    },
+    {
+      name: 'Absolute Domain',
+      size: 438,
+      from: 'CN',
+      gameType: 'SLG、STG、RTS',
+      usdt: 9703,
+    },
+  ];
+
+  useEffect(() => {
+    setTop3(weekTop3);
+  }, []);
+
+  const onTabChange = (e) => {
+    if (e === '1') {
+      setTop3(weekTop3);
+    } else {
+      setTop3(overAllTop3);
+    }
+  };
+
   return (
     <>
       <Banner data={bannerData} />
@@ -50,56 +217,36 @@ const Guilds = (props: objectT) => {
             })}
           </h3>
           <div className={styles['gamers-list-con']}>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                size:500 from:Area <br />
-                Gametype:RPG、ACT、AVG
-              </dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                size:500 from:Area <br />
-                Gametype:RPG、ACT、AVG
-              </dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>
-                  7700<i>USDT</i>
-                </span>
-              </dt>
-              <dd className={styles['img']}></dd>
-              <dd className={styles['txt']}>
-                size:500 from:Area <br />
-                Gametype:RPG、ACT、AVG
-              </dd>
-            </dl>
+            {loading ? (
+              <Loading></Loading>
+            ) : top3?.length ? (
+              top3.map((item: objectT, index: number) => {
+                return (
+                  <dl key={index}>
+                    <dt>
+                      <span className={styles['avatar']}>
+                        <img src={avater} />
+                      </span>
+                      <span className={styles['name']}>{item.name}</span>
+                      <span className={styles['score']}>
+                        {item.usdt}
+                        <i>USDT</i>
+                      </span>
+                    </dt>
+                    <dd className={styles['img']}></dd>
+                    <dd className={styles['txt']}>
+                      size:{item.size} from:{item.from} <br />
+                      Gametype:{item.gameType}
+                    </dd>
+                  </dl>
+                );
+              })
+            ) : (
+              <Empty></Empty>
+            )}
+
             <div className={styles['gamers-list-table']}>
-              <Tabs defaultActiveKey="1">
+              <Tabs defaultActiveKey="1" onChange={onTabChange}>
                 {/* <ul className={styles['table-tab']}>
                   <li className={styles['active']}>
                     {intl.formatMessage({
@@ -119,104 +266,34 @@ const Guilds = (props: objectT) => {
                   key="1"
                 >
                   <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : weekTop4To10?.length ? (
+                      weekTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>
+                                size:{item.size} from:{item.from} Gametype:
+                                {item.gameType}
+                              </i>
+                            </span>
+                            <span className={styles['score']}>
+                              {item.usdt}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
                   </ul>
                 </TabPane>
                 <TabPane
@@ -226,104 +303,34 @@ const Guilds = (props: objectT) => {
                   key="2"
                 >
                   <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name1
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>
-                        7700<i>USDT</i>
-                      </span>
-                    </li>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : overAllTop4To10?.length ? (
+                      overAllTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>
+                                size:{item.size} from:{item.from} Gametype:
+                                {item.gameType}
+                              </i>
+                            </span>
+                            <span className={styles['score']}>
+                              {item.usdt}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
                   </ul>
                 </TabPane>
               </Tabs>

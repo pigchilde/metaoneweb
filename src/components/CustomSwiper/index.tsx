@@ -86,7 +86,7 @@ const CustomSwiper = (props: any) => {
                       <div className={styles['info']}>
                         <h4 className={styles['tit']}>{item.title}</h4>
                         <p className={styles['desc']}>{item.outline}</p>
-                        <time>{moment(item.createTime).format('LL')}</time>
+                        <time>{moment(item.newsTime).format('LL')}</time>
                       </div>
                     </figure>
                   </Link>

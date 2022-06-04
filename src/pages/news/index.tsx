@@ -92,7 +92,7 @@ const News = (props: objectT) => {
                     <h6>{i.title} </h6>
                     <p className={styles['txt-desc']}>{i.ellipsisContent}</p>
                     <p className={styles['txt-time']}>
-                      {moment(i.createTime).format('LL')}
+                      {moment(i.newsTime).format('LL')}
                     </p>
                   </div>
                 </li>

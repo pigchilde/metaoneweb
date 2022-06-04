@@ -89,27 +89,27 @@ const myInfo = (props: objectT) => {
   };
   const data = [
     {
-      type: '分类一',
+      type: 'The Killbox',
       value: 27,
     },
     {
-      type: '分类二',
+      type: 'Age of Tanks',
       value: 25,
     },
     {
-      type: '分类三',
+      type: 'Zombie World Z',
       value: 18,
     },
     {
-      type: '分类四',
+      type: 'RaceFi',
       value: 15,
     },
     {
-      type: '分类五',
+      type: 'SolChicks',
       value: 10,
     },
     {
-      type: '其他',
+      type: 'Other',
       value: 5,
     },
   ];
