@@ -92,18 +92,15 @@ const ObsUpload = (props: objectT) => {
   const handleChange = (info: {
     file: { status: string; originFileObj: { name: string } };
   }) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      upload(info.file.originFileObj);
-      getBase64(info.file.originFileObj, (imageUrl: SetStateAction<string>) => {
-        setImageUrl(imageUrl);
-        setLoading(false);
-      });
-    }
+    // if (info.file.status === 'uploading') {
+    upload(info.file.originFileObj);
+    getBase64(info.file.originFileObj, (imageUrl: SetStateAction<string>) => {
+      setImageUrl(imageUrl);
+      setLoading(false);
+    });
+    setLoading(true);
+    //   return;
+    // }
   };
 
   return (
@@ -114,6 +111,7 @@ const ObsUpload = (props: objectT) => {
       showUploadList={false}
       beforeUpload={beforeUpload}
       onChange={handleChange}
+      customRequest={() => {}}
     >
       {imageUrl || userInfo.avatar ? (
         <div className={styles['img-box']}>
