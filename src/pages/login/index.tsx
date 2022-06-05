@@ -63,8 +63,8 @@ const Login = (props: objectT) => {
   return (
     <div className={styles['login-page']}>
       <header className={styles['login-head']}>
-        <h1>Login</h1>
-        <p>WELCOME BACK</p>
+        <h1>{intl.formatMessage({ id: 'LOGIN' })}</h1>
+        <p>{intl.formatMessage({ id: 'LOGIN_WELCOME_TEXT' })}</p>
       </header>
       <Form
         name="basic"
@@ -76,7 +76,7 @@ const Login = (props: objectT) => {
         layout="vertical"
       >
         <Form.Item
-          label="Email"
+          label={intl.formatMessage({ id: 'LOGIN_EMAIL' })}
           name="username"
           rules={[
             {
@@ -89,19 +89,32 @@ const Login = (props: objectT) => {
             },
           ]}
         >
-          <Input placeholder="Your Email" />
+          <Input
+            placeholder={intl.formatMessage({ id: 'LOGIN_EMAIL_PLACEHOLDER' })}
+          />
         </Form.Item>
         <Form.Item
-          label="Password"
+          label={intl.formatMessage({ id: 'LOGIN_PASSWORD' })}
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({ id: 'LOGIN_PASSWORD_TIP' }),
+            },
+          ]}
         >
-          <Input.Password placeholder="Your Password" />
+          <Input.Password
+            placeholder={intl.formatMessage({
+              id: 'LOGIN_PASSWORD_PLACEHOLDER',
+            })}
+          />
         </Form.Item>
         <Form.Item>
-          <a href="/login/password">Forgot password?</a>
+          <a href="/login/password">
+            {intl.formatMessage({ id: 'LOGIN_FORGOT_PASSWORD' })}?
+          </a>
           <a className={styles['resgister']} href="/register">
-            Sign Up
+            {intl.formatMessage({ id: 'LOGIN_SIGN_UP' })}
           </a>
         </Form.Item>
         <Form.Item>
@@ -112,7 +125,7 @@ const Login = (props: objectT) => {
             className={styles['form-submit']}
             disabled={loading.global}
           >
-            Sign In
+            {intl.formatMessage({ id: 'SIGN_IN' })}
           </Button>
         </Form.Item>
       </Form>

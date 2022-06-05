@@ -1,7 +1,7 @@
 import styles from '../index.scss';
 import { connect, useIntl, useHistory } from 'umi';
-import { Form, Input, Button, Checkbox, message } from 'antd';
-import { useEffect, useState } from 'react';
+import { Form, Input, Button, message } from 'antd';
+import { useState } from 'react';
 
 interface objectT {
   [propName: string]: any;
@@ -100,7 +100,7 @@ const Password = (props: any) => {
   return (
     <div className={styles['login-page']}>
       <header className={styles['login-head']}>
-        <h1>Reset Password</h1>
+        <h1>{intl.formatMessage({ id: 'RESET_PASSWORD' })}</h1>
       </header>
       <Form
         name="basic"
@@ -112,31 +112,48 @@ const Password = (props: any) => {
         form={form}
       >
         <Form.Item
-          label="Email"
+          label={intl.formatMessage({ id: 'RESET_PASSWORD_EMAIL' })}
           name="email"
           rules={[
             {
               required: true,
-              message: 'Please input your Your Email',
+              message: intl.formatMessage({ id: 'RESET_PASSWORD_EMAIL_TIP1' }),
             },
             {
               type: 'email',
-              message: 'This email address is invalid.',
+              message: intl.formatMessage({ id: 'RESET_PASSWORD_EMAIL_TIP2' }),
             },
           ]}
         >
-          <Input placeholder="Your Email" />
+          <Input
+            placeholder={intl.formatMessage({
+              id: 'RESET_PASSWORD_EMAIL_PLACEHOLDER',
+            })}
+          />
         </Form.Item>
-        <Form.Item label="VerificationCode">
+        <Form.Item
+          label={intl.formatMessage({ id: 'RESET_PASSWORD_VERIFICATION_CODE' })}
+        >
           <Form.Item
             name="verificationCode"
-            rules={[{ required: true }]}
+            rules={[
+              {
+                required: true,
+                message: intl.formatMessage({
+                  id: 'RESET_PASSWORD_VERIFICATION_CODE_TIP',
+                }),
+              },
+            ]}
             style={{
               display: 'inline-block',
               width: 'calc(100% - 136px)',
             }}
           >
-            <Input placeholder="Verification Code" />
+            <Input
+              placeholder={intl.formatMessage({
+                id: 'RESET_PASSWORD_VERIFICATION_CODE_PLACEHOLDER',
+              })}
+            />
           </Form.Item>
 
           <Button
@@ -145,17 +162,21 @@ const Password = (props: any) => {
             disabled={!canSendCode}
             onClick={handleSendCode}
           >
-            {!codeRemainTime ? 'Send' : `${codeRemainTime}s`}
+            {!codeRemainTime
+              ? intl.formatMessage({
+                  id: 'RESET_PASSWORD_VERIFICATION_CODE_SEND',
+                })
+              : `${codeRemainTime}s`}
           </Button>
         </Form.Item>
         <Form.Item
-          label="Password"
+          label={intl.formatMessage({ id: 'RESET_PASSWORD_PASSWORD' })}
           name="password"
           rules={[
             {
               required: true,
               message: intl.formatMessage({
-                id: 'REGISTER_PASSWORD_TIP',
+                id: 'RESET_PASSWORD_PASSWORD_TIP1',
               }),
               whitespace: true,
             },
@@ -169,22 +190,28 @@ const Password = (props: any) => {
               pattern:
                 /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{7,20}$/,
               message: intl.formatMessage({
-                id: 'REGISTER_PASSWORD_TIP3',
+                id: 'RESET_PASSWORD_PASSWORD_TIP2',
               }),
             },
           ]}
           hasFeedback
         >
-          <Input.Password placeholder="Your Password" />
+          <Input.Password
+            placeholder={intl.formatMessage({
+              id: 'RESET_PASSWORD_PASSWORD_PLACEHOLDER',
+            })}
+          />
         </Form.Item>
         <Form.Item
-          label="ConfirmPassword"
+          label={intl.formatMessage({ id: 'RESET_PASSWORD_CONFIRM_PASSWORD' })}
           name="confirmPassword"
           dependencies={['password']}
           rules={[
             {
               required: true,
-              message: 'Please input your confirm Password!',
+              message: intl.formatMessage({
+                id: 'RESET_PASSWORD_CONFIRM_PASSWORD_TIP1',
+              }),
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
@@ -192,13 +219,21 @@ const Password = (props: any) => {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error('The two passwords that you entered do not match!'),
+                  new Error(
+                    intl.formatMessage({
+                      id: 'RESET_PASSWORD_CONFIRM_PASSWORD_TIP2',
+                    }),
+                  ),
                 );
               },
             }),
           ]}
         >
-          <Input.Password placeholder="Confirm Password" />
+          <Input.Password
+            placeholder={intl.formatMessage({
+              id: 'RESET_PASSWORD_CONFIRM_PASSWORD_PLACEHOLDER',
+            })}
+          />
         </Form.Item>
         <Form.Item>
           <Button
@@ -207,7 +242,7 @@ const Password = (props: any) => {
             htmlType="submit"
             className={styles['form-submit']}
           >
-            Reset
+            {intl.formatMessage({ id: 'RESET_PASSWORD_RESET' })}
           </Button>
         </Form.Item>
       </Form>
