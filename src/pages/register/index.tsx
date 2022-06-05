@@ -21,6 +21,7 @@ const Register = (props: objectT) => {
     }),
     disable: false,
   } as objectT);
+  //当前tab界面
   const [tabValues, setTabValues] = useState({
     id: 1,
     code: 'GAMERS',
@@ -31,7 +32,11 @@ const Register = (props: objectT) => {
       id: 'SIGN_TITLE1',
     }),
     bannerClass: 'sign-banner1',
+    tips: intl.formatMessage({
+      id: 'SIGN_TAB_GAME_TIP',
+    }),
   } as objectT);
+  //tab数据
   const [tabDatas, setTabDatas] = useState([
     {
       id: 1,
@@ -43,6 +48,9 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE1',
       }),
       bannerClass: 'sign-banner1',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP',
+      }),
     },
     {
       id: 2,
@@ -54,6 +62,9 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE2',
       }),
       bannerClass: 'sign-banner2',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP1',
+      }),
     },
     {
       id: 3,
@@ -65,6 +76,9 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE3',
       }),
       bannerClass: 'sign-banner3',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP2',
+      }),
     },
   ] as Array<objectT>);
 
@@ -221,11 +235,7 @@ const Register = (props: objectT) => {
             })}
           </Tabs>
           <div className={styles['form-box']}>
-            <p className={styles['tip']}>
-              {intl.formatMessage({
-                id: 'SIGN_TAB_GAME_TIP',
-              })}
-            </p>
+            <p className={styles['tip']}>{tabValues.tips}</p>
             <Form
               form={form}
               name="register"

@@ -19,7 +19,11 @@ export default {
   SIGN_TAB_GUILD: 'Guild',
   SIGN_TAB_NFT: 'NFTs Owner',
   SIGN_TAB_GAME_TIP:
-    'Interested to be one of the first guilds of metaone? please leave your details below.',
+    'Are you interested in becoming a MetaOne gamer? Sign up now!',
+  SIGN_TAB_GAME_TIP1:
+    'Are you interested in joining MetaOne as a guild? Sign up now!',
+  SIGN_TAB_GAME_TIP2:
+    'Are you interested in becoming a MetaOne NFTs Owner? Sign up now!',
   PERSONAL_BACK: 'BACK',
   PERSONAL_GUILD_BACK: 'GUILD INFORMATION',
   PERSONAL_GUILD_ADDRESS: 'Lessee Address:',
