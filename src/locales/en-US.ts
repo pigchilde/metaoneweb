@@ -200,4 +200,7 @@ export default {
   PERSONAL_MANAGE_TITLE6: 'Status',
   PERSONAL_MANAGE_TITLE7: 'Registration Date',
   PERSONAL_MANAGE_TITLE8: 'Action',
+  NFTS_OWNER_TITLE: 'About MetaOne NFT’s Owner',
+  NFTS_OWNER_DES:
+    'MetaOne provides professional and valuable NFT investment data analysis and information.',
 };

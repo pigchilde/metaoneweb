@@ -247,18 +247,6 @@ const Guilds = (props: objectT) => {
 
             <div className={styles['gamers-list-table']}>
               <Tabs defaultActiveKey="1" onChange={onTabChange}>
-                {/* <ul className={styles['table-tab']}>
-                  <li className={styles['active']}>
-                    {intl.formatMessage({
-                      id: 'GAMERS_List_TAB1',
-                    })}
-                  </li>
-                  <li>
-                    {intl.formatMessage({
-                      id: 'GAMERS_List_TAB2',
-                    })}
-                  </li>
-                </ul> */}
                 <TabPane
                   tab={intl.formatMessage({
                     id: 'GAMERS_List_TAB1',

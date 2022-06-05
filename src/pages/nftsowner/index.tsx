@@ -43,18 +43,23 @@ const Nftsowners = (props: objectT) => {
   return (
     <>
       <div className={styles['main']}>
-        <div className="wrapper">
-          <section className={styles['sec-news']}>
-            <h2 className={styles['sec-tit']}>About MetaOne NFT’s Owner</h2>
+        <section className={styles['sec-news']}>
+          <div className="wrapper">
+            <h2 className={styles['sec-tit']}>
+              {intl.formatMessage({
+                id: 'NFTS_OWNER_TITLE',
+              })}
+            </h2>
             <p className={styles['sec-desc']}>
-              MetaOne provides professional and valuable NFT investment data
-              analysis and information.
+              {intl.formatMessage({
+                id: 'NFTS_OWNER_DES',
+              })}
             </p>
             <div className={styles['news-list']}>
               {newsList && newsList.length
                 ? newsList.map((item: objectT, index: number) => (
-                    <Link to="###">
-                      <figure>
+                    <Link to={`/news/${item.id}?tab=1201`}>
+                      <figure key={item.id}>
                         <div className={styles['hd']}>
                           <h3 className={styles['tit']}>{item.title}</h3>
                           <p className={styles['desc']}>{item.outline}</p>
@@ -69,8 +74,10 @@ const Nftsowners = (props: objectT) => {
                 : null}
             </div>
             <PaginationItem />
-          </section>
-          <section className={styles['sec-video-text']}>
+          </div>
+        </section>
+        <section className={styles['sec-video-text']}>
+          <div className="wrapper">
             <PhotoText
               datas={{
                 title: 'What Is NFT? ',
@@ -78,8 +85,9 @@ const Nftsowners = (props: objectT) => {
                 layoutCategory: 11,
               }}
             />
-          </section>
-          {/*  <section className={styles['sec-video-text']}>
+          </div>
+        </section>
+        {/*  <section className={styles['sec-video-text']}>
             <PhotoText
               datas={{
                 title: 'How To List Your NFT’s In MetaOne?',
@@ -97,7 +105,6 @@ const Nftsowners = (props: objectT) => {
               }}
             />
           </section> */}
-        </div>
       </div>
     </>
   );
