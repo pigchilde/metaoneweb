@@ -160,9 +160,15 @@ const Index = (props: objectT) => {
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_INVESTORS_ADVISORS' })}
           </h3>
-          <div className={styles['list']}>
+          <div
+            className={`${styles['list']} ${
+              (adviserList.length + 1) % 5 === 0 || adviserList.length % 5 === 0
+                ? styles['type-1']
+                : ''
+            }`}
+          >
             {adviserList.length
-              ? adviserList.map((item: any) => (
+              ? adviserList.map((item: any, index: number) => (
                   <figure key={item.id}>
                     <div className={styles['figure-inner']}>
                       <img src={item.photo} alt={item.name} />

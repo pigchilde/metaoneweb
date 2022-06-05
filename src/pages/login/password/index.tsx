@@ -121,7 +121,7 @@ const Password = (props: any) => {
             },
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: 'This email address is invalid.',
             },
           ]}
         >

@@ -132,15 +132,46 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    &.type-1 { // 一行最多显示5个
+      figure {
+        width: 283px;
+        margin: 0 23px 50px;
+        @include respond-to(lg) {
+          width: 228px;
+          margin: 0 24px 50px;
+          img {
+            height: 228px;
+          }
+        }
+        @include respond-to(md) {
+          width: 190px;
+          margin: 0 23px 50px;
+          img {
+            height: 190px;
+          }
+        }
+      }
+    }
+    // 默认一行4个
     figure {
       width: 283px;
       height: 500px;
-      margin-bottom: 50px;
+      margin: 0 60px 50px;
       @include respond-to(lg) {
-        width: 220px;
+        width: 240px;
+        height: 440px;
+        margin: 0 50px 50px;
+        img{
+          height: 240px;
+        }
       }
       @include respond-to(md) {
-        width: 180px;
+        width: 230px;
+        height: 396px;
+        margin: 0 23px 90px;
+        img {
+          height: 230px;
+        }
       }
     }
   }
@@ -191,7 +222,7 @@
     cursor: pointer;
     &:hover {
       .intro {
-        height: 230px;
+        height: 140px;
       }
     }
   }
@@ -201,12 +232,6 @@
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 30px;
-    @include respond-to(lg) {
-      height: 220px;
-    }
-    @include respond-to(md) {
-      height: 180px;
-    }
   }
   .name {
     font-size: 24px;
@@ -221,6 +246,7 @@
     text-align: left;
     transition: all 0.5s;
     overflow: hidden;
+    text-align: justify;
     &:after {
       content: '';
       display: block;
@@ -229,7 +255,7 @@
     }
     p {
       padding: 0 8px;
-      max-height: 195px;
+      max-height: 112px;
       @include lineRow(11);
       overflow-y: scroll;
       text-overflow: clip;
