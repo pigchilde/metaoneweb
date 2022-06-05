@@ -27,7 +27,10 @@ const PhotoText = (props: any) => {
       <div className={`${styles['type' + types[layoutCategory]]}`}>
         <div className={styles['text']}>
           <h3>{title}</h3>
-          <div className={styles['text-con']}>{content}</div>
+          <div
+            className={styles['text-con']}
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
         </div>
         <div className={styles['img']}>
           {img ? (
