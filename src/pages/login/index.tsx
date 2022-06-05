@@ -81,11 +81,11 @@ const Login = (props: objectT) => {
           rules={[
             {
               required: true,
-              message: 'Please input your Your Email',
+              message: intl.formatMessage({ id: 'LOGIN_EMAIL_TIP1' }),
             },
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: intl.formatMessage({ id: 'LOGIN_EMAIL_TIP2' }),
             },
           ]}
         >

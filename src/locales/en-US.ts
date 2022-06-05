@@ -135,6 +135,8 @@ export default {
   REGISTER_REGION: 'Region',
   REGISTER_REGION_TIP: 'Please select your Region!',
   REGISTER_SUBMIT: 'Submit',
+  LOGIN_EMAIL_TIP1: 'This email address is invalid.',
+  LOGIN_EMAIL_TIP2: 'This email address is invalid.',
 
   INDEX_VIDEO_SWIPER_TITLE: 'About MetaOne',
   INDEX_VIDEO_SWIPER_DESCRIPTION: 'the network for the new generation',
