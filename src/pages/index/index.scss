@@ -134,7 +134,7 @@
     flex-wrap: wrap;
     figure {
       width: 283px;
-      height: 600px;
+      height: 500px;
       margin-bottom: 50px;
       @include respond-to(lg) {
         width: 220px;
@@ -191,7 +191,7 @@
     cursor: pointer;
     &:hover {
       .intro {
-        height: 210px;
+        height: 230px;
       }
     }
   }
