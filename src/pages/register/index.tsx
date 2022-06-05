@@ -333,14 +333,8 @@ const Register = (props: objectT) => {
                     whitespace: true,
                   },
                   {
-                    min: 7,
-                    message: intl.formatMessage({
-                      id: 'REGISTER_PASSWORD_TIP2',
-                    }),
-                  },
-                  {
                     pattern:
-                      /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{6,20}$/,
+                      /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{7,20}$/,
                     message: intl.formatMessage({
                       id: 'REGISTER_PASSWORD_TIP3',
                     }),
