@@ -17,7 +17,7 @@ interface objectT {
 
 const BasicLayout = (props: any) => {
   moment.locale('en');
-  const pageRef = useRef({} as objectT);
+  const pageRef = useRef({} as HTMLBodyElement);
   const {
     location = {},
     dispatch,

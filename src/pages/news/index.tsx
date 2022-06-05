@@ -43,7 +43,7 @@ const News = (props: objectT) => {
     setLoading(true);
 
     if (!tabValue) {
-      setLoading(false);
+      // setLoading(false);
       return;
     }
     dispatch({
