@@ -180,6 +180,7 @@ const Password = (props: any) => {
         <Form.Item
           label="ConfirmPassword"
           name="confirmPassword"
+          dependencies={['password']}
           rules={[
             {
               required: true,
