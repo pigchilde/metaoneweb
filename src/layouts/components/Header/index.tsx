@@ -4,6 +4,8 @@ import { Link, useIntl, setLocale, connect, history } from 'umi';
 import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { LANG_LIST } from '@/utils/lang';
+import MetaMask from '@/components/MetaMask';
+import InvitionUser from '../InvitionUser';
 
 interface objectT {
   [propName: string]: any;
@@ -191,18 +193,14 @@ const Header = (props: objectT) => {
           ) : (
             <div className={styles['uc-op']}>
               {/* 个人中心头部 */}
-              <Button
-                className={`${styles['btn-invite']} ${styles['r-btn']}`}
-                ghost
-              >
-                {intl.formatMessage({ id: 'COMMON_BUTTON_INVITE_USER' })}
-              </Button>
+              <InvitionUser />
               <Button
                 className={`${styles['btn-connect']} ${styles['r-btn']}`}
                 type="primary"
               >
                 {intl.formatMessage({ id: 'COMMON_BUTTON_CONNECT_WALLET' })}
               </Button>
+              <MetaMask />
             </div>
           )}
         </div>

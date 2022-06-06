@@ -261,7 +261,7 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>87</strong>
+                  <strong>{guildInfo.numbeGamers}</strong>
                 </p>
               </li>
               <li
@@ -274,7 +274,7 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>2866.29</strong>
+                  <strong>{guildInfo.totalYielding}</strong>
                 </p>
               </li>
               <li className={`${styles['ico-item']} ${styles['ico-item3']}`}>
@@ -284,7 +284,7 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>NO.15</strong>
+                  <strong>NO.{guildInfo.guildRanking}</strong>
                 </p>
               </li>
               <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
@@ -294,7 +294,7 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>0</strong>
+                  <strong>{guildInfo.dua}</strong>
                 </p>
               </li>
             </ul>
