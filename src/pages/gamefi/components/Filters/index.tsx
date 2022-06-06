@@ -19,7 +19,7 @@ interface objectT {
 const Filters = (props: objectT) => {
   const intl = useIntl();
   const { dispatch, gamefi = {} } = props;
-  const inputRef = useRef<InputProps>(null);
+
   const GAMEFI_FILTERS_BTN = intl.formatMessage({
     id: 'GAMEFI_FILTERS_BTN',
   });
@@ -44,8 +44,10 @@ const Filters = (props: objectT) => {
   const GAMEFI_FILTERS_POPTITLE = intl.formatMessage({
     id: 'GAMEFI_FILTERS_POPTITLE',
   });
+  const [showReturn, setShowReturn] = useState<boolean>(false);
   const [listDatas, setListDatas] = useState<objectT>({});
   const [loading, setLoading] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState('');
   const [params, setParams] = useState<objectT>({
     pageNum: 1,
     pageSize: 10,
@@ -64,8 +66,16 @@ const Filters = (props: objectT) => {
     setParams({ ...params, pageNum: 0, orderByType: value });
   };
   const changeNameFilter = () => {
-    setParams({ ...params, pageNum: 0, name: inputRef.current?.input?.value });
+    setShowReturn(true);
+    setParams({ ...params, pageNum: 0, name: inputValue });
   };
+
+  const resetInputList = () => {
+    setShowReturn(false);
+    setInputValue('');
+    setParams({ pageNum: 1, pageSize: 10 });
+  };
+
   const onPageChange = (e: number) => {
     setParams({ ...params, pageNum: e });
   };
@@ -138,6 +148,7 @@ const Filters = (props: objectT) => {
       console.log('dd', e);
     }
   };
+
   useEffect(() => {
     setLoading(true);
     dispatch({
@@ -158,7 +169,13 @@ const Filters = (props: objectT) => {
     <div className={`wrapper `}>
       <div className={styles['filter-wrapper']}>
         <aside className={styles['search-box']}>
-          <Input placeholder={GAMEFI_FILTERS_SEARCH} ref={inputRef} />
+          <Input
+            placeholder={GAMEFI_FILTERS_SEARCH}
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
           <SearchOutlined onClick={changeNameFilter} />
         </aside>
         <aside className={styles['select-box']}>
@@ -209,7 +226,11 @@ const Filters = (props: objectT) => {
         {loading ? (
           <Loading />
         ) : listDatas.data?.length > 0 ? (
-          <Filist datas={listDatas.data} />
+          <Filist
+            datas={listDatas.data}
+            showReturn={showReturn}
+            resetInputList={resetInputList}
+          />
         ) : (
           <Empty />
         )}

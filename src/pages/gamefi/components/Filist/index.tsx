@@ -7,7 +7,7 @@ interface objectT {
 }
 const Filist = (props: objectT) => {
   const intl = useIntl();
-  const { datas = {} } = props;
+  const { datas = {}, showReturn, resetInputList } = props;
   const GAMEFI_LIST_TAB1 = intl.formatMessage({
     id: 'GAMEFI_LIST_TAB1',
   });
@@ -26,6 +26,7 @@ const Filist = (props: objectT) => {
   const GAMEFI_LIST_TAB6 = intl.formatMessage({
     id: 'GAMEFI_LIST_TAB6',
   });
+  console.log('showReturn', showReturn);
 
   const toDetailPage = (id: string) => {
     history.push(`/gamefi/${id}`);
@@ -62,7 +63,16 @@ const Filist = (props: objectT) => {
   });
   const listHead = (
     <header className={`${styles.row} ${styles.rowH}`}>
-      <div className={styles.col1}>{GAMEFI_LIST_TAB1}</div>
+      {showReturn ? (
+        <div className={styles.col1}>
+          <span onClick={resetInputList} className={styles.link}>
+            ALL GAMES{' '}
+          </span>
+          SEARCH RESULT
+        </div>
+      ) : (
+        <div className={styles.col1}>{GAMEFI_LIST_TAB1}</div>
+      )}
       <div className={styles.col2}>{GAMEFI_LIST_TAB2}</div>
       <div className={styles.col2}>{GAMEFI_LIST_TAB3}</div>
       <div className={styles.col2}>{GAMEFI_LIST_TAB4}</div>
