@@ -250,7 +250,7 @@ const NFTDetailsPage: React.FC = () => {
                   }}
                 >
                   <RowStack className="Row">
-                    <Typography className="Label">Interest</Typography>
+                    <Typography className="Label">Rental</Typography>
                     <Typography className="Value">
                       {data.leaseInfo.interest} USDT/Day
                     </Typography>
