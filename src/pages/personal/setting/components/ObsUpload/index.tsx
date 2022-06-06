@@ -10,6 +10,10 @@ import { connect } from 'dva';
 import ObsClient from 'esdk-obs-browserjs';
 
 function getBase64(img: any, callback: any) {
+  if (!img) {
+    return;
+  }
+
   const reader = new FileReader();
   reader.addEventListener('load', () => callback(reader.result));
   reader.readAsDataURL(img);
@@ -43,6 +47,9 @@ const ObsUpload = (props: objectT) => {
       secret_access_key: '8SNqzncfqhuIftDPGWiAvIqdE5Zrzwf0uW58kuxD',
       server: serverUrl,
     });
+    if (!file) {
+      return;
+    }
     obsClient.putObject(
       {
         Bucket: bucketName, // 桶名
