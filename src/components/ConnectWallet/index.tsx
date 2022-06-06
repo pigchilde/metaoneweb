@@ -13,7 +13,7 @@ export function ConnectWithSelect({
   error,
   isActive,
 }: {
-  connector: MetaMask | WalletConnect | Network | CoinbaseWallet;
+  connector: MetaMask | WalletConnect | CoinbaseWallet | Network;
   chainId: ReturnType<Web3ReactHooks['useChainId']>;
   isActivating: ReturnType<Web3ReactHooks['useIsActivating']>;
   error: ReturnType<Web3ReactHooks['useError']>;
@@ -77,7 +77,7 @@ export function ConnectWithSelect({
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div style={{ marginBottom: '1rem' }} />
-        <button onClick={() => void connector.deactivate()}>Disconnect</button>
+        <button onClick={() => connector.deactivate()}>Disconnect</button>
       </div>
     );
   } else {
@@ -85,22 +85,19 @@ export function ConnectWithSelect({
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div style={{ marginBottom: '1rem' }} />
         <button
-          onClick={
-            isActivating
-              ? undefined
-              : () =>
-                  connector instanceof WalletConnect ||
-                  connector instanceof Network
-                    ? connector.activate(
-                        desiredChainId === -1 ? undefined : desiredChainId,
-                      )
-                    : connector.activate(
-                        desiredChainId === -1
-                          ? undefined
-                          : getAddChainParameters(desiredChainId),
-                      )
-          }
-          disabled={isActivating}
+          onClick={() => {
+            return connector instanceof WalletConnect ||
+              connector instanceof Network
+              ? connector.activate(
+                  desiredChainId === -1 ? undefined : desiredChainId,
+                )
+              : connector.activate(
+                  desiredChainId === -1
+                    ? undefined
+                    : getAddChainParameters(desiredChainId),
+                );
+          }}
+          // disabled={isActivating}
         >
           Connect
         </button>
