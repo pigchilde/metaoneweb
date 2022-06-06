@@ -21,7 +21,11 @@ const Banner = (props: objectT) => {
     <header className={styles['banner']} style={background1}>
       <div className={`wrapper ${styles['wrap_bg']}`} style={background2}>
         <div className={styles['banner-title']}>
-          <h2>{totalGamers}</h2>
+          <h2>
+            {totalGamers
+              ? totalGamers.replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+              : totalGamers}
+          </h2>
           <p>
             {intl.formatMessage({
               id: 'GAMERS_BANNER_TITLE',

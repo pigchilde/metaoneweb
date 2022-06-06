@@ -21,7 +21,11 @@ const Banner = (props: objectT) => {
     <header className={styles['banner']} style={background1}>
       <div className={`wrapper ${styles['wrap_bg']}`} style={background2}>
         <div className={styles['banner-title']}>
-          <h2>{newGuilds}</h2>
+          <h2>
+            {newGuilds
+              ? newGuilds.replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+              : newGuilds}
+          </h2>
           <p>
             {intl.formatMessage({
               id: 'GUILDS_BANNER_TITLE',

@@ -1,13 +1,27 @@
 import styles from './index.scss';
 import Banner from './components/Banner';
 import { useIntl } from 'umi';
-import avater from '../../assets/gamers/pic/avater.png';
+// import avater from '../../assets/guilds/avater.png';
 import PhotoText from '@/components/PhotoText';
 import { Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
 import Empty from '@/components/Empty';
+
+import guild1 from '../../assets/guilds/guilds1.png';
+import guild2 from '../../assets/guilds/guilds2.png';
+import guild3 from '../../assets/guilds/guilds3.png';
+import guild4 from '../../assets/guilds/guilds4.png';
+import guild5 from '../../assets/guilds/guilds5.png';
+import guild6 from '../../assets/guilds/guilds6.png';
+import guild7 from '../../assets/guilds/guilds7.png';
+import guild8 from '../../assets/guilds/guilds8.png';
+import guild9 from '../../assets/guilds/guilds9.png';
+import guild10 from '../../assets/guilds/guilds10.png';
+import guild11 from '../../assets/guilds/guilds11.png';
+import guild12 from '../../assets/guilds/guilds12.png';
+import defautGuild from '@/assets/common/pic/avatar.png';
 
 const { TabPane } = Tabs;
 
@@ -48,6 +62,7 @@ const Guilds = (props: objectT) => {
       from: 'SG',
       gameType: 'SLG、TCG、AVG',
       usdt: 1207,
+      avater: guild1,
     },
     {
       name: 'B.C.A.',
@@ -55,6 +70,7 @@ const Guilds = (props: objectT) => {
       from: 'MY',
       gameType: 'SLG、SIM、CAG',
       usdt: 1131,
+      avater: guild2,
     },
     {
       name: 'HEROES',
@@ -62,6 +78,7 @@ const Guilds = (props: objectT) => {
       from: 'CN',
       gameType: 'PZL、TAB、RTS',
       usdt: 1034,
+      avater: guild3,
     },
   ];
 
@@ -72,6 +89,7 @@ const Guilds = (props: objectT) => {
       from: 'US',
       gameType: 'RTS、TCG、TAB',
       usdt: 993,
+      avater: guild4,
     },
     {
       name: 'SliverLand',
@@ -79,6 +97,7 @@ const Guilds = (props: objectT) => {
       from: 'KP',
       gameType: 'CAG、TAB、SLG',
       usdt: 928,
+      avater: guild5,
     },
     {
       name: 'TTGS',
@@ -86,6 +105,7 @@ const Guilds = (props: objectT) => {
       from: 'KH',
       gameType: 'PZL、SIM、MSC',
       usdt: 875,
+      avater: guild6,
     },
     {
       name: 'SMTH',
@@ -93,6 +113,7 @@ const Guilds = (props: objectT) => {
       from: 'SG',
       gameType: 'SLG、AVG、PZL',
       usdt: 837,
+      avater: guild7,
     },
     {
       name: 'ZIXIA',
@@ -100,6 +121,7 @@ const Guilds = (props: objectT) => {
       from: 'JP',
       gameType: 'STG、SIM、MSC',
       usdt: 806,
+      avater: guild8,
     },
     {
       name: 'Free World',
@@ -107,6 +129,7 @@ const Guilds = (props: objectT) => {
       from: 'LA',
       gameType: 'SLG、STG、RTS',
       usdt: 779,
+      avater: guild9,
     },
     {
       name: 'Destiny',
@@ -114,6 +137,7 @@ const Guilds = (props: objectT) => {
       from: 'HK-CN',
       gameType: 'TCG、SIM、CAG',
       usdt: 751,
+      avater: guild10,
     },
   ];
 
@@ -124,6 +148,7 @@ const Guilds = (props: objectT) => {
       from: 'SG',
       gameType: 'SLG、TCG、AVG',
       usdt: 17998,
+      avater: guild1,
     },
     {
       name: 'B.C.A.',
@@ -131,6 +156,7 @@ const Guilds = (props: objectT) => {
       from: 'MY',
       gameType: 'SLG、SIM、CAG',
       usdt: 15437,
+      avater: guild2,
     },
     {
       name: 'TTGS',
@@ -138,6 +164,7 @@ const Guilds = (props: objectT) => {
       from: 'KH',
       gameType: 'PZL、SIM、MSC',
       usdt: 13904,
+      avater: guild6,
     },
   ];
 
@@ -148,6 +175,7 @@ const Guilds = (props: objectT) => {
       from: 'US',
       gameType: 'STG、SIM、MSC',
       usdt: 11796,
+      avater: defautGuild,
     },
     {
       name: 'SliverLand',
@@ -155,6 +183,7 @@ const Guilds = (props: objectT) => {
       from: 'KP',
       gameType: 'CAG、TAB、SLG',
       usdt: 10880,
+      avater: guild5,
     },
     {
       name: 'HEROES',
@@ -162,6 +191,7 @@ const Guilds = (props: objectT) => {
       from: 'CN',
       gameType: 'PZL、TAB、RTS ',
       usdt: 10427,
+      avater: guild3,
     },
     {
       name: 'Risen',
@@ -169,6 +199,7 @@ const Guilds = (props: objectT) => {
       from: 'KH',
       gameType: 'TCG、SIM、CAG',
       usdt: 9979,
+      avater: guild11,
     },
     {
       name: 'King Of Legend',
@@ -176,6 +207,7 @@ const Guilds = (props: objectT) => {
       from: 'US',
       gameType: 'RTS、TCG、TAB',
       usdt: 9910,
+      avater: guild4,
     },
     {
       name: 'SMTH',
@@ -183,6 +215,7 @@ const Guilds = (props: objectT) => {
       from: 'SG',
       gameType: 'SLG、AVG、PZL',
       usdt: 9825,
+      avater: guild7,
     },
     {
       name: 'Absolute Domain',
@@ -190,6 +223,7 @@ const Guilds = (props: objectT) => {
       from: 'CN',
       gameType: 'SLG、STG、RTS',
       usdt: 9703,
+      avater: guild12,
     },
   ];
 
@@ -225,11 +259,11 @@ const Guilds = (props: objectT) => {
                   <dl key={index}>
                     <dt>
                       <span className={styles['avatar']}>
-                        <img src={avater} />
+                        <img src={item.avater} />
                       </span>
                       <span className={styles['name']}>{item.name}</span>
                       <span className={styles['score']}>
-                        {item.usdt}
+                        {String(item.usdt).replace(/(\d)(?=(\d{3})+$)/g, '$1,')}
                         <i>USDT</i>
                       </span>
                     </dt>
@@ -259,10 +293,10 @@ const Guilds = (props: objectT) => {
                     ) : weekTop4To10?.length ? (
                       weekTop4To10.map((item: objectT, index: number) => {
                         return (
-                          <li>
+                          <li key={index}>
                             <span className={styles['num']}>{index + 4}</span>
                             <span className={styles['avatar']}>
-                              <img src={avater} />
+                              <img src={item.avater} />
                             </span>
                             <span className={styles['info']}>
                               {item.name}
@@ -273,7 +307,10 @@ const Guilds = (props: objectT) => {
                               </i>
                             </span>
                             <span className={styles['score']}>
-                              {item.usdt}
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
                               <i>USDT</i>
                             </span>
                           </li>
@@ -296,10 +333,10 @@ const Guilds = (props: objectT) => {
                     ) : overAllTop4To10?.length ? (
                       overAllTop4To10.map((item: objectT, index: number) => {
                         return (
-                          <li>
+                          <li key={index}>
                             <span className={styles['num']}>{index + 4}</span>
                             <span className={styles['avatar']}>
-                              <img src={avater} />
+                              <img src={item.avater} />
                             </span>
                             <span className={styles['info']}>
                               {item.name}
@@ -310,7 +347,10 @@ const Guilds = (props: objectT) => {
                               </i>
                             </span>
                             <span className={styles['score']}>
-                              {item.usdt}
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
                               <i>USDT</i>
                             </span>
                           </li>

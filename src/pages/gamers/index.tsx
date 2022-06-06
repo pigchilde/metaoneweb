@@ -22,6 +22,7 @@ import gamer10 from '../../assets/gamers/pic/gamer10.png';
 import gamer11 from '../../assets/gamers/pic/gamer11.png';
 import gamer12 from '../../assets/gamers/pic/gamer12.png';
 import gamer13 from '../../assets/gamers/pic/gamer13.png';
+import defautGamer from '@/assets/common/pic/avatar.png';
 
 const { TabPane } = Tabs;
 interface objectT {
@@ -84,42 +85,49 @@ const Gamers = (props: objectT) => {
       guild: 'HEROES',
       favGames: 'Zombie World Z ',
       usdt: 197,
+      avater: gamer4,
     },
     {
       name: 'HOHO',
       guild: 'B.C.A.',
       favGames: 'RaceFi、SolChicks',
       usdt: 191,
+      avater: gamer5,
     },
     {
       name: 'YouHornV2',
       guild: 'Sliverhand',
       favGames: 'Age of Tanks',
       usdt: 188,
+      avater: gamer6,
     },
     {
       name: 'Lanzzi',
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 186,
+      avater: gamer7,
     },
     {
       name: 'Foggy',
       guild: 'King Of Legend',
       favGames: 'Seoul Stars',
       usdt: 182,
+      avater: gamer8,
     },
     {
       name: 'RRC',
       guild: 'SMTH',
       favGames: 'The Killbox',
       usdt: 179,
+      avater: gamer9,
     },
     {
       name: 'Simon',
       guild: 'ZIXIA',
       favGames: 'The Next War',
       usdt: 177,
+      avater: gamer10,
     },
   ];
 
@@ -129,18 +137,21 @@ const Gamers = (props: objectT) => {
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 3507,
+      avater: gamer3,
     },
     {
       name: 'Lanzzi',
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 3044,
+      avater: gamer7,
     },
     {
       name: 'YeoRae',
       guild: 'TTGS',
       favGames: 'Seoul Stars',
       usdt: 2761,
+      avater: gamer13,
     },
   ];
 
@@ -150,42 +161,49 @@ const Gamers = (props: objectT) => {
       guild: 'B.C.A.',
       favGames: 'RaceFi、SolChicks',
       usdt: 2399,
+      avater: gamer2,
     },
     {
       name: 'Lucky',
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 1974,
+      avater: gamer1,
     },
     {
       name: 'YouHornV2',
       guild: 'Sliverhand',
       favGames: 'Age of Tanks',
       usdt: 1746,
+      avater: gamer6,
     },
     {
       name: 'LeoQuixere',
       guild: 'GTA',
       favGames: 'The Next Wa',
       usdt: 1535,
+      avater: gamer12,
     },
     {
       name: 'HOHO',
       guild: 'B.C.A.',
       favGames: 'RaceFi、SolChicks',
       usdt: 1329,
+      avater: gamer5,
     },
     {
       name: 'Nemisis120',
       guild: 'Risen',
       favGames: 'The Killbox',
       usdt: 1311,
+      avater: gamer11,
     },
     {
       name: 'Moon',
       guild: 'HEROES',
       favGames: 'Zombie World Z ',
       usdt: 1297,
+      avater: gamer4,
     },
   ];
 
@@ -225,7 +243,7 @@ const Gamers = (props: objectT) => {
                       </span>
                       <span className={styles['name']}>{item.name}</span>
                       <span className={styles['score']}>
-                        {item.usdt}
+                        {String(item.usdt).replace(/(\d)(?=(\d{3})+$)/g, '$1,')}
                         <i>USDT</i>
                       </span>
                     </dt>
@@ -260,7 +278,10 @@ const Gamers = (props: objectT) => {
                               <i>Guild:{item.guild} FAV Games:item.favGames</i>
                             </span>
                             <span className={styles['score']}>
-                              {item.usdt}
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
                               <i>USDT</i>
                             </span>
                           </li>
@@ -289,7 +310,10 @@ const Gamers = (props: objectT) => {
                               <i>Guild:{item.guild} FAV Games:item.favGames</i>
                             </span>
                             <span className={styles['score']}>
-                              {item.usdt}
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
                               <i>USDT</i>
                             </span>
                           </li>
