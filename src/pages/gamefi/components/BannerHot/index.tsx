@@ -58,7 +58,7 @@ const BannerHot = (props: objectT) => {
                       <div className={styles['title']}>{item.name}</div>
                       <div className={styles['line']}>
                         <label>{item?.createUser}</label>
-                        <Star data={item} />
+                        {/*  <Star data={item} /> */}
                       </div>
                       <p className={styles['description']}>
                         {item.description}

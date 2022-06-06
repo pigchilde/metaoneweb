@@ -75,7 +75,7 @@ const GameFi = (props: objectT) => {
       <header className={styles['head-seletor']}>
         <div className={styles['wrapper']}>
           <h1>GAMES</h1>
-          {hloading ? null : (
+          {/* {hloading ? null : (
             <Select
               suffixIcon={<CaretDownOutlined />}
               onChange={changeHotFilter}
@@ -89,7 +89,7 @@ const GameFi = (props: objectT) => {
                 );
               })}
             </Select>
-          )}
+          )} */}
         </div>
       </header>
       <div className={styles['banner-wrapper']}>

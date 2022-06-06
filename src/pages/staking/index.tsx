@@ -43,8 +43,7 @@ const Gamers = (props: objectT) => {
       <div className={styles['video']}>
         <video src={bgVideo} autoPlay loop muted playsInline></video>
         <div className={styles['video_txt']}>
-          <h1>NFTs Owner</h1>
-          <h2>coming soon</h2>
+          <h1>coming soon</h1>
         </div>
       </div>
     </>

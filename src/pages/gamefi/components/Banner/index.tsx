@@ -78,7 +78,7 @@ const Banner = (props: objectT) => {
           <div className={styles['title']}>{name}</div>
           <div className={styles['line']}>
             <label>{datas?.createUser}</label>
-            <Star data={gameData} />
+            {/* <Star data={gameData} /> */}
           </div>
           <p className={styles['description']}>{description}</p>
           <Button type="primary" onClick={toDetail}>
