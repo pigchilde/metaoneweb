@@ -26,7 +26,7 @@ export default function MetaMaskCard() {
   const name = chainId ? CHAINS[chainId]?.name : undefined;
   // attempt to connect eagerly on mount
   useEffect(() => {
-    void metaMask.connectEagerly();
+    // void metaMask.connectEagerly();
   }, []);
 
   return (
