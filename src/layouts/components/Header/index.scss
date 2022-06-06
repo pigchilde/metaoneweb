@@ -192,17 +192,16 @@
   cursor: pointer;
 
   .dropdown {
-    top: 85px;
+    top: 60px;
   }
 }
 
 .avatar {
-  width: 92px;
-  height: 92px;
+  width: 60px;
+  height: 60px;
   overflow: hidden;
   border-radius: 50%;
   flex-shrink: 0;
-  border-radius: 10px;
   border: 2px solid $white;
   
   img {
@@ -217,7 +216,7 @@
   display: inline-block;
   color: $white;
   font-size: 20px;
-  margin-left: 18px;
+  margin-left: 8px;
   max-width: 200px;
   @include ellipsis();
 }
@@ -310,10 +309,6 @@
     .dropdown {
       top: 55px;
     }
-  }
-  .avatar {
-    width: 65px;
-    height: 65px;
   }
   .username {
     max-width: 130px;

@@ -113,7 +113,7 @@ const Index = (props: objectT) => {
           </div>
         </div>
       </section>
-      <section className={styles['video-swiper']}>
+      {/* <section className={styles['video-swiper']}>
         <div className={styles['wrapper']}>
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_VIDEO_SWIPER_TITLE' })}
@@ -123,8 +123,8 @@ const Index = (props: objectT) => {
           </p>
         </div>
         <CustomSwiper type="video" datas={videoAutoList}></CustomSwiper>
-      </section>
-      <section className={styles['news-swiper']}>
+      </section> */}
+      {/* <section className={styles['news-swiper']}>
         <div className={styles['wrapper']}>
           <p className={styles['txt-top']}>
             {intl.formatMessage({ id: 'INDEX_NEWS_SWIPER_TOP_TEXT' })}
@@ -143,7 +143,7 @@ const Index = (props: objectT) => {
             ></CustomSwiper>
           </div>
         </div>
-      </section>
+      </section> */}
       {informationList.length
         ? informationList.map((item: objectT) => {
             return (
