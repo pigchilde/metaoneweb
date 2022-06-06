@@ -56,6 +56,11 @@ const Header = (props: objectT) => {
     });
   };
 
+  // 跳转到个人中心首页
+  const go2UCPage = () => {
+    history.push('/personal/info');
+  };
+
   return (
     <Layout.Header className={styles['header']}>
       <div className={styles['hd-wrapper']}>
@@ -159,7 +164,7 @@ const Header = (props: objectT) => {
                 <div
                   className={`${styles['signed']} ${styles['has-dropdown']}`}
                 >
-                  <div className={styles['avatar']}>
+                  <div className={styles['avatar']} onClick={go2UCPage}>
                     <img
                       src={
                         userInfo.avatar ||
@@ -167,16 +172,11 @@ const Header = (props: objectT) => {
                       }
                     />
                   </div>
-                  <span className={styles['username']}>
+                  <span className={styles['username']} onClick={go2UCPage}>
                     {userInfo.nickName}
                   </span>
                   <div className={styles['dropdown']}>
                     <ul>
-                      <li>
-                        <Link to="/personal/info">
-                          {intl.formatMessage({ id: 'COMMON_MENU_MAIN' })}
-                        </Link>
-                      </li>
                       <li>
                         <Link to="/personal/setting">
                           {intl.formatMessage({ id: 'COMMON_MENU_SETTINGS' })}

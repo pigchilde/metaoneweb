@@ -56,7 +56,7 @@ const Login = (props: objectT) => {
       const token = `${data.tokenHead}${data.token}`;
       Cookies.set('token', token, { expires: 30 });
       getUserInfo();
-      history.goBack();
+      history.push('/personal/info');
     });
   };
   const onFinishFailed = (errorInfo: any) => {};
