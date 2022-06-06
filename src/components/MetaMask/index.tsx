@@ -33,8 +33,8 @@ export default function MetaMaskCard() {
 
   return (
     <>
-      <div style={{ background: '#fff' }}>
-        <b>MetaMask</b>
+      {/*  <div style={{ background: '#fff' }}>
+     <b>MetaMask</b>
         <div>
           {error ? (
             <>
@@ -64,7 +64,7 @@ export default function MetaMaskCard() {
         )}
         <Accounts accounts={accounts} provider={provider} ENSNames={ENSNames} />
       </div>
-      <div style={{ marginBottom: '1rem' }} />
+      <div style={{ marginBottom: '1rem' }} /> */}
       <ConnectWithSelect
         connector={metaMask}
         chainId={chainId}
