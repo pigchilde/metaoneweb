@@ -28,7 +28,7 @@ export default function MetaMaskCard() {
   useEffect(() => {
     console.log(metaMask, 44444);
 
-    // void metaMask.connectEagerly();
+    void metaMask.connectEagerly();
   }, []);
 
   return (
