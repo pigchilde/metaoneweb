@@ -80,7 +80,7 @@ const NFTsPage: React.FC = () => {
           data={data.filter((item) => item.game === 'AOT')}
           title="Age Of Tanks"
         />
-        <FlashSale data={data} />
+        {/* <FlashSale data={data} /> */}
       </Box>
     </ThemeProvider>
   );
