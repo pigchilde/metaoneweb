@@ -5,7 +5,9 @@ import { Network } from '@web3-react/network';
 import { WalletConnect } from '@web3-react/walletconnect';
 import { useCallback, useState } from 'react';
 import { CHAINS, getAddChainParameters, URLS } from '@/utils/chains';
-
+import { useIntl } from 'umi';
+import styles from './index.scss';
+import { Button } from 'antd';
 export function ConnectWithSelect({
   connector,
   chainId,
@@ -24,7 +26,7 @@ export function ConnectWithSelect({
   const chainIds = (isNetwork ? Object.keys(URLS) : Object.keys(CHAINS)).map(
     (chainId) => Number(chainId),
   );
-
+  const intl = useIntl();
   const [desiredChainId, setDesiredChainId] = useState<number>(
     isNetwork ? 1 : -1,
   );
@@ -55,8 +57,9 @@ export function ConnectWithSelect({
   if (error) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ marginBottom: '1rem' }} />
-        <button
+        <div />
+        <Button
+          className={`${styles['btn-connect']} ${styles['r-btn']}`}
           onClick={() =>
             connector instanceof WalletConnect || connector instanceof Network
               ? void connector.activate(
@@ -70,21 +73,29 @@ export function ConnectWithSelect({
           }
         >
           Try Again?
-        </button>
+        </Button>
       </div>
     );
   } else if (isActive) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ marginBottom: '1rem' }} />
-        <button onClick={() => connector.deactivate()}>Disconnect</button>
+        <div />
+        <Button
+          className={`${styles['dis-connect']} ${styles['r-btn']}`}
+          type="primary"
+          // onClick={() => connector.deactivate()}
+        >
+          connected
+        </Button>
       </div>
     );
   } else {
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div style={{ marginBottom: '1rem' }} />
-        <button
+        <div />
+        <Button
+          className={`${styles['btn-connect']} ${styles['r-btn']}`}
+          type="primary"
           onClick={() => {
             return connector instanceof WalletConnect ||
               connector instanceof Network
@@ -99,8 +110,8 @@ export function ConnectWithSelect({
           }}
           // disabled={isActivating}
         >
-          Connect
-        </button>
+          {intl.formatMessage({ id: 'COMMON_BUTTON_CONNECT_WALLET' })}
+        </Button>
       </div>
     );
   }

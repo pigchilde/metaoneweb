@@ -194,12 +194,12 @@ const Header = (props: objectT) => {
             <div className={styles['uc-op']}>
               {/* 个人中心头部 */}
               <InvitionUser />
-              <Button
+              {/* <Button
                 className={`${styles['btn-connect']} ${styles['r-btn']}`}
                 type="primary"
               >
                 {intl.formatMessage({ id: 'COMMON_BUTTON_CONNECT_WALLET' })}
-              </Button>
+              </Button>  */}
               <MetaMask />
             </div>
           )}
