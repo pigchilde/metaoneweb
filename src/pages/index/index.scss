@@ -27,7 +27,7 @@
     background-position: right center;
   }
   .info {
-    width: 700px;
+    width: 800px;
   }
   .tit {
     font-size: 55px;
@@ -132,7 +132,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    &.type-1 { // 一行最多显示5个
+    &.type-1 {
+      // 一行最多显示5个
       figure {
         width: 283px;
         margin: 0 23px 50px;
@@ -161,7 +162,7 @@
         width: 240px;
         height: 440px;
         margin: 0 50px 50px;
-        img{
+        img {
           height: 240px;
         }
       }

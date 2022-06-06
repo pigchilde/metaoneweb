@@ -114,7 +114,7 @@ const Header = (props: objectT) => {
           ) : null} */}
           <div className={`${styles['op-lang']} ${styles['has-dropdown']}`}>
             <span className={styles['lang-name']}>
-              {currLang.split('-')[1]}
+              {currLang.split('-')[0].toUpperCase()}
             </span>
             <div className={styles['dropdown']}>
               <ul>

@@ -1,13 +1,27 @@
 import styles from './index.scss';
 import Banner from './components/Banner';
 import { useIntl } from 'umi';
-import avater from '../../assets/gamers/pic/avater.png';
+// import avater from '../../assets/gamers/pic/avater.png';
 import PhotoText from '@/components/PhotoText';
 import { Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
 import Empty from '@/components/Empty';
+
+import gamer1 from '../../assets/gamers/pic/gamer1.png';
+import gamer2 from '../../assets/gamers/pic/gamer2.png';
+import gamer3 from '../../assets/gamers/pic/gamer3.png';
+import gamer4 from '../../assets/gamers/pic/gamer4.png';
+import gamer5 from '../../assets/gamers/pic/gamer5.png';
+import gamer6 from '../../assets/gamers/pic/gamer6.png';
+import gamer7 from '../../assets/gamers/pic/gamer7.png';
+import gamer8 from '../../assets/gamers/pic/gamer8.png';
+import gamer9 from '../../assets/gamers/pic/gamer9.png';
+import gamer10 from '../../assets/gamers/pic/gamer10.png';
+import gamer11 from '../../assets/gamers/pic/gamer11.png';
+import gamer12 from '../../assets/gamers/pic/gamer12.png';
+import gamer13 from '../../assets/gamers/pic/gamer13.png';
 
 const { TabPane } = Tabs;
 interface objectT {
@@ -46,18 +60,21 @@ const Gamers = (props: objectT) => {
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 238,
+      avater: gamer1,
     },
     {
       name: 'CROSS',
       guild: 'B.C.A.',
       favGames: 'RaceFi、SolChicks',
       usdt: 212,
+      avater: gamer2,
     },
     {
       name: 'TheEggman ',
       guild: 'Accelerate',
       favGames: 'Age of Tanks',
       usdt: 203,
+      avater: gamer3,
     },
   ];
 
@@ -199,11 +216,12 @@ const Gamers = (props: objectT) => {
               <Loading></Loading>
             ) : top3?.length ? (
               top3.map((item: objectT, index: number) => {
+                const avater = 'gamer' + index;
                 return (
                   <dl key={index}>
                     <dt>
                       <span className={styles['avatar']}>
-                        <img src={avater} />
+                        <img src={item.avater} />
                       </span>
                       <span className={styles['name']}>{item.name}</span>
                       <span className={styles['score']}>
@@ -234,7 +252,7 @@ const Gamers = (props: objectT) => {
                           <li key={index}>
                             <span className={styles['num']}>{index + 4}</span>
                             <span className={styles['avatar']}>
-                              <img src={avater} />
+                              <img src={item.avater} />
                             </span>
                             <span className={styles['info']}>
                               {item.name}
@@ -263,7 +281,7 @@ const Gamers = (props: objectT) => {
                           <li key={index}>
                             <span className={styles['num']}>{index + 4}</span>
                             <span className={styles['avatar']}>
-                              <img src={avater} />
+                              <img src={item.avater} />
                             </span>
                             <span className={styles['info']}>
                               {item.name}
