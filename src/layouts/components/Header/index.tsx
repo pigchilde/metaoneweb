@@ -4,6 +4,7 @@ import { Link, useIntl, setLocale, connect, history } from 'umi';
 import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import { LANG_LIST } from '@/utils/lang';
+import MetaMask from '@/components/MetaMask';
 
 interface objectT {
   [propName: string]: any;
@@ -203,6 +204,7 @@ const Header = (props: objectT) => {
               >
                 {intl.formatMessage({ id: 'COMMON_BUTTON_CONNECT_WALLET' })}
               </Button>
+              <MetaMask />
             </div>
           )}
         </div>
