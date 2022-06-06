@@ -110,7 +110,7 @@ export default {
   GAMEFI_DETAIL_BANNER_Fully: 'Fully Diluted Market Cap',
   GAMEFI_DETAIL_BANNER_Status: 'Game Release Status',
   GAMEFI_DETAIL_BACK: 'BACK',
-  HELP_BANNER_TITLE: 'Help Centre',
+  HELP_BANNER_TITLE: 'MetaOne Q&A',
   HELP_BANNER_DES: 'MetaOne Q&A',
   REGISTER_NAME: 'Name',
   REGISTER_NAME_TIP: 'Please input your Name!',

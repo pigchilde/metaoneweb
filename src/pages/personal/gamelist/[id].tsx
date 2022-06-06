@@ -134,16 +134,16 @@ const TableList = () => {
     },
     {
       title: 'Total Yield',
-      dataIndex: 'Total Yield',
-      key: 'DTotal Total Yield',
+      dataIndex: 'total',
+      key: 'total',
       render: (text: any) => {
         return `${text} USDT`;
       },
     },
     {
       title: 'Hours Played',
-      dataIndex: 'Tranding Volume',
-      key: 'Tranding Volume',
+      dataIndex: 'hours',
+      key: 'hours',
       render: (text: any) => {
         return `${text} h`;
       },

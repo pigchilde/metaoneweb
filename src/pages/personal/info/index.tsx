@@ -72,7 +72,7 @@ const myInfo = (props: objectT) => {
     seriesField: 'name',
     yAxis: {
       label: {
-        formatter: (v: number) => `${(v / 10e8).toFixed(1)} B`,
+        formatter: (v: number) => `${v} U`,
       },
     },
     legend: {
@@ -87,6 +87,187 @@ const myInfo = (props: objectT) => {
       },
     },
   };
+  const ldata = [
+    {
+      name: 'The Killbox',
+      year: '1',
+      gdp: 105.2,
+    },
+    {
+      name: 'The Killbox',
+      year: '2',
+      gdp: 165.3,
+    },
+    {
+      name: 'The Killbox',
+      year: '3',
+      gdp: 201.5,
+    },
+    {
+      name: 'The Killbox',
+      year: '4',
+      gdp: 262.6,
+    },
+    {
+      name: 'The Killbox',
+      year: '5',
+      gdp: 353.2,
+    },
+    {
+      name: 'The Killbox',
+      year: '6',
+      gdp: 380.5,
+    },
+    {
+      name: 'The Killbox',
+      year: '7',
+      gdp: 355.1,
+    },
+
+    {
+      name: 'Age of Tanks',
+      year: '1',
+      gdp: 100.3,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '2',
+      gdp: 200.3,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '3',
+      gdp: 240.0,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '4',
+      gdp: 300.0,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '5',
+      gdp: 350.3,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '6',
+      gdp: 360.3,
+    },
+    {
+      name: 'Age of Tanks',
+      year: '7',
+      gdp: 380.5,
+    },
+
+    {
+      name: 'Zombie World Z',
+      year: '1',
+      gdp: 78.5,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '2',
+      gdp: 149.1,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '3',
+      gdp: 163.3,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '4',
+      gdp: 205.2,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '5',
+      gdp: 241.2,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '6',
+      gdp: 253.0,
+    },
+    {
+      name: 'Zombie World Z',
+      year: '7',
+      gdp: 371.2,
+    },
+
+    {
+      name: 'RaceFi',
+      year: '1',
+      gdp: 59.9,
+    },
+    {
+      name: 'RaceFi',
+      year: '2',
+      gdp: 106.5,
+    },
+    {
+      name: 'RaceFi',
+      year: '3',
+      gdp: 245.8,
+    },
+    {
+      name: 'RaceFi',
+      year: '4',
+      gdp: 324.7,
+    },
+    {
+      name: 'RaceFi',
+      year: '5',
+      gdp: 342.8,
+    },
+    {
+      name: 'RaceFi',
+      year: '6',
+      gdp: 372.3,
+    },
+    {
+      name: 'RaceFi',
+      year: '7',
+      gdp: 378.7,
+    },
+
+    {
+      name: 'SolChicks',
+      year: '1',
+      gdp: 44.8,
+    },
+    {
+      name: 'SolChicks',
+      year: '2',
+      gdp: 142.7,
+    },
+    {
+      name: 'SolChicks',
+      year: '3',
+      gdp: 169.7,
+    },
+    {
+      name: 'SolChicks',
+      year: '4',
+      gdp: 222.8,
+    },
+    {
+      name: 'SolChicks',
+      year: '5',
+      gdp: 262.1,
+    },
+    {
+      name: 'SolChicks',
+      year: '6',
+      gdp: 312.1,
+    },
+    {
+      name: 'SolChicks',
+      year: '7',
+      gdp: 370.4,
+    },
+  ];
   const data = [
     {
       type: 'The Killbox',
@@ -133,7 +314,8 @@ const myInfo = (props: objectT) => {
     ],
   };
   useEffect(() => {
-    asyncFetch();
+    // asyncFetch();
+    setLineData(ldata);
     dispatch({
       type: 'gamefi/getList',
       payload: {
@@ -221,9 +403,10 @@ const myInfo = (props: objectT) => {
               className={`${styles['ico-item']} ${styles['ico-item1']}  ${styles['cursor']}`}
               onClick={toPage}
             >
-              <p className={styles['txt']}>Recent Game Played </p>
+              <p className={styles['txt']}>Total Revenue</p>
               <p className={styles['txt1']}>
-                <strong>USDT 0</strong>
+                <strong>1,532 </strong>
+                <label>USDT</label>
               </p>
             </li>
             <li className={`${styles['ico-item']} ${styles['ico-item4']}`}>
@@ -274,7 +457,8 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>{guildInfo.totalYielding}</strong>
+                  <strong>{guildInfo.totalYielding} </strong>
+                  <label>USDT</label>
                 </p>
               </li>
               <li className={`${styles['ico-item']} ${styles['ico-item3']}`}>
@@ -315,7 +499,8 @@ const myInfo = (props: objectT) => {
                 })}
               </p>
               <p className={styles['txt1']}>
-                <strong>2866.29</strong>
+                <strong>2,866.29 </strong>
+                <label>USDT</label>
               </p>
             </li>
             <li className={`${styles['ico-item']} ${styles['ico-item1']}`}>

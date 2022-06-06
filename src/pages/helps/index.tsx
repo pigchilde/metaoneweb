@@ -16,9 +16,7 @@ const Helps = (props: objectT) => {
   const HELP_BANNER_TITLE = intl.formatMessage({
     id: 'HELP_BANNER_TITLE',
   });
-  const HELP_BANNER_DES = intl.formatMessage({
-    id: 'HELP_BANNER_DES',
-  });
+
   const [listDatas, setListDatas] = useState({} as objectT);
   const [loading, setLoading] = useState(true as boolean);
   useEffect(() => {
@@ -43,7 +41,6 @@ const Helps = (props: objectT) => {
       <header className={styles.banner}>
         <div className="wrapper">
           <h1>{HELP_BANNER_TITLE}</h1>
-          <p>{HELP_BANNER_DES}</p>
         </div>
       </header>
       <div className={`wrapper ${styles['help-list']}`}>
