@@ -1,4 +1,3 @@
-
 .list {
   background-color: #061216;
   border-radius: 10px;
@@ -21,19 +20,18 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
-
       }
     }
   }
-  .rowH{
-    .col1{
-      .link{
+  .rowH {
+    .col1 {
+      .link {
         color: $green;
         padding-right: 15px;
         text-decoration: underline;
         cursor: pointer;
         position: relative;
-        &::after{
+        &::after {
           content: '>';
           text-decoration: none;
           position: absolute;
@@ -50,12 +48,10 @@
     width: 100%;
     display: flex;
     align-items: center;
-
   }
 
   .col1 {
     width: 40%;
-
   }
 
   .col2 {
@@ -68,9 +64,8 @@
     font-size: 15px;
 
     .col1 {
-      padding-left: 130px;
+      padding-left: 67px;
     }
-
   }
 
   ul {
@@ -88,7 +83,7 @@
       display: flex;
       align-items: center;
     }
-    .img{
+    .img {
       width: 45px;
     }
     .row {
@@ -99,7 +94,7 @@
       margin-bottom: 8px;
       cursor: pointer;
     }
-    .text{
+    .text {
       margin-left: 10px;
       width: calc(100% - 55px);
     }
@@ -107,14 +102,12 @@
       color: $white;
       font-size: 20px;
       @include ellipsis();
-      font-weight: bold
+      font-weight: bold;
     }
 
     p {
       @include ellipsis();
       // @include lineRow();
     }
-
-
   }
 }

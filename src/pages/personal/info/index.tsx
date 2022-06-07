@@ -295,6 +295,10 @@ const myInfo = (props: objectT) => {
     },
   ];
   const config = {
+    theme: {
+      defaultColor: '#FFF',
+    },
+
     appendPadding: 10,
     data,
     angleField: 'value',

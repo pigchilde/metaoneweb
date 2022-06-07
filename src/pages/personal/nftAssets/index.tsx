@@ -143,7 +143,9 @@ const NFTAssets = () => {
           <i className={`${ico['ico']} ${ico['ico-worth']}`}></i>
           <div className={styles['text']}>
             <div className={styles['name']}>My NFTs Worth</div>
-            <b className={styles['num']}>1,234 USDT</b>
+            <b className={styles['num']}>
+              1,234 <i>USDT</i>
+            </b>
           </div>
         </li>
         <li className={styles['item']}>
