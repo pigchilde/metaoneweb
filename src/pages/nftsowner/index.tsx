@@ -27,13 +27,12 @@ const Nftsowners = (props: objectT) => {
       payload: {},
     }).then((res: objectT) => {
       const { banner, news, list } = res;
-      if (banner.code === 0) {
+      /* if (banner.code === 0) {
         setBannerData(banner.data);
-      }
+      } */
       if (news.code === 0) {
         setNewsList(news.data);
       }
-      // setNewsList(newsListData);
       if (list.code === 0) {
         setInformationList(list.data);
       }
@@ -58,7 +57,7 @@ const Nftsowners = (props: objectT) => {
             <div className={styles['news-list']}>
               {newsList && newsList.length
                 ? newsList.map((item: objectT, index: number) => (
-                    <Link to={`/news/${item.id}?tab=1201`}>
+                    <Link to={`/news/${item.id}?tab=1201`} key={item.id}>
                       <figure key={item.id}>
                         <div className={styles['hd']}>
                           <h3 className={styles['tit']}>{item.title}</h3>
@@ -76,7 +75,7 @@ const Nftsowners = (props: objectT) => {
             <PaginationItem />
           </div>
         </section>
-        <section className={styles['sec-video-text']}>
+        {/* <section className={styles['sec-video-text']}>
           <div className="wrapper">
             <PhotoText
               datas={{
@@ -86,25 +85,16 @@ const Nftsowners = (props: objectT) => {
               }}
             />
           </div>
-        </section>
-        {/*  <section className={styles['sec-video-text']}>
-            <PhotoText
-              datas={{
-                title: 'How To List Your NFT’s In MetaOne?',
-                video: '',
-                layoutCategory: 11,
-              }}
-            />
-          </section>
-          <section className={styles['sec-video-text']}>
-            <PhotoText
-              datas={{
-                title: 'NFT Vs Investment',
-                video: '',
-                layoutCategory: 11,
-              }}
-            />
-          </section> */}
+        </section> */}
+        {loading ? (
+          <Loading></Loading>
+        ) : informationList.length ? (
+          informationList.map((item: objectT) => {
+            return <PhotoText datas={item} key={item.id} />;
+          })
+        ) : (
+          ''
+        )}
       </div>
     </>
   );
