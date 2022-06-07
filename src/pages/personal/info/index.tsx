@@ -3,7 +3,7 @@ import styles from './index.scss';
 import { useIntl } from 'umi';
 import { Button, message, Radio, Tabs, Select, Image } from 'antd';
 import { useState, useEffect } from 'react';
-import { Pie } from '@ant-design/plots';
+import { Pie, G2 } from '@ant-design/plots';
 import { Line } from '@ant-design/plots';
 import { history } from 'umi';
 import { connect } from 'dva';
@@ -65,6 +65,20 @@ const myInfo = (props: objectT) => {
   const toPage = () => {
     history.push(`/personal/info/revenue`);
   };
+  const { registerTheme } = G2;
+  registerTheme('custom-theme', {
+    components: {
+      legend: {
+        common: {
+          itemName: {
+            style: {
+              fill: '#9e9e9e',
+            },
+          },
+        },
+      },
+    },
+  });
   const lineConfig = {
     data: lineData,
     xField: 'year',
@@ -73,6 +87,9 @@ const myInfo = (props: objectT) => {
     yAxis: {
       label: {
         formatter: (v: number) => `${v} U`,
+        style: {
+          fill: '#9e9e9e',
+        },
       },
     },
     legend: {
@@ -86,6 +103,7 @@ const myInfo = (props: objectT) => {
         duration: 5000,
       },
     },
+    theme: 'custom-theme',
   };
   const ldata = [
     {
@@ -268,6 +286,7 @@ const myInfo = (props: objectT) => {
       gdp: 370.4,
     },
   ];
+
   const data = [
     {
       type: 'The Killbox',
@@ -303,6 +322,9 @@ const myInfo = (props: objectT) => {
     label: {
       type: 'outer',
       content: '{name} {percentage}',
+      style: {
+        fill: '#9e9e9e',
+      },
     },
     interactions: [
       {
@@ -312,6 +334,7 @@ const myInfo = (props: objectT) => {
         type: 'element-active',
       },
     ],
+    theme: 'custom-theme',
   };
   useEffect(() => {
     // asyncFetch();
