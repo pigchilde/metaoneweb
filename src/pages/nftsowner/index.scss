@@ -87,13 +87,6 @@
   section {
     padding: 200px 0;
   }
-  &:after {
-    content: '';
-    display: block;
-    height: 24px;
-    background: url('~@/assets/nftsowner/img/divi_line.png') center center
-      no-repeat;
-  }
   &:nth-of-type(2) {
     section {
       padding-top: 164px;

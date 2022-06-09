@@ -1,6 +1,6 @@
 export default {
   NEW: 'news',
-  NEW_h2: 'MetaOne New Guilds Announcement',
+  NEW_h2: 'MetaOne Latest Announcements',
   GameFi: 'GameFi',
   META_ONE: 'META ONE',
   GUILDS: 'Guilds',
