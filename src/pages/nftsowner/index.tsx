@@ -75,7 +75,7 @@ const Nftsowners = (props: objectT) => {
             <PaginationItem />
           </div>
         </section>
-        <section className={styles['sec-video-text']}>
+        {/* <section className={styles['sec-video-text']}>
           <div className="wrapper">
             <PhotoText
               datas={{
@@ -85,8 +85,8 @@ const Nftsowners = (props: objectT) => {
               }}
             />
           </div>
-        </section>
-        {/* {loading ? (
+        </section> */}
+        {loading ? (
           <Loading></Loading>
         ) : informationList.length ? (
           informationList.map((item: objectT) => {
@@ -94,7 +94,7 @@ const Nftsowners = (props: objectT) => {
           })
         ) : (
           ''
-        )} */}
+        )}
       </div>
     </>
   );
