@@ -10,7 +10,7 @@ interface objectT {
 const TeamSwiper = (props: any) => {
   let { datas = [], positionList = [], type = 'team' } = props;
   return (
-    <div className={styles[`${type}-swiper`]}>
+    <div id={`${type}Swiper`}>
       {datas && datas.length ? (
         <div className={styles['swiper']}>
           <Swiper
@@ -21,8 +21,8 @@ const TeamSwiper = (props: any) => {
             spaceBetween={25}
             initialSlide={1}
             navigation={{
-              prevEl: `.${styles[`btn-prev-${type}`]}`,
-              nextEl: `.${styles[`btn-next-${type}`]}`,
+              prevEl: `#${type}Swiper .${styles['btn-prev']}`,
+              nextEl: `#${type}Swiper .${styles['btn-next']}`,
             }}
           >
             {datas.length
@@ -63,12 +63,8 @@ const TeamSwiper = (props: any) => {
               : ''}
           </Swiper>
           <div className={styles['swiper-ctrl']}>
-            <span
-              className={`${styles['btn-prev']} ${styles[`btn-prev-${type}`]}`}
-            ></span>
-            <span
-              className={`${styles['btn-next']} ${styles[`btn-next-${type}`]}`}
-            ></span>
+            <span className={styles['btn-prev']}></span>
+            <span className={styles['btn-next']}></span>
           </div>
         </div>
       ) : null}
