@@ -155,7 +155,7 @@ const Index = (props: objectT) => {
             );
           })
         : ''}
-      <section className={styles['advisors']}>
+      {/* <section className={styles['advisors']}>
         <div className={styles['wrapper']}>
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_INVESTORS_ADVISORS' })}
@@ -182,13 +182,25 @@ const Index = (props: objectT) => {
               : ''}
           </div>
         </div>
+      </section> */}
+      <section className={styles['team-swiper']}>
+        <div className={styles['wrapper']}>
+          <h3 className={styles['cm-tit']}>
+            {intl.formatMessage({ id: 'INDEX_INVESTORS_ADVISORS' })}
+          </h3>
+          <TeamSwiper datas={adviserList} type="advisors" />
+        </div>
       </section>
       <section className={styles['team-swiper']}>
         <div className={styles['wrapper']}>
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_MANAGEMENT_TEAM' })}
           </h3>
-          <TeamSwiper datas={managmentList} positionList={positionList} />
+          <TeamSwiper
+            datas={managmentList}
+            positionList={positionList}
+            type="team"
+          />
         </div>
       </section>
       <section className={styles['investors']}>

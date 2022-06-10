@@ -8,9 +8,9 @@ interface objectT {
 }
 
 const TeamSwiper = (props: any) => {
-  let { datas = [], type = 'image', positionList = [] } = props;
+  let { datas = [], positionList = [], type = 'team' } = props;
   return (
-    <>
+    <div className={styles[`${type}-swiper`]}>
       {datas && datas.length ? (
         <div className={styles['swiper']}>
           <Swiper
@@ -21,8 +21,8 @@ const TeamSwiper = (props: any) => {
             spaceBetween={25}
             initialSlide={1}
             navigation={{
-              prevEl: `.${styles['btn-prev']}`,
-              nextEl: `.${styles['btn-next']}`,
+              prevEl: `.${styles[`btn-prev-${type}`]}`,
+              nextEl: `.${styles[`btn-next-${type}`]}`,
             }}
           >
             {datas.length
@@ -35,20 +35,24 @@ const TeamSwiper = (props: any) => {
                       <div className={styles['info']}>
                         <div className={styles['hd']}>
                           <p className={styles['name']}>{item.name}</p>
-                          <p className={styles['position']}>
-                            {
-                              positionList.filter(
-                                (position: objectT) =>
-                                  position.code === item.position,
-                              )[0]?.name
-                            }
-                          </p>
-                          <a
-                            href={item.homePage}
-                            className={styles['linkin']}
-                            target="_blank"
-                            title=""
-                          ></a>
+                          {positionList.length ? (
+                            <p className={styles['position']}>
+                              {
+                                positionList.filter(
+                                  (position: objectT) =>
+                                    position.code === item.position,
+                                )[0]?.name
+                              }
+                            </p>
+                          ) : null}
+                          {item.homePage ? (
+                            <a
+                              href={item.homePage}
+                              className={styles['linkin']}
+                              target="_blank"
+                              title=""
+                            ></a>
+                          ) : null}
                         </div>
                         <p className={styles['desc']}>{item.description}</p>
                       </div>
@@ -59,12 +63,16 @@ const TeamSwiper = (props: any) => {
               : ''}
           </Swiper>
           <div className={styles['swiper-ctrl']}>
-            <span className={styles['btn-prev']}></span>
-            <span className={styles['btn-next']}></span>
+            <span
+              className={`${styles['btn-prev']} ${styles[`btn-prev-${type}`]}`}
+            ></span>
+            <span
+              className={`${styles['btn-next']} ${styles[`btn-next-${type}`]}`}
+            ></span>
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 
