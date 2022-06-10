@@ -86,15 +86,17 @@ const Nftsowners = (props: objectT) => {
             />
           </div>
         </section> */}
-        {loading ? (
-          <Loading></Loading>
-        ) : informationList.length ? (
-          informationList.map((item: objectT) => {
-            return <PhotoText datas={item} key={item.id} />;
-          })
-        ) : (
-          ''
-        )}
+        <section className={'wrapper'}>
+          {loading ? (
+            <Loading></Loading>
+          ) : informationList.length ? (
+            informationList.map((item: objectT) => {
+              return <PhotoText datas={item} key={item.id} />;
+            })
+          ) : (
+            ''
+          )}
+        </section>
       </div>
     </>
   );

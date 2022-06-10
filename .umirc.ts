@@ -18,6 +18,11 @@ export default defineConfig({
         name: 'static/[name].[hash:8].[ext]',
         esModule: false,
       });
+    config.module
+      .rule('woff')
+      .test(/.(woff|eot|woff2|ttf|otf)$/)
+      .use('file-loader')
+      .loader('file-loader');
   },
   fastRefresh: {},
   hash: true,
