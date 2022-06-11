@@ -113,6 +113,7 @@ $bgColor: #02050e;
     @include ellipsis();
     line-height: 32px;
     padding-right: 40px;
+    font-weight: bold;
   }
   .position{
     font-size: 20px;
@@ -127,6 +128,7 @@ $bgColor: #02050e;
     line-height: 20px;
     max-height: 160px;
     overflow: auto;
+    font-weight: lighter;
   }
   .linkin {
     position: absolute;
@@ -192,17 +194,6 @@ $bgColor: #02050e;
       &:before {
         background-position: 0 -175px;
       }
-    }
-  }
-}
-
-// Advisors
-.advisors-swiper {
-  .swiper {
-    .name {
-      @include lineRow(2);
-      white-space: initial;
-      padding-right: 0;
     }
   }
 }

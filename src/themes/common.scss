@@ -85,3 +85,36 @@ $breakpoints: (
 .cm-spr {
   background: url('~@/assets/common/img/spr.png') no-repeat;
 }
+
+/* 翻页数字样式 */
+.sp-num {
+  position: relative;
+  display: inline-block;
+  width: 107px;
+  height: 168px;
+  line-height: 168px;
+  text-align: center;
+  overflow: hidden;
+  background: $white;
+  border-radius: 16px;
+  margin-right: 12px;
+  color: #555d66;
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    // background: url('~@/assets/common/img/bg_num.png') no-repeat;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGsAAAAxCAMAAADqdKevAAAAmVBMVEUAAABeXl7q7O3T09O7vcDt7u/z9PXj5OViYmLx8vP19vff4OH5+vv3+Pnv8PH4+frU1dbOz9Dd3t+6u7zX2drKy8zo6uvIycrGx8hubm7a293P0NLLzM1xcXGMjIzl5ufV1te3uLmsrK2UlJRmZmZoaGj7/P0GCxe+vbqRkZH9/v51d32usLGjpaaXl5eEhIUiJi8dIitnZ2d+Hju8AAAAAXRSTlMAQObYZgAAAaFJREFUWMO92Nty2jAUheElgy0fOBjbNTYmAZJioLRN2/d/uE6yxawX8OK/2lf6LjSj2SPc8azuuFz+fP/qfCswfdXHPzv+7+WC7Vvol3vD9H04Ahhq6/TTvWL6+pQAmq3V1SKLAKqjVXYiiwB8YVV7kUUA7cHyg8gigDiy2lJkEUAWhxqRRQBJZq12IosAlomVVSKLANa5lagsAlg8Ri+yCGCxtPJWZBHA+BhjkUUA49paZiKLAH4sQrnIIkBrVFsjxvUjkUUASRzyIosAIh/aiCwCOFRWc3Wvhzaattb3KQH4xiqvrq/nU3dKUwIoSmt2dZJSAqhm1lC7l/1s6ro0JYDdYG1q9xvT95ISwG5j7Wv3DggsAmj21lZlEUDzzZJZBJ5p8b7mIosA/M5qtiKLAN/DQWQRQBZbUSOyCIDrm8giQKtQWwXyzFqpLALIVyEvsgggCVN8EFkEuG+0IosAsuiRyCKAVRtSWQQQFSHvboDAIgB/LL86ViKLAKouNBPtAARQnqy6SyHo5gh8/rOdz/39fQ5Nt7P1+c/W41nd/wMs6U1uuiv8BgAAAABJRU5ErkJggg==') no-repeat;
+    width: 50%;
+    height: 49px;
+    margin-top: -25px;
+  }
+  &:before {
+    left: 0;
+    background-position: left center;
+  }
+  &:after {
+    right: 0;
+    background-position: right center;
+  }
+}

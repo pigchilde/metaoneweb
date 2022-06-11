@@ -7,8 +7,8 @@ interface objectT {
   [propName: string]: any;
 }
 
-const TeamSwiper = (props: any) => {
-  let { datas = [], positionList = [] } = props;
+const AdvisorsSwiper = (props: any) => {
+  let { datas = [] } = props;
   return (
     <>
       {datas && datas.length ? (
@@ -18,7 +18,7 @@ const TeamSwiper = (props: any) => {
             slidesPerView={3}
             loop
             centeredSlides
-            spaceBetween={25}
+            spaceBetween={95}
             initialSlide={1}
             navigation={{
               prevEl: `.${styles['btn-prev']}`,
@@ -35,24 +35,9 @@ const TeamSwiper = (props: any) => {
                       <div className={styles['info']}>
                         <div className={styles['hd']}>
                           <p className={styles['name']}>{item.name}</p>
-                          <p className={styles['position']}>
-                            {
-                              positionList.filter(
-                                (position: objectT) =>
-                                  position.code === item.position,
-                              )[0]?.name
-                            }
-                          </p>
-                          <a
-                            href={item.homePage}
-                            className={styles['linkin']}
-                            target="_blank"
-                            title=""
-                          ></a>
                         </div>
                         <p className={styles['desc']}>{item.description}</p>
                       </div>
-                      <i></i>
                     </figure>
                   </SwiperSlide>
                 ))
@@ -68,4 +53,4 @@ const TeamSwiper = (props: any) => {
   );
 };
 
-export default TeamSwiper;
+export default AdvisorsSwiper;

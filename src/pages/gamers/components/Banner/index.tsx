@@ -23,7 +23,10 @@ const Banner = (props: objectT) => {
         <div className={styles['banner-title']}>
           <h2>
             {totalGamers
-              ? totalGamers.replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+              ? totalGamers
+                  .replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+                  ?.split('')
+                  .map((str: string) => <span className="sp-num">{str}</span>)
               : totalGamers}
           </h2>
           <p>

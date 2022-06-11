@@ -8,6 +8,7 @@ import SocialMediaList from '@/components/SocialMediaList';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
+import AdvisorsSwiper from './AdvisorsSwiper';
 
 interface objectT {
   [propName: string]: any;
@@ -188,7 +189,7 @@ const Index = (props: objectT) => {
           <h3 className={styles['cm-tit']}>
             {intl.formatMessage({ id: 'INDEX_INVESTORS_ADVISORS' })}
           </h3>
-          <TeamSwiper datas={adviserList} type="advisors" />
+          <AdvisorsSwiper datas={adviserList} />
         </div>
       </section>
       <section className={styles['team-swiper']}>
