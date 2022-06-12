@@ -24,7 +24,6 @@ const Banner = (props: objectT) => {
           <h2>
             {newGuilds
               ? newGuilds
-                  .replace(/(\d)(?=(\d{3})+$)/g, '$1,')
                   ?.split('')
                   .map((str: string) => <span className="sp-num">{str}</span>)
               : newGuilds}

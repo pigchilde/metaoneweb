@@ -24,7 +24,6 @@ const Banner = (props: objectT) => {
           <h2>
             {totalGamers
               ? totalGamers
-                  .replace(/(\d)(?=(\d{3})+$)/g, '$1,')
                   ?.split('')
                   .map((str: string) => <span className="sp-num">{str}</span>)
               : totalGamers}

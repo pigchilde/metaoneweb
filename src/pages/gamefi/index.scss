@@ -1,6 +1,5 @@
 .detail-wrapper {
   :global {
-
     .ant-breadcrumb,
     .ant-breadcrumb-link {
       color: $white;
@@ -79,6 +78,7 @@
 
   h1 {
     font-size: 35px;
+    font-family: 'Azonix';
     color: #ffffff;
     line-height: 1;
     margin-right: 40px;
@@ -141,15 +141,15 @@
       padding: 0 !important;
     }
 
-    .ant-tabs-top>.ant-tabs-nav .ant-tabs-ink-bar,
-    .ant-tabs-top>div>.ant-tabs-nav .ant-tabs-ink-bar {
+    .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-ink-bar {
       opacity: 0;
     }
 
-    .ant-tabs-top>.ant-tabs-nav::before,
-    .ant-tabs-bottom>.ant-tabs-nav::before,
-    .ant-tabs-top>div>.ant-tabs-nav::before,
-    .ant-tabs-bottom>div>.ant-tabs-nav::before {
+    .ant-tabs-top > .ant-tabs-nav::before,
+    .ant-tabs-bottom > .ant-tabs-nav::before,
+    .ant-tabs-top > div > .ant-tabs-nav::before,
+    .ant-tabs-bottom > div > .ant-tabs-nav::before {
       border-bottom-color: $green !important;
     }
 
@@ -201,7 +201,7 @@
   .btnNext {
     right: 10px;
   }
-  .img-list-wrap{
+  .img-list-wrap {
     text-align: center;
   }
   .img-list {

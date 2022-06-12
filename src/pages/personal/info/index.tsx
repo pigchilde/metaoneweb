@@ -585,9 +585,7 @@ const myInfo = (props: objectT) => {
   });
   return (
     <>
-      <Link to="/" className={styles['back']}>
-        {`< ${backTitle}`}
-      </Link>
+      <div className={styles['back']}>{`${backTitle}`}</div>
       <div className={styles['main']}>
         {header()}
         {navList()}

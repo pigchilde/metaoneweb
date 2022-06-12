@@ -226,9 +226,9 @@ const Detail = (props: objectT) => {
   }, [params.id]);
   return (
     <>
-      <div className={styles['back']} onClick={goBack}>
+      <Link className={styles['back']} onClick={goBack}>
         {'< BACK'}
-      </div>
+      </Link>
       <div className={styles['game-info']}>
         <ul className={styles['nft-info']}>
           <li className={styles['img']}>

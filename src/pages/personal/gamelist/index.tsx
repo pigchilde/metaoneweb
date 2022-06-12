@@ -35,9 +35,7 @@ const gameList = (props: objectT) => {
   }, [roles]);
   return (
     <>
-      <Link to="/" className={styles['back']}>
-        {`< ${backTitle}`}
-      </Link>
+      <div className={styles['back']}>{`${backTitle}`}</div>
       {role == 'GAMERS' ? <GamerList /> : <GuildList />}
     </>
   );

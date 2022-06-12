@@ -7,7 +7,10 @@ $white-game-info: #eaffff;
   color: #ffffff;
   vertical-align: top;
   cursor: pointer;
-  &:hover{
+}
+
+a.back {
+  &:hover {
     color: $green;
   }
 }
@@ -156,7 +159,7 @@ $white-game-info: #eaffff;
   padding: 13px 18px;
 
   :global {
-    .ant-tabs-top>.ant-tabs-nav::before {
+    .ant-tabs-top > .ant-tabs-nav::before {
       border: none;
     }
 
@@ -219,11 +222,11 @@ $white-game-info: #eaffff;
           }
         }
 
-        .ant-table-tbody>tr>td {
+        .ant-table-tbody > tr > td {
           /* border: none; */
         }
 
-        .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+        .ant-table-tbody > tr > td.ant-table-cell-row-hover {
           background: #bb7824;
         }
       }

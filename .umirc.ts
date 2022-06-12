@@ -20,7 +20,7 @@ export default defineConfig({
       });
     config.module
       .rule('woff')
-      .test(/.(woff|eot|woff2|ttf|otf)$/)
+      .test(/.(woff|eot|woff2|otf)$/)
       .use('file-loader')
       .loader('file-loader');
   },
