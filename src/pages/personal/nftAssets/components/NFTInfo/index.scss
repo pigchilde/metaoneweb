@@ -20,6 +20,7 @@
   height: 432px;
   border-radius: 4px;
   border: solid 3px #006366;
+  padding-top: 30px;
   @include respond-to(lg) {
     width: 700px;
   }

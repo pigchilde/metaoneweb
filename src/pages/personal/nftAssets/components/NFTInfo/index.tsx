@@ -13,12 +13,12 @@ const NFTInfo = (props: objectT) => {
         <span className={styles['hash']}>#{data.hash}</span>
       </div>
       <div className={styles['attr-box']}>
-        <p className={styles['attr-tit']}>Attributes</p>
+        {/* <p className={styles['attr-tit']}>Attributes</p> */}
         <div className={styles['attr-list']}>
-          <dl>
+          {/* <dl>
             <dt>Quality</dt>
             <dd>{data.quality}</dd>
-          </dl>
+          </dl> */}
           {data.attr &&
             Object.entries(data.attr).map((item: any[], index) => (
               <dl key={index}>

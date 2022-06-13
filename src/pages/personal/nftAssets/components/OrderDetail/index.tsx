@@ -38,7 +38,7 @@ const OrderDetail = (props: objectT) => {
       </p>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Target leaser</span>
-        <span className={styles['item2']}>All guilds</span>
+        <span className={styles['item2']}>My guild only</span>
       </p>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Renewable</span>
