@@ -94,7 +94,7 @@ const invitationUser = (props: objectT) => {
           <Modal
             onCancel={handleCancel}
             wrapClassName="invitation-modal"
-            title="Invition User"
+            title="Invite User"
             visible={isModalVisible}
             // onOk={handleOk}
             footer={null}

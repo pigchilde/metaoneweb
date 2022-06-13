@@ -124,7 +124,6 @@ const Management = (props: objectT) => {
   return (
     <>
       <span className={styles['back']}>
-        {'< '}
         {intl.formatMessage({
           id: 'PSIDER_GUILD_INFO',
         })}
