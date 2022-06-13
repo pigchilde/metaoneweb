@@ -53,11 +53,11 @@ const Filist = (props: objectT) => {
             </div>
           </div>
         </div>
-        <div className={styles.col2}></div>
+        <div className={styles.col2}>{item.gameLabelText}</div>
         <div className={styles.col2}>{item.gameReleaseText}</div>
-        <div className={styles.col2}>{item.tokenPrice}</div>
+        {/* <div className={styles.col2}>{item.tokenPrice}</div>
         <div className={styles.col2}></div>
-        <div className={styles.col2}></div>
+        <div className={styles.col2}></div> */}
       </li>
     );
   });
@@ -75,9 +75,9 @@ const Filist = (props: objectT) => {
       )}
       <div className={styles.col2}>{GAMEFI_LIST_TAB2}</div>
       <div className={styles.col2}>{GAMEFI_LIST_TAB3}</div>
-      <div className={styles.col2}>{GAMEFI_LIST_TAB4}</div>
+      {/* <div className={styles.col2}>{GAMEFI_LIST_TAB4}</div>
       <div className={styles.col2}>{GAMEFI_LIST_TAB5}</div>
-      <div className={styles.col2}>{GAMEFI_LIST_TAB6}</div>
+      <div className={styles.col2}>{GAMEFI_LIST_TAB6}</div> */}
     </header>
   );
   return (

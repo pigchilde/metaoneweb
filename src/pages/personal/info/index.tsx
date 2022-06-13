@@ -28,6 +28,7 @@ const myInfo = (props: objectT) => {
   const [listDatas, setListDatas] = useState<objectT>({});
   const [backTitle, setTitle] = useState('');
   const [guildInfo, setGuildInfo] = useState<objectT>({});
+  const [selectType, setSelectType] = useState('Yield');
 
   const toDetail = (id: string) => {
     history.push(`/personal/gamelist/${id}`);
@@ -39,12 +40,25 @@ const myInfo = (props: objectT) => {
     return false;
   };
   const random = (Arr: []) => {
-    const arrNew: never[] = [];
-    for (let i = 0; i < 3; i++) {
-      var _num = Math.floor(Math.random() * Arr.length);
-      var mm = Arr[_num];
-      Arr.splice(_num, 1);
-      arrNew.push(mm);
+    const arrNew: [] = [];
+
+    for (let i = 0; i < Arr.length; i++) {
+      let obj = Arr[i];
+      let isPush = false;
+      if (obj?.name == 'Age of Tanks') {
+        obj.hours = 3;
+        obj.ustd = 6.36;
+        isPush = true;
+      } else if (obj?.name == 'The Killbox') {
+        obj.hours = 4;
+        obj.ustd = 13;
+        isPush = true;
+      } else if (obj?.name == 'Zombie World Z') {
+        obj.hours = 2.5;
+        obj.ustd = 8.75;
+        isPush = true;
+      }
+      isPush ? arrNew.push(obj) : null;
     }
     return arrNew;
   };
@@ -61,7 +75,9 @@ const myInfo = (props: objectT) => {
   };
 
   const intl = useIntl();
-  const handleChange = () => {};
+  const handleChange = (value: any) => {
+    setSelectType(value);
+  };
   const toPage = () => {
     history.push(`/personal/info/revenue`);
   };
@@ -82,16 +98,7 @@ const myInfo = (props: objectT) => {
   const lineConfig = {
     data: lineData,
     xField: 'year',
-    yField: 'gdp',
     seriesField: 'name',
-    yAxis: {
-      label: {
-        formatter: (v: number) => `${v} U`,
-        style: {
-          fill: '#9e9e9e',
-        },
-      },
-    },
     legend: {
       position: 'top',
     },
@@ -105,185 +112,244 @@ const myInfo = (props: objectT) => {
     },
     theme: 'custom-theme',
   };
+  const lineConfigYeild = {
+    ...lineConfig,
+    yField: 'gdp',
+    yAxis: {
+      label: {
+        formatter: (v: number) => `${v} U`,
+        style: {
+          fill: '#9e9e9e',
+        },
+      },
+    },
+  };
+  const lineConfigDuration = {
+    ...lineConfig,
+    yField: 'hours',
+    yAxis: {
+      label: {
+        formatter: (v: number) => `${v} H`,
+        style: {
+          fill: '#9e9e9e',
+        },
+      },
+    },
+  };
   const ldata = [
     {
       name: 'The Killbox',
       year: '1',
       gdp: 105.2,
+      hours: 320,
     },
     {
       name: 'The Killbox',
       year: '2',
       gdp: 165.3,
+      hours: 420,
     },
     {
       name: 'The Killbox',
       year: '3',
       gdp: 201.5,
+      hours: 510,
     },
     {
       name: 'The Killbox',
       year: '4',
       gdp: 262.6,
+      hours: 620,
     },
     {
       name: 'The Killbox',
       year: '5',
       gdp: 353.2,
+      hours: 770,
     },
     {
       name: 'The Killbox',
       year: '6',
       gdp: 380.5,
+      hours: 880,
     },
     {
       name: 'The Killbox',
       year: '7',
       gdp: 355.1,
+      hours: 990,
     },
 
     {
       name: 'Age of Tanks',
       year: '1',
       gdp: 100.3,
+      hours: 201,
     },
     {
       name: 'Age of Tanks',
       year: '2',
       gdp: 200.3,
+      hours: 420,
     },
     {
       name: 'Age of Tanks',
       year: '3',
       gdp: 240.0,
+      hours: 540,
     },
     {
       name: 'Age of Tanks',
       year: '4',
       gdp: 300.0,
+      hours: 660,
     },
     {
       name: 'Age of Tanks',
       year: '5',
       gdp: 350.3,
+      hours: 720,
     },
     {
       name: 'Age of Tanks',
       year: '6',
       gdp: 360.3,
+      hours: 810,
     },
     {
       name: 'Age of Tanks',
       year: '7',
       gdp: 380.5,
+      hours: 940,
     },
 
     {
       name: 'Zombie World Z',
       year: '1',
       gdp: 78.5,
+      hours: 440,
     },
     {
       name: 'Zombie World Z',
       year: '2',
       gdp: 149.1,
+      hours: 520,
     },
     {
       name: 'Zombie World Z',
       year: '3',
       gdp: 163.3,
+      hours: 630,
     },
     {
       name: 'Zombie World Z',
       year: '4',
       gdp: 205.2,
+      hours: 870,
     },
     {
       name: 'Zombie World Z',
       year: '5',
       gdp: 241.2,
+      hours: 930,
     },
     {
       name: 'Zombie World Z',
       year: '6',
       gdp: 253.0,
+      hours: 1150,
     },
     {
       name: 'Zombie World Z',
       year: '7',
       gdp: 371.2,
+      hours: 1200,
     },
 
     {
       name: 'RaceFi',
       year: '1',
       gdp: 59.9,
+      hours: 200,
     },
     {
       name: 'RaceFi',
       year: '2',
       gdp: 106.5,
+      hours: 500,
     },
     {
       name: 'RaceFi',
       year: '3',
       gdp: 245.8,
+      hours: 610,
     },
     {
       name: 'RaceFi',
       year: '4',
       gdp: 324.7,
+      hours: 750,
     },
     {
       name: 'RaceFi',
       year: '5',
       gdp: 342.8,
+      hours: 820,
     },
     {
       name: 'RaceFi',
       year: '6',
       gdp: 372.3,
+      hours: 1040,
     },
     {
       name: 'RaceFi',
       year: '7',
       gdp: 378.7,
+      hours: 1100,
     },
 
     {
       name: 'SolChicks',
       year: '1',
       gdp: 44.8,
+      hours: 330,
     },
     {
       name: 'SolChicks',
       year: '2',
       gdp: 142.7,
+      hours: 450,
     },
     {
       name: 'SolChicks',
       year: '3',
       gdp: 169.7,
+      hours: 650,
     },
     {
       name: 'SolChicks',
       year: '4',
       gdp: 222.8,
+      hours: 850,
     },
     {
       name: 'SolChicks',
       year: '5',
       gdp: 262.1,
+      hours: 950,
     },
     {
       name: 'SolChicks',
       year: '6',
       gdp: 312.1,
+      hours: 1100,
     },
     {
       name: 'SolChicks',
       year: '7',
       gdp: 370.4,
+      hours: 1150,
     },
   ];
 
@@ -451,11 +517,11 @@ const myInfo = (props: objectT) => {
                   id: 'PERSONAL_GUILD_TXT3',
                 })}
               </span>
-              <Link to={`/personal/info`} className={styles['view']}>
+              {/* <Link to={`/personal/info`} className={styles['view']}>
                 {intl.formatMessage({
                   id: 'PERSONAL_GUILD_VIEW',
                 })}
-              </Link>
+              </Link> */}
             </p>
           </div>
           <div className={styles['box']}>
@@ -471,8 +537,8 @@ const myInfo = (props: objectT) => {
                 </p>
               </li>
               <li
-                className={`${styles['ico-item']} ${styles['ico-item2']}  ${styles['cursor']}`}
-                onClick={toPage}
+                className={`${styles['ico-item']} ${styles['ico-item2']}`}
+                // onClick={toPage}
               >
                 <p className={styles['txt']}>
                   {intl.formatMessage({
@@ -480,7 +546,7 @@ const myInfo = (props: objectT) => {
                   })}
                 </p>
                 <p className={styles['txt1']}>
-                  <strong>{guildInfo.totalYielding} </strong>
+                  <strong>13,287 </strong>
                   <label>USDT</label>
                 </p>
               </li>
@@ -563,10 +629,11 @@ const myInfo = (props: objectT) => {
         <div className={styles['text']}>
           <h6 className={styles['name']}>{item.name}</h6>
           <p>
-            <label>last yield</label> <b>0 USDT</b>
+            <label>last yield</label> <b>{item.ustd ? item.ustd : 0} USDT</b>
           </p>
           <p>
-            <label>last game duration</label> <b>0 h</b>
+            <label>last game duration</label>{' '}
+            <b>{item.hours ? item.hours : 0} h</b>
           </p>
           <Button type="primary">
             <a
@@ -617,15 +684,19 @@ const myInfo = (props: objectT) => {
               })}
             </h6>
             <Select
-              defaultValue="lucy"
+              defaultValue={selectType}
               style={{ width: 120 }}
               onChange={handleChange}
               className={styles['line-select']}
             >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
+              <Option value="Yield">Yield</Option>
+              <Option value="Duration">Duration</Option>
             </Select>
-            <Line {...lineConfig} />
+            {selectType == 'Yield' ? (
+              <Line {...lineConfigYeild} />
+            ) : (
+              <Line {...lineConfigDuration} />
+            )}
           </div>
         </div>
       </div>

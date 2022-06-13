@@ -202,6 +202,8 @@ const Detail = (props: objectT) => {
   const intl = useIntl();
   const [loading, setLoading] = useState(true as boolean);
   const [gameDatas, setGameDatas] = useState({} as objectT);
+  const [hours, setHours] = useState('0');
+  const [ustd, setUstd] = useState('0');
   const { params = {} } = match;
   const [role, setRole] = useState('GAMERS');
   const goBack = () => {
@@ -219,6 +221,17 @@ const Detail = (props: objectT) => {
     }).then((res: objectT) => {
       const { code, data } = res;
       if (code === 0) {
+        console.log();
+        if (data.name == 'Age of Tanks') {
+          setHours('3');
+          setUstd('6.36');
+        } else if (data.name == 'The Killbox') {
+          setHours('4');
+          setUstd('13');
+        } else if (data.name == 'Zombie World Z') {
+          setHours('2.5');
+          setUstd('8.75');
+        }
         setGameDatas(data);
       }
       setLoading(false);
@@ -265,7 +278,7 @@ const Detail = (props: objectT) => {
               })}
             </span>
             <span className={styles['data']}>
-              <i className={styles['num']}>0</i>
+              <i className={styles['num']}>{ustd}</i>
               <i className={styles['name']}>USDT</i>
               <i className={styles['status']}>0%</i>
             </span>
@@ -277,7 +290,7 @@ const Detail = (props: objectT) => {
               })}
             </span>
             <span className={styles['data']}>
-              <i className={styles['num']}>0</i>
+              <i className={styles['num']}>{hours}</i>
               <i className={styles['name']}>h</i>
             </span>
           </li>
