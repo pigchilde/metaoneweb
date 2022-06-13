@@ -13,7 +13,7 @@ const OrderDetail = (props: objectT) => {
   return (
     <div className={styles['tabs-main']}>
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Interast</span>
+        <span className={styles['item1']}>Rental</span>
         <span className={styles['item2']}>
           {data.leaseInfo?.interest} USDT/DAY
         </span>

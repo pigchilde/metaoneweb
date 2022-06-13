@@ -13,6 +13,9 @@
   height: 462px;
   border-radius: 4px;
   border: solid 3px #006366;
+  &.form-style {
+    height: 600px;
+  }
   @include respond-to(lg) {
     width: 700px;
   }

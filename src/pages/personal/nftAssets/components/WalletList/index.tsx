@@ -26,7 +26,11 @@ const WalletList = (props: objectT) => {
 
   // 跳转到详情
   const go2NFTDetail = (id: string | number) => {
-    history.push(`/personal/nftAssets/${id}`);
+    if (id === 12) {
+      history.push(`/personal/nftAssets/${id}?type=makeOrder`);
+    } else {
+      history.push(`/personal/nftAssets/${id}`);
+    }
   };
 
   return (

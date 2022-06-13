@@ -33,7 +33,11 @@ const OrderInfo = (props: objectT) => {
           {`${data.owner?.substr(0, 6)}...${data.owner?.substr(-4)}`}
         </span>
       </p>
-      <div className={styles['rounded-rectangle']}>
+      <div
+        className={`${styles['rounded-rectangle']} ${
+          type === 'makeOrder' ? styles['form-style'] : ''
+        }`}
+      >
         <Tabs
           defaultActiveKey="1"
           onChange={tabChange}
