@@ -8,6 +8,7 @@ import tank_28031 from '@/assets/personal/data/pic/28031.png';
 import tank_28030 from '@/assets/personal/data/pic/28030.png';
 import tank_27773 from '@/assets/personal/data/pic/27773.png';
 import tank_27772 from '@/assets/personal/data/pic/27772.png';
+import moment from 'moment';
 // import { accountInWhiteList } from "mockData";
 
 const dataPool: any[] = [
@@ -604,7 +605,9 @@ export function queryMyRentNFT() {
       'id|+1': 1,
       // 租赁模式: 0 rent model  1 share model
       'model|0-1': 0,
-      rentTime: new Date(),
+      rentTime: moment()
+        .add(Math.random() * 30, 'days')
+        .format(),
       'rentDays|1-30': 1,
       // 承租人地址
       renter: '0xac3Ba799055Bb644a7D35d862ea74C90c5b3AD44',
