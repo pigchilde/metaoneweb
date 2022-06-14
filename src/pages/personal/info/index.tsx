@@ -46,16 +46,16 @@ const myInfo = (props: objectT) => {
       let obj = Arr[i];
       let isPush = false;
       if (obj?.name == 'Age of Tanks') {
-        obj.hours = 3;
-        obj.ustd = 6.36;
+        obj.hours = 0;
+        obj.ustd = 0;
         isPush = true;
       } else if (obj?.name == 'The Killbox') {
-        obj.hours = 4;
-        obj.ustd = 13;
+        obj.hours = 0;
+        obj.ustd = 0;
         isPush = true;
       } else if (obj?.name == 'Zombie World Z') {
-        obj.hours = 2.5;
-        obj.ustd = 8.75;
+        obj.hours = 252.9;
+        obj.ustd = 31;
         isPush = true;
       }
       isPush ? arrNew.push(obj) : null;

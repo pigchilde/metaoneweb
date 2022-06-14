@@ -221,17 +221,16 @@ const Detail = (props: objectT) => {
     }).then((res: objectT) => {
       const { code, data } = res;
       if (code === 0) {
-        console.log();
-        if (data.name == 'Age of Tanks') {
-          setHours('3');
-          setUstd('6.36');
-        } else if (data.name == 'The Killbox') {
-          setHours('4');
-          setUstd('13');
-        } else if (data.name == 'Zombie World Z') {
-          setHours('2.5');
-          setUstd('8.75');
-        }
+        // if (data.name == 'Age of Tanks') {
+        //   setHours('0');
+        //   setUstd('0');
+        // } else if (data.name == 'The Killbox') {
+        //   setHours('4');
+        //   setUstd('13');
+        // } else if (data.name == 'Zombie World Z') {
+        //   setHours('2.5');
+        //   setUstd('8.75');
+        // }
         setGameDatas(data);
       }
       setLoading(false);

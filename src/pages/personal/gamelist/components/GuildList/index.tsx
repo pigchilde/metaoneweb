@@ -132,7 +132,16 @@ const GuildList = (props: objectT) => {
       title: 'Yestoday revunue',
       dataIndex: 'date',
       key: 'date',
-      render: () => {
+      render: (i: any, d: objectT) => {
+        if (d.name === 'The Killbox') {
+          return '51 USDT';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '91 USDT';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '126 USDT';
+        }
         return '0 USDT';
       },
     },
@@ -170,7 +179,7 @@ const GuildList = (props: objectT) => {
             onRow={(record) => {
               return {
                 onClick: () => {
-                  toDetail(record);
+                  // toDetail(record);
                 }, // 点击行
               };
             }}
@@ -189,7 +198,7 @@ const GuildList = (props: objectT) => {
             onRow={(record) => {
               return {
                 onClick: () => {
-                  toDetail(record);
+                  // toDetail(record);
                 }, // 点击行
               };
             }}

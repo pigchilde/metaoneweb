@@ -23,12 +23,19 @@ const GamerList = (props: objectT) => {
 
   const onPageChange = () => {};
   const random = (Arr: []) => {
-    const arrNew: never[] = [];
-    for (let i = 0; i < 3; i++) {
-      var _num = Math.floor(Math.random() * Arr.length);
-      var mm = Arr[_num];
-      Arr.splice(_num, 1);
-      arrNew.push(mm);
+    const arrNew: [] = [];
+
+    for (let i = 0; i < Arr.length; i++) {
+      let obj = Arr[i];
+      let isPush = false;
+      if (obj?.name == 'Age of Tanks') {
+        isPush = true;
+      } else if (obj?.name == 'The Killbox') {
+        isPush = true;
+      } else if (obj?.name == 'Zombie World Z') {
+        isPush = true;
+      }
+      isPush ? arrNew.push(obj) : null;
     }
     return arrNew;
   };
