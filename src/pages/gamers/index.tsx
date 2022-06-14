@@ -22,7 +22,8 @@ import gamer10 from '../../assets/gamers/pic/gamer10.png';
 import gamer11 from '../../assets/gamers/pic/gamer11.png';
 import gamer12 from '../../assets/gamers/pic/gamer12.png';
 import gamer13 from '../../assets/gamers/pic/gamer13.png';
-import defautGamer from '@/assets/common/pic/avatar.png';
+import gamer14 from '../../assets/gamers/pic/gamer14.png';
+import gamer15 from '../../assets/gamers/pic/gamer15.png';
 
 const { TabPane } = Tabs;
 interface objectT {
@@ -55,155 +56,155 @@ const Gamers = (props: objectT) => {
     });
   }, []);
 
-  const weekTop3 = [
+  const overAllTop3 = [
     {
-      name: 'Lucky',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 238,
+      name: '屠梦者',
+      guild: '创世大爆炸',
+      favGames: 'Zombie World Z',
+      usdt: 1458.7,
       avater: gamer1,
     },
     {
-      name: 'CROSS',
-      guild: 'B.C.A.',
-      favGames: 'RaceFi、SolChicks',
-      usdt: 212,
+      name: '安凉',
+      guild: '黑绳地狱',
+      favGames: 'Zombie World Z',
+      usdt: 951.2,
       avater: gamer2,
     },
     {
-      name: 'TheEggman ',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 203,
+      name: '眼中星光',
+      guild: '风信子',
+      favGames: 'Zombie World Z',
+      usdt: 813.9,
       avater: gamer3,
-    },
-  ];
-
-  const weekTop4To10 = [
-    {
-      name: 'Moon',
-      guild: 'HEROES',
-      favGames: 'Zombie World Z ',
-      usdt: 197,
-      avater: gamer4,
-    },
-    {
-      name: 'HOHO',
-      guild: 'B.C.A.',
-      favGames: 'RaceFi、SolChicks',
-      usdt: 191,
-      avater: gamer5,
-    },
-    {
-      name: 'YouHornV2',
-      guild: 'Sliverhand',
-      favGames: 'Age of Tanks',
-      usdt: 188,
-      avater: gamer6,
-    },
-    {
-      name: 'Lanzzi',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 186,
-      avater: gamer7,
-    },
-    {
-      name: 'Foggy',
-      guild: 'King Of Legend',
-      favGames: 'Seoul Stars',
-      usdt: 182,
-      avater: gamer8,
-    },
-    {
-      name: 'RRC',
-      guild: 'SMTH',
-      favGames: 'The Killbox',
-      usdt: 179,
-      avater: gamer9,
-    },
-    {
-      name: 'Simon',
-      guild: 'ZIXIA',
-      favGames: 'The Next War',
-      usdt: 177,
-      avater: gamer10,
-    },
-  ];
-
-  const overAllTop3 = [
-    {
-      name: 'TheEggman',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 3507,
-      avater: gamer3,
-    },
-    {
-      name: 'Lanzzi',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 3044,
-      avater: gamer7,
-    },
-    {
-      name: 'YeoRae',
-      guild: 'TTGS',
-      favGames: 'Seoul Stars',
-      usdt: 2761,
-      avater: gamer13,
     },
   ];
 
   const overAllTop4To10 = [
     {
-      name: 'CROSS',
-      guild: 'B.C.A.',
-      favGames: 'RaceFi、SolChicks',
-      usdt: 2399,
-      avater: gamer2,
+      name: '落日西风',
+      guild: '轮回2021',
+      favGames: 'Age of tanks ',
+      usdt: 402.1,
+      avater: gamer4,
     },
     {
-      name: 'Lucky',
-      guild: 'Accelerate',
-      favGames: 'Age of Tanks',
-      usdt: 1974,
-      avater: gamer1,
-    },
-    {
-      name: 'YouHornV2',
-      guild: 'Sliverhand',
-      favGames: 'Age of Tanks',
-      usdt: 1746,
-      avater: gamer6,
-    },
-    {
-      name: 'LeoQuixere',
-      guild: 'GTA',
-      favGames: 'The Next Wa',
-      usdt: 1535,
-      avater: gamer12,
-    },
-    {
-      name: 'HOHO',
-      guild: 'B.C.A.',
-      favGames: 'RaceFi、SolChicks',
-      usdt: 1329,
+      name: '挽安',
+      guild: 'IFGG',
+      favGames: 'Zombie World Z',
+      usdt: 400.6,
       avater: gamer5,
     },
     {
-      name: 'Nemisis120',
-      guild: 'Risen',
+      name: 'Wendy Lee',
+      guild: 'WSCC',
       favGames: 'The Killbox',
-      usdt: 1311,
-      avater: gamer11,
+      usdt: 381.8,
+      avater: gamer6,
     },
     {
-      name: 'Moon',
-      guild: 'HEROES',
-      favGames: 'Zombie World Z ',
-      usdt: 1297,
-      avater: gamer4,
+      name: 'MD',
+      guild: 'Zombie World Z',
+      favGames: 'Age of Tanks',
+      usdt: 381.6,
+      avater: gamer7,
+    },
+    {
+      name: 'didi',
+      guild: 'shinluo',
+      favGames: 'Zombie World Z',
+      usdt: 376.9,
+      avater: gamer8,
+    },
+    {
+      name: 'pqnzovmyc1885',
+      guild: '薄荷岛',
+      favGames: 'The Killbox',
+      usdt: 375,
+      avater: gamer9,
+    },
+    {
+      name: 'xdlagppo3995',
+      guild: 'MintD',
+      favGames: 'Age of tanks',
+      usdt: 373.8,
+      avater: gamer10,
+    },
+  ];
+
+  const weekTop3 = [
+    {
+      name: '挽安',
+      guild: 'IFGG',
+      favGames: 'Zombie World Z',
+      usdt: 70.8,
+      avater: gamer5,
+    },
+    {
+      name: '屠梦者',
+      guild: '创世大爆炸',
+      favGames: 'Zombie World Z',
+      usdt: 62.5,
+      avater: gamer1,
+    },
+    {
+      name: '追梦者',
+      guild: '原始部落',
+      favGames: 'Zombie World Z',
+      usdt: 58.06,
+      avater: gamer11,
+    },
+  ];
+
+  const weekTop4To10 = [
+    {
+      name: '眼睛没有故事',
+      guild: '白垩纪',
+      favGames: 'Zombie World Z',
+      usdt: 55.2,
+      avater: gamer12,
+    },
+    {
+      name: '青色发尾',
+      guild: '涅槃公会',
+      favGames: 'Age of tanks',
+      usdt: 55.09,
+      avater: gamer13,
+    },
+    {
+      name: 'fans',
+      guild: '薄荷岛',
+      favGames: 'The Killbox',
+      usdt: 44.92,
+      avater: gamer14,
+    },
+    {
+      name: 'box',
+      guild: 'MintD',
+      favGames: 'Age of tanks',
+      usdt: 25.42,
+      avater: gamer15,
+    },
+    {
+      name: 'Wendy Lee',
+      guild: 'WSCC',
+      favGames: 'The Killbox',
+      usdt: 12.15,
+      avater: gamer6,
+    },
+    {
+      name: 'didi',
+      guild: 'shinluo',
+      favGames: 'Zombie World Z',
+      usdt: 11.26,
+      avater: gamer8,
+    },
+    {
+      name: 'kuku',
+      guild: 'MD',
+      favGames: 'Zombie World Z',
+      usdt: 9.85,
+      avater: gamer7,
     },
   ];
 
