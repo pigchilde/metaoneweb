@@ -293,7 +293,9 @@ const Guilds = (props: objectT) => {
                               {item.name}
                               <br />
                               <i>
-                                Gamer:{item.gamer} GameType:{item.gameType}
+                                Gamer:{item.gamer}
+                                &nbsp;&nbsp;&nbsp;&nbsp;GameType:
+                                {item.gameType}
                               </i>
                             </span>
                             <span className={styles['score']}>
@@ -332,7 +334,9 @@ const Guilds = (props: objectT) => {
                               {item.name}
                               <br />
                               <i>
-                                Gamer:{item.gamer} GameType:{item.gameType}
+                                Gamer:{item.gamer}
+                                &nbsp;&nbsp;&nbsp;&nbsp;GameType:
+                                {item.gameType}
                               </i>
                             </span>
                             <span className={styles['score']}>

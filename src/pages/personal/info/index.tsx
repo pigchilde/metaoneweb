@@ -46,11 +46,11 @@ const myInfo = (props: objectT) => {
       let obj = Arr[i];
       let isPush = false;
       if (obj?.name == 'Age of Tanks') {
-        obj.hours = 0;
+        obj.hours = 0.5;
         obj.ustd = 0;
         isPush = true;
       } else if (obj?.name == 'The Killbox') {
-        obj.hours = 0;
+        obj.hours = 0.3;
         obj.ustd = 0;
         isPush = true;
       } else if (obj?.name == 'Zombie World Z') {
