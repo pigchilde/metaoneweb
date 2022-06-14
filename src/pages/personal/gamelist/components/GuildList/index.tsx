@@ -30,7 +30,17 @@ const GuildList = (props: objectT) => {
       title: 'Total Yield(USDT)',
       dataIndex: 'total',
       key: 'total',
-      render: () => {
+      render: (i: any, d: objectT) => {
+        // console.log(i, d, 55555);
+        if (d.name === 'The Killbox') {
+          return '2312 USDT';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '3912 USDT';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '5596 USDT';
+        }
         return '0 USDT';
       },
     },
@@ -38,7 +48,16 @@ const GuildList = (props: objectT) => {
       title: 'Hours Played(h)',
       dataIndex: 'hours',
       key: 'hours',
-      render: () => {
+      render: (i: any, d: objectT) => {
+        if (d.name === 'The Killbox') {
+          return '1091 USDT';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '1204 USDT';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '1594 USDT';
+        }
         return '0 h';
       },
     },
@@ -46,6 +65,21 @@ const GuildList = (props: objectT) => {
       title: 'Released Date',
       dataIndex: 'date',
       key: 'date',
+      render: (i: any, d: objectT) => {
+        if (d.name === 'The Killbox') {
+          return '2022.03.17';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '2022.2.22';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '2022.04.22';
+        }
+        if (d.name === 'Angrymals') {
+          return '2022.03.04';
+        }
+        return 'Not Launch';
+      },
     },
   ];
   const columns2 = [
@@ -64,7 +98,16 @@ const GuildList = (props: objectT) => {
       title: 'DAU',
       dataIndex: 'DAU',
       key: 'DAU',
-      render: () => {
+      render: (i: any, d: objectT) => {
+        if (d.name === 'The Killbox') {
+          return '24';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '28';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '36';
+        }
         return '0';
       },
     },
@@ -72,7 +115,16 @@ const GuildList = (props: objectT) => {
       title: 'Tranding Volume',
       dataIndex: 'Tranding Volume',
       key: 'Tranding Volume',
-      render: () => {
+      render: (i: any, d: objectT) => {
+        if (d.name === 'The Killbox') {
+          return '2543 USDT';
+        }
+        if (d.name === 'Age of Tanks') {
+          return '4303 USDT';
+        }
+        if (d.name === 'Zombie World Z') {
+          return '6156 USDT';
+        }
         return '0 USDT';
       },
     },

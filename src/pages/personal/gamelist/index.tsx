@@ -22,7 +22,7 @@ const gameList = (props: objectT) => {
   const [role, setRole] = useState('GAMERS');
   useEffect(() => {
     if (roles) {
-      // setRole(roles[0].code);
+      setRole(roles[0].code);
       switch (roles[0].code) {
         case 'GAMERS':
           setTitle('MY GAME LIST');

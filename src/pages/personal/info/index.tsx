@@ -494,7 +494,7 @@ const myInfo = (props: objectT) => {
             >
               <p className={styles['txt']}>Total Revenue</p>
               <p className={styles['txt1']}>
-                <strong>1,532 </strong>
+                <strong>252.9 </strong>
                 <label>USDT</label>
               </p>
             </li>

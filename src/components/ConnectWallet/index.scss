@@ -11,9 +11,17 @@
   margin-left: 22px;
   border-width: 3px;
   border-color: $green !important;
+  .avatar {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+  }
   &.dis-connect {
-    border-color: #333;
-    background-color: #333;
+    border-color: #fff;
+    background-color: #fff;
+    width: 200px;
+    color: #333;
+    border-radius: 50px;
   }
   &:global {
     &.ant-btn-primary {
@@ -28,6 +36,9 @@
     width: 140px;
     height: 46px;
     font-size: 17px;
+    &.dis-connect {
+      width: 150px;
+    }
   }
 }
 
@@ -38,6 +49,9 @@
     height: 40px;
     font-size: 14px;
     border-width: 2px;
+    &.dis-connect {
+      width: 150px;
+    }
   }
 }
 
@@ -48,5 +62,8 @@
     height: 40px;
     font-size: 14px;
     border-width: 1px;
+    &.dis-connect {
+      width: 150px;
+    }
   }
 }

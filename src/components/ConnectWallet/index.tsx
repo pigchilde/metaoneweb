@@ -2,12 +2,15 @@ import type { Web3ReactHooks } from '@web3-react/core';
 import type { CoinbaseWallet } from '@web3-react/coinbase-wallet';
 import type { MetaMask } from '@web3-react/metamask';
 import { Network } from '@web3-react/network';
+import { hooks } from '../MetaMask/connectors/metaMask';
 import { WalletConnect } from '@web3-react/walletconnect';
 import { useCallback, useState } from 'react';
 import { CHAINS, getAddChainParameters, URLS } from '@/utils/chains';
 import { useIntl } from 'umi';
+import avatar from '../../assets/common/img/meta-mask.png';
 import styles from './index.scss';
 import { Button } from 'antd';
+const { useAccounts } = hooks;
 export function ConnectWithSelect({
   connector,
   chainId,
@@ -23,6 +26,7 @@ export function ConnectWithSelect({
 }) {
   const isNetwork = connector instanceof Network;
   const displayDefault = !isNetwork;
+  const accounts = useAccounts();
   const chainIds = (isNetwork ? Object.keys(URLS) : Object.keys(CHAINS)).map(
     (chainId) => Number(chainId),
   );
@@ -77,6 +81,11 @@ export function ConnectWithSelect({
       </div>
     );
   } else if (isActive) {
+    const str = accounts ? (accounts.length ? accounts[0] : '') : '';
+    const first = str.length ? str.slice(0, 6) : '';
+    console.log(first, 44446666, accounts);
+
+    const end = str.length ? str.slice(str.length - 4, str.length) : '';
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div />
@@ -85,7 +94,10 @@ export function ConnectWithSelect({
           type="primary"
           // onClick={() => connector.deactivate()}
         >
-          connected
+          <img src={avatar} alt="" className={styles['avatar']} />
+          <span className={styles['name']}>
+            {first} ... {end}
+          </span>
         </Button>
       </div>
     );
