@@ -21,7 +21,7 @@ import guild9 from '../../assets/guilds/guilds9.png';
 import guild10 from '../../assets/guilds/guilds10.png';
 import guild11 from '../../assets/guilds/guilds11.png';
 import guild12 from '../../assets/guilds/guilds12.png';
-import defautGuild from '@/assets/common/pic/avatar.png';
+import guild13 from '../../assets/guilds/guilds13.png';
 
 const { TabPane } = Tabs;
 
@@ -57,11 +57,11 @@ const Guilds = (props: objectT) => {
 
   const weekTop3 = [
     {
-      name: 'AMU',
+      name: '创世大爆炸',
       size: 832,
-      from: 'SG',
+      from: 'Asia',
       gameType: 'SLG、TCG、AVG',
-      usdt: 1207,
+      usdt: 12500,
       avater: guild1,
     },
     {
@@ -148,7 +148,7 @@ const Guilds = (props: objectT) => {
       from: 'SG',
       gameType: 'SLG、TCG、AVG',
       usdt: 17998,
-      avater: guild1,
+      avater: guild3,
     },
     {
       name: 'B.C.A.',
@@ -156,7 +156,7 @@ const Guilds = (props: objectT) => {
       from: 'MY',
       gameType: 'SLG、SIM、CAG',
       usdt: 15437,
-      avater: guild2,
+      avater: guild1,
     },
     {
       name: 'TTGS',
@@ -164,7 +164,7 @@ const Guilds = (props: objectT) => {
       from: 'KH',
       gameType: 'PZL、SIM、MSC',
       usdt: 13904,
-      avater: guild6,
+      avater: guild11,
     },
   ];
 
@@ -175,7 +175,7 @@ const Guilds = (props: objectT) => {
       from: 'US',
       gameType: 'STG、SIM、MSC',
       usdt: 11796,
-      avater: defautGuild,
+      avater: guild2,
     },
     {
       name: 'SliverLand',
@@ -191,7 +191,7 @@ const Guilds = (props: objectT) => {
       from: 'CN',
       gameType: 'PZL、TAB、RTS ',
       usdt: 10427,
-      avater: guild3,
+      avater: guild12,
     },
     {
       name: 'Risen',
@@ -199,7 +199,7 @@ const Guilds = (props: objectT) => {
       from: 'KH',
       gameType: 'TCG、SIM、CAG',
       usdt: 9979,
-      avater: guild11,
+      avater: guild6,
     },
     {
       name: 'King Of Legend',
@@ -207,7 +207,7 @@ const Guilds = (props: objectT) => {
       from: 'US',
       gameType: 'RTS、TCG、TAB',
       usdt: 9910,
-      avater: guild4,
+      avater: guild13,
     },
     {
       name: 'SMTH',
@@ -223,7 +223,7 @@ const Guilds = (props: objectT) => {
       from: 'CN',
       gameType: 'SLG、STG、RTS',
       usdt: 9703,
-      avater: guild12,
+      avater: guild4,
     },
   ];
 
