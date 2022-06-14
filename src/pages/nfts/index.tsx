@@ -46,7 +46,6 @@ const NFTsPage: React.FC = () => {
 
   const query = useCallback(async () => {
     queryMarketNFTs({ pageIndex: 1, pageSize: 10000 }).then((res) => {
-      console.log(res);
       if (res.code === 0) {
         setData(res.data.nfts);
       }
@@ -265,7 +264,7 @@ function TrendingThisWeek({ data }: { data: any[] }) {
   return useMemo(() => {
     return (
       <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
           Trending This Week
         </Typography>
         <Box sx={{ overflowY: 'auto', display: 'flex', width: '100%' }}>
@@ -364,7 +363,7 @@ function BestSellers({ data }: { data: any[] }) {
 
   return (
     <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
-      <Typography variant="h4" sx={{ mb: 2 }}>
+      <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
         Hot NFTs
       </Typography>
       <Stack
@@ -493,7 +492,7 @@ function NFTGroup({ title, data }: NFTGroupProps) {
   return (
     <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
           {title}
         </Typography>
         <Stack

@@ -62,10 +62,10 @@ const NFTDetailsPage: React.FC = () => {
           }}
         >
           <Box component={Link} color="primary.light" to="/nfts">
-            Home
+            NFTs Hub
           </Box>
           <Box component={Link} color="primary.light" to="/nfts/hub">
-            NFTs Hub
+            Overall NFTs
           </Box>
           <Typography color="primary.main">{data.name}</Typography>
         </Breadcrumbs>

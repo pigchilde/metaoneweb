@@ -55,14 +55,16 @@ const NFTsHubPage: React.FC = () => {
           }}
         >
           <Box component={Link} color="primary.light" to="/nfts">
-            Home
+            NFTs Hub
           </Box>
-          <Typography color="primary.main">NFTs Hub</Typography>
+          <Typography color="primary.main">Overall NFTs</Typography>
         </Breadcrumbs>
 
         <RowStack sx={{ my: 4 }} alignItems="end">
           <Box sx={{ flex: 1, display: { xs: 'none', sm: 'block' } }}>
-            <Typography variant="h4">NFTs Hub</Typography>
+            <Typography variant="h4" style={{ fontFamily: 'Azonix' }}>
+              NFTs Hub
+            </Typography>
             <Typography>Over 475+NFTS available here, find it now!</Typography>
           </Box>
           <SortBy />
