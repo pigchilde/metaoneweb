@@ -58,171 +58,161 @@ const Guilds = (props: objectT) => {
   const weekTop3 = [
     {
       name: '创世大爆炸',
-      size: 832,
-      from: 'Asia',
-      gameType: 'SLG、TCG、AVG',
+      gameType: 'STG',
       usdt: 12500,
+      gamer: 393,
       avater: guild1,
     },
     {
-      name: 'B.C.A.',
-      size: 776,
-      from: 'MY',
-      gameType: 'SLG、SIM、CAG',
-      usdt: 1131,
+      name: 'IFGG',
+      gameType: 'STG',
+      usdt: 11982,
+      gamer: 342,
       avater: guild2,
     },
     {
-      name: 'HEROES',
-      size: 735,
-      from: 'CN',
-      gameType: 'PZL、TAB、RTS',
-      usdt: 1034,
+      name: '白垩纪',
+      gameType: 'STG',
+      usdt: 10858,
+      gamer: 431,
       avater: guild3,
     },
   ];
 
   const weekTop4To10 = [
     {
-      name: 'King Of Legend',
-      size: 692,
-      from: 'US',
-      gameType: 'RTS、TCG、TAB',
-      usdt: 993,
+      name: '原始部落',
+      gameType: 'STG',
+      usdt: 9581,
+      gamer: 332,
       avater: guild4,
     },
     {
-      name: 'SliverLand',
-      size: 665,
-      from: 'KP',
-      gameType: 'CAG、TAB、SLG',
-      usdt: 928,
+      name: '涅槃公会',
+      gameType: 'AVG、SRPG',
+      usdt: 9225,
+      gamer: 338,
       avater: guild5,
     },
     {
-      name: 'TTGS',
-      size: 637,
-      from: 'KH',
-      gameType: 'PZL、SIM、MSC',
-      usdt: 875,
+      name: '薄荷岛',
+      gameType: 'FPS',
+      usdt: 6751,
+      gamer: 207,
       avater: guild6,
     },
     {
-      name: 'SMTH',
-      size: 611,
-      from: 'SG',
-      gameType: 'SLG、AVG、PZL',
-      usdt: 837,
+      name: 'Mintd',
+      gameType: 'AVG、SRPG',
+      usdt: 2542,
+      gamer: 218,
       avater: guild7,
     },
     {
-      name: 'ZIXIA',
-      size: 570,
-      from: 'JP',
-      gameType: 'STG、SIM、MSC',
-      usdt: 806,
+      name: 'shinluo',
+      gameType: 'STG、ACT',
+      usdt: 1126,
+      gamer: 209,
       avater: guild8,
     },
     {
-      name: 'Free World',
-      size: 563,
-      from: 'LA',
-      gameType: 'SLG、STG、RTS',
-      usdt: 779,
+      name: 'MD',
+      gameType: 'STG、ACT',
+      usdt: 985,
+      gamer: 215,
       avater: guild9,
     },
     {
-      name: 'Destiny',
-      size: 559,
-      from: 'HK-CN',
-      gameType: 'TCG、SIM、CAG',
-      usdt: 751,
+      name: 'WSCC',
+
+      gameType: 'FPS',
+      usdt: 851,
+      gamer: 70,
       avater: guild10,
     },
   ];
 
   const overAllTop3 = [
     {
-      name: 'AMU',
-      size: 832,
-      from: 'SG',
-      gameType: 'SLG、TCG、AVG',
-      usdt: 17998,
+      name: '白垩纪',
+
+      gameType: 'STG',
+      usdt: 58901,
+      gamer: 431,
       avater: guild3,
     },
     {
-      name: 'B.C.A.',
-      size: 776,
-      from: 'MY',
-      gameType: 'SLG、SIM、CAG',
-      usdt: 15437,
+      name: '创世大爆炸',
+
+      gameType: 'STG',
+      usdt: 39521,
+      gamer: 393,
       avater: guild1,
     },
     {
-      name: 'TTGS',
-      size: 637,
-      from: 'KH',
-      gameType: 'PZL、SIM、MSC',
-      usdt: 13904,
+      name: '黑绳地狱',
+
+      gameType: 'STG',
+      usdt: 38555,
+      gamer: 349,
       avater: guild11,
     },
   ];
 
   const overAllTop4To10 = [
     {
-      name: 'GTA',
-      size: 591,
-      from: 'US',
-      gameType: 'STG、SIM、MSC',
-      usdt: 11796,
+      name: 'IFGG',
+
+      gameType: 'STG',
+      usdt: 28958,
+      gamer: 342,
       avater: guild2,
     },
     {
-      name: 'SliverLand',
-      size: 665,
-      from: 'KP',
-      gameType: 'CAG、TAB、SLG',
-      usdt: 10880,
+      name: '涅槃公会',
+
+      gameType: 'AVG、SRPG',
+      usdt: 25015,
+      gamer: 338,
       avater: guild5,
     },
     {
-      name: 'HEROES',
-      size: 735,
-      from: 'CN',
-      gameType: 'PZL、TAB、RTS ',
-      usdt: 10427,
+      name: '轮回2021',
+
+      gameType: 'AVG、SRPG',
+      usdt: 24581,
+      gamer: 422,
       avater: guild12,
     },
     {
-      name: 'Risen',
-      size: 493,
-      from: 'KH',
-      gameType: 'TCG、SIM、CAG',
-      usdt: 9979,
+      name: '薄荷岛',
+
+      gameType: 'FPS',
+      usdt: 21115,
+      gamer: 207,
       avater: guild6,
     },
     {
-      name: 'King Of Legend',
-      size: 692,
-      from: 'US',
-      gameType: 'RTS、TCG、TAB',
-      usdt: 9910,
+      name: '风信子',
+
+      gameType: 'STG',
+      usdt: 19687,
+      gamer: 325,
       avater: guild13,
     },
     {
-      name: 'SMTH',
-      size: 611,
-      from: 'SG',
-      gameType: 'SLG、AVG、PZL',
-      usdt: 9825,
+      name: 'Mintd',
+      gameType: 'AVG、SRPG',
+      usdt: 18541,
+      gamer: 218,
       avater: guild7,
     },
     {
-      name: 'Absolute Domain',
-      size: 438,
-      from: 'CN',
-      gameType: 'SLG、STG、RTS',
-      usdt: 9703,
+      name: '原始部落',
+
+      gameType: 'STG',
+      usdt: 15985,
+      gamer: 332,
       avater: guild4,
     },
   ];
@@ -269,8 +259,9 @@ const Guilds = (props: objectT) => {
                     </dt>
                     <dd className={styles['img']}></dd>
                     <dd className={styles['txt']}>
-                      size:{item.size} from:{item.from} <br />
-                      Gametype:{item.gameType}
+                      Gamer:{item.gamer}
+                      <br />
+                      GameType:{item.gameType}
                     </dd>
                   </dl>
                 );
@@ -302,8 +293,7 @@ const Guilds = (props: objectT) => {
                               {item.name}
                               <br />
                               <i>
-                                size:{item.size} from:{item.from} Gametype:
-                                {item.gameType}
+                                Gamer:{item.gamer} GameType:{item.gameType}
                               </i>
                             </span>
                             <span className={styles['score']}>
@@ -342,8 +332,7 @@ const Guilds = (props: objectT) => {
                               {item.name}
                               <br />
                               <i>
-                                size:{item.size} from:{item.from} Gametype:
-                                {item.gameType}
+                                Gamer:{item.gamer} GameType:{item.gameType}
                               </i>
                             </span>
                             <span className={styles['score']}>
