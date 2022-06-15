@@ -54,8 +54,8 @@ const myInfo = (props: objectT) => {
         obj.ustd = 0;
         isPush = true;
       } else if (obj?.name == 'Zombie World Z') {
-        obj.hours = 252.9;
-        obj.ustd = 31;
+        obj.hours = 31;
+        obj.ustd = 252.9;
         isPush = true;
       }
       isPush ? arrNew.push(obj) : null;

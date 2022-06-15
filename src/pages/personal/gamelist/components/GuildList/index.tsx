@@ -50,13 +50,13 @@ const GuildList = (props: objectT) => {
       key: 'hours',
       render: (i: any, d: objectT) => {
         if (d.name === 'The Killbox') {
-          return '1091 USDT';
+          return '1091 h';
         }
         if (d.name === 'Age of Tanks') {
-          return '1204 USDT';
+          return '1204 h';
         }
         if (d.name === 'Zombie World Z') {
-          return '1594 USDT';
+          return '1594 h';
         }
         return '0 h';
       },
