@@ -11,6 +11,12 @@
   margin-left: 22px;
   border-width: 3px;
   border-color: $green !important;
+  background: $green;
+  color: $white !important;
+  background: $green !important;
+  &:hover {
+    opacity: 0.9;
+  }
   .avatar {
     height: 34px;
     width: 34px;
