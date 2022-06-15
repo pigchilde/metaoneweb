@@ -2,7 +2,7 @@ import { defineConfig } from 'umi';
 
 export default defineConfig({
   title: 'MetaOne',
-  favicon: '../assets/favicon.ico',
+  favicon: '/favicon.ico',
   locale: {
     default: 'en-US',
   },
