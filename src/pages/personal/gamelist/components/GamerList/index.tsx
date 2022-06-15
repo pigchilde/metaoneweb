@@ -67,7 +67,7 @@ const GamerList = (props: objectT) => {
         className={styles['item']}
         key={item.id}
         onClick={() => {
-          toDetail(item.id);
+          // toDetail(item.id);
         }}
       >
         <div className={styles['img']}>
