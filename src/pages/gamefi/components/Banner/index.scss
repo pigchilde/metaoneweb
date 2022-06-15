@@ -14,11 +14,9 @@
       width: 100%;
       height: 100%;
     }
-
   }
 
-
-  >.flex {
+  > .flex {
     padding: 0 100px;
     margin-bottom: 20px;
     display: flex;
@@ -47,7 +45,7 @@
   .description {
     min-height: 99px;
     line-height: 1.5;
-    @include lineRow(4)
+    @include lineRow(4);
   }
 
   .intro-box {

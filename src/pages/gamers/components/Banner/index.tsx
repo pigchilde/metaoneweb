@@ -36,7 +36,7 @@ const Banner = (props: objectT) => {
         </div>
         <div className={styles['banner-con']}>
           <h2>{title}</h2>
-          <p>{content}</p>
+          <p dangerouslySetInnerHTML={{ __html: content }}></p>
         </div>
       </div>
     </header>

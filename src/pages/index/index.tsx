@@ -100,7 +100,10 @@ const Index = (props: objectT) => {
         >
           <div className={styles['info']}>
             <h2 className={styles['cm-tit']}>{bannerData.title}</h2>
-            <p className={styles['desc']}>{bannerData.content}</p>
+            <p
+              className={styles['desc']}
+              dangerouslySetInnerHTML={{ __html: bannerData.content }}
+            ></p>
             <Button
               type="primary"
               className={styles['btn-download']}
