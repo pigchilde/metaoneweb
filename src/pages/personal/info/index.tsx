@@ -490,7 +490,7 @@ const myInfo = (props: objectT) => {
           <ul className={styles['ico-list']}>
             <li
               className={`${styles['ico-item']} ${styles['ico-item1']}  ${styles['cursor']}`}
-              onClick={toPage}
+              // onClick={toPage}
             >
               <p className={styles['txt']}>Total Revenue</p>
               <p className={styles['txt1']}>

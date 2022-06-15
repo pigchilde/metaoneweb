@@ -53,7 +53,7 @@ const Filist = (props: objectT) => {
             </div>
           </div>
         </div>
-        <div className={styles.col2}>{item.gameLabelText}</div>
+        <div className={styles.col2}>{item.gameCategoryText}</div>
         <div className={styles.col2}>{item.gameReleaseText}</div>
         {/* <div className={styles.col2}>{item.tokenPrice}</div>
         <div className={styles.col2}></div>

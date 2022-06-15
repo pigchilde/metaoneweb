@@ -27,9 +27,10 @@ export function ConnectWithSelect({
   const isNetwork = connector instanceof Network;
   const displayDefault = !isNetwork;
   const accounts = useAccounts();
-  const chainIds = (isNetwork ? Object.keys(URLS) : Object.keys(CHAINS)).map(
-    (chainId) => Number(chainId),
-  );
+  const chainIds = (isNetwork
+    ? Object.keys(URLS)
+    : Object.keys(CHAINS)
+  ).map((chainId) => Number(chainId));
   const intl = useIntl();
   const [desiredChainId, setDesiredChainId] = useState<number>(
     isNetwork ? 1 : -1,
@@ -76,14 +77,13 @@ export function ConnectWithSelect({
                 )
           }
         >
-          Try Again?
+          Connect Wallet
         </Button>
       </div>
     );
   } else if (isActive) {
     const str = accounts ? (accounts.length ? accounts[0] : '') : '';
     const first = str.length ? str.slice(0, 6) : '';
-    console.log(first, 44446666, accounts);
 
     const end = str.length ? str.slice(str.length - 4, str.length) : '';
     return (
