@@ -6,6 +6,7 @@ export default defineConfig({
   locale: {
     default: 'en-US',
   },
+  // mfsu: {},
   nodeModulesTransform: {
     type: 'none',
   },
@@ -30,11 +31,10 @@ export default defineConfig({
   proxy: {
     '/center': {
       // target: 'http://47.106.90.119:8000',
-      target: 'https://test2.metaone.gg',
+      target: 'https://metaone.gg',
       changeOrigin: true,
     },
   },
-  // mfsu: {},
   sass: {
     prependData: `
     @import "~@/themes/common.scss";

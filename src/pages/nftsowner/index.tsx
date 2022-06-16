@@ -42,7 +42,7 @@ const Nftsowners = (props: objectT) => {
   return (
     <>
       <div className={styles['main']}>
-        <section className={styles['sec-news']}>
+        {/*  <section className={styles['sec-news']}>
           <div className="wrapper">
             <h2 className={styles['sec-tit']}>
               {intl.formatMessage({
@@ -74,7 +74,7 @@ const Nftsowners = (props: objectT) => {
             </div>
             <PaginationItem />
           </div>
-        </section>
+        </section> */}
         {/* <section className={styles['sec-video-text']}>
           <div className="wrapper">
             <PhotoText
