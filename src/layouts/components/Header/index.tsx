@@ -73,41 +73,48 @@ const Header = (props: objectT) => {
           <nav className={styles['nav']}>
             <Link
               to="/guilds"
-              className={pathname === '/guilds' ? styles['on'] : ''}
+              className={pathname.indexOf('/guilds') > -1 ? styles['on'] : ''}
             >
               {intl.formatMessage({ id: 'GUILDS' })}
             </Link>
             <Link
               to="/gamers"
-              className={pathname === '/gamers' ? styles['on'] : ''}
+              className={pathname.indexOf('/gamers') > -1 ? styles['on'] : ''}
             >
               {intl.formatMessage({ id: 'GAMERS' })}
             </Link>
             <Link
               to="/nftsowner"
-              className={pathname === '/nftsowner' ? styles['on'] : ''}
+              className={
+                pathname.indexOf('/nftsowner') > -1 ? styles['on'] : ''
+              }
             >
               {intl.formatMessage({ id: 'NFTS_OWNER' })}
             </Link>
             <Link
               to="/gamefi"
-              className={pathname === '/gamefi' ? styles['on'] : ''}
+              className={pathname.indexOf('/gamefi') > -1 ? styles['on'] : ''}
             >
               {intl.formatMessage({ id: 'GameFi' })}
             </Link>
             <Link
               to="/news"
-              className={pathname === '/news' ? styles['on'] : ''}
+              className={pathname.indexOf('/news') > -1 ? styles['on'] : ''}
             >
               {intl.formatMessage({ id: 'ANNOUNCEMENT' })}
             </Link>
             <Link
               to="/nfts"
-              className={pathname === '/nfts' ? styles['on'] : ''}
+              className={pathname.indexOf('/nfts') > -1 ? styles['on'] : ''}
             >
               {intl.formatMessage({ id: 'NFTS_HUB' })}
             </Link>
-            <a href="/staking">{intl.formatMessage({ id: 'STAKING' })}</a>
+            <a
+              href="/staking"
+              className={pathname.indexOf('/staking') > -1 ? styles['on'] : ''}
+            >
+              {intl.formatMessage({ id: 'STAKING' })}
+            </a>
           </nav>
         </div>
         <div className={styles['hd-r']}>
