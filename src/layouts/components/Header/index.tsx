@@ -105,7 +105,12 @@ const Header = (props: objectT) => {
             </Link>
             <Link
               to="/nfts"
-              className={pathname.indexOf('/nfts') > -1 ? styles['on'] : ''}
+              className={
+                pathname.indexOf('/nfts') > -1 &&
+                pathname.indexOf('/nftsowner') === -1
+                  ? styles['on']
+                  : ''
+              }
             >
               {intl.formatMessage({ id: 'NFTS_HUB' })}
             </Link>
