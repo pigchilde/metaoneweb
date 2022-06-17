@@ -201,6 +201,30 @@
       }
     }
   }
+  @include respond-to(lg) {
+    .img-left {
+      width: 800px;
+      .img-list {
+        :global {
+          .swiper-slide {
+            width: 151px;
+          }
+        }
+      }
+    }
+  }
+  @include respond-to(md) {
+    .img-left {
+      width: 700px;
+      .img-list {
+        :global {
+          .swiper-slide {
+            width: 132px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1750px) {
