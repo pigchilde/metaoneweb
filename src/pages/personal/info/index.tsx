@@ -510,7 +510,7 @@ const myInfo = (props: objectT) => {
     } else if (role == 'GUILD') {
       return (
         <>
-          <div className={styles['box']}>
+          {/* <div className={styles['box']}>
             <p className={styles['txt-wallet']}>
               <span>
                 {intl.formatMessage({
@@ -521,9 +521,9 @@ const myInfo = (props: objectT) => {
                 {intl.formatMessage({
                   id: 'PERSONAL_GUILD_VIEW',
                 })}
-              </Link> */}
+              </Link>
             </p>
-          </div>
+          </div> */}
           <div className={styles['box']}>
             <ul className={styles['ico-list']}>
               <li className={`${styles['ico-item']} ${styles['ico-item1']}`}>

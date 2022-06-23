@@ -11,6 +11,7 @@ interface objectT {
 }
 const Register = (props: objectT) => {
   const { location = {}, dispatch, news = {} } = props;
+  const { query = {} } = location;
   const [form] = Form.useForm();
   const intl = useIntl();
   const [loading, setLoading] = useState(false as boolean);
@@ -21,6 +22,7 @@ const Register = (props: objectT) => {
     }),
     disable: false,
   } as objectT);
+
   //当前tab界面
   const [tabValues, setTabValues] = useState({
     id: 1,
@@ -83,6 +85,9 @@ const Register = (props: objectT) => {
   ] as Array<objectT>);
 
   useEffect(() => {
+    if (query.invitationCode) {
+      form.setFieldsValue({ invitationCode: query.invitationCode });
+    }
     getCuntry();
     getTabDatas();
   }, []);

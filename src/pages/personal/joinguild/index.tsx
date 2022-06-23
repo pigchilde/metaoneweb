@@ -28,6 +28,9 @@ const joinGuild = (props: objectT) => {
         });
       } else {
         setLoading(false);
+        if (code === 401) {
+          return;
+        }
         message.error(msg, 5);
       }
     });

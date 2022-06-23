@@ -7,6 +7,7 @@ import { extend } from 'umi-request';
 import { notification, message } from 'antd';
 import Cookies from 'js-cookie';
 import { getLocale, history } from 'umi';
+import { getParameterByName } from './utils';
 
 interface objectT {
   [propName: string]: any;
@@ -19,8 +20,10 @@ const errorHandler = (error: any) => {
   const { status } = response;
   if (status === 401) {
     Cookies.remove('token');
+  } else {
+    message.error(data?.message);
   }
-  message.error(data?.message);
+
   throw error;
 };
 
@@ -60,8 +63,13 @@ authRequest.interceptors.request.use(
   (url: string, options: objectT) => {
     const token = Cookies.get('token');
     if (!token) {
-      message.error('未登录或登录已过期，请重新登录。');
-      history.push('/login');
+      const locationSrc = window.location.href;
+      const code = getParameterByName('invitationCode');
+      if (locationSrc.indexOf('personal/joinguild/') > -1) {
+        history.push(`/register?invitationCode=${code}`);
+      } else {
+        history.push('/login');
+      }
       return false;
     }
     return {
@@ -85,7 +93,7 @@ authRequest.interceptors.response.use(
     if (res.code === 401) {
       // 暂未登录或token已经过期
       Cookies.remove('token');
-      message.error(res.msg);
+      // message.error(res.msg);
     }
     return res;
   },

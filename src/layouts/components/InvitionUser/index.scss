@@ -1,53 +1,81 @@
 .r-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 178px;
-    height: 59px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 10px;
-    padding: 0;
-    margin-left: 22px;
-    border-width: 3px;
-    border-color: $green !important;
-    &:global {
-        &.ant-btn-primary {
-            border-width: 0;
-        }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 178px;
+  height: 59px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0;
+  margin-left: 22px;
+  border-width: 3px;
+  border-color: $green !important;
+  &:global {
+    &.ant-btn-primary {
+      border-width: 0;
     }
+  }
 }
 .link {
-    color: $green;
-    margin-left: 5px;
+  color: $green;
+  margin-left: 5px;
 }
 .links {
-    text-align: right;
-    margin-top: 20px;
-    .link {
-        margin: 0 20px;
-        cursor: pointer;
-    }
+  text-align: right;
+  margin-top: 20px;
+  .link {
+    margin: 0 20px;
+    cursor: pointer;
+  }
 }
 :global {
-    .invitation-modal {
-        .ant-modal-header {
-            background-color: #282828;
+  .invitation-modal {
+    .ant-modal-header {
+      background-color: #282828;
 
-            border-bottom: 0;
-            .ant-modal-title {
-                color: #fff;
-            }
-        }
-        .ant-modal-content {
-            background-color: #282828;
-            color: #fff;
-        }
-        .ant-modal-body {
-            padding-top: 0;
-        }
-        .ant-modal-close {
-            color: #fff;
-        }
+      border-bottom: 0;
+      .ant-modal-title {
+        color: #fff;
+      }
     }
+    .ant-modal-content {
+      background-color: #282828;
+      color: #fff;
+    }
+    .ant-modal-body {
+      padding-top: 0;
+    }
+    .ant-modal-close {
+      color: #fff;
+    }
+  }
+}
+@media screen and (min-width: 1501px) and (max-width: 1680px) {
+  .r-btn {
+    margin-left: 15px;
+    width: 140px;
+    height: 46px;
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1500px) {
+  .r-btn {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    border-width: 2px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .r-btn {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    border-width: 1px;
+  }
 }
