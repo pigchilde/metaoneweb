@@ -4,6 +4,7 @@ import { Button, message, Modal } from 'antd';
 import { useIntl } from 'umi';
 import copy from 'copy-to-clipboard';
 import { useState, useEffect } from 'react';
+import { isBuffer } from 'lodash';
 interface objectT {
   [propName: string]: any;
 }
@@ -12,7 +13,7 @@ const invitationUser = (props: objectT) => {
   const {
     dispatch,
     login: {
-      userInfo: { roles },
+      userInfo: { roles, invitationCode },
     },
   } = props;
   const intl = useIntl();
@@ -30,6 +31,13 @@ const invitationUser = (props: objectT) => {
           setGuildInfo(res.data);
           setBtnVisible(true);
         });
+      } else if (roles[0].code == 'GAMERS') {
+        if (invitationCode) {
+          setGuildInfo({
+            invitationCode: invitationCode,
+          });
+          setBtnVisible(true);
+        }
       }
     }
   }, [roles]);
@@ -41,38 +49,53 @@ const invitationUser = (props: objectT) => {
     setModalVisible(false);
   };
   const modalContent = () => {
+    const PERSONAL_GUILD_INVITATION_CODE = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_CODE',
+    });
+    const PERSONAL_GUILD_INVITATION_CODE_TIP = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_CODE_TIP',
+    });
+    const PERSONAL_GUILD_INVITATION_LINK = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_LINK',
+    });
+    const PERSONAL_GUILD_INVITATION_LINK_TIP = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_LINK_TIP',
+    });
+    const PERSONAL_GUILD_COPY = intl.formatMessage({
+      id: 'PERSONAL_GUILD_COPY',
+    });
+
+    const PERSONAL_GUILD_COPY1 = intl.formatMessage({
+      id: 'PERSONAL_GUILD_COPY1',
+    });
     const code = guildInfo.invitationCode;
     const link = `${window.location.origin}/personal/joinguild/?invitationCode=${guildInfo.invitationCode}`;
     return (
       <>
         <p>
-          <span>Guild invitation code : </span>
+          <span>{PERSONAL_GUILD_INVITATION_CODE} </span>
           <span className={styles['link']}> {code}</span>
         </p>
         <p>
-          <span>Guild invitation link : </span>
+          <span>{PERSONAL_GUILD_INVITATION_LINK} </span>
           <span className={styles['link']}>{link}</span>
         </p>
         <div className={styles['links']}>
           <span
             className={styles['link']}
             onClick={() => {
-              copyMsg(code, 'Invitation code copied to clipboard');
+              copyMsg(code, PERSONAL_GUILD_INVITATION_CODE_TIP);
             }}
           >
-            {intl.formatMessage({
-              id: 'PERSONAL_GUILD_COPY',
-            })}
+            {PERSONAL_GUILD_COPY}
           </span>
           <span
             className={styles['link']}
             onClick={() => {
-              copyMsg(link, 'Invitation link copied to clipboard');
+              copyMsg(link, PERSONAL_GUILD_INVITATION_LINK_TIP);
             }}
           >
-            {intl.formatMessage({
-              id: 'PERSONAL_GUILD_COPY1',
-            })}
+            {PERSONAL_GUILD_COPY1}
           </span>
         </div>
       </>

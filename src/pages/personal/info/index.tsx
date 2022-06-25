@@ -18,7 +18,7 @@ const myInfo = (props: objectT) => {
   const {
     dispatch,
     login: {
-      userInfo: { roles },
+      userInfo: { roles, invitationCode, guildName },
     },
   } = props;
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,7 +29,7 @@ const myInfo = (props: objectT) => {
   const [backTitle, setTitle] = useState('');
   const [guildInfo, setGuildInfo] = useState<objectT>({});
   const [selectType, setSelectType] = useState('Yield');
-
+  console.log('userInfo', props.login.userInfo);
   const toDetail = (id: string) => {
     history.push(`/personal/gamelist/${id}`);
   };
@@ -446,38 +446,95 @@ const myInfo = (props: objectT) => {
     message.info(tip);
   };
   const header = () => {
+    const PERSONAL_GUILD_INVITATION_CODE = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_CODE',
+    });
+    const PERSONAL_GUILD_INVITATION_CODE_TIP = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_CODE_TIP',
+    });
+    const PERSONAL_GUILD_INVITATION_CODE_NONE = `<${intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_CODE_NONE',
+    })}>`;
+    const PERSONAL_GUILD_INVITATION_LINK = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_LINK',
+    });
+    const PERSONAL_GUILD_INVITATION_LINK_TIP = intl.formatMessage({
+      id: 'PERSONAL_GUILD_INVITATION_LINK_TIP',
+    });
+    const PERSONAL_GUILD_NAME = intl.formatMessage({
+      id: 'PERSONAL_GUILD_NAME',
+    });
+    const PERSONAL_GUILD_NAME_NONE = `<${intl.formatMessage({
+      id: 'PERSONAL_GUILD_NAME_NONE',
+    })}>`;
+    const PERSONAL_GUILD_COPY = intl.formatMessage({
+      id: 'PERSONAL_GUILD_COPY',
+    });
+
+    const PERSONAL_GUILD_COPY1 = intl.formatMessage({
+      id: 'PERSONAL_GUILD_COPY1',
+    });
+
     if (role == 'GUILD') {
       const code = guildInfo.invitationCode;
       const link = `${window.location.origin}/personal/joinguild/?invitationCode=${guildInfo.invitationCode}`;
       return (
         <div className={styles['box']}>
           <p className={styles['txt-item']}>
-            <span>Guild invitation code:</span>
+            <span>{PERSONAL_GUILD_INVITATION_CODE}</span>
             <span className={styles['link']}> {code}</span>
             <span
               className={styles['copy']}
               onClick={() => {
-                copyMsg(code, 'Invitation code copied to clipboard');
+                copyMsg(code, PERSONAL_GUILD_INVITATION_CODE_TIP);
               }}
             >
-              {intl.formatMessage({
-                id: 'PERSONAL_GUILD_COPY',
-              })}
+              {PERSONAL_GUILD_COPY}
             </span>
           </p>
           <p className={styles['txt-item']}>
-            <span>Guild invitation link:</span>
+            <span>{PERSONAL_GUILD_INVITATION_LINK}</span>
             <span className={styles['link']}>{link}</span>
             <span
               className={styles['copy']}
               onClick={() => {
-                copyMsg(link, 'Invitation link copied to clipboard');
+                copyMsg(link, PERSONAL_GUILD_INVITATION_LINK_TIP);
               }}
             >
-              {intl.formatMessage({
-                id: 'PERSONAL_GUILD_COPY1',
-              })}
+              {PERSONAL_GUILD_COPY1}
             </span>
+          </p>
+        </div>
+      );
+    } else if (role == 'GAMERS') {
+      return (
+        <div className={styles['box']}>
+          <p className={styles['txt-item']}>
+            <span>{PERSONAL_GUILD_NAME} </span>
+            <span className={styles['link']}>
+              {' '}
+              {guildName ? guildName : PERSONAL_GUILD_NAME_NONE}
+            </span>
+          </p>
+          <p className={styles['txt-item']}>
+            <span>{PERSONAL_GUILD_INVITATION_CODE}</span>
+            <span className={styles['link']}>
+              {invitationCode
+                ? invitationCode
+                : PERSONAL_GUILD_INVITATION_CODE_NONE}
+            </span>
+            {invitationCode ? (
+              <span
+                className={styles['copy']}
+                onClick={() => {
+                  copyMsg(invitationCode, PERSONAL_GUILD_INVITATION_CODE_TIP);
+                }}
+              >
+                {PERSONAL_GUILD_COPY}
+              </span>
+            ) : (
+              ''
+            )}
           </p>
         </div>
       );
