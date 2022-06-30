@@ -24,7 +24,7 @@ import React, {
 } from 'react';
 
 import { queryMarketNFTs } from './utils/mock';
-import BannerPNG from './assets/NFTHub_banner.jpg';
+import BannerPNG from './assets/nfthub_banner.jpg';
 import FireIcon from './assets/FireIcon.png';
 import TrendingThisWeekItemBG from './assets/TrendingThisWeekItemBG.png';
 import NFTLevel from './components/NFTLevel';
