@@ -4,6 +4,7 @@
   font-size: 25px;
   color: #ffffff;
   vertical-align: top;
+  font-family: 'Azonix';
 }
 
 .main {
@@ -84,7 +85,7 @@
     position: relative;
     padding-left: 60px;
     margin-right: 7%;
-    &.cursor{
+    &.cursor {
       cursor: pointer;
     }
 
@@ -106,7 +107,7 @@
     .txt1 {
       font-size: 30px;
       color: $green;
-      >label{
+      > label {
         color: #fff;
         font-size: 18px;
       }
@@ -196,7 +197,7 @@
   display: flex;
   flex-wrap: wrap;
   :global {
-    .ant-btn{
+    .ant-btn {
       margin-top: 10px;
       width: 100%;
     }
@@ -218,7 +219,7 @@
       color: #fff;
       padding: 10px;
       width: calc(100% - 300px);
-      p{
+      p {
         margin-bottom: 4px;
         display: flex;
         justify-content: space-between;
@@ -231,7 +232,6 @@
       font-size: 20px;
       @include ellipsis();
     }
-    
 
     .img {
       width: 300px;
