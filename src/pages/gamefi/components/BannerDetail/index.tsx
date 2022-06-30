@@ -4,7 +4,7 @@ import { SetStateAction, useState } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useIntl } from 'umi';
 import 'swiper/swiper.scss';
-import { Navigation, Thumbs } from 'swiper';
+import { Navigation, Thumbs, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import { connect } from 'dva';
 import Star from '../Star';
@@ -71,7 +71,7 @@ const BannerDetail = (props: objectT) => {
           src: item,
         });
       });
-    console.log('detaildatas', datas);
+
     setMediaList(list);
     setGameData(datas);
   }, [datas]);
@@ -86,17 +86,43 @@ const BannerDetail = (props: objectT) => {
     const prevVideo = prevSlide.querySelector('video');
     prevVideo && prevVideo.pause();
     currVideo && currVideo.play();
+    if (currVideo) {
+      swiper.autoplay.stop();
+      currVideo.addEventListener('ended', () => {
+        swiper.autoplay.start();
+      });
+    } else {
+      swiper.autoplay.start();
+    }
+  };
+  const initSlide = (swiper: any) => {
+    let timer = setTimeout(() => {
+      const currSlide = swiper.slides[swiper.activeIndex];
+      const currVideo = currSlide.querySelector('video');
+      if (currVideo) {
+        swiper.autoplay.stop();
+        currVideo.addEventListener('ended', () => {
+          swiper.autoplay.start();
+        });
+      }
+      clearTimeout(timer);
+    }, 1000);
   };
   return (
     <div className={`wrapper ${styles.banner}`}>
       <aside className={styles['img-left']}>
         <div className={styles.imgwrap}>
           <Swiper
-            modules={[Navigation, Thumbs]}
+            modules={[Navigation, Thumbs, Autoplay]}
             onSlideChange={handleSlideChange}
+            onAfterInit={initSlide}
             navigation={{
               prevEl: `.${styles['btnPre']}`,
               nextEl: `.${styles['btnNext']}`,
+            }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
             }}
             thumbs={{ swiper: thumbsSwiper }}
           >

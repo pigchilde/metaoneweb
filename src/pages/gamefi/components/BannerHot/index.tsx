@@ -3,7 +3,7 @@ import { Button, Image } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { history, useIntl } from 'umi';
 import 'swiper/swiper.scss';
-import { Navigation, Thumbs } from 'swiper';
+import { Autoplay, Navigation, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import { useState, useEffect } from 'react';
 import { connect } from 'dva';
@@ -32,10 +32,14 @@ const BannerHot = (props: objectT) => {
     <div className={styles['banner-hot']}>
       {
         <Swiper
-          modules={[Navigation, Thumbs]}
+          modules={[Navigation, Thumbs, Autoplay]}
           navigation={{
             prevEl: `.${styles['btnPre']}`,
             nextEl: `.${styles['btnNext']}`,
+          }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
           }}
           onSlideChange={handleSlideChange}
           thumbs={{ swiper: thumbsSwiper }}

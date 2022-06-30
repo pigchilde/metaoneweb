@@ -63,7 +63,8 @@ const Detail = (props: objectT) => {
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <BannerDetail datas={gameDatas} />
+      {loading ? <Loading /> : <BannerDetail datas={gameDatas} />}
+
       <div className={`wrapper ${styles['article-wrapper']}`}>
         <Tabs>
           <TabPane tab={GAMEFI_DETAIL_TAB1} key="1">
