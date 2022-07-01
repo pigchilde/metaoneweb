@@ -11,6 +11,7 @@ interface objectT {
 const Footer = (props: objectT) => {
   const {
     common: { platformInfo },
+    location: {},
   } = props;
   const intl = useIntl();
   const lang = useRef('US');
@@ -21,7 +22,13 @@ const Footer = (props: objectT) => {
   };
 
   return (
-    <Layout.Footer className={styles['footer']}>
+    <Layout.Footer
+      className={`${
+        location && location.pathname.indexOf('/personal') > -1
+          ? styles['footer-fix']
+          : ''
+      } ${styles['footer']}`}
+    >
       <div className={styles['ft-l']}>
         <div className={styles['logo']}>
           <Link to="/">

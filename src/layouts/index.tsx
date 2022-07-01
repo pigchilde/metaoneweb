@@ -32,6 +32,14 @@ const BasicLayout = (props: any) => {
     setCollapsed(collapsed);
   };
 
+  const onResize = () => {
+    const cw = document.body.clientWidth;
+    setSideH(
+      document.body.clientHeight -
+        (cw > 1300 ? (cw > 1500 ? (cw > 1680 ? 255 : 235) : 170) : 150),
+    );
+  };
+
   useEffect(() => {
     if (pathname.indexOf('/news/') > -1) {
       pageRef.current.scrollTop = 330;
@@ -42,11 +50,11 @@ const BasicLayout = (props: any) => {
 
   useEffect(() => {
     const cw = document.body.clientWidth;
-    console.log(cw, 888);
-
     setSideH(
-      document.body.clientHeight - (cw > 1300 ? (cw > 1500 ? 235 : 170) : 150),
+      document.body.clientHeight -
+        (cw > 1300 ? (cw > 1500 ? (cw > 1680 ? 255 : 235) : 170) : 150),
     );
+    window.addEventListener('resize', onResize);
     if (userInfo.uid) {
       // 已登录
       return;
@@ -106,7 +114,7 @@ const BasicLayout = (props: any) => {
         <Content>{props.children}</Content>
       )}
 
-      <Footer />
+      <Footer location={location} />
       <FixedSider />
     </Layout>
   );
