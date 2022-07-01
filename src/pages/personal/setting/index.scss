@@ -137,7 +137,7 @@
         input,
         .ant-btn,
         textarea {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
       .ant-btn-default {
@@ -159,11 +159,11 @@
       font-size: 16px;
       padding: 4px 11px 6px;
       color: $white;
-      @include respond-to(lg) {
-        font-size: 20px;
-      }
+      // @include respond-to(lg) {
+      //   font-size: 20px;
+      // }
       @include respond-to(md) {
-        font-size: 16px;
+        font-size: 14px;
       }
     }
     .ant-select .ant-select-selector {
