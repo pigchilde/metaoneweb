@@ -15,7 +15,7 @@
     margin-bottom: 40px;
     font-size: 20px;
 
-    >h1 {
+    > h1 {
       color: $white;
       font-size: 32px;
       font-weight: bold;
@@ -39,6 +39,18 @@
   }
 
   :global {
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      -webkit-text-fill-color: #ededed !important;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+      background-color: transparent;
+      background-image: none;
+      transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+    }
+    input {
+      background-color: transparent;
+    }
     .ant-form-horizontal .ant-form-item-label {
       display: none;
     }
@@ -55,18 +67,20 @@
     .ant-input,
     .ant-input-affix-wrapper {
       background-color: transparent !important;
-      border: 1px solid $green;
+      // border: 1px solid $green;
       font-size: 16px;
       padding: 8px 11px;
       color: $white;
-      border-radius: 10px;
+      // border-radius: 10px;
+      border-radius: 4px;
+      border: solid 2px #006366;
     }
 
     .ant-input-password-icon.anticon {
       color: $white;
     }
 
-    .ant-form-vertical .ant-form-item-label>label {
+    .ant-form-vertical .ant-form-item-label > label {
       font-size: 20px;
       color: $white;
     }
@@ -99,5 +113,18 @@
       }
     }
   }
-
+}
+.password-items {
+  :global {
+    .ant-form-item-control-input-content {
+      // .ant-input-affix-wrapper {
+      //   padding: 0;
+      // }
+      // .ant-input-password {
+      //   .ant-input {
+      //     padding: 8px 11px;
+      //   }
+      // }
+    }
+  }
 }

@@ -96,6 +96,7 @@ const Login = (props: objectT) => {
         <Form.Item
           label={intl.formatMessage({ id: 'LOGIN_PASSWORD' })}
           name="password"
+          className={styles['password-items']}
           rules={[
             {
               required: true,

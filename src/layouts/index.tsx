@@ -26,6 +26,7 @@ const BasicLayout = (props: any) => {
   const { pathname, search } = location;
   const [collapsed, setCollapsed] = useState(false as boolean);
   const [queryKey, setQueryKey] = useState('' as unknown as boolean);
+  const [sideH, setSideH] = useState(200 as number);
 
   const onCollapse = (collapsed: boolean) => {
     setCollapsed(collapsed);
@@ -40,6 +41,12 @@ const BasicLayout = (props: any) => {
   }, [pathname, search]);
 
   useEffect(() => {
+    const cw = document.body.clientWidth;
+    console.log(cw, 888);
+
+    setSideH(
+      document.body.clientHeight - (cw > 1300 ? (cw > 1500 ? 235 : 170) : 150),
+    );
     if (userInfo.uid) {
       // 已登录
       return;
@@ -84,9 +91,16 @@ const BasicLayout = (props: any) => {
             <PersonalSider
               onCollapse={onCollapse}
               collapsed={collapsed}
+              sideHeight={sideH}
             ></PersonalSider>
           </Sider>
-          <Content>{props.children}</Content>
+          <Content
+            className={`${styles['content']} ${
+              collapsed ? styles['close'] : styles['open']
+            }`}
+          >
+            {props.children}
+          </Content>
         </Layout>
       ) : (
         <Content>{props.children}</Content>

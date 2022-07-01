@@ -18,8 +18,10 @@ const personalSideer = (props: objectT) => {
     dispatch,
     login: { userInfo },
     common: { platformInfo },
+    sideHeight,
   } = props;
   const [current, setCurrent] = useState('1' as string);
+
   const { roles = [] } = userInfo;
   const menuLink = [
     {
@@ -166,11 +168,15 @@ const personalSideer = (props: objectT) => {
     const url = window.location.href;
     const data = menuLink.find((i: objectT) => url.indexOf(i.link) > -1);
     setCurrent(data ? data.key : '1');
+    // const wh = window.height
   }, []);
   return (
-    <div className={styles['sider']}>
+    <div
+      className={`${styles['sider']} ${sideHeight < 700 ? styles['sort'] : ''}`}
+      style={{ height: sideHeight }}
+    >
       <span
-        className={styles['trigger']}
+        className={`${styles['trigger']} ${collapsed ? styles['close'] : ''}`}
         onClick={() => onCollapse(!collapsed)}
       ></span>
       <div
@@ -186,6 +192,25 @@ const personalSideer = (props: objectT) => {
         <p className={styles['name']}>
           <span> {userInfo.nickName}</span>
         </p>
+        {collapsed ? (
+          ''
+        ) : (
+          <p className={styles['role']}>
+            {roles.length
+              ? roles[0].code === 'GUILD'
+                ? intl.formatMessage({
+                    id: 'SIGN_TAB_GUILD',
+                  })
+                : roles.length && roles[0].code === 'GAMERS'
+                ? intl.formatMessage({
+                    id: 'SIGN_TAB_GAME',
+                  })
+                : intl.formatMessage({
+                    id: 'SIGN_TAB_NFT',
+                  })
+              : ''}{' '}
+          </p>
+        )}
       </div>
       <Menu
         mode="inline"
@@ -207,7 +232,7 @@ const personalSideer = (props: objectT) => {
         }`}
         onClick={handleLogout}
       >
-        Sign Out
+        {collapsed ? '' : 'Sign Out'}
       </span>
     </div>
   );

@@ -2,10 +2,20 @@
   display: flex;
 }
 .personal-sider {
-  margin: 8px 15px;
+  position: fixed;
+
+  margin: 0;
   width: 410px;
 }
-
+.content {
+  transition: all 0.3s;
+}
+.open {
+  margin-left: 440px;
+}
+.close {
+  margin-left: 110px;
+}
 .page-layout {
   padding-top: 128px;
 }
@@ -14,7 +24,7 @@
     padding-top: 110px;
   }
 }
-@media screen and (min-width: 1301px) and (max-width: 1500px){
+@media screen and (min-width: 1301px) and (max-width: 1500px) {
   .page-layout {
     padding-top: 85px;
   }
