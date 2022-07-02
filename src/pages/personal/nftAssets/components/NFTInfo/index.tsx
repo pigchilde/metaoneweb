@@ -1,10 +1,7 @@
+import { ObjectT } from '../../typing';
 import styles from './index.scss';
 
-interface objectT {
-  [propName: string]: any;
-}
-
-const NFTInfo = (props: objectT) => {
+const NFTInfo = (props: ObjectT) => {
   const { data = {} } = props;
   return (
     <div>

@@ -8,11 +8,9 @@ import tmp from '@/assets/ntf/pic/tanks2.png';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { history } from 'umi';
 import moment from 'moment';
-interface objectT {
-  [propName: string]: any;
-}
+import { ObjectT } from '../../typing';
 
-const WalletList = (props: objectT) => {
+const WalletList = (props: ObjectT) => {
   const { datas = {}, listIndex } = props;
   const split_array = (arr: any, len: number) => {
     let a_len = arr.length;
@@ -48,7 +46,7 @@ const WalletList = (props: objectT) => {
               return (
                 <SwiperSlide key={index}>
                   <ul className={styles['items']}>
-                    {plist.map((item: objectT, index: number) => {
+                    {plist.map((item: ObjectT, index: number) => {
                       return (
                         <li
                           className={styles['item']}

@@ -2,12 +2,9 @@ import styles from './index.scss';
 import { useIntl } from 'umi';
 import { Button, Tabs } from 'antd';
 import moment from 'moment';
+import { ObjectT } from '../../typing';
 
-interface objectT {
-  [propName: string]: any;
-}
-
-const OrderDetail = (props: objectT) => {
+const OrderDetail = (props: ObjectT) => {
   const { data = {}, mode } = props;
   const intl = useIntl();
   return (

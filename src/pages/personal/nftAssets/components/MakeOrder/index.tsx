@@ -1,58 +1,91 @@
 import styles from './index.scss';
 import { history, useIntl } from 'umi';
-import { Button, Form, Input, message, Radio, Select } from 'antd';
+import { Button, Form, InputNumber, message, Radio, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
-import web3Utils, { eth2Wei, wei2Eth } from '@/utils/web3';
-import config from '@/utils/web3Config';
+import { useState } from 'react';
+import contractConfig from '@/utils/contract/config';
+import { NFTTokenType, ObjectT } from '../../typing';
+import bigInt from 'big-integer';
 const { Option } = Select;
 
-interface objectT {
-  [propName: string]: any;
-}
-
-const MakeOrder = (props: objectT) => {
-  const { data = {}, mode } = props;
-  const [contract, setContract] = useState<any>();
-  const [account, setAccount] = useState('');
+const MakeOrder = (props: ObjectT) => {
+  const {
+    data = {},
+    mode,
+    nftOp: { account, contract },
+  } = props;
+  const [tkType, setTkType] = useState<NFTTokenType>(0);
+  const [loading, setLoading] = useState(false);
   const intl = useIntl();
+  const erc1155Methods = contract.erc1155?.methods;
+  const erc721Methods = contract.erc721?.methods;
+  const rentMethods = contract.rent?.methods;
 
-  // useEffect(() => {
-  //   ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
-  //     setAccount(accounts[0]);
-  //     const contract = web3Utils.initContract(
-  //       config.CDMContractABI,
-  //       config.CDMContractAddress,
-  //       accounts[0],
-  //     );
-  //     setContract(contract);
-  //     contract.methods
-  //       .getMyDepositsList()
-  //       .call()
-  //       .then((res) => {
-  //         console.log(res, 'getMyDepositsList res');
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   });
-  // }, []);
+  /**
+   * 交易授权
+   */
+  const approve = async () => {
+    const rentAddress = contractConfig.rent.address;
+    let contractMethods = erc721Methods;
+    if (tkType === NFTTokenType.ERC1155) {
+      contractMethods = erc1155Methods;
+    }
+    try {
+      const isApprovedForAll = await contractMethods
+        .isApprovedForAll(account, rentAddress)
+        .call();
+      if (isApprovedForAll) {
+        // 已授权
+        return;
+      }
+      // 未授权,进行授权操作
+      const approveResult = await contractMethods
+        .setApprovalForAll(rentAddress, true)
+        .send({
+          from: account,
+        });
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
+  };
 
   // 验证成功后提交
-  const onFinish = (values: any) => {
-    // const params = {
-    //   _tkType: '',
-    //   _NFTaddr: '0xB3867cdb57944807C97DD97d445CC8Fa54BE6911',
-    //   _tokenID: '1',
-    //   _renewable: values.renewable,
-    //   _coinIndex: '',
-    //   _minimumLeaseTime: values.leastTerm,
-    //   _maximumLeaseTime: values.longestTerm,
-    //   _price: 1000,
-    //   _gameBonus: 10,
-    // };
-    message.success('Successful!');
-    history.push('/personal/nftAssets');
+  const onFinish = async (values: any) => {
+    const { price } = values;
+    const params = {
+      ...values,
+      tkType,
+      nftAddr: contractConfig[NFTTokenType[tkType].toLowerCase()].address,
+      tokenId: 5,
+      coinIndex: 0,
+      price: bigInt(`${price}e18`).toString(),
+      gameBonus: 0,
+    };
+    setLoading(true);
+    await approve();
+    try {
+      const depositResult = await rentMethods
+        .deposit(
+          params.tkType,
+          params.nftAddr,
+          params.tokenId,
+          params.renewable,
+          params.coinIndex,
+          params.minimumLeaseTime,
+          params.maximumLeaseTime,
+          params.price,
+          params.gameBonus,
+        )
+        .send({
+          from: account,
+        });
+      message.success('make order success');
+      setLoading(false);
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,7 +108,7 @@ const MakeOrder = (props: objectT) => {
       >
         <Form.Item
           label="Rental"
-          name="rental"
+          name="price"
           rules={[
             {
               required: true,
@@ -83,9 +116,9 @@ const MakeOrder = (props: objectT) => {
             },
           ]}
         >
-          <Input placeholder="USDT/DAY" />
+          <InputNumber placeholder="USDT/DAY" controls={false} />
         </Form.Item>
-        {mode === 'share' ? (
+        {/* {mode === ModeType.share ? (
           <Form.Item
             label="Proportion"
             name="proportion"
@@ -98,10 +131,10 @@ const MakeOrder = (props: objectT) => {
           >
             <Input placeholder="%" />
           </Form.Item>
-        ) : null}
+        ) : null} */}
         <Form.Item
           label="Least lease term"
-          name="leastTerm"
+          name="minimumLeaseTime"
           rules={[
             {
               required: true,
@@ -109,11 +142,11 @@ const MakeOrder = (props: objectT) => {
             },
           ]}
         >
-          <Input placeholder="Day" />
+          <InputNumber placeholder="Day" controls={false} />
         </Form.Item>
         <Form.Item
           label="Longest lease term"
-          name="longestTerm"
+          name="maximumLeaseTime"
           rules={[
             {
               required: true,
@@ -121,7 +154,7 @@ const MakeOrder = (props: objectT) => {
             },
           ]}
         >
-          <Input placeholder="Day" />
+          <InputNumber placeholder="Day" controls={false} />
         </Form.Item>
         <Form.Item label="Target leaser" name="targetLeaser" rules={[]}>
           <Select value={0} suffixIcon={<CaretDownOutlined />}>
@@ -135,7 +168,12 @@ const MakeOrder = (props: objectT) => {
             <Radio value={0}>No</Radio>
           </Radio.Group>
         </Form.Item>
-        <Button type="primary" className={styles['btn']} htmlType="submit">
+        <Button
+          type="primary"
+          className={styles['btn']}
+          htmlType="submit"
+          disabled={loading}
+        >
           {intl.formatMessage({
             id: 'PERSONAL_GUILD_BTN1',
           })}

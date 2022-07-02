@@ -6,15 +6,18 @@ import { useEffect, useState } from 'react';
 import NFTInfo from './components/NFTInfo';
 import { queryNFTDetailsById } from '@/assets/personal/data/nfts';
 import OrderInfo from './components/OrderInfo';
-interface objectT {
-  [propName: string]: any;
+import { ObjectT } from './typing';
+
+enum TabType {
+  info = 0, // nft信息
+  order = 1, // nft订单
 }
 
-const NFTDetail = (props: objectT) => {
+const NFTDetail = (props: ObjectT) => {
   const {
     match: { params },
   } = props;
-  const [radioValue, setRadioValue] = useState('nft');
+  const [radioValue, setRadioValue] = useState<TabType>(TabType.order);
   const [itemInfo, setItemInfo] = useState<any>({});
   const intl = useIntl();
   // 获取nft数据
@@ -28,7 +31,7 @@ const NFTDetail = (props: objectT) => {
     getNFTDetails();
   }, []);
 
-  const handleSizeChange = (e: objectT) => {
+  const handleSizeChange = (e: ObjectT) => {
     const { target } = e;
     setRadioValue(target.value);
   };
@@ -56,20 +59,20 @@ const NFTDetail = (props: objectT) => {
             onChange={handleSizeChange}
             className={styles['radio-btn']}
           >
-            <Radio.Button value="nft">
+            <Radio.Button value={TabType.info}>
               {intl.formatMessage({
                 id: 'PERSONAL_GUILD_RADIO1',
               })}
             </Radio.Button>
             {itemInfo.leaseInfo ? (
-              <Radio.Button value="order">
+              <Radio.Button value={TabType.order}>
                 {intl.formatMessage({
                   id: 'PERSONAL_GUILD_RADIO2',
                 })}
               </Radio.Button>
             ) : null}
           </Radio.Group>
-          {radioValue === 'nft' ? (
+          {radioValue === TabType.info ? (
             <NFTInfo data={itemInfo} />
           ) : (
             <OrderInfo data={itemInfo} />
