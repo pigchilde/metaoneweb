@@ -30,10 +30,12 @@ const OrderInfo = (props: ObjectT) => {
         account,
       },
     });
+    const contract = initContract(account);
+    console.log(contract);
     dispatch({
       type: 'nftAssets/setData',
       payload: {
-        contract: initContract(account),
+        contract,
       },
     });
   };

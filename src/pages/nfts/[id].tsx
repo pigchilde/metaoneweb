@@ -13,17 +13,64 @@ import {
 
 import theme from './muiTheme';
 import AccountBalanceWalletOutlined from '@mui/icons-material/AccountBalanceWalletOutlined';
+import bigInt from 'big-integer';
 
 import RowStack from './components/RowStack';
 import NFTLevel from './components/NFTLevel';
 
 import { queryMarketNFTById } from './utils/mock';
-import { Link, useHistory, useRouteMatch } from 'umi';
+import { connect, Link, useHistory, useRouteMatch } from 'umi';
+import { ObjectT } from './typing';
+import { initAccount, initContract } from '@/utils/contract';
+import contractConfig from '@/utils/contract/config';
+import { message } from 'antd';
 
-const NFTDetailsPage: React.FC = () => {
+function NFTInfo({ data }: { data: any }) {
+  const Attrs = useMemo(() => data.attr, [data.attr]);
+  return (
+    <Box
+      sx={{
+        height: 448,
+        width: '100%',
+        overflow: 'hidden',
+        p: 6,
+        backgroundColor: '#001F22',
+        '.Row': {
+          width: '50%',
+          display: 'inline-flex',
+          py: 2,
+
+          '.Label': {
+            fontSize: 14,
+            color: 'text.secondary',
+            width: '200px',
+          },
+        },
+      }}
+    >
+      {Object.keys(Attrs).map((key, index) => {
+        return (
+          <RowStack className="Row" key={index}>
+            <Typography className="Label">{key}</Typography>
+            <Typography className="Value">{Attrs[key]}</Typography>
+          </RowStack>
+        );
+      })}
+    </Box>
+  );
+}
+
+const NFTDetailsPage: React.FC = (props: ObjectT) => {
+  const {
+    nftHub: { contract, account },
+    dispatch,
+  } = props;
   const match = useRouteMatch<{ id: string }>();
   const { id } = match.params;
   const [data, setData] = useState<any>();
+  const [loading, setLoading] = useState(false);
+  const erc20Methods = contract?.erc20.methods;
+  const rentMethods = contract?.rent.methods;
 
   // 当前信息Tab
   const [currentInfo, setCurrentInfo] = useState<'order' | 'NFT'>('order');
@@ -35,6 +82,64 @@ const NFTDetailsPage: React.FC = () => {
       }
     });
   }, [id]);
+
+  // 初始化账户和合约
+  const initAccountAndContract = async () => {
+    const account = await initAccount();
+    dispatch({
+      type: 'nftHub/setData',
+      payload: {
+        account,
+      },
+    });
+    const contract = initContract(account);
+    console.log(contract);
+    dispatch({
+      type: 'nftHub/setData',
+      payload: {
+        contract,
+      },
+    });
+  };
+
+  useEffect(() => {
+    initAccountAndContract();
+  }, []);
+
+  /**
+   * 交易授权
+   */
+  const approve = async () => {
+    const rentAddress = contractConfig.rent.address;
+    const ownerAddress = '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0';
+    const tokenId = 5;
+    try {
+      console.log(111);
+      // const allowance = await erc20Methods.allowance(ownerAddress, account).call();
+      // 未授权,进行授权操作
+      const approveResult = await erc20Methods
+        ._approve(account, rentAddress, bigInt(24e18).toString())
+        .send({
+          from: account,
+        });
+      setLoading(true);
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+    }
+    try {
+      console.log(222);
+      const rentResult = await rentMethods.rent(tokenId).send({
+        from: account,
+      });
+      message.success('success');
+      setLoading(false);
+      console.log(444);
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+    }
+  };
 
   // 当前租赁模式
   const mode = useMemo(() => {
@@ -135,6 +240,7 @@ const NFTDetailsPage: React.FC = () => {
                 size="large"
                 variant="contained"
                 startIcon={<AccountBalanceWalletOutlined />}
+                onClick={approve}
               >
                 Approve
               </Button>
@@ -288,39 +394,7 @@ const NFTDetailsPage: React.FC = () => {
     </ThemeProvider>
   );
 };
-export default NFTDetailsPage;
 
-function NFTInfo({ data }: { data: any }) {
-  const Attrs = useMemo(() => data.attr, [data.attr]);
-  return (
-    <Box
-      sx={{
-        height: 448,
-        width: '100%',
-        overflow: 'hidden',
-        p: 6,
-        backgroundColor: '#001F22',
-        '.Row': {
-          width: '50%',
-          display: 'inline-flex',
-          py: 2,
-
-          '.Label': {
-            fontSize: 14,
-            color: 'text.secondary',
-            width: '200px',
-          },
-        },
-      }}
-    >
-      {Object.keys(Attrs).map((key, index) => {
-        return (
-          <RowStack className="Row" key={index}>
-            <Typography className="Label">{key}</Typography>
-            <Typography className="Value">{Attrs[key]}</Typography>
-          </RowStack>
-        );
-      })}
-    </Box>
-  );
-}
+export default connect(({ nftHub }: { nftHub: ObjectT }) => ({
+  nftHub,
+}))(NFTDetailsPage);

@@ -27,7 +27,6 @@ const MakeOrder = (props: ObjectT) => {
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
     let contractMethods = erc721Methods;
-    console.log(account, contract);
     if (tkType === NFTTokenType.ERC1155) {
       contractMethods = erc1155Methods;
     }
