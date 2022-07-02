@@ -4,63 +4,42 @@ import { Tabs } from 'antd';
 import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
-import web3Utils from '@/utils/web3';
-import { ContractListObject, ModeType, ObjectT } from '../../typing';
-import contractConfig from '@/utils/contract/config';
+import { ModeType, ObjectT } from '../../typing';
+import { initAccount, initContract } from '@/utils/contract';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
   const { data = {}, dispatch } = props;
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
-  const [account, setAccount] = useState('');
   const {
     location: { query },
   } = history;
   const type = query?.type;
 
-  /**
-   * 初始化合约列表
-   */
-  const initContract = () => {
-    const contractList: ContractListObject = {};
-    for (let k in contractConfig) {
-      const contract = web3Utils.initContract(
-        contractConfig[k].abi,
-        contractConfig[k].address,
-        account,
-      );
-      contractList[k] = contract;
-    }
-    dispatch({
-      type: 'nftAssets/setData',
-      payload: {
-        contract: contractList,
-      },
-    });
-  };
-
-  /**
-   * 初始化账户和合约
-   */
-  const initAccount = async () => {
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-    setAccount(accounts[0]);
-    dispatch({
-      type: 'nftAssets/setData',
-      payload: {
-        account: accounts[0],
-      },
-    });
-  };
-
   // const tabChange = (activeKey: string) => {
   //   setTabKey(parseInt(activeKey));
   // };
 
+  // 初始化账户和合约
+  const initAccountAndContract = async () => {
+    const account = await initAccount();
+    dispatch({
+      type: 'nftAssets/setData',
+      payload: {
+        account,
+      },
+    });
+    dispatch({
+      type: 'nftAssets/setData',
+      payload: {
+        contract: initContract(account),
+      },
+    });
+  };
+
   useEffect(() => {
-    initAccount();
-    initContract();
+    initAccountAndContract();
   }, []);
   return (
     <div>
