@@ -1,21 +1,19 @@
 import styles from './index.scss';
-import { useIntl, history } from 'umi';
+import { useIntl, history, connect } from 'umi';
 import { Tabs } from 'antd';
 import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
 import web3Utils from '@/utils/web3';
-import { Contract } from 'web3-eth-contract';
 import { ContractListObject, ModeType, ObjectT } from '../../typing';
 import contractConfig from '@/utils/contract/config';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
-  const { data = {} } = props;
+  const { data = {}, dispatch } = props;
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
   const [account, setAccount] = useState('');
-  const [contract, setContract] = useState<ContractListObject>({});
   const {
     location: { query },
   } = history;
@@ -26,7 +24,6 @@ const OrderInfo = (props: ObjectT) => {
    */
   const initContract = () => {
     const contractList: ContractListObject = {};
-    console.log(contractConfig);
     for (let k in contractConfig) {
       const contract = web3Utils.initContract(
         contractConfig[k].abi,
@@ -35,15 +32,26 @@ const OrderInfo = (props: ObjectT) => {
       );
       contractList[k] = contract;
     }
-    setContract(contractList);
+    dispatch({
+      type: 'nftAssets/setData',
+      payload: {
+        contract: contractList,
+      },
+    });
   };
 
   /**
    * 初始化账户和合约
    */
-  const initAccountAndContract = async () => {
+  const initAccount = async () => {
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
     setAccount(accounts[0]);
+    dispatch({
+      type: 'nftAssets/setData',
+      payload: {
+        account: accounts[0],
+      },
+    });
   };
 
   // const tabChange = (activeKey: string) => {
@@ -51,7 +59,7 @@ const OrderInfo = (props: ObjectT) => {
   // };
 
   useEffect(() => {
-    initAccountAndContract();
+    initAccount();
     initContract();
   }, []);
   return (
@@ -89,7 +97,7 @@ const OrderInfo = (props: ObjectT) => {
           ></TabPane>
         </Tabs> */}
         {/* {type === 'makeOrder' ? ( */}
-        <MakeOrder data={data} mode={tabKey} nftOp={{ account, contract }} />
+        <MakeOrder data={data} mode={tabKey} />
         {/* ) : (
           <OrderDetail data={data} mode={tabKey} />
         )} */}
@@ -98,4 +106,6 @@ const OrderInfo = (props: ObjectT) => {
   );
 };
 
-export default OrderInfo;
+export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
+  nftAssets,
+}))(OrderInfo);

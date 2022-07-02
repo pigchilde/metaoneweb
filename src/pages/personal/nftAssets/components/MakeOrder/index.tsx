@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { history, useIntl } from 'umi';
+import { connect, history, useIntl } from 'umi';
 import { Button, Form, InputNumber, message, Radio, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
@@ -12,14 +12,14 @@ const MakeOrder = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftOp: { account, contract },
+    nftAssets: { account, contract },
   } = props;
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
   const intl = useIntl();
-  const erc1155Methods = contract.erc1155?.methods;
-  const erc721Methods = contract.erc721?.methods;
-  const rentMethods = contract.rent?.methods;
+  const erc1155Methods = contract?.erc1155.methods;
+  const erc721Methods = contract?.erc721.methods;
+  const rentMethods = contract?.rent.methods;
 
   /**
    * 交易授权
@@ -27,6 +27,7 @@ const MakeOrder = (props: ObjectT) => {
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
     let contractMethods = erc721Methods;
+    console.log(account, contract);
     if (tkType === NFTTokenType.ERC1155) {
       contractMethods = erc1155Methods;
     }
@@ -183,4 +184,6 @@ const MakeOrder = (props: ObjectT) => {
   );
 };
 
-export default MakeOrder;
+export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
+  nftAssets,
+}))(MakeOrder);
