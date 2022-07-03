@@ -78,10 +78,10 @@ const OrderInfo = (props: ObjectT) => {
           ></TabPane>
         </Tabs> */}
         {/* {type === 'makeOrder' ? ( */}
-        <MakeOrder data={data} mode={tabKey} />
-        {/* ) : (
-          <OrderDetail data={data} mode={tabKey} />
-        )} */}
+        {/* <MakeOrder data={data} mode={tabKey} /> */}
+        {/* ) : ( */}
+        <OrderDetail data={data} mode={tabKey} />
+        {/* )} */}
       </div>
     </div>
   );

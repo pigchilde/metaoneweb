@@ -114,11 +114,10 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
     const ownerAddress = '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0';
     const tokenId = 5;
     try {
-      console.log(111);
-      // const allowance = await erc20Methods.allowance(ownerAddress, account).call();
+      // const allowance = await erc20Methods.allowance(rentAddress, account).call();
       // 未授权,进行授权操作
       const approveResult = await erc20Methods
-        ._approve(account, rentAddress, bigInt(24e18).toString())
+        ._approve(account, rentAddress, bigInt(200e18).toString())
         .send({
           from: account,
         });
@@ -128,13 +127,11 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
       setLoading(false);
     }
     try {
-      console.log(222);
-      const rentResult = await rentMethods.rent(tokenId).send({
+      const rentResult = await rentMethods.rent(tokenId, 1).send({
         from: account,
       });
       message.success('success');
       setLoading(false);
-      console.log(444);
     } catch (err) {
       message.error((err as Error).message);
       setLoading(false);

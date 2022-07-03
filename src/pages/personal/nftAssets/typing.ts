@@ -11,3 +11,8 @@ export enum NFTTokenType {
   ERC721 = 0,
   ERC1155 = 1,
 }
+
+export enum TargetLeaser {
+  allGuilds = 0,
+  myGuildOnly = 1,
+}
