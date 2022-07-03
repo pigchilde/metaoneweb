@@ -1,0 +1,49 @@
+.modal-take-order {
+  :global {
+    .ant-modal {
+      padding-bottom: 0;
+      border: 1px solid $green;
+    }
+
+    .ant-modal-content {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .ant-modal-close-x {
+      .anticon {
+        color: $green;
+        font-size: 26px;
+      }
+    }
+
+    .ant-modal-header {
+      background: transparent;
+      border-bottom-color: $green;
+    }
+
+    .ant-modal-footer {
+      padding: 20px 16px;
+      border-top-color: $green;
+    }
+
+    .ant-modal-title {
+      color: $white;
+      text-align: center;
+      font-size: 26px;
+      line-height: 17px;
+    }
+
+    .ant-btn {
+      font-size: 22px;
+      height: 50px;
+      min-width: 150px;
+      box-sizing: border-box;
+    }
+
+    .ant-btn-default {
+      border-color: $green;
+      background-color: transparent;
+      color: #fff;
+    }
+  }
+}

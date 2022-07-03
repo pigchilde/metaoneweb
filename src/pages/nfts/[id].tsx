@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import styles from './detail.scss';
 import {
   Box,
   Breadcrumbs,
@@ -22,8 +23,8 @@ import { queryMarketNFTById } from './utils/mock';
 import { connect, Link, useHistory, useRouteMatch } from 'umi';
 import { ObjectT } from './typing';
 import { initAccount, initContract } from '@/utils/contract';
-import contractConfig from '@/utils/contract/config';
-import { message } from 'antd';
+import { message, Modal } from 'antd';
+import TakeOrder from './components/TakeOrder.tsx';
 
 function NFTInfo({ data }: { data: any }) {
   const Attrs = useMemo(() => data.attr, [data.attr]);
@@ -69,8 +70,11 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const { id } = match.params;
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState(false);
-  const erc20Methods = contract?.erc20.methods;
+  const [takeOrderVisible, setTakeOrderVisible] = useState(false);
+  const [orderData, setOrderData] = useState<ObjectT>({});
   const rentMethods = contract?.rent.methods;
+  const tokenId = 5;
+  const targetLeaser = 1;
 
   // 当前信息Tab
   const [currentInfo, setCurrentInfo] = useState<'order' | 'NFT'>('order');
@@ -102,41 +106,63 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
     });
   };
 
+  /**
+   * 关闭承租弹窗
+   */
+  const handleCancelTakeOrder = () => {
+    setTakeOrderVisible(false);
+  };
+
+  /**
+   * 处理点击承租按钮
+   */
+  const handleTakeOrder = () => {
+    setTakeOrderVisible(true);
+  };
+
+  /**
+   * 获取出租出去的nft订单信息
+   */
+  const getOrderInfo = async () => {
+    const orderList = await rentMethods.getMyDepositsList().call();
+    const orderInfo = orderList.find(
+      (item: ObjectT) => item.tokenID == tokenId,
+    );
+    {
+      console.log(orderInfo);
+    }
+    const { price, renewable } = orderInfo;
+    const newOrderInfo = {
+      ...orderInfo,
+      price: parseInt(price) / 1e18,
+      targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
+      renewable: renewable ? 'Yes' : 'No',
+    };
+    setOrderData(newOrderInfo);
+    dispatch({
+      type: 'nftHub/setData',
+      payload: {
+        orderInfo: newOrderInfo,
+      },
+    });
+  };
+
+  /**
+   * 处理订单完成
+   */
+  const handleOrderComplete = () => {
+    setTakeOrderVisible(false);
+  };
+
   useEffect(() => {
     initAccountAndContract();
   }, []);
 
-  /**
-   * 交易授权
-   */
-  const approve = async () => {
-    const rentAddress = contractConfig.rent.address;
-    const ownerAddress = '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0';
-    const tokenId = 5;
-    try {
-      // const allowance = await erc20Methods.allowance(rentAddress, account).call();
-      // 未授权,进行授权操作
-      const approveResult = await erc20Methods
-        ._approve(account, rentAddress, bigInt(200e18).toString())
-        .send({
-          from: account,
-        });
-      setLoading(true);
-    } catch (err) {
-      message.error((err as Error).message);
-      setLoading(false);
+  useEffect(() => {
+    if (contract) {
+      getOrderInfo();
     }
-    try {
-      const rentResult = await rentMethods.rent(tokenId, 1).send({
-        from: account,
-      });
-      message.success('success');
-      setLoading(false);
-    } catch (err) {
-      message.error((err as Error).message);
-      setLoading(false);
-    }
-  };
+  }, [contract]);
 
   // 当前租赁模式
   const mode = useMemo(() => {
@@ -237,9 +263,9 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                 size="large"
                 variant="contained"
                 startIcon={<AccountBalanceWalletOutlined />}
-                onClick={approve}
+                onClick={handleTakeOrder}
               >
-                Approve
+                Take Order
               </Button>
             </Stack>
           </Box>
@@ -355,7 +381,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                   <RowStack className="Row">
                     <Typography className="Label">Rental</Typography>
                     <Typography className="Value">
-                      {data.leaseInfo.interest} USDT/Day
+                      {orderData.price} USDT/Day
                     </Typography>
                   </RowStack>
                   <RowStack className="Row">
@@ -363,7 +389,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                       Minimum lease term
                     </Typography>
                     <Typography className="Value">
-                      {data.leaseInfo.leastTerm} Day
+                      {orderData.minimumLeaseTime} Day
                     </Typography>
                   </RowStack>
                   <RowStack className="Row">
@@ -371,13 +397,13 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                       Maximum lease term
                     </Typography>
                     <Typography className="Value">
-                      {data.leaseInfo.longestTerm} Day
+                      {orderData.maximumLeaseTime} Day
                     </Typography>
                   </RowStack>
                   <RowStack className="Row">
                     <Typography className="Label">Target renter</Typography>
                     <Typography className="Value">
-                      {data.leaseInfo.targetRenter === 1
+                      {orderData.targetLeaser === 1
                         ? 'My guild only'
                         : 'All guilds'}
                     </Typography>
@@ -387,6 +413,17 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
             </RowStack>
           )}
         </Box>
+        <Modal
+          title="Order"
+          wrapClassName={styles['modal-take-order']}
+          visible={takeOrderVisible}
+          onCancel={handleCancelTakeOrder}
+          destroyOnClose
+          footer={null}
+          width={480}
+        >
+          <TakeOrder onComplete={handleOrderComplete} />
+        </Modal>
       </Container>
     </ThemeProvider>
   );

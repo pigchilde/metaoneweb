@@ -1,0 +1,57 @@
+.take-order-form {
+  :global {
+    .ant-form-item {
+      margin-bottom: 32px;
+    }
+    .ant-form-item-with-help {
+      margin-bottom: 8px;
+    }
+    .ant-input-number {
+      border-radius: 4px !important;
+      color: #a6a6a6;
+      font-size: 20px;
+      background: transparent !important;
+      line-height: 40px;
+      border: solid 2px #006366;
+      height: 40px;
+      &:hover {
+        border-width: 2px !important;
+      }
+    }
+    .ant-input-number-disabled {
+      border: solid 2px #333;
+    }
+    .ant-input-disabled {
+      border: solid 2px #333;
+    }
+    .ant-input-number-group-addon {
+      border: none;
+      background: transparent;
+      color: $white;
+      font-size: 20px;
+    }
+    .ant-btn {
+      display: block;
+      height: 48px;
+      color: $white;
+      border-radius: 5px;
+      font-size: 20px;
+      margin: 20px auto 0;
+      &:disabled {
+        color: #999;
+      }
+    }
+  }
+  label {
+    color: $white;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  input {
+    width: 150px;
+    border: none;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: top;
+  }
+}

@@ -14,32 +14,6 @@ const OrderDetail = (props: ObjectT) => {
   const [orderData, setOrderData] = useState<ObjectT>({});
   const intl = useIntl();
   const rentMethods = contract?.rent.methods;
-  const tokenId = 5;
-  const targetLeaser = 1;
-  console.log(rentMethods);
-
-  /**
-   * 获取出租出去的nft订单信息
-   */
-  const getOrderInfo = async () => {
-    const orderList = await rentMethods.getMyDepositsList().call();
-    const orderInfo = orderList.find(
-      (item: ObjectT) => item.tokenID == tokenId,
-    );
-    const { price, renewable } = orderInfo;
-    setOrderData({
-      ...orderInfo,
-      price: parseInt(price) / 1e18,
-      targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
-      renewable: renewable ? 'Yes' : 'No',
-    });
-  };
-
-  useEffect(() => {
-    if (contract) {
-      getOrderInfo();
-    }
-  }, [contract]);
 
   return (
     <div className={styles['tabs-main']}>
@@ -47,7 +21,6 @@ const OrderDetail = (props: ObjectT) => {
         <span className={styles['item1']}>Rental</span>
         <span className={styles['item2']}>{orderData.price} USDT/DAY</span>
       </p>
-      {console.log(orderData)}
       {/* {mode === 'share' ? (
         <p className={styles['tabs-item']}>
           <span className={styles['item1']}>Proportion</span>

@@ -6,6 +6,7 @@ export default {
   state: {
     contract: null,
     account: '',
+    orderInfo: null,
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
