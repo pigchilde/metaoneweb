@@ -1,6 +1,6 @@
 import styles from './index.scss';
 import { useIntl, history, connect } from 'umi';
-import { Tabs } from 'antd';
+import { Button, message, Tabs } from 'antd';
 import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
@@ -9,17 +9,38 @@ import { initAccount, initContract } from '@/utils/contract';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
-  const { data = {}, dispatch } = props;
+  const {
+    data = {},
+    dispatch,
+    nftAssets: { account, contract },
+  } = props;
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
+  const [loading, setLoading] = useState(false);
   const {
     location: { query },
   } = history;
   const type = query?.type;
+  const erc721Methods = contract?.erc721.methods;
 
   // const tabChange = (activeKey: string) => {
   //   setTabKey(parseInt(activeKey));
   // };
+
+  /**
+   * 铸造nft（测试用）
+   */
+  const mintNFT = async () => {
+    setLoading(true);
+    try {
+      await erc721Methods.mint(account, `testNFT`).send({ from: account });
+      setLoading(false);
+      message.success('mint success');
+    } catch (err) {
+      setLoading(false);
+      message.error((err as Error).message);
+    }
+  };
 
   // 初始化账户和合约
   const initAccountAndContract = async () => {
@@ -53,6 +74,9 @@ const OrderInfo = (props: ObjectT) => {
           {' '}
           {`${data.owner?.substr(0, 6)}...${data.owner?.substr(-4)}`}
         </span>
+        <Button type="primary" onClick={mintNFT} disabled={loading}>
+          mint NFT
+        </Button>
       </p>
       <div
         className={`${styles['rounded-rectangle']} ${
@@ -78,9 +102,9 @@ const OrderInfo = (props: ObjectT) => {
           ></TabPane>
         </Tabs> */}
         {/* {type === 'makeOrder' ? ( */}
-        {/* <MakeOrder data={data} mode={tabKey} /> */}
+        <MakeOrder data={data} mode={tabKey} />
         {/* ) : ( */}
-        <OrderDetail data={data} mode={tabKey} />
+        {/* <OrderDetail data={data} mode={tabKey} /> */}
         {/* )} */}
       </div>
     </div>

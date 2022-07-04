@@ -20,30 +20,53 @@ const MakeOrder = (props: ObjectT) => {
   const erc1155Methods = contract?.erc1155.methods;
   const erc721Methods = contract?.erc721.methods;
   const rentMethods = contract?.rent.methods;
+  const tokenId = 6;
 
   /**
    * 交易授权
    */
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
-    let contractMethods = erc721Methods;
-    if (tkType === NFTTokenType.ERC1155) {
-      contractMethods = erc1155Methods;
-    }
     try {
-      const isApprovedForAll = await contractMethods
-        .isApprovedForAll(account, rentAddress)
-        .call();
-      if (isApprovedForAll) {
-        // 已授权
-        return;
-      }
-      // 未授权,进行授权操作
-      const approveResult = await contractMethods
-        .setApprovalForAll(rentAddress, true)
-        .send({
+      if (tkType === NFTTokenType.ERC1155) {
+        const isApprovedForAll = await erc1155Methods
+          .isApprovedForAll(account, rentAddress)
+          .call();
+        if (isApprovedForAll) {
+          // 已授权
+          return;
+        } // 未授权,进行授权操作
+        await erc1155Methods.setApprovalForAll(rentAddress, true).send({
           from: account,
         });
+      } else {
+        const approvedAddress = await erc721Methods.getApproved(tokenId).call();
+        console.log(approvedAddress);
+        if (approvedAddress === rentAddress) {
+          // 已授权
+          setLoading(false);
+          return;
+        }
+        // 未授权
+        await erc721Methods.approve(rentAddress, tokenId).send({
+          from: account,
+        });
+        setLoading(false);
+      }
+
+      //   const isApprovedForAll = await contractMethods
+      //     .isApprovedForAll(account, rentAddress)
+      //     .call();
+      //   if (isApprovedForAll) {
+      //     // 已授权
+      //     return;
+      //   }
+      //   // 未授权,进行授权操作
+      //   const approveResult = await contractMethods
+      //     .setApprovalForAll(rentAddress, true)
+      //     .send({
+      //       from: account,
+      //     });
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -64,6 +87,7 @@ const MakeOrder = (props: ObjectT) => {
     };
     setLoading(true);
     await approve();
+    return;
     try {
       const depositResult = await rentMethods
         .deposit(
