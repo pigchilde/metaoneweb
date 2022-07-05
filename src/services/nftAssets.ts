@@ -1,4 +1,5 @@
 import { request, authRequest } from '@/utils/request';
+import { stringify } from 'qs';
 
 interface ObjectT {
   [propName: string]: any;
@@ -20,12 +21,41 @@ export const getNFTInfo: ObjectT = async (params: ObjectT) => {
  * @returns
  */
 export const getNFTList: ObjectT = async (params: ObjectT) => {
-  const { nftAddress, owner, pageNum, pageSize } = params;
-  return authRequest(
-    `/nft/asset/list?nftAddress=${nftAddress}&owner=${owner}&pageNum=${pageNum}&pageSize=${pageSize}`,
-    {
-      method: 'GET',
-      data: params,
-    },
-  );
+  return authRequest(`/nft/asset/list?${stringify(params)}`, {
+    method: 'GET',
+    data: params,
+  });
+};
+
+/**
+ * lease模式上架nft资产
+ * @returns
+ */
+export const leasePublish: ObjectT = async (params: ObjectT) => {
+  return authRequest(`/nft/asset-make/lease-publish`, {
+    method: 'POST',
+    data: params,
+  });
+};
+
+/**
+ * nft资产发布完成
+ * @returns
+ */
+export const publishComplete: ObjectT = async (params: ObjectT) => {
+  const { id } = params;
+  return authRequest(`/nft/asset-make/publish-complete/${id}`, {
+    method: 'PUT',
+  });
+};
+
+/**
+ * nft资产发布完成
+ * @returns
+ */
+export const publishFail: ObjectT = async (params: ObjectT) => {
+  const { id } = params;
+  return authRequest(`/nft/asset-make/publish-fail/${id}`, {
+    method: 'PUT',
+  });
 };
