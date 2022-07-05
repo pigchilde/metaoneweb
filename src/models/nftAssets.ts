@@ -5,6 +5,7 @@ interface initialStateT {
 export default {
   namespace: 'nftAssets',
   state: {
+    account: '',
     contract: null,
     orderInfo: {},
     nftInfo: {},

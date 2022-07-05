@@ -45,6 +45,7 @@ export const initTransactionConf = async (
         const account = (<any>window).ethereum.selectedAddress;
         const contract = initContract(account);
         onAccountsChange && onAccountsChange(account, contract);
+        console.log(account);
       });
     }
     return true;

@@ -4,6 +4,7 @@ interface initialStateT {
 export default {
   namespace: 'nftHub',
   state: {
+    account: '',
     contract: null,
     orderInfo: {},
   },

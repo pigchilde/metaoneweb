@@ -47,12 +47,12 @@ const TakeOrder = (props: objectT) => {
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
     const leaseTerm = getFieldValue('leaseTerm');
+    const totalPrice = parseInt(getFieldValue('totalPrice'));
     setLoading(true);
     try {
-      // return;
       // 未授权,进行授权操作
       const approveResult = await erc20Methods
-        .approve(rentAddress, bigInt(100e18).toString())
+        .approve(rentAddress, bigInt(totalPrice * 1e18).toString())
         .send({
           from: account,
         });
@@ -60,6 +60,7 @@ const TakeOrder = (props: objectT) => {
     } catch (err) {
       message.error((err as Error).message);
       setLoading(false);
+      return;
     }
     try {
       const rentResult = await rentMethods.rent(5, leaseTerm).send({

@@ -259,7 +259,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                 startIcon={<AccountBalanceWalletOutlined />}
                 onClick={handleTakeOrder}
                 disabled={
-                  orderInfo.lender.toLowerCase() === account.toLowerCase()
+                  orderInfo?.lender?.toLowerCase() === account?.toLowerCase()
                 }
               >
                 Take Order
