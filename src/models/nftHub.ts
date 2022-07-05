@@ -5,8 +5,7 @@ export default {
   namespace: 'nftHub',
   state: {
     contract: null,
-    account: '',
-    orderInfo: null,
+    orderInfo: {},
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {

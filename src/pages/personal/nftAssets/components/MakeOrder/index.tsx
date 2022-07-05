@@ -12,7 +12,7 @@ const MakeOrder = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftAssets: { account, contract },
+    nftAssets: { contract },
   } = props;
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
@@ -20,28 +20,30 @@ const MakeOrder = (props: ObjectT) => {
   const erc1155Methods = contract?.erc1155.methods;
   const erc721Methods = contract?.erc721.methods;
   const rentMethods = contract?.rent.methods;
-  const tokenId = 6;
+  const tokenId = 7;
 
   /**
    * 交易授权
    */
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
+    // const address = await erc721Methods.ownerOf(tokenId).call();
+    // console.log('owner:', address);
+    setLoading(true);
     try {
       if (tkType === NFTTokenType.ERC1155) {
         const isApprovedForAll = await erc1155Methods
-          .isApprovedForAll(account, rentAddress)
+          .isApprovedForAll(window.ethereum.selectedAddress, rentAddress)
           .call();
         if (isApprovedForAll) {
           // 已授权
           return;
         } // 未授权,进行授权操作
         await erc1155Methods.setApprovalForAll(rentAddress, true).send({
-          from: account,
+          from: window.ethereum.selectedAddress,
         });
       } else {
         const approvedAddress = await erc721Methods.getApproved(tokenId).call();
-        console.log(approvedAddress);
         if (approvedAddress === rentAddress) {
           // 已授权
           setLoading(false);
@@ -49,24 +51,10 @@ const MakeOrder = (props: ObjectT) => {
         }
         // 未授权
         await erc721Methods.approve(rentAddress, tokenId).send({
-          from: account,
+          from: window.ethereum.selectedAddress,
         });
         setLoading(false);
       }
-
-      //   const isApprovedForAll = await contractMethods
-      //     .isApprovedForAll(account, rentAddress)
-      //     .call();
-      //   if (isApprovedForAll) {
-      //     // 已授权
-      //     return;
-      //   }
-      //   // 未授权,进行授权操作
-      //   const approveResult = await contractMethods
-      //     .setApprovalForAll(rentAddress, true)
-      //     .send({
-      //       from: account,
-      //     });
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -80,14 +68,13 @@ const MakeOrder = (props: ObjectT) => {
       ...values,
       tkType,
       nftAddr: contractConfig[NFTTokenType[tkType].toLowerCase()].address,
-      tokenId: 5,
+      tokenId,
       coinIndex: 0,
       price: bigInt(`${price}e18`).toString(),
       gameBonus: 0,
     };
-    setLoading(true);
     await approve();
-    return;
+    setLoading(true);
     try {
       const depositResult = await rentMethods
         .deposit(
@@ -102,7 +89,7 @@ const MakeOrder = (props: ObjectT) => {
           params.gameBonus,
         )
         .send({
-          from: account,
+          from: window.ethereum.selectedAddress,
         });
       message.success('make order success');
       setLoading(false);

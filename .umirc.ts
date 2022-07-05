@@ -34,6 +34,10 @@ export default defineConfig({
       target: 'https://metaone.gg',
       changeOrigin: true,
     },
+    '/nft/': {
+      target: 'http://47.106.90.119:8000',
+      changeOrigin: true,
+    },
   },
   sass: {
     prependData: `

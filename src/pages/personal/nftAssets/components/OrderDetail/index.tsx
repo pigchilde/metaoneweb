@@ -9,17 +9,15 @@ const OrderDetail = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftAssets: { account, contract },
+    nftAssets: { contract, orderInfo },
   } = props;
-  const [orderData, setOrderData] = useState<ObjectT>({});
   const intl = useIntl();
-  const rentMethods = contract?.rent.methods;
 
   return (
     <div className={styles['tabs-main']}>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Rental</span>
-        <span className={styles['item2']}>{orderData.price} USDT/DAY</span>
+        <span className={styles['item2']}>{orderInfo.price} USDT/DAY</span>
       </p>
       {/* {mode === 'share' ? (
         <p className={styles['tabs-item']}>
@@ -32,22 +30,22 @@ const OrderDetail = (props: ObjectT) => {
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Least lease term</span>
         <span className={styles['item2']}>
-          {orderData.minimumLeaseTime} DAY
+          {orderInfo.minimumLeaseTime} DAY
         </span>
       </p>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Longest lease term</span>
         <span className={styles['item2']}>
-          {orderData.maximumLeaseTime} DAY
+          {orderInfo.maximumLeaseTime} DAY
         </span>
       </p>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Target leaser</span>
-        <span className={styles['item2']}>{orderData.targetLeaser}</span>
+        <span className={styles['item2']}>{orderInfo.targetLeaser}</span>
       </p>
       <p className={styles['tabs-item']}>
         <span className={styles['item1']}>Renewable</span>
-        <span className={styles['item2']}>{orderData.renewable}</span>
+        <span className={styles['item2']}>{orderInfo.renewable}</span>
       </p>
       {data.rentInfo ? (
         <Button className={`${styles['btn']} ${styles['default-btn']}`}>

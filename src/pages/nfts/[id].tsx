@@ -22,7 +22,7 @@ import NFTLevel from './components/NFTLevel';
 import { queryMarketNFTById } from './utils/mock';
 import { connect, Link, useHistory, useRouteMatch } from 'umi';
 import { ObjectT } from './typing';
-import { initAccount, initContract } from '@/utils/contract';
+import { initTransactionConf, ContractListObject } from '@/utils/contract';
 import { message, Modal } from 'antd';
 import TakeOrder from './components/TakeOrder.tsx';
 
@@ -63,7 +63,7 @@ function NFTInfo({ data }: { data: any }) {
 
 const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const {
-    nftHub: { contract, account },
+    nftHub: { contract, orderInfo },
     dispatch,
   } = props;
   const match = useRouteMatch<{ id: string }>();
@@ -73,7 +73,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const [takeOrderVisible, setTakeOrderVisible] = useState(false);
   const [orderData, setOrderData] = useState<ObjectT>({});
   const rentMethods = contract?.rent.methods;
-  const tokenId = 5;
+  const tokenId = 7;
   const targetLeaser = 1;
 
   // 当前信息Tab
@@ -86,25 +86,6 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
       }
     });
   }, [id]);
-
-  // 初始化账户和合约
-  const initAccountAndContract = async () => {
-    const account = await initAccount();
-    dispatch({
-      type: 'nftHub/setData',
-      payload: {
-        account,
-      },
-    });
-    const contract = initContract(account);
-    console.log(contract);
-    dispatch({
-      type: 'nftHub/setData',
-      payload: {
-        contract,
-      },
-    });
-  };
 
   /**
    * 关闭承租弹窗
@@ -124,12 +105,10 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
    * 获取出租出去的nft订单信息
    */
   const getOrderInfo = async () => {
-    const orderList = await rentMethods.getMyDepositsList().call();
-    const orderInfo = orderList.find(
-      (item: ObjectT) => item.tokenID == tokenId,
-    );
-    {
-      console.log(orderInfo);
+    const orderInfo = await rentMethods.getLendItemMsg(5).call();
+    console.log(orderInfo);
+    if (!orderInfo) {
+      return;
     }
     const { price, renewable } = orderInfo;
     const newOrderInfo = {
@@ -155,7 +134,20 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   };
 
   useEffect(() => {
-    initAccountAndContract();
+    initTransactionConf((contract: ContractListObject) => {
+      dispatch({
+        type: 'nftHub/setData',
+        payload: {
+          contract,
+        },
+      });
+      dispatch({
+        type: 'nftAssets/setData',
+        payload: {
+          contract,
+        },
+      });
+    });
   }, []);
 
   useEffect(() => {
@@ -264,6 +256,10 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                 variant="contained"
                 startIcon={<AccountBalanceWalletOutlined />}
                 onClick={handleTakeOrder}
+                disabled={
+                  orderInfo.lender.toLowerCase() ===
+                  window.ethereum.selectedAddress?.toLowerCase()
+                }
               >
                 Take Order
               </Button>

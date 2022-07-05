@@ -11,4 +11,8 @@ declare module '*.svg' {
   export default url;
 }
 
-declare const ethereum: objectT;
+declare global {
+  interface Window {
+    listeningAccountsChange: boolean;
+  }
+}

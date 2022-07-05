@@ -1,6 +1,6 @@
 import styles from './index.scss';
 import ico from './ico.scss';
-import { Link, useIntl } from 'umi';
+import { connect, Link, useIntl } from 'umi';
 import { Button, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import WalletList from './components/WalletList';
@@ -12,12 +12,10 @@ import {
   queryMyNFT,
   queryMyRentNFT,
 } from '@/assets/personal/data/nfts';
+import { ObjectT } from './typing';
 
-interface objectT {
-  [propName: string]: any;
-}
-
-const NFTAssets = () => {
+const NFTAssets = (props: ObjectT) => {
+  const { dispatch } = props;
   const intl = useIntl();
 
   const [wallet, setWallet] = useState();
@@ -36,41 +34,34 @@ const NFTAssets = () => {
     // });
   };
 
-  useEffect(() => {
-    getMarketNFTs();
-  }, []);
+  const getNFTInfo = () => {
+    dispatch({
+      type: 'nftAssets/getNFTInfo',
+      payload: {
+        id: 1,
+      },
+    });
+  };
+
+  /**
+   * 获取nft列表
+   */
+  const getNFTList = () => {
+    dispatch({
+      type: 'nftAssets/getNFTList',
+      payload: {
+        nftAddress: '0x2104A90046AA9C73906C7f4beDDa20e94a354454',
+        owner: '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0',
+        pageNum: 1,
+        pageSize: 20,
+      },
+    });
+  };
 
   useEffect(() => {
-    /* web3Utils
-      .getBalance('0xf653381Aa2e85737fDBf5b755a2Ade943542A96E')
-      .then((res) => {
-        console.log(wei2Eth(res), 'res');
-      }); */
-    // ethereum.request({ method: 'eth_requestAccounts' }).then((accounts) => {
-    //   const contract = web3Utils.initContract(
-    //     config.CDMContractABI,
-    //     config.CDMContractAddress,
-    //     accounts[0],
-    //   );
-    //   contract.methods
-    //     .getMyDepositsList()
-    //     .call()
-    //     .then((res) => {
-    //       console.log(res, 'getMyDepositsList res');
-    //     });
-    //   contract.methods
-    //     .earningItem(0)
-    //     .call()
-    //     .then((res) => {
-    //       console.log(res, 'earningItem res');
-    //     });
-    //   contract.methods
-    //     .getLendItemMsg(0)
-    //     .call()
-    //     .then((res) => {
-    //       console.log(res, 'getLendItemMsg res');
-    //     });
-    // });
+    getMarketNFTs();
+    getNFTList();
+    getNFTInfo();
   }, []);
 
   const selectList = [
@@ -115,7 +106,7 @@ const NFTAssets = () => {
             onChange={changeFilter}
             defaultValue={selectList[0].key}
           >
-            {selectList.map((item: objectT) => {
+            {selectList.map((item: ObjectT) => {
               return (
                 <Option value={item.key} key={item.key}>
                   {item.label}
@@ -128,7 +119,7 @@ const NFTAssets = () => {
             onChange={changeFilter}
             defaultValue={selectList2[0].key}
           >
-            {selectList2.map((item: objectT) => {
+            {selectList2.map((item: ObjectT) => {
               return (
                 <Option value={item.key} key={item.key}>
                   {item.label}
@@ -200,4 +191,6 @@ const NFTAssets = () => {
     </div>
   );
 };
-export default NFTAssets;
+export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
+  nftAssets,
+}))(NFTAssets);

@@ -18,7 +18,7 @@ const config: ObjectT = {
     abi: ERC1155ABI,
   },
   erc20: {
-    address: '0x2104A90046AA9C73906C7f4beDDa20e94a354454',
+    address: '0x742128C35b2432b6Af761C81eff65d95A717fC66',
     abi: ERC20ABI,
   },
   rent: {

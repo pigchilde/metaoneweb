@@ -13,7 +13,7 @@ interface objectT {
 const TakeOrder = (props: objectT) => {
   const {
     onComplete,
-    nftHub: { account, contract, orderInfo },
+    nftHub: { contract, orderInfo },
   } = props;
   const intl = useIntl();
   const [form] = Form.useForm();
@@ -47,16 +47,14 @@ const TakeOrder = (props: objectT) => {
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
     const leaseTerm = getFieldValue('leaseTerm');
-    const ownerAddress = '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0';
-    const { tokenID } = orderInfo;
     setLoading(true);
     try {
-      // const allowance = await erc20Methods.allowance(rentAddress, account).call();
+      // return;
       // 未授权,进行授权操作
       const approveResult = await erc20Methods
-        ._approve(account, rentAddress, bigInt(200e18).toString())
+        .approve(rentAddress, bigInt(100e18).toString())
         .send({
-          from: account,
+          from: window.ethereum.selectedAddress,
         });
       setLoading(false);
     } catch (err) {
@@ -64,13 +62,15 @@ const TakeOrder = (props: objectT) => {
       setLoading(false);
     }
     try {
-      const rentResult = await rentMethods.rent(tokenID, leaseTerm).send({
-        from: account,
+      const rentResult = await rentMethods.rent(5, leaseTerm).send({
+        from: window.ethereum.selectedAddress,
       });
       message.success('success');
       setLoading(false);
+      console.log(rentResult);
       onComplete && onComplete();
     } catch (err) {
+      console.error(err);
       message.error((err as Error).message);
       setLoading(false);
     }
