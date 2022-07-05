@@ -63,7 +63,7 @@ function NFTInfo({ data }: { data: any }) {
 
 const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const {
-    nftHub: { contract, orderInfo },
+    nftHub: { contract, orderInfo, account },
     dispatch,
   } = props;
   const match = useRouteMatch<{ id: string }>();
@@ -134,16 +134,18 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   };
 
   useEffect(() => {
-    initTransactionConf((contract: ContractListObject) => {
+    initTransactionConf((account, contract: ContractListObject) => {
       dispatch({
         type: 'nftHub/setData',
         payload: {
+          account,
           contract,
         },
       });
       dispatch({
         type: 'nftAssets/setData',
         payload: {
+          account,
           contract,
         },
       });
@@ -257,8 +259,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
                 startIcon={<AccountBalanceWalletOutlined />}
                 onClick={handleTakeOrder}
                 disabled={
-                  orderInfo.lender.toLowerCase() ===
-                  window.ethereum.selectedAddress?.toLowerCase()
+                  orderInfo.lender.toLowerCase() === account.toLowerCase()
                 }
               >
                 Take Order

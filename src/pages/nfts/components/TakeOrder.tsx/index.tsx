@@ -13,7 +13,7 @@ interface objectT {
 const TakeOrder = (props: objectT) => {
   const {
     onComplete,
-    nftHub: { contract, orderInfo },
+    nftHub: { contract, orderInfo, account },
   } = props;
   const intl = useIntl();
   const [form] = Form.useForm();
@@ -54,7 +54,7 @@ const TakeOrder = (props: objectT) => {
       const approveResult = await erc20Methods
         .approve(rentAddress, bigInt(100e18).toString())
         .send({
-          from: window.ethereum.selectedAddress,
+          from: account,
         });
       setLoading(false);
     } catch (err) {
@@ -63,7 +63,7 @@ const TakeOrder = (props: objectT) => {
     }
     try {
       const rentResult = await rentMethods.rent(5, leaseTerm).send({
-        from: window.ethereum.selectedAddress,
+        from: account,
       });
       message.success('success');
       setLoading(false);

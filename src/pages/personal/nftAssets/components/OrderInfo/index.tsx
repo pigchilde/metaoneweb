@@ -12,7 +12,7 @@ const OrderInfo = (props: ObjectT) => {
   const {
     data = {},
     dispatch,
-    nftAssets: { contract, orderInfo },
+    nftAssets: { contract, orderInfo, account },
   } = props;
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
@@ -34,13 +34,11 @@ const OrderInfo = (props: ObjectT) => {
    */
   const mintNFT = async () => {
     setLoading(true);
-    console.log('account', window.ethereum.seletedAddress);
+    console.log('account', account);
     try {
-      await erc721Methods
-        .mint(window.ethereum.seletedAddress, `testNFT7`)
-        .send({
-          from: window.ethereum.seletedAddress,
-        });
+      await erc721Methods.mint(account, `testNFT7`).send({
+        from: account,
+      });
       setLoading(false);
       message.success('mint success');
     } catch (err) {
@@ -74,16 +72,18 @@ const OrderInfo = (props: ObjectT) => {
   };
 
   useEffect(() => {
-    initTransactionConf((contract: ContractListObject) => {
+    initTransactionConf((account, contract: ContractListObject) => {
       dispatch({
         type: 'nftHub/setData',
         payload: {
+          account,
           contract,
         },
       });
       dispatch({
         type: 'nftAssets/setData',
         payload: {
+          account,
           contract,
         },
       });

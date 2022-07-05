@@ -12,7 +12,7 @@ const MakeOrder = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftAssets: { contract },
+    nftAssets: { contract, account },
   } = props;
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
@@ -33,14 +33,14 @@ const MakeOrder = (props: ObjectT) => {
     try {
       if (tkType === NFTTokenType.ERC1155) {
         const isApprovedForAll = await erc1155Methods
-          .isApprovedForAll(window.ethereum.selectedAddress, rentAddress)
+          .isApprovedForAll(account, rentAddress)
           .call();
         if (isApprovedForAll) {
           // 已授权
           return;
         } // 未授权,进行授权操作
         await erc1155Methods.setApprovalForAll(rentAddress, true).send({
-          from: window.ethereum.selectedAddress,
+          from: account,
         });
       } else {
         const approvedAddress = await erc721Methods.getApproved(tokenId).call();
@@ -51,7 +51,7 @@ const MakeOrder = (props: ObjectT) => {
         }
         // 未授权
         await erc721Methods.approve(rentAddress, tokenId).send({
-          from: window.ethereum.selectedAddress,
+          from: account,
         });
         setLoading(false);
       }
@@ -89,7 +89,7 @@ const MakeOrder = (props: ObjectT) => {
           params.gameBonus,
         )
         .send({
-          from: window.ethereum.selectedAddress,
+          from: account,
         });
       message.success('make order success');
       setLoading(false);

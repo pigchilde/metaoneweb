@@ -9,16 +9,16 @@ export type ContractListObject = {
 /**
  * 初始化合约列表
  */
-export const initContract = () => {
+export const initContract = (account: string) => {
   const contractList: ContractListObject = {};
-  if (!window.ethereum || !(<any>window).ethereum.selectedAddress) {
+  if (!window.ethereum || !account) {
     return {};
   }
   for (let k in config) {
     const contract = web3Utils.initContract(
       config[k].abi,
       config[k].address,
-      (<any>window).selectedAddress,
+      account,
     );
     contractList[k] = contract;
   }
@@ -29,20 +29,22 @@ export const initContract = () => {
  * 初始化交易配置
  */
 export const initTransactionConf = async (
-  onAccountsChange?: (contract: ContractListObject) => void,
+  onAccountsChange?: (account: string, contract: ContractListObject) => void,
 ) => {
   if (!window.ethereum) {
     return false;
   }
   try {
     await (<any>window).ethereum.enable();
-    const contract = initContract();
-    onAccountsChange && onAccountsChange(contract);
+    const account = (<any>window).ethereum.selectedAddress;
+    const contract = initContract(account);
+    onAccountsChange && onAccountsChange(account, contract);
     if (!(<any>window).listeningAccountsChange) {
       (<any>window).listeningAccountsChange = true;
       (<any>window).ethereum.on('accountsChanged', () => {
-        const contract = initContract();
-        onAccountsChange && onAccountsChange(contract);
+        const account = (<any>window).ethereum.selectedAddress;
+        const contract = initContract(account);
+        onAccountsChange && onAccountsChange(account, contract);
       });
     }
     return true;
