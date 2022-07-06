@@ -38,7 +38,7 @@ const NFTAssets = (props: ObjectT) => {
     dispatch({
       type: 'nftAssets/getNFTInfo',
       payload: {
-        id: 1,
+        id: '1111111111',
       },
     });
   };

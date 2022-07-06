@@ -66,7 +66,6 @@ export function getBlockNumber() {
  * @returns
  */
 export function initContract(abi: any, address: string, account: string) {
-  console.log(address, 'address');
   try {
     const web3 = init();
     const contract = new web3.eth.Contract(abi, address, { from: account });

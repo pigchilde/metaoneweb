@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
 import { ModeType, ObjectT } from '../../typing';
-import { ContractListObject, initTransactionConf } from '@/utils/contract';
+import {
+  initContract,
+  initTransactionApprove,
+  initWalletApprove,
+} from '@/utils/contract';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
@@ -71,23 +75,38 @@ const OrderInfo = (props: ObjectT) => {
     });
   };
 
-  useEffect(() => {
-    initTransactionConf((account, contract: ContractListObject) => {
-      dispatch({
-        type: 'nftHub/setData',
-        payload: {
-          account,
-          contract,
-        },
-      });
-      dispatch({
-        type: 'nftAssets/setData',
-        payload: {
-          account,
-          contract,
-        },
-      });
+  /**
+   * 处理账号变更
+   */
+  const handleAccountsChanged = () => {
+    const ethereum: any = window.ethereum;
+    const account = ethereum.selectedAddress;
+    const contract = initContract(account);
+    dispatch({
+      type: 'nftAssets/setData',
+      payload: {
+        account,
+        contract,
+      },
     });
+  };
+
+  useEffect(() => {
+    const ethereum: any = window.ethereum;
+    (async () => {
+      if (!ethereum) {
+        return;
+      }
+      const result = await initWalletApprove();
+      if (!result) {
+        return;
+      }
+      handleAccountsChanged();
+      ethereum.on('accountsChanged', handleAccountsChanged);
+    })();
+    return () => {
+      ethereum.removeListener('accountsChanged', handleAccountsChanged);
+    };
   }, []);
 
   useEffect(() => {

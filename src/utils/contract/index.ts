@@ -28,26 +28,12 @@ export const initContract = (account: string) => {
 /**
  * 初始化交易配置
  */
-export const initTransactionConf = async (
-  onAccountsChange?: (account: string, contract: ContractListObject) => void,
-) => {
+export const initWalletApprove = async () => {
   if (!window.ethereum) {
     return false;
   }
   try {
     await (<any>window).ethereum.enable();
-    const account = (<any>window).ethereum.selectedAddress;
-    const contract = initContract(account);
-    onAccountsChange && onAccountsChange(account, contract);
-    if (!(<any>window).listeningAccountsChange) {
-      (<any>window).listeningAccountsChange = true;
-      (<any>window).ethereum.on('accountsChanged', () => {
-        const account = (<any>window).ethereum.selectedAddress;
-        const contract = initContract(account);
-        onAccountsChange && onAccountsChange(account, contract);
-        console.log(account);
-      });
-    }
     return true;
   } catch (err) {
     message.error((err as Error).message);
