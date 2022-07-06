@@ -8,6 +8,8 @@ export default {
   state: {
     socialMediaList: [],
     platformInfo: {},
+    account: '',
+    contract: null,
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {

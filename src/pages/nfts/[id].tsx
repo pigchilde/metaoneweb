@@ -22,7 +22,6 @@ import NFTLevel from './components/NFTLevel';
 import { queryMarketNFTById } from './utils/mock';
 import { connect, Link, useHistory, useRouteMatch } from 'umi';
 import { ObjectT } from './typing';
-import { initContract, initWalletApprove } from '@/utils/contract';
 import { message, Modal } from 'antd';
 import TakeOrder from './components/TakeOrder.tsx';
 
@@ -63,7 +62,8 @@ function NFTInfo({ data }: { data: any }) {
 
 const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const {
-    nftHub: { contract, orderInfo, account },
+    nftHub: { orderInfo },
+    common: { account, contract },
     dispatch,
   } = props;
   const match = useRouteMatch<{ id: string }>();
@@ -132,40 +132,6 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   const handleOrderComplete = () => {
     setTakeOrderVisible(false);
   };
-
-  /**
-   * 处理账号变更
-   */
-  const handleAccountsChanged = () => {
-    const ethereum: any = window.ethereum;
-    const account = ethereum.selectedAddress;
-    const contract = initContract(account);
-    dispatch({
-      type: 'nftHub/setData',
-      payload: {
-        account,
-        contract,
-      },
-    });
-  };
-
-  useEffect(() => {
-    const ethereum: any = window.ethereum;
-    (async () => {
-      if (!ethereum) {
-        return;
-      }
-      const result = await initWalletApprove();
-      if (!result) {
-        return;
-      }
-      handleAccountsChanged();
-      ethereum.on('accountsChanged', handleAccountsChanged);
-    })();
-    return () => {
-      ethereum.removeListener('accountsChanged', handleAccountsChanged);
-    };
-  }, []);
 
   useEffect(() => {
     if (contract) {
@@ -441,6 +407,9 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   );
 };
 
-export default connect(({ nftHub }: { nftHub: ObjectT }) => ({
-  nftHub,
-}))(NFTDetailsPage);
+export default connect(
+  ({ nftHub, common }: { nftHub: ObjectT; common: ObjectT }) => ({
+    nftHub,
+    common,
+  }),
+)(NFTDetailsPage);

@@ -5,13 +5,7 @@ import { Button, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import WalletList from './components/WalletList';
 import { useState, useEffect } from 'react';
-import web3Utils, { eth2Wei, wei2Eth } from '../../../utils/web3';
-import config from '../../../utils/web3Config';
-import {
-  queryMarketNFTs,
-  queryMyNFT,
-  queryMyRentNFT,
-} from '@/assets/personal/data/nfts';
+import { queryMyRentNFT } from '@/assets/personal/data/nfts';
 import { ObjectT } from './typing';
 
 const NFTAssets = (props: ObjectT) => {
@@ -19,19 +13,13 @@ const NFTAssets = (props: ObjectT) => {
   const intl = useIntl();
 
   const [wallet, setWallet] = useState();
-  const [myNFTs, setMyNFTs] = useState<any>([]); // mock数据用
+  const [myNFTList, setMyNFTList] = useState<any>([]); // mock数据用
   const [myRentNFT, setMyRentNFT] = useState<any>([]); // mock数据用
 
   // 获取nft列表(mock)
   const getMarketNFTs = () => {
-    setMyNFTs(queryMyNFT());
+    // setMyNFTs(queryMyNFT());
     setMyRentNFT(queryMyRentNFT());
-    // queryMarketNFTs({ pageSize: 8 }).then((res) => {
-    //   setNftList1(res.data.nfts);
-    // });
-    // queryMarketNFTs({ pageSize: 3, pageIndex: 6 }).then((res) => {
-    //   setNftList2(res.data.nfts);
-    // });
   };
 
   const getNFTInfo = () => {
@@ -46,7 +34,7 @@ const NFTAssets = (props: ObjectT) => {
   /**
    * 获取nft列表
    */
-  const getNFTList = () => {
+  const getMyNFTList = () => {
     dispatch({
       type: 'nftAssets/getNFTList',
       payload: {
@@ -55,12 +43,14 @@ const NFTAssets = (props: ObjectT) => {
         pageNum: 1,
         pageSize: 20,
       },
+    }).then((res: any) => {
+      setMyNFTList(res);
     });
   };
 
   useEffect(() => {
     getMarketNFTs();
-    getNFTList();
+    getMyNFTList();
     getNFTInfo();
   }, []);
 
@@ -94,7 +84,7 @@ const NFTAssets = (props: ObjectT) => {
   ];
   const { Option } = Select;
   const changeFilter = () => {};
-  const tmpList1 = myNFTs;
+  const tmpList1 = myNFTList?.data;
   const tmpList2 = myRentNFT;
   return (
     <div className={styles['nft-wrap']}>
@@ -170,7 +160,7 @@ const NFTAssets = (props: ObjectT) => {
           <Button>Connected</Button>
         </header>
         <div className={styles['lists-wrap']}>
-          <p>My NFTs (Totle:{myNFTs.length} Worth:680)</p>
+          <p>My NFTs (Totle:{myNFTList?.count} Worth:680)</p>
           <WalletList datas={tmpList1} listIndex={1} />
           <p>My Leasiing NFTs (Totle:{myRentNFT.length}) </p>
           <WalletList datas={tmpList2} listIndex={2} />

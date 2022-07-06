@@ -12,7 +12,7 @@ const MakeOrder = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftAssets: { contract, account },
+    common: { contract, account },
   } = props;
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
@@ -194,6 +194,9 @@ const MakeOrder = (props: ObjectT) => {
   );
 };
 
-export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
-  nftAssets,
-}))(MakeOrder);
+export default connect(
+  ({ nftAssets, common }: { nftAssets: ObjectT; common: ObjectT }) => ({
+    nftAssets,
+    common,
+  }),
+)(MakeOrder);

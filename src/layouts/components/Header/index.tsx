@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import { LANG_LIST } from '@/utils/lang';
 import MetaMask from '@/components/MetaMask';
 import InvitionUser from '../InvitionUser';
+import { initContract } from '@/utils/contract';
 
 interface objectT {
   [propName: string]: any;
@@ -15,7 +16,7 @@ const Header = (props: objectT) => {
   const {
     pathname,
     login: { userInfo },
-    common: { platformInfo },
+    common: { platformInfo, account },
     dispatch,
   } = props;
   const intl = useIntl();
@@ -38,6 +39,36 @@ const Header = (props: objectT) => {
     setCurrLang(LANG_LIST[index].code);
     setLocale(LANG_LIST[index].code, true);
   };
+
+  /**
+   * 处理账号变更
+   */
+  const handleAccountsChanged = () => {
+    const ethereum: any = window.ethereum;
+    const account = ethereum.selectedAddress;
+    let contract = null;
+    if (account) {
+      contract = initContract(account);
+    }
+    console.log(account, contract);
+    dispatch({
+      type: 'common/setData',
+      payload: {
+        account,
+        contract,
+      },
+    });
+  };
+
+  useEffect(() => {
+    // 监听账户变更
+    const ethereum: any = window.ethereum;
+    handleAccountsChanged();
+    ethereum.on('accountsChanged', handleAccountsChanged);
+    return () => {
+      ethereum.removeListener('accountsChanged', handleAccountsChanged);
+    };
+  }, []);
 
   /**
    * 处理登出

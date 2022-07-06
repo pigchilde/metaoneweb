@@ -9,7 +9,7 @@ const OrderDetail = (props: ObjectT) => {
   const {
     data = {},
     mode,
-    nftAssets: { contract, orderInfo },
+    nftAssets: { orderInfo },
   } = props;
   const intl = useIntl();
 

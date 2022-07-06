@@ -13,7 +13,8 @@ interface objectT {
 const TakeOrder = (props: objectT) => {
   const {
     onComplete,
-    nftHub: { contract, orderInfo, account },
+    common: { account, contract },
+    nftHub: { orderInfo },
   } = props;
   const intl = useIntl();
   const [form] = Form.useForm();
@@ -137,6 +138,9 @@ const TakeOrder = (props: objectT) => {
     </div>
   );
 };
-export default connect(({ nftHub }: { nftHub: ObjectT }) => ({
-  nftHub,
-}))(TakeOrder);
+export default connect(
+  ({ nftHub, common }: { nftHub: ObjectT; common: ObjectT }) => ({
+    nftHub,
+    common,
+  }),
+)(TakeOrder);

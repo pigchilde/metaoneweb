@@ -5,18 +5,15 @@ import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
 import { ModeType, ObjectT } from '../../typing';
-import {
-  initContract,
-  initTransactionApprove,
-  initWalletApprove,
-} from '@/utils/contract';
+import { initContract, initWalletApprove } from '@/utils/contract';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
   const {
     data = {},
     dispatch,
-    nftAssets: { contract, orderInfo, account },
+    nftAssets: { orderInfo },
+    common: { account, contract },
   } = props;
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
@@ -55,18 +52,21 @@ const OrderInfo = (props: ObjectT) => {
    * 获取出租出去的nft订单信息
    */
   const getOrderInfo = async () => {
-    const orderInfo = await rentMethods.getLendItemMsg(5).call();
-    console.log(orderInfo);
-    if (!orderInfo) {
-      return;
+    let newOrderInfo = {};
+    if (contract) {
+      const orderInfo = await rentMethods.getLendItemMsg(5).call();
+      console.log(orderInfo);
+      if (!orderInfo) {
+        return;
+      }
+      const { price, renewable } = orderInfo;
+      newOrderInfo = {
+        ...orderInfo,
+        price: parseInt(price) / 1e18,
+        targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
+        renewable: renewable ? 'Yes' : 'No',
+      };
     }
-    const { price, renewable } = orderInfo;
-    const newOrderInfo = {
-      ...orderInfo,
-      price: parseInt(price) / 1e18,
-      targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
-      renewable: renewable ? 'Yes' : 'No',
-    };
     dispatch({
       type: 'nftAssets/setData',
       payload: {
@@ -75,55 +75,21 @@ const OrderInfo = (props: ObjectT) => {
     });
   };
 
-  /**
-   * 处理账号变更
-   */
-  const handleAccountsChanged = () => {
-    const ethereum: any = window.ethereum;
-    const account = ethereum.selectedAddress;
-    const contract = initContract(account);
-    dispatch({
-      type: 'nftAssets/setData',
-      payload: {
-        account,
-        contract,
-      },
-    });
-  };
-
   useEffect(() => {
-    const ethereum: any = window.ethereum;
-    (async () => {
-      if (!ethereum) {
-        return;
-      }
-      const result = await initWalletApprove();
-      if (!result) {
-        return;
-      }
-      handleAccountsChanged();
-      ethereum.on('accountsChanged', handleAccountsChanged);
-    })();
-    return () => {
-      ethereum.removeListener('accountsChanged', handleAccountsChanged);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (contract) {
-      getOrderInfo();
-    }
+    getOrderInfo();
   }, [contract]);
   return (
     <div>
       <p className={styles['lessess-address']}>
         Owner Address:
-        <span>
-          {' '}
-          {`${orderInfo.lender?.substr(0, 6)}...${orderInfo.lender?.substr(
-            -4,
-          )}`}
-        </span>
+        {orderInfo.lender ? (
+          <span>
+            {' '}
+            {`${orderInfo.lender?.substr(0, 6)}...${orderInfo.lender?.substr(
+              -4,
+            )}`}
+          </span>
+        ) : null}
         <Button type="primary" onClick={mintNFT} disabled={loading}>
           mint NFT
         </Button>
@@ -161,6 +127,9 @@ const OrderInfo = (props: ObjectT) => {
   );
 };
 
-export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
-  nftAssets,
-}))(OrderInfo);
+export default connect(
+  ({ nftAssets, common }: { nftAssets: ObjectT; common: ObjectT }) => ({
+    nftAssets,
+    common,
+  }),
+)(OrderInfo);
