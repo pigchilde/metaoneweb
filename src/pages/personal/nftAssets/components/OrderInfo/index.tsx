@@ -55,7 +55,6 @@ const OrderInfo = (props: ObjectT) => {
     let newOrderInfo = {};
     if (contract) {
       const orderInfo = await rentMethods.getLendItemMsg(5).call();
-      console.log(orderInfo);
       if (!orderInfo) {
         return;
       }

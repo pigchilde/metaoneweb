@@ -105,18 +105,20 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
    * 获取出租出去的nft订单信息
    */
   const getOrderInfo = async () => {
-    const orderInfo = await rentMethods.getLendItemMsg(5).call();
-    console.log(orderInfo);
-    if (!orderInfo) {
-      return;
+    let newOrderInfo = {};
+    if (contract) {
+      const orderInfo = await rentMethods.getLendItemMsg(5).call();
+      if (!orderInfo) {
+        return;
+      }
+      const { price, renewable } = orderInfo;
+      newOrderInfo = {
+        ...orderInfo,
+        price: parseInt(price) / 1e18,
+        targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
+        renewable: renewable ? 'Yes' : 'No',
+      };
     }
-    const { price, renewable } = orderInfo;
-    const newOrderInfo = {
-      ...orderInfo,
-      price: parseInt(price) / 1e18,
-      targetLeaser: targetLeaser ? 'My Guild Only' : 'All Guilds',
-      renewable: renewable ? 'Yes' : 'No',
-    };
     setOrderData(newOrderInfo);
     dispatch({
       type: 'nftHub/setData',
@@ -134,9 +136,7 @@ const NFTDetailsPage: React.FC = (props: ObjectT) => {
   };
 
   useEffect(() => {
-    if (contract) {
-      getOrderInfo();
-    }
+    getOrderInfo();
   }, [contract]);
 
   // 当前租赁模式

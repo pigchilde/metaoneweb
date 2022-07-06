@@ -7,9 +7,13 @@ import WalletList from './components/WalletList';
 import { useState, useEffect } from 'react';
 import { queryMyRentNFT } from '@/assets/personal/data/nfts';
 import { ObjectT } from './typing';
+import contractConfig from '@/utils/contract/config';
 
 const NFTAssets = (props: ObjectT) => {
-  const { dispatch } = props;
+  const {
+    dispatch,
+    common: { account },
+  } = props;
   const intl = useIntl();
 
   const [wallet, setWallet] = useState();
@@ -22,15 +26,6 @@ const NFTAssets = (props: ObjectT) => {
     setMyRentNFT(queryMyRentNFT());
   };
 
-  const getNFTInfo = () => {
-    dispatch({
-      type: 'nftAssets/getNFTInfo',
-      payload: {
-        id: '1111111111',
-      },
-    });
-  };
-
   /**
    * 获取nft列表
    */
@@ -38,8 +33,8 @@ const NFTAssets = (props: ObjectT) => {
     dispatch({
       type: 'nftAssets/getNFTList',
       payload: {
-        nftAddress: '0x2104A90046AA9C73906C7f4beDDa20e94a354454',
-        owner: '0xCdE6f9fD2A5789EF5aDFdF499676cC0979E33cd0',
+        nftAddress: contractConfig.erc721.address,
+        owner: account,
         pageNum: 1,
         pageSize: 20,
       },
@@ -50,9 +45,11 @@ const NFTAssets = (props: ObjectT) => {
 
   useEffect(() => {
     getMarketNFTs();
-    getMyNFTList();
-    getNFTInfo();
   }, []);
+
+  useEffect(() => {
+    getMyNFTList();
+  }, [account]);
 
   const selectList = [
     {
@@ -84,7 +81,6 @@ const NFTAssets = (props: ObjectT) => {
   ];
   const { Option } = Select;
   const changeFilter = () => {};
-  const tmpList1 = myNFTList?.data;
   const tmpList2 = myRentNFT;
   return (
     <div className={styles['nft-wrap']}>
@@ -161,7 +157,7 @@ const NFTAssets = (props: ObjectT) => {
         </header>
         <div className={styles['lists-wrap']}>
           <p>My NFTs (Totle:{myNFTList?.count} Worth:680)</p>
-          <WalletList datas={tmpList1} listIndex={1} />
+          <WalletList datas={myNFTList?.data} listIndex={1} />
           <p>My Leasiing NFTs (Totle:{myRentNFT.length}) </p>
           <WalletList datas={tmpList2} listIndex={2} />
         </div>
@@ -181,6 +177,9 @@ const NFTAssets = (props: ObjectT) => {
     </div>
   );
 };
-export default connect(({ nftAssets }: { nftAssets: ObjectT }) => ({
-  nftAssets,
-}))(NFTAssets);
+export default connect(
+  ({ nftAssets, common }: { nftAssets: ObjectT; common: ObjectT }) => ({
+    nftAssets,
+    common,
+  }),
+)(NFTAssets);

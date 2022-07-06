@@ -67,7 +67,7 @@ const WalletList = (props: ObjectT) => {
                             <div className={styles['info']}>
                               <div className={styles['labels']}>
                                 <label className={styles['label-1']}>
-                                  #{item.hash}
+                                  #{item.nftTokenId}
                                 </label>
                                 <label className={styles['label-2']}>
                                   Level {item.level}

@@ -1,4 +1,4 @@
-import { Link } from 'umi';
+import { connect, Link } from 'umi';
 import styles from './detail.scss';
 import { useIntl } from 'umi';
 import { Radio } from 'antd';
@@ -16,19 +16,30 @@ enum TabType {
 const NFTDetail = (props: ObjectT) => {
   const {
     match: { params },
+    dispatch,
   } = props;
   const [radioValue, setRadioValue] = useState<TabType>(TabType.order);
-  const [itemInfo, setItemInfo] = useState<any>({});
+  const [nftDetail, setNFTDetail] = useState<any>({});
+  const nftAsset: ObjectT = nftDetail.asset;
+  const nftAttributes: ObjectT[] = nftDetail.assetAttributes;
   const intl = useIntl();
-  // 获取nft数据
-  const getNFTDetails = () => {
-    queryNFTDetailsById(params.id).then((res) => {
-      setItemInfo(res.data);
+
+  /**
+   * 获取nft详情
+   */
+  const getNFTDetail = () => {
+    dispatch({
+      type: 'nftAssets/getNFTInfo',
+      payload: {
+        id: params?.id,
+      },
+    }).then((res: any) => {
+      setNFTDetail(res.data);
     });
   };
 
   useEffect(() => {
-    getNFTDetails();
+    getNFTDetail();
   }, []);
 
   const handleSizeChange = (e: ObjectT) => {
@@ -51,7 +62,7 @@ const NFTDetail = (props: ObjectT) => {
       </Link>
       <section className={styles['main']}>
         <div className={styles['img-box']}>
-          <img src={itemInfo.image} alt="" />
+          <img src={nftAsset?.image} alt="" />
         </div>
         <div className={styles['content-box']}>
           <Radio.Group
@@ -64,7 +75,7 @@ const NFTDetail = (props: ObjectT) => {
                 id: 'PERSONAL_GUILD_RADIO1',
               })}
             </Radio.Button>
-            {itemInfo.leaseInfo ? (
+            {nftAsset?.leaseInfo ? (
               <Radio.Button value={TabType.order}>
                 {intl.formatMessage({
                   id: 'PERSONAL_GUILD_RADIO2',
@@ -73,13 +84,18 @@ const NFTDetail = (props: ObjectT) => {
             ) : null}
           </Radio.Group>
           {radioValue === TabType.info ? (
-            <NFTInfo data={itemInfo} />
+            <NFTInfo data={nftDetail} />
           ) : (
-            <OrderInfo data={itemInfo} />
+            <OrderInfo data={{}} />
           )}
         </div>
       </section>
     </>
   );
 };
-export default NFTDetail;
+export default connect(
+  ({ nftAssets, common }: { nftAssets: ObjectT; common: ObjectT }) => ({
+    nftAssets,
+    common,
+  }),
+)(NFTDetail);

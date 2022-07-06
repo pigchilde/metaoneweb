@@ -6,8 +6,6 @@ export default {
   namespace: 'nftAssets',
   state: {
     orderInfo: {},
-    nftInfo: {},
-    nftList: {},
   },
   reducers: {
     setData(state: initialStateT, action: initialStateT) {
@@ -28,12 +26,7 @@ export default {
           nftAssetsService.getNFTInfo,
           payload,
         );
-        yield put({
-          type: 'setData',
-          payload: {
-            nftInfo: data.data,
-          },
-        });
+        return data;
       } catch (err) {
         return Promise.reject(err);
       }
@@ -47,12 +40,7 @@ export default {
           nftAssetsService.getNFTList,
           payload,
         );
-        yield put({
-          type: 'setData',
-          payload: {
-            nftList: data.data,
-          },
-        });
+        return data;
       } catch (err) {
         return Promise.reject(err);
       }
