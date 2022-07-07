@@ -1,5 +1,5 @@
 import styles from './index.scss';
-import { connect, history, useIntl } from 'umi';
+import { connect, history, useHistory, useIntl, useParams } from 'umi';
 import { Button, Form, InputNumber, message, Radio, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
@@ -12,15 +12,102 @@ const MakeOrder = (props: ObjectT) => {
   const {
     data = {},
     mode,
+    dispatch,
     common: { contract, account },
   } = props;
+  const params: any = useParams();
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
   const intl = useIntl();
   const erc1155Methods = contract?.erc1155.methods;
   const erc721Methods = contract?.erc721.methods;
   const rentMethods = contract?.rent.methods;
-  const tokenId = 7;
+  const tokenId = 10;
+
+  /**
+   * 合约发布前提交订单数据
+   * @param data
+   */
+  const leasePublish = async (data: ObjectT) => {
+    const {
+      price,
+      minimumLeaseTime,
+      maximumLeaseTime,
+      renewable,
+      targetLessor,
+    } = data;
+    const newData = {
+      deposit: 0,
+      interast: price,
+      leaseTermLeast: minimumLeaseTime,
+      leaseTermLongest: maximumLeaseTime,
+      nftAssetId: params.id,
+      proportion: 0,
+      renewable: renewable ? 'Y' : 'N',
+      targetLessor: targetLessor ? 'MY_GUILD_ONLY' : 'ALL_GUILDS',
+    };
+    try {
+      setLoading(true);
+      const result = await dispatch({
+        type: 'nftAssets/leasePublish',
+        payload: newData,
+      });
+      setLoading(false);
+      if (result.status !== 200) {
+        return false;
+      }
+      return true;
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  /**
+   * 合约发布完成调用
+   * @returns
+   */
+  const publishComplete = async () => {
+    try {
+      await dispatch({
+        type: 'nftAssets/publishComplete',
+        payload: {
+          id: params.id,
+        },
+      });
+    } catch (err) {
+      message.error((err as Error).message);
+    }
+  };
+
+  /**
+   * 合约发布失败调用
+   * @returns
+   */
+  const publishFail = async () => {
+    try {
+      await dispatch({
+        type: 'nftAssets/publishFail',
+        payload: {
+          id: params.id,
+        },
+      });
+    } catch (err) {
+      message.error((err as Error).message);
+    }
+  };
+
+  // const getMyDepositsList = async () => {
+  //   const result = await rentMethods?.getMyDepositsList().call();
+  //   console.log(result);
+  // }
+
+  // useEffect(() => {
+  //   if (contract) {
+  //     getMyDepositsList();
+  //   }
+  // }, [contract])
 
   /**
    * 交易授权
@@ -58,27 +145,16 @@ const MakeOrder = (props: ObjectT) => {
     } catch (err) {
       console.error(err);
       setLoading(false);
+      await publishFail();
       return false;
     }
   };
 
-  // 验证成功后提交
-  const onFinish = async (values: any) => {
-    const { price } = values;
-    const params = {
-      ...values,
-      tkType,
-      nftAddr: contractConfig[NFTTokenType[tkType].toLowerCase()].address,
-      tokenId,
-      coinIndex: 0,
-      price: bigInt(`${price}e18`).toString(),
-      gameBonus: 0,
-    };
-    const result = await approve();
-    if (!result) {
-      // 授权失败
-      return false;
-    }
+  /**
+   * 合约发布订单
+   * @param params
+   */
+  const deposit = async (params: ObjectT) => {
     setLoading(true);
     try {
       const depositResult = await rentMethods
@@ -96,12 +172,38 @@ const MakeOrder = (props: ObjectT) => {
         .send({
           from: account,
         });
+      await publishComplete();
       message.success('make order success');
       setLoading(false);
     } catch (err) {
       message.error((err as Error).message);
       setLoading(false);
+      await publishFail();
     }
+  };
+
+  // 验证成功后提交
+  const onFinish = async (values: any) => {
+    const { price } = values;
+    const params = {
+      ...values,
+      tkType,
+      nftAddr: contractConfig[NFTTokenType[tkType].toLowerCase()].address,
+      tokenId,
+      coinIndex: 0,
+      price: bigInt(`${price}e18`).toString(),
+      gameBonus: 0,
+    };
+    const leasePublishResult = await leasePublish(values);
+    if (!leasePublishResult) {
+      return;
+    }
+    // const result = await approve();
+    // if (!result) {
+    //   // 授权失败
+    //   return false;
+    // }
+    const depositResult = await deposit(params);
   };
 
   return (

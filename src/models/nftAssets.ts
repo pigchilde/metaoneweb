@@ -31,13 +31,27 @@ export default {
         return Promise.reject(err);
       }
     },
-    *getNFTList(
+    *getMyNFTList(
       { payload, callback }: initialStateT,
       { call, put, select }: initialStateT,
     ) {
       try {
         const data: initialStateT = yield call(
-          nftAssetsService.getNFTList,
+          nftAssetsService.getMyNFTList,
+          payload,
+        );
+        return data;
+      } catch (err) {
+        return Promise.reject(err);
+      }
+    },
+    *getMyLeasingNFTList(
+      { payload, callback }: initialStateT,
+      { call, put, select }: initialStateT,
+    ) {
+      try {
+        const data: initialStateT = yield call(
+          nftAssetsService.getMyLeasingNFTList,
           payload,
         );
         return data;
@@ -54,6 +68,7 @@ export default {
           nftAssetsService.leasePublish,
           payload,
         );
+        return data;
       } catch (err) {
         return Promise.reject(err);
       }
@@ -67,6 +82,7 @@ export default {
           nftAssetsService.publishComplete,
           payload,
         );
+        return data;
       } catch (err) {
         return Promise.reject(err);
       }
@@ -80,6 +96,7 @@ export default {
           nftAssetsService.publishFail,
           payload,
         );
+        return data;
       } catch (err) {
         return Promise.reject(err);
       }

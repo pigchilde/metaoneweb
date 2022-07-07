@@ -64,7 +64,7 @@ const TakeOrder = (props: objectT) => {
       return;
     }
     try {
-      const rentResult = await rentMethods.rent(5, leaseTerm).send({
+      const rentResult = await rentMethods.rent(7, leaseTerm).send({
         from: account,
       });
       message.success('success');

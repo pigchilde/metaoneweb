@@ -1,4 +1,4 @@
-import * as nftHubService from '../services/nftAssets';
+import * as nftHubService from '../services/nftHub';
 
 interface initialStateT {
   [propName: string]: any;

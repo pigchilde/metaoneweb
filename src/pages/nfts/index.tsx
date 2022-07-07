@@ -40,9 +40,10 @@ import 'swiper/swiper.scss';
 
 import RowStack from './components/RowStack';
 import { getInterval } from './utils/helper';
-import { Link, useHistory, useIntl } from 'umi';
+import { connect, Link, useHistory, useIntl } from 'umi';
 
-const NFTsPage: React.FC = () => {
+const NFTsPage: React.FC = (props: any) => {
+  const { dispatch } = props;
   const [data, setData] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const intl = useIntl();
@@ -58,6 +59,16 @@ const NFTsPage: React.FC = () => {
   useEffect(() => {
     query();
   }, [query]);
+
+  useEffect(() => {
+    dispatch({
+      type: 'nftHub/getNFTList',
+      payload: {
+        pageNum: 1,
+        pageSize: 20,
+      },
+    });
+  }, []);
 
   if (!data || !data.length) return null;
   return (
@@ -103,7 +114,12 @@ const NFTsPage: React.FC = () => {
     </ThemeProvider>
   );
 };
-export default NFTsPage;
+export default connect(
+  ({ nftAssets, common }: { nftAssets: any; common: any }) => ({
+    nftAssets,
+    common,
+  }),
+)(NFTsPage);
 
 function MarketBanner() {
   return (

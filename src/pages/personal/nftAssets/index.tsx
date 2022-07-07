@@ -17,7 +17,8 @@ const NFTAssets = (props: ObjectT) => {
   const intl = useIntl();
 
   const [wallet, setWallet] = useState();
-  const [myNFTList, setMyNFTList] = useState<any>([]); // mock数据用
+  const [myNFTList, setMyNFTList] = useState<any>([]);
+  const [myLeasingNFTList, setMyLeasingNFTList] = useState<any>([]); // mock数据用
   const [myRentNFT, setMyRentNFT] = useState<any>([]); // mock数据用
 
   // 获取nft列表(mock)
@@ -27,7 +28,7 @@ const NFTAssets = (props: ObjectT) => {
   };
 
   /**
-   * 获取nft列表
+   * 获取我的nft列表
    */
   const getMyNFTList = () => {
     if (!account) {
@@ -35,7 +36,7 @@ const NFTAssets = (props: ObjectT) => {
       return;
     }
     dispatch({
-      type: 'nftAssets/getNFTList',
+      type: 'nftAssets/getMyNFTList',
       payload: {
         nftAddress: contractConfig.erc721.address,
         owner: account,
@@ -47,12 +48,36 @@ const NFTAssets = (props: ObjectT) => {
     });
   };
 
+  /**
+   * 获取我租借的nft列表
+   */
+  const getMyLeasingNFTList = () => {
+    if (!account) {
+      setMyLeasingNFTList({});
+      return;
+    }
+    dispatch({
+      type: 'nftAssets/getMyLeasingNFTList',
+      payload: {
+        gameId: 1,
+        // nftStatus: 1,
+        nftAddress: contractConfig.erc721.address,
+        owner: account,
+        pageNum: 1,
+        pageSize: 20,
+      },
+    }).then((res: any) => {
+      setMyLeasingNFTList(res);
+    });
+  };
+
   useEffect(() => {
     getMarketNFTs();
   }, []);
 
   useEffect(() => {
     getMyNFTList();
+    getMyLeasingNFTList();
   }, [account]);
 
   const selectList = [

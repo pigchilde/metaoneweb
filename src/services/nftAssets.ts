@@ -17,11 +17,22 @@ export const getNFTInfo: ObjectT = async (params: ObjectT) => {
 };
 
 /**
+ * 获取我的nft资产列表
+ * @returns
+ */
+export const getMyNFTList: ObjectT = async (params: ObjectT) => {
+  return authRequest(`/nft/asset/list?${stringify(params)}`, {
+    method: 'GET',
+    data: params,
+  });
+};
+
+/**
  * 获取nft资产列表
  * @returns
  */
-export const getNFTList: ObjectT = async (params: ObjectT) => {
-  return authRequest(`/nft/asset/list?${stringify(params)}`, {
+export const getMyLeasingNFTList: ObjectT = async (params: ObjectT) => {
+  return authRequest(`/nft/asset/lessee/list?${stringify(params)}`, {
     method: 'GET',
     data: params,
   });

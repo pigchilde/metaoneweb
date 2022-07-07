@@ -10,7 +10,7 @@ interface ObjectT {
  * @returns
  */
 export const getNFTList: ObjectT = async (params: ObjectT) => {
-  return authRequest(`/nft/asset/list?${stringify(params)}`, {
+  return authRequest(`/nft/nfts-hub/list?${stringify(params)}`, {
     method: 'GET',
   });
 };

@@ -43,15 +43,17 @@ const Header = (props: objectT) => {
   /**
    * 处理账号变更
    */
-  const handleAccountsChanged = async () => {
+  const handleAccountsChanged = async (account?: string) => {
     const ethereum: any = window.ethereum;
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
-    const account = accounts[0];
+    if (!account) {
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      account = accounts[0];
+    }
     let contract = null;
     if (account) {
       contract = initContract(account);
     }
-    console.log(contract);
+    console.log(account, contract);
     dispatch({
       type: 'common/setData',
       payload: {
@@ -65,9 +67,13 @@ const Header = (props: objectT) => {
     // 监听账户变更
     const ethereum: any = window.ethereum;
     handleAccountsChanged();
-    ethereum.on('accountsChanged', handleAccountsChanged);
+    ethereum.on('accountsChanged', (accounts: string[]) => {
+      handleAccountsChanged(accounts[0]);
+    });
     return () => {
-      ethereum.removeListener('accountsChanged', handleAccountsChanged);
+      ethereum.removeListener('accountsChanged', (accounts: string[]) => {
+        handleAccountsChanged(accounts[0]);
+      });
     };
   }, []);
 
