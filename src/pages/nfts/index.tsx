@@ -6,7 +6,9 @@ import {
   Typography,
   Button,
   Stack,
+  Select,
   ThemeProvider,
+  Pagination,
 } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -31,7 +33,6 @@ import NFTLevel from './components/NFTLevel';
 
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import type { Swiper as SwiperProps } from 'swiper';
-import { Pagination } from 'swiper';
 
 import 'swiper/swiper.scss';
 // Import Swiper styles
@@ -39,10 +40,12 @@ import 'swiper/swiper.scss';
 
 import RowStack from './components/RowStack';
 import { getInterval } from './utils/helper';
-import { Link, useHistory } from 'umi';
+import { Link, useHistory, useIntl } from 'umi';
 
 const NFTsPage: React.FC = () => {
   const [data, setData] = useState<any[]>([]);
+  const [page, setPage] = useState(1);
+  const intl = useIntl();
 
   const query = useCallback(async () => {
     queryMarketNFTs({ pageIndex: 1, pageSize: 10000 }).then((res) => {
@@ -69,17 +72,33 @@ const NFTsPage: React.FC = () => {
       >
         <MarketBanner />
         <Statistics />
-        <TrendingThisWeek data={[...data].slice(1, 6)} />
         <BestSellers data={data} />
         <NFTGroup
-          data={data.filter((item) => item.game === 'Kill Box')}
-          title="Kill Box"
+          data={data}
+          title={intl.formatMessage({ id: 'NFTHUB_ALL_NFTS' })}
         />
-        <NFTGroup
-          data={data.filter((item) => item.game === 'AOT')}
-          title="Age Of Tanks"
+        <Pagination
+          variant="outlined"
+          count={5}
+          onChange={(_, index) => {
+            setPage(index);
+          }}
+          sx={{
+            my: 4,
+            ul: {
+              justifyContent: 'center',
+              '.MuiPaginationItem-root': {
+                borderRadius: '3px',
+                backgroundColor: '#004548',
+
+                '&.Mui-selected': {
+                  color: '#333',
+                  backgroundColor: 'primary.main',
+                },
+              },
+            },
+          }}
         />
-        {/* <FlashSale data={data} /> */}
       </Box>
     </ThemeProvider>
   );
@@ -95,7 +114,6 @@ function MarketBanner() {
         type: 'bullets',
       }}
       loop
-      modules={[Pagination]}
       sx={{
         height: { xs: 360, md: 600 },
 
@@ -129,12 +147,13 @@ function MarketBanner() {
 }
 
 function Statistics() {
+  const intl = useIntl();
   return (
     <Container sx={{ my: 8, maxWidth: '1282px !important' }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4}>
           <StatisticItem
-            title="Transactions"
+            title={intl.formatMessage({ id: 'NFTHUB_TRANSCATION' })}
             value="31,656"
             trend="up"
             trendValue="537"
@@ -143,7 +162,7 @@ function Statistics() {
         </Grid>
         <Grid item xs={12} sm={4}>
           <StatisticItem
-            title="NFTS"
+            title={intl.formatMessage({ id: 'NFTHUB_NFTS' })}
             value="195"
             trend="up"
             trendValue="13"
@@ -152,7 +171,7 @@ function Statistics() {
         </Grid>
         <Grid item xs={12} sm={4}>
           <StatisticItem
-            title="Total volume"
+            title={intl.formatMessage({ id: 'NFTHUB_TOTAL_VOLUMN' })}
             value="412,325"
             trend="up"
             trendValue="4589"
@@ -260,24 +279,8 @@ function StatisticItem({
   );
 }
 
-function TrendingThisWeek({ data }: { data: any[] }) {
-  return useMemo(() => {
-    return (
-      <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
-        <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
-          Trending This Week
-        </Typography>
-        <Box sx={{ overflowY: 'auto', display: 'flex', width: '100%' }}>
-          {data.map((item, index) => (
-            <TrendingThisWeekItem key={index} data={item} />
-          ))}
-        </Box>
-      </Container>
-    );
-  }, [data]);
-}
-
 function TrendingThisWeekItem({ data }: { data: any }) {
+  const intl = useIntl();
   if (!data) return null;
   return (
     <Box
@@ -285,7 +288,7 @@ function TrendingThisWeekItem({ data }: { data: any }) {
       to={'/nfts/' + data.id}
       sx={{
         textAlign: 'center',
-        width: '206px',
+        width: '194px',
         '&:not(:last-child)': {
           marginRight: '50px',
         },
@@ -293,7 +296,7 @@ function TrendingThisWeekItem({ data }: { data: any }) {
     >
       <Box
         sx={{
-          width: '206px',
+          width: '194px',
           height: '278px',
           p: 3,
           display: 'flex',
@@ -326,7 +329,7 @@ function TrendingThisWeekItem({ data }: { data: any }) {
         </Box>
         <img src={data.image} alt="" />
       </Box>
-      <Box sx={{ py: 1 }}>
+      <Box sx={{ py: 1, width: 194 }}>
         <Typography
           variant="subtitle1"
           sx={{ fontSize: 16, color: 'primary.main' }}
@@ -351,20 +354,24 @@ function TrendingThisWeekItem({ data }: { data: any }) {
           </Typography>
         </Box>
       </Box>
-      <Button variant="outlined" fullWidth size="large">
-        {data.leaseInfo.interest} USDT/DAY
-      </Button>
+      <Box sx={{ width: 194 }}>
+        <Button variant="outlined" fullWidth size="large">
+          {data.leaseInfo.interest} USDT/
+          {intl.formatMessage({ id: 'NFTASSETS_DAY' })}
+        </Button>
+      </Box>
     </Box>
   );
 }
 
 function BestSellers({ data }: { data: any[] }) {
   const [swiperRef, setSwiperRef] = useState<SwiperProps>();
+  const intl = useIntl();
 
   return (
     <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
       <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
-        Hot NFTs
+        {intl.formatMessage({ id: 'NFTHUB_HIGHEST_REVENUE' })}
       </Typography>
       <Stack
         direction="row"
@@ -389,22 +396,22 @@ function BestSellers({ data }: { data: any[] }) {
           <Swiper
             spaceBetween={0.1}
             onSwiper={setSwiperRef}
-            slidesPerView={1}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-              992: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-            }}
+            slidesPerView={5}
+            // breakpoints={{
+            //   768: {
+            //     slidesPerView: 2,
+            //     spaceBetween: 20,
+            //   },
+            //   992: {
+            //     slidesPerView: 3,
+            //     spaceBetween: 30,
+            //   },
+            // }}
           >
-            {data.splice(10, 5).map((item, index) => {
+            {data.map((item, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <BestSellersItem data={item} />
+                  <TrendingThisWeekItem data={item} />
                 </SwiperSlide>
               );
             })}
@@ -422,66 +429,6 @@ function BestSellers({ data }: { data: any[] }) {
   );
 }
 
-function BestSellersItem({ data }: { data: any }) {
-  return (
-    <Box
-      component={Link}
-      to={'/nfts/' + data.id}
-      sx={{
-        width: '100%',
-        px: 2,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Box
-        sx={{
-          width: '174px',
-          height: '248px',
-          flexShrink: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <img src={data.image} alt="" />
-      </Box>
-      <Box sx={{ p: 2 }}>
-        <Box
-          sx={{
-            textAlign: 'center',
-            my: 1,
-          }}
-        >
-          <NFTLevel level={data.level} />
-        </Box>
-        <Typography variant="subtitle1">{data.name}</Typography>
-        <Box>
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
-            #{data.hash}
-          </Typography>
-        </Box>
-        <Typography
-          sx={{ fontSize: 12, color: 'text.secondary', lineHeight: 1 }}
-        >
-          Rent(USDT/Day)
-        </Typography>
-        <Typography
-          sx={{
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: 'primary.main',
-            lineHeight: 1,
-          }}
-        >
-          {data.leaseInfo.interest}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
-
 interface NFTGroupProps {
   title: string;
   data: any[];
@@ -490,7 +437,7 @@ interface NFTGroupProps {
 function NFTGroup({ title, data }: NFTGroupProps) {
   const history = useHistory();
   return (
-    <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
+    <Container sx={{ my: 9, maxWidth: '1200px !important' }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="h4" sx={{ mb: 2, fontFamily: 'Azonix' }}>
           {title}
@@ -507,17 +454,14 @@ function NFTGroup({ title, data }: NFTGroupProps) {
             },
           }}
         >
-          <Typography
-            sx={{ color: 'primary.main', mr: 0.5 }}
-            onClick={() => history.push('/nfts/hub')}
-          >
-            View More
-          </Typography>
-          <ArrowForwardIos fontSize="small" color="primary" />
+          <Stack sx={{ marginRight: 1 }}>
+            <SortBy />
+          </Stack>
+          <SortByGame />
         </Stack>
       </Stack>
       <Box sx={{ overflowY: 'auto', display: 'flex', width: '100%' }}>
-        {data.slice(0, 6).map((item, index) => {
+        {data.slice(0, 5).map((item, index) => {
           return <NFTItem key={index} data={item} />;
         })}
       </Box>
@@ -526,21 +470,22 @@ function NFTGroup({ title, data }: NFTGroupProps) {
 }
 
 function NFTItem({ data }: { data: any }) {
+  const intl = useIntl();
   return (
     <Box
       component={Link}
       to={'/nfts/' + data.id}
       sx={{
-        width: '194px',
+        width: '200px',
         backgroundColor: '#111111',
         '&:not(:last-child)': {
-          marginRight: '14px',
+          marginRight: '38px',
         },
       }}
     >
       <Box
         sx={{
-          width: '194px',
+          width: '200px',
           height: '154px',
           display: 'flex',
           alignItems: 'center',
@@ -590,202 +535,12 @@ function NFTItem({ data }: { data: any }) {
               lineHeight: 1,
             }}
           >
-            Rent(USDT/Day)
+            {intl.formatMessage({ id: 'NFTASSETS_RENT' })}(USDT/
+            {intl.formatMessage({ id: 'NFTASSETS_DAY' })})
           </Typography>
         </Stack>
       </Box>
     </Box>
-  );
-}
-
-function FlashSale({ data = [] }: { data: any[] }) {
-  const [swiperRef, setSwiperRef] = useState<SwiperProps>();
-  return (
-    <Container sx={{ my: 9, maxWidth: '1282px !important' }}>
-      <Stack
-        direction={{ xs: 'column', md: 'row' }}
-        spacing={8}
-        alignItems="stretch"
-      >
-        <Stack
-          sx={{
-            flexBasis: { xs: 'auto', md: '348px' },
-            flexShrink: 0,
-            height: { xs: 'auto', md: '302px' },
-          }}
-        >
-          <Typography variant="h4" sx={{ mb: 2 }}>
-            Promotional Activities
-          </Typography>
-
-          <Typography>
-            The game official is holding some promotional activities
-          </Typography>
-
-          <div style={{ flex: 1 }}></div>
-          <Box
-            sx={{
-              height: 80,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              px: 2,
-              fontSize: 40,
-              fontWeight: 'bold',
-              color: 'primary.main',
-              border: 'solid 1px #006366',
-              mt: 2,
-            }}
-          >
-            <Countdown startTime={1654387200000} />
-          </Box>
-        </Stack>
-
-        <Box
-          sx={{
-            flex: 1,
-            '.swiper-slide': {
-              width: 'auto !important',
-            },
-          }}
-        >
-          <Stack
-            direction="row"
-            alignItems="center"
-            sx={{ width: '100%', gap: 4 }}
-          >
-            <ArrowWrap
-              onClick={() => {
-                console.log(swiperRef?.isBeginning);
-                swiperRef?.slidePrev();
-              }}
-            >
-              <ArrowBackIos />
-            </ArrowWrap>
-            <Box
-              sx={{
-                flex: 1,
-                width: 0,
-              }}
-            >
-              <Swiper
-                slidesPerView="auto"
-                loop
-                onSwiper={setSwiperRef}
-                spaceBetween={20}
-                grabCursor
-                mousewheel
-                resistance
-                resistanceRatio={0}
-                autoplay={false}
-                effect="slide"
-                speed={400}
-                direction="horizontal"
-              >
-                {data.splice(0, 5).map((item, index) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <FlashSaleItem data={item} />
-                    </SwiperSlide>
-                  );
-                })}
-              </Swiper>
-            </Box>
-            <ArrowWrap
-              onClick={() => {
-                swiperRef?.slideNext();
-              }}
-            >
-              <ArrowForwardIos />
-            </ArrowWrap>
-          </Stack>
-        </Box>
-      </Stack>
-    </Container>
-  );
-}
-
-function FlashSaleItem({ data }: { data: any }) {
-  if (!data) return null;
-  return (
-    <Link to={'/nfts/' + data.id}>
-      <Box
-        sx={{
-          width: '100%',
-          minWidth: { xs: 'unset', md: '482px' },
-          backgroundColor: 'rgb(0 99 102 / 45%)',
-          borderColor: 'primary.main',
-          borderStyle: 'solid',
-
-          borderWidth: 1,
-          borderRadius: '3px',
-          px: 2,
-          py: 4,
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          alignItems: 'center',
-          gap: 2,
-        }}
-      >
-        <Box
-          sx={{
-            width: { xs: '240px', md: '166px' },
-            height: { xs: '120px', md: '245px' },
-            flexShrink: 0,
-            display: 'flex',
-            alignItems: { xs: 'stretch', md: 'center' },
-            justifyContent: 'center',
-
-            img: {
-              width: '100%',
-              height: 'auto',
-              maxHeight: '100%',
-              objectFit: 'contain',
-            },
-          }}
-        >
-          <img src={data.image} alt="" />
-        </Box>
-        <Box sx={{ p: 2 }}>
-          <Box
-            sx={{
-              textAlign: 'center',
-              my: 1,
-            }}
-          >
-            <NFTLevel level={data.level} />
-          </Box>
-          <Typography variant="subtitle1">AWP</Typography>
-          <Box>
-            <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
-              #{data.hash}
-            </Typography>
-          </Box>
-          <RowStack alignItems="baseline" sx={{ mt: 1 }}>
-            <Typography
-              sx={{
-                fontWeight: 'bold',
-                fontSize: 27,
-                color: 'primary.main',
-                lineHeight: 1,
-              }}
-            >
-              {data.leaseInfo.interest}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: 12,
-                ml: 1,
-                color: 'text.secondary',
-                lineHeight: 1,
-              }}
-            >
-              Rent(USDT/Day)
-            </Typography>
-          </RowStack>
-        </Box>
-      </Box>
-    </Link>
   );
 }
 
@@ -908,3 +663,48 @@ function Countdown({ startTime }: { startTime?: number }) {
     </Stack>
   );
 }
+
+const SortBy: React.FC = () => {
+  return (
+    <Select
+      native
+      margin="none"
+      size="small"
+      sx={{
+        boxSizing: 'border-box',
+        height: 44,
+
+        legend: {
+          width: 0,
+        },
+      }}
+    >
+      <option value={1}>Newest</option>
+      <option value={2}>Oldest</option>
+      <option value={3}>Highest Price</option>
+      <option value={4}>Lowest Price</option>
+    </Select>
+  );
+};
+
+const SortByGame: React.FC = () => {
+  return (
+    <Select
+      native
+      margin="none"
+      size="small"
+      sx={{
+        boxSizing: 'border-box',
+        height: 44,
+
+        legend: {
+          width: 0,
+        },
+      }}
+    >
+      <option value={0}>All Game</option>
+      <option value={1}>Game A</option>
+      <option value={2}>Game B</option>
+    </Select>
+  );
+};

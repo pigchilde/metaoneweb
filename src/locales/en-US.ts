@@ -277,4 +277,15 @@ export default {
   NFTASSETS_NO: 'No',
   NFTASSETS_ALL_GUILDS: 'All Guilds',
   NFTASSETS_MY_GUILDS_ONLY: 'My Guild Only',
+
+  NFTHUB_HIGHEST_REVENUE: 'Highest Revenue (Last 7 Days)',
+  NFTHUB_ALL_NFTS: 'All NFTs',
+  NFTHUB_TRANSCATION: 'Transactions',
+  NFTHUB_NFTS: 'NFTs',
+  NFTHUB_TOTAL_VOLUMN: 'Total Volumn',
+  NFTHUB_NEWEST: 'Newest',
+  NFTHUB_OLDEST: 'Oldest',
+  NFTHUB_HIGHEST_PRICE: 'Highest Price',
+  NFTHUB_LOWEST_PRICE: 'Lowest Price',
+  NFTHUB_ALL_GAME: 'All Game',
 };
