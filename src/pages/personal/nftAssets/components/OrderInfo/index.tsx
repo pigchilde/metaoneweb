@@ -80,7 +80,7 @@ const OrderInfo = (props: ObjectT) => {
   return (
     <div>
       <p className={styles['lessess-address']}>
-        Owner Address:
+        {intl.formatMessage({ id: 'NFTASSETS_OWNER_ADDRESS' })}:
         {orderInfo.lender ? (
           <span>
             {' '}

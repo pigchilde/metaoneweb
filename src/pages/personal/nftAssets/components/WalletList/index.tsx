@@ -3,15 +3,14 @@ import 'swiper/swiper.scss';
 import { Button, Image } from 'antd';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { useState } from 'react';
-import tmp from '@/assets/ntf/pic/tanks2.png';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import { history, useIntl } from 'umi';
 import moment from 'moment';
 import { ObjectT } from '../../typing';
 
 const WalletList = (props: ObjectT) => {
-  const { datas = {}, listIndex } = props;
+  const intl = useIntl();
+  const { datas = [], listIndex } = props;
   const split_array = (arr: any, len: number) => {
     let a_len = arr.length;
     let result = [];
@@ -70,15 +69,20 @@ const WalletList = (props: ObjectT) => {
                                   #{item.nftTokenId}
                                 </label>
                                 <label className={styles['label-2']}>
-                                  Level {item.level}
+                                  {intl.formatMessage({
+                                    id: 'NFTASSETS_LEVEL',
+                                  })}{' '}
+                                  {item.level}
                                 </label>
                               </div>
                               <div className={styles['text']}>
                                 <span className={styles['name']}>
-                                  Rent(USDT/Day)
+                                  {intl.formatMessage({ id: 'NFTASSETS_RENT' })}
+                                  (USDT/
+                                  {intl.formatMessage({ id: 'NFTASSETS_DAY' })})
                                 </span>
                                 <span className={styles['price']}>
-                                  {item.leaseInfo?.interest}
+                                  {item.interest}
                                 </span>
                               </div>
                             </div>
@@ -94,17 +98,16 @@ const WalletList = (props: ObjectT) => {
                               }`}
                             >
                               <Button type="primary">
-                                {index === 0 || index === 1
-                                  ? 'Listed'
-                                  : index === 4
-                                  ? 'Idle'
-                                  : 'Leased'}
+                                {item.nftStatusText}
                               </Button>
                             </div>
                           ) : (
                             <div className={styles['default']}>
                               <Button>
-                                End Date:{' '}
+                                {intl.formatMessage({
+                                  id: 'NFTASSETS_END_DATE',
+                                })}
+                                :{' '}
                                 {moment(item.rentInfo.rentTime).format(
                                   'YYYY/MM/DD HH:mm:ss',
                                 )}

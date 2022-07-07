@@ -2,7 +2,7 @@ import styles from './index.scss';
 import { connect, history, useIntl } from 'umi';
 import { Button, Form, InputNumber, message, Radio, Select } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import contractConfig from '@/utils/contract/config';
 import { NFTTokenType, ObjectT } from '../../typing';
 import bigInt from 'big-integer';
@@ -27,8 +27,6 @@ const MakeOrder = (props: ObjectT) => {
    */
   const approve = async () => {
     const rentAddress = contractConfig.rent.address;
-    // const address = await erc721Methods.ownerOf(tokenId).call();
-    // console.log('owner:', address);
     setLoading(true);
     try {
       if (tkType === NFTTokenType.ERC1155) {
@@ -37,27 +35,30 @@ const MakeOrder = (props: ObjectT) => {
           .call();
         if (isApprovedForAll) {
           // 已授权
-          return;
+          return true;
         } // 未授权,进行授权操作
         await erc1155Methods.setApprovalForAll(rentAddress, true).send({
           from: account,
         });
+        return true;
       } else {
         const approvedAddress = await erc721Methods.getApproved(tokenId).call();
         if (approvedAddress === rentAddress) {
           // 已授权
           setLoading(false);
-          return;
+          return true;
         }
         // 未授权
         await erc721Methods.approve(rentAddress, tokenId).send({
           from: account,
         });
         setLoading(false);
+        return true;
       }
     } catch (err) {
       console.error(err);
       setLoading(false);
+      return false;
     }
   };
 
@@ -73,7 +74,11 @@ const MakeOrder = (props: ObjectT) => {
       price: bigInt(`${price}e18`).toString(),
       gameBonus: 0,
     };
-    await approve();
+    const result = await approve();
+    if (!result) {
+      // 授权失败
+      return false;
+    }
     setLoading(true);
     try {
       const depositResult = await rentMethods
@@ -106,28 +111,28 @@ const MakeOrder = (props: ObjectT) => {
         labelCol={{ span: 12 }}
         wrapperCol={{ span: 18 }}
         initialValues={{
-          // interast: '12',
-          // proportion: '5',
-          // leastTerm: '1',
-          // longestTerm: '2',
           targetLeaser: 0,
           renewable: 0,
         }}
         onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
-          label="Rental"
+          label={intl.formatMessage({ id: 'NFTASSETS_RENTAL' })}
           name="price"
           rules={[
             {
               required: true,
-              message: 'Please input Rental!',
+              message: intl.formatMessage({
+                id: 'NFTASSETS_RENTAL_REQUIRE_ERROR',
+              }),
             },
           ]}
         >
-          <InputNumber placeholder="USDT/DAY" controls={false} />
+          <InputNumber
+            placeholder={`USDT/${intl.formatMessage({ id: 'NFTASSETS_DAY' })}`}
+            controls={false}
+          />
         </Form.Item>
         {/* {mode === ModeType.share ? (
           <Form.Item
@@ -144,39 +149,61 @@ const MakeOrder = (props: ObjectT) => {
           </Form.Item>
         ) : null} */}
         <Form.Item
-          label="Least lease term"
+          label={intl.formatMessage({ id: 'NFTASSETS_LEAST_LEASE_TERM' })}
           name="minimumLeaseTime"
           rules={[
             {
               required: true,
-              message: 'Please input least lease term!',
+              message: intl.formatMessage({
+                id: 'NFTASSETS_LEAST_LEASE_TERM_REQUIRE_ERROR',
+              }),
             },
           ]}
         >
-          <InputNumber placeholder="Day" controls={false} />
+          <InputNumber
+            placeholder={intl.formatMessage({ id: 'NFTASSETS_DAY' })}
+            controls={false}
+          />
         </Form.Item>
         <Form.Item
-          label="Longest lease term"
+          label={intl.formatMessage({ id: 'NFTASSETS_LONGEST_LEASE_TERM' })}
           name="maximumLeaseTime"
           rules={[
             {
               required: true,
-              message: 'Please input longest lease term!',
+              message: intl.formatMessage({
+                id: 'NFTASSETS_LONGEST_LEASE_TERM_REQUIRE_ERROR',
+              }),
             },
           ]}
         >
-          <InputNumber placeholder="Day" controls={false} />
+          <InputNumber
+            placeholder={intl.formatMessage({ id: 'NFTASSETS_DAY' })}
+            controls={false}
+          />
         </Form.Item>
-        <Form.Item label="Target leaser" name="targetLeaser" rules={[]}>
+        <Form.Item
+          label={intl.formatMessage({ id: 'NFTASSETS_TARGET_LEASER' })}
+          name="targetLeaser"
+          rules={[]}
+        >
           <Select value={0} suffixIcon={<CaretDownOutlined />}>
-            <Option value={0}>All guild</Option>
-            <Option value={1}>My guild only</Option>
+            <Option value={0}>
+              {intl.formatMessage({ id: 'NFTASSETS_ALL_GUILDS' })}
+            </Option>
+            <Option value={1}>
+              {intl.formatMessage({ id: 'NFTASSETS_MY_GUILDS_ONLY' })}
+            </Option>
           </Select>
         </Form.Item>
         <Form.Item label="Renewable" name="renewable" rules={[]}>
           <Radio.Group value={1}>
-            <Radio value={1}>Yes</Radio>
-            <Radio value={0}>No</Radio>
+            <Radio value={1}>
+              {intl.formatMessage({ id: 'NFTASSETS_YES' })}
+            </Radio>
+            <Radio value={0}>
+              {intl.formatMessage({ id: 'NFTASSETS_NO' })}
+            </Radio>
           </Radio.Group>
         </Form.Item>
         <Button
@@ -186,7 +213,7 @@ const MakeOrder = (props: ObjectT) => {
           disabled={loading}
         >
           {intl.formatMessage({
-            id: 'PERSONAL_GUILD_BTN1',
+            id: 'NFTASSETS_MAKE_ORDER',
           })}
         </Button>
       </Form>

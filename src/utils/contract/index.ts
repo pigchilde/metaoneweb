@@ -33,7 +33,7 @@ export const initWalletApprove = async () => {
     return false;
   }
   try {
-    await (<any>window).ethereum.enable();
+    await (<any>window).ethereum.request({ method: 'eth_requestAccounts' });
     return true;
   } catch (err) {
     message.error((err as Error).message);

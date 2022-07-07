@@ -1,8 +1,10 @@
+import { useIntl } from 'umi';
 import { ObjectT } from '../../typing';
 import styles from './index.scss';
 
 const NFTInfo = (props: ObjectT) => {
   const { data = {} } = props;
+  const intl = useIntl();
 
   const nftAsset: ObjectT = data.asset;
   const nftAttributes: ObjectT[] = data.assetAttributes;
@@ -10,8 +12,8 @@ const NFTInfo = (props: ObjectT) => {
   return (
     <div>
       <div className={styles['info']}>
-        <h2 className={styles['name']}>{nftAsset.name}</h2>
-        <span className={styles['hash']}>#{nftAsset.nftTokenId}</span>
+        <h2 className={styles['name']}>{nftAsset?.name}</h2>
+        <span className={styles['hash']}>#{nftAsset?.nftTokenId}</span>
       </div>
       <div className={styles['attr-box']}>
         {/* <p className={styles['attr-tit']}>Attributes</p> */}

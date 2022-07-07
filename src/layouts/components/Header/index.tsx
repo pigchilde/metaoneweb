@@ -43,14 +43,15 @@ const Header = (props: objectT) => {
   /**
    * 处理账号变更
    */
-  const handleAccountsChanged = () => {
+  const handleAccountsChanged = async () => {
     const ethereum: any = window.ethereum;
-    const account = ethereum.selectedAddress;
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const account = accounts[0];
     let contract = null;
     if (account) {
       contract = initContract(account);
     }
-    console.log(account, contract);
+    console.log(contract);
     dispatch({
       type: 'common/setData',
       payload: {

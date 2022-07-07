@@ -20,8 +20,8 @@ const NFTDetail = (props: ObjectT) => {
   } = props;
   const [radioValue, setRadioValue] = useState<TabType>(TabType.order);
   const [nftDetail, setNFTDetail] = useState<any>({});
-  const nftAsset: ObjectT = nftDetail.asset;
-  const nftAttributes: ObjectT[] = nftDetail.assetAttributes;
+  const nftAsset: ObjectT = nftDetail?.asset;
+  const nftAttributes: ObjectT[] = nftDetail?.assetAttributes;
   const intl = useIntl();
 
   /**

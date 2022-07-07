@@ -30,6 +30,10 @@ const NFTAssets = (props: ObjectT) => {
    * 获取nft列表
    */
   const getMyNFTList = () => {
+    if (!account) {
+      setMyNFTList({});
+      return;
+    }
     dispatch({
       type: 'nftAssets/getNFTList',
       payload: {
@@ -85,7 +89,9 @@ const NFTAssets = (props: ObjectT) => {
   return (
     <div className={styles['nft-wrap']}>
       <header className={styles['header-wrap']}>
-        <p className={styles['back']}>NFT ASSETS</p>
+        <p className={styles['back']}>
+          {intl.formatMessage({ id: 'NFTASSETS_TITLE' })}
+        </p>
         <div className={styles['seleted-wrap']}>
           <Select
             suffixIcon={<CaretDownOutlined />}
@@ -119,7 +125,9 @@ const NFTAssets = (props: ObjectT) => {
         <li className={styles['item']}>
           <i className={`${ico['ico']} ${ico['ico-worth']}`}></i>
           <div className={styles['text']}>
-            <div className={styles['name']}>My NFTs Worth</div>
+            <div className={styles['name']}>
+              {intl.formatMessage({ id: 'NFTASSETS_MY_NFTS_WORTH' })}
+            </div>
             <b className={styles['num']}>
               1085.208 <i>USDT</i>
             </b>
@@ -128,37 +136,57 @@ const NFTAssets = (props: ObjectT) => {
         <li className={styles['item']}>
           <i className={`${ico['ico']} ${ico['ico-myNTFS']}`}></i>
           <div className={styles['text']}>
-            <div className={styles['name']}>My NFTs</div>
+            <div className={styles['name']}>
+              {intl.formatMessage({ id: 'NFTASSETS_MY_NFTS' })}
+            </div>
             <b className={styles['num']}>42</b>
           </div>
         </li>
         <li className={styles['item']}>
           <i className={`${ico['ico']} ${ico['ico-leassingNTFS']}`}></i>
           <div className={styles['text']}>
-            <div className={styles['name']}>My Leassing NFTs </div>
+            <div className={styles['name']}>
+              {intl.formatMessage({ id: 'NFTASSETS_MY_LEASSING_NFTS' })}
+            </div>
             <b className={styles['num']}>32</b>
           </div>
         </li>
         <li className={styles['item']}>
           <i className={`${ico['ico']} ${ico['ico-wallets']}`}></i>
           <div className={styles['text']}>
-            <div className={styles['name']}>My Wallets</div>
+            <div className={styles['name']}>
+              {intl.formatMessage({ id: 'NFTASSETS_MY_WALLETS' })}
+            </div>
             <div className={styles['line']}>
               <b className={styles['num']}>3</b>
-              <Button type="primary">ALL</Button>
+              <Button type="primary">
+                {intl.formatMessage({ id: 'NFTASSETS_ADD_WALLET' })}
+              </Button>
             </div>
           </div>
         </li>
       </ul>
       <section className={styles['wallet-wrap']}>
         <header className={styles['wallet-head']}>
-          <div className={styles['text']}>Wallet 1 (0x1f2a....)</div>
-          <Button>Connected</Button>
+          <div className={styles['text']}>
+            {intl.formatMessage({ id: 'NFTASSETS_WALLET' })} 1 (0x1f2a....)
+          </div>
+          <Button>
+            {intl.formatMessage({ id: 'NFTASSETS_WALLET_CONNECTED' })}
+          </Button>
         </header>
         <div className={styles['lists-wrap']}>
-          <p>My NFTs (Totle:{myNFTList?.count} Worth:680)</p>
+          <p>
+            {intl.formatMessage({ id: 'NFTASSETS_MY_NFTS' })} (
+            {intl.formatMessage({ id: 'NFTASSETS_TOTAL' })}:{myNFTList?.count}{' '}
+            {intl.formatMessage({ id: 'NFTASSETS_WORTH' })}:680)
+          </p>
           <WalletList datas={myNFTList?.data} listIndex={1} />
-          <p>My Leasiing NFTs (Totle:{myRentNFT.length}) </p>
+          <p>
+            {intl.formatMessage({ id: 'NFTASSETS_MY_LEASSING_NFTS' })} (
+            {intl.formatMessage({ id: 'NFTASSETS_TOTAL' })}:{myRentNFT.length}{' '}
+            {intl.formatMessage({ id: 'NFTASSETS_WORTH' })}:680){' '}
+          </p>
           <WalletList datas={tmpList2} listIndex={2} />
         </div>
       </section>

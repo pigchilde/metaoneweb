@@ -16,8 +16,12 @@ const OrderDetail = (props: ObjectT) => {
   return (
     <div className={styles['tabs-main']}>
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Rental</span>
-        <span className={styles['item2']}>{orderInfo.price} USDT/DAY</span>
+        <span className={styles['item1']}>
+          {intl.formatMessage({ id: 'NFTASSETS_RENTAL' })}
+        </span>
+        <span className={styles['item2']}>
+          {orderInfo.price} USDT/{intl.formatMessage({ id: 'NFTASSETS_DAY' })}
+        </span>
       </p>
       {/* {mode === 'share' ? (
         <p className={styles['tabs-item']}>
@@ -28,28 +32,38 @@ const OrderDetail = (props: ObjectT) => {
         </p>
       ) : null} */}
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Least lease term</span>
+        <span className={styles['item1']}>
+          {intl.formatMessage({ id: 'NFTASSETS_LEAST_LEASE_TERM' })}
+        </span>
         <span className={styles['item2']}>
-          {orderInfo.minimumLeaseTime} DAY
+          {orderInfo.minimumLeaseTime}{' '}
+          {intl.formatMessage({ id: 'NFTASSETS_DAY' })}
         </span>
       </p>
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Longest lease term</span>
+        <span className={styles['item1']}>
+          {intl.formatMessage({ id: 'NFTASSETS_LONGEST_LEASE_TERM' })}
+        </span>
         <span className={styles['item2']}>
-          {orderInfo.maximumLeaseTime} DAY
+          {orderInfo.maximumLeaseTime}{' '}
+          {intl.formatMessage({ id: 'NFTASSETS_DAY' })}
         </span>
       </p>
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Target leaser</span>
+        <span className={styles['item1']}>
+          {intl.formatMessage({ id: 'NFTASSETS_TARGET_LEASER' })}
+        </span>
         <span className={styles['item2']}>{orderInfo.targetLeaser}</span>
       </p>
       <p className={styles['tabs-item']}>
-        <span className={styles['item1']}>Renewable</span>
+        <span className={styles['item1']}>
+          {intl.formatMessage({ id: 'NFTASSETS_RENEWABLE' })}
+        </span>
         <span className={styles['item2']}>{orderInfo.renewable}</span>
       </p>
       {data.rentInfo ? (
         <Button className={`${styles['btn']} ${styles['default-btn']}`}>
-          End Date:{' '}
+          {intl.formatMessage({ id: 'NFTASSETS_END_DATE' })}:{' '}
           {moment(data.rentInfo.rentTime).format('YYYY/MM/DD HH:mm:ss')}
         </Button>
       ) : (
@@ -58,7 +72,7 @@ const OrderDetail = (props: ObjectT) => {
           className={`${styles['btn']} ${styles['cancel-btn']}`}
         >
           {intl.formatMessage({
-            id: 'PERSONAL_GUILD_BTN',
+            id: 'NFTASSETS_CANCEL',
           })}
         </Button>
       )}
