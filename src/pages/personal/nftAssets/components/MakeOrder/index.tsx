@@ -16,13 +16,16 @@ const MakeOrder = (props: ObjectT) => {
     common: { contract, account },
   } = props;
   const params: any = useParams();
+  const history: ObjectT = useHistory();
   const [tkType, setTkType] = useState<NFTTokenType>(0);
   const [loading, setLoading] = useState(false);
+  const [lendItem, setLendItem] = useState<null | ObjectT>();
   const intl = useIntl();
   const erc1155Methods = contract?.erc1155.methods;
   const erc721Methods = contract?.erc721.methods;
   const rentMethods = contract?.rent.methods;
   const tokenId = 10;
+  const { op } = history.location.query;
 
   /**
    * 合约发布前提交订单数据
@@ -98,16 +101,33 @@ const MakeOrder = (props: ObjectT) => {
     }
   };
 
-  // const getMyDepositsList = async () => {
-  //   const result = await rentMethods?.getMyDepositsList().call();
-  //   console.log(result);
-  // }
+  /**
+   * 获取当前的nft
+   */
+  const getCurrentLendItem = async () => {
+    const list: ObjectT[] = await rentMethods?.getMyDepositsList().call();
+    let currLendItem = null;
+    list.find((item, index) => {
+      if (
+        item.tokenID == tokenId &&
+        item.NFTaddr == contractConfig.erc721.address
+      ) {
+        currLendItem = {
+          ...item,
+          index,
+        };
+        return item;
+      }
+    });
+    setLendItem(currLendItem);
+    console.log(currLendItem);
+  };
 
-  // useEffect(() => {
-  //   if (contract) {
-  //     getMyDepositsList();
-  //   }
-  // }, [contract])
+  useEffect(() => {
+    if (contract) {
+      getCurrentLendItem();
+    }
+  }, [contract]);
 
   /**
    * 交易授权
@@ -162,7 +182,7 @@ const MakeOrder = (props: ObjectT) => {
           params.tkType,
           params.nftAddr,
           params.tokenId,
-          params.renewable,
+          !!params.renewable,
           params.coinIndex,
           params.minimumLeaseTime,
           params.maximumLeaseTime,
@@ -182,27 +202,80 @@ const MakeOrder = (props: ObjectT) => {
     }
   };
 
+  /**
+   * 修改订单
+   * @param params
+   */
+  const resetDeposit = async (params: ObjectT) => {
+    setLoading(true);
+    try {
+      const resetResult = await rentMethods
+        .resetDeposit(
+          lendItem?.index,
+          params.minimumLeaseTime,
+          params.maximumLeaseTime,
+          params.price,
+          params.gameBonus,
+        )
+        .send({
+          from: account,
+        });
+      message.success('reset order success');
+      setLoading(false);
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+    }
+  };
+
+  /**
+   * 修改续租状态
+   * @param params
+   */
+  const resetRenewableStatus = async (params: ObjectT) => {
+    setLoading(true);
+    try {
+      const resetResult = await rentMethods
+        .renewableStatus(lendItem?.index, params.renewable)
+        .send({
+          from: account,
+        });
+      message.success('reset renewable status success');
+      setLoading(false);
+      console.log(resetResult);
+    } catch (err) {
+      message.error((err as Error).message);
+      setLoading(false);
+    }
+  };
+
   // 验证成功后提交
   const onFinish = async (values: any) => {
-    const { price } = values;
+    const { price, renewable } = values;
     const params = {
       ...values,
       tkType,
       nftAddr: contractConfig[NFTTokenType[tkType].toLowerCase()].address,
       tokenId,
       coinIndex: 0,
+      renewable: !!renewable,
       price: bigInt(`${price}e18`).toString(),
       gameBonus: 0,
     };
+    if (op === 'modify') {
+      // const result1 = await resetDeposit(params);
+      // const result2 = await resetRenewableStatus(params);
+      return;
+    }
     const leasePublishResult = await leasePublish(values);
     if (!leasePublishResult) {
       return;
     }
-    // const result = await approve();
-    // if (!result) {
-    //   // 授权失败
-    //   return false;
-    // }
+    const result = await approve();
+    if (!result) {
+      // 授权失败
+      return false;
+    }
     const depositResult = await deposit(params);
   };
 

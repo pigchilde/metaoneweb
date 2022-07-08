@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import OrderDetail from '../OrderDetail';
 import MakeOrder from '../MakeOrder';
 import { ModeType, ObjectT } from '../../typing';
-import { initContract, initWalletApprove } from '@/utils/contract';
+import contractConfig from '@/utils/contract/config';
 const { TabPane } = Tabs;
 
 const OrderInfo = (props: ObjectT) => {
@@ -18,6 +18,8 @@ const OrderInfo = (props: ObjectT) => {
   const intl = useIntl();
   const [tabKey, setTabKey] = useState(ModeType.lease);
   const [loading, setLoading] = useState(false);
+  const [withdrawLoading, setWithdrawLoading] = useState(false);
+  const [lendItem, setLendItem] = useState<null | ObjectT>();
   const {
     location: { query },
   } = history;
@@ -25,6 +27,7 @@ const OrderInfo = (props: ObjectT) => {
   const erc721Methods = contract?.erc721.methods;
   const rentMethods = contract?.rent.methods;
   const targetLeaser = 1;
+  const tokenId = 10;
 
   // const tabChange = (activeKey: string) => {
   //   setTabKey(parseInt(activeKey));
@@ -44,6 +47,53 @@ const OrderInfo = (props: ObjectT) => {
       message.success('mint success');
     } catch (err) {
       setLoading(false);
+      message.error((err as Error).message);
+    }
+  };
+
+  /**
+   * 获取当前的nft
+   */
+  const getCurrentLendItem = async () => {
+    const list: ObjectT[] = await rentMethods?.getMyDepositsList().call();
+    console.log(list);
+    let currLendItem = null;
+    const lendItem = list.find((item, index) => {
+      if (
+        item.tokenID == tokenId &&
+        item.NFTaddr == contractConfig.erc721.address
+      ) {
+        currLendItem = {
+          ...item,
+          index,
+        };
+        return item;
+      }
+    });
+    console.log(lendItem);
+    setLendItem(currLendItem);
+  };
+
+  useEffect(() => {
+    if (contract) {
+      getCurrentLendItem();
+    }
+  }, [contract]);
+
+  /**
+   * 收回nft
+   */
+  const withdrawNFT = async () => {
+    setWithdrawLoading(true);
+    try {
+      await rentMethods.withdraw(lendItem?.index).send({
+        from: account,
+      });
+      setWithdrawLoading(false);
+      message.success('withdraw success');
+      await getCurrentLendItem();
+    } catch (err) {
+      setWithdrawLoading(false);
       message.error((err as Error).message);
     }
   };
@@ -89,8 +139,16 @@ const OrderInfo = (props: ObjectT) => {
             )}`}
           </span>
         ) : null}
-        <Button type="primary" onClick={mintNFT} disabled={loading}>
+        <Button
+          type="primary"
+          onClick={mintNFT}
+          disabled={loading}
+          style={{ margin: '0 10px' }}
+        >
           mint NFT
+        </Button>
+        <Button type="primary" onClick={withdrawNFT} disabled={withdrawLoading}>
+          withdraw NFT
         </Button>
       </p>
       <div

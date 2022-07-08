@@ -45,6 +45,9 @@ const Header = (props: objectT) => {
    */
   const handleAccountsChanged = async (account?: string) => {
     const ethereum: any = window.ethereum;
+    if (!ethereum) {
+      return;
+    }
     if (!account) {
       const accounts = await ethereum.request({ method: 'eth_accounts' });
       account = accounts[0];
@@ -67,11 +70,11 @@ const Header = (props: objectT) => {
     // 监听账户变更
     const ethereum: any = window.ethereum;
     handleAccountsChanged();
-    ethereum.on('accountsChanged', (accounts: string[]) => {
+    ethereum?.on('accountsChanged', (accounts: string[]) => {
       handleAccountsChanged(accounts[0]);
     });
     return () => {
-      ethereum.removeListener('accountsChanged', (accounts: string[]) => {
+      ethereum?.removeListener('accountsChanged', (accounts: string[]) => {
         handleAccountsChanged(accounts[0]);
       });
     };
