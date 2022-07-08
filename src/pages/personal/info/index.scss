@@ -1,0 +1,255 @@
+.back {
+  display: block;
+  padding: 10px 0 0 14px;
+  font-size: 25px;
+  color: #ffffff;
+  vertical-align: top;
+  font-family: 'Azonix';
+}
+
+.main {
+  margin-right: 16px;
+}
+
+.box {
+  width: 100%;
+  padding: 25px 30px;
+  border-radius: 4px;
+  border: solid 2px #006366;
+  margin-top: 10px;
+}
+
+.txt-item {
+  line-height: 30px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #eaffff;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .link {
+    color: $green;
+    // margin-right: 10px;
+  }
+
+  .copy {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 30px;
+    padding: 0 10px;
+    height: 32px;
+    line-height: 32px;
+    background-color: #bb7924;
+    border-radius: 4px;
+    color: $white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #9a5f11;
+    }
+  }
+}
+
+.txt-wallet {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #eaffff;
+
+  .view {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 16px;
+    padding: 0 10px;
+    height: 32px;
+    line-height: 32px;
+    background-color: #bb7924;
+    border-radius: 4px;
+    color: $white;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #9a5f11;
+    }
+  }
+}
+
+.ico-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .ico-item {
+    position: relative;
+    padding-left: 60px;
+    margin-right: 7%;
+    &.cursor {
+      cursor: pointer;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 10px;
+      left: 0;
+      height: 42px;
+      width: 60px;
+      background: url(../../../assets/personal/img/ico1.png) 0 0 no-repeat;
+    }
+
+    .txt {
+      font-size: 18px;
+      color: #eaffff;
+    }
+
+    .txt1 {
+      font-size: 30px;
+      color: $green;
+      > label {
+        color: #fff;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .ico-item2 {
+    // cursor: pointer;
+
+    &::before {
+      background: url(../../../assets/personal/img/ico2.png) 0 0 no-repeat;
+    }
+  }
+
+  .ico-item3 {
+    &::before {
+      background: url(../../../assets/personal/img/ico3.png) 0 0 no-repeat;
+    }
+  }
+
+  .ico-item4 {
+    &::before {
+      background: url(../../../assets/personal/img/ico4.png) 0 0 no-repeat;
+    }
+  }
+}
+
+.chart-box {
+  display: flex;
+  margin-bottom: 8px;
+
+  .box {
+    position: relative;
+
+    .title {
+      top: 20px;
+      position: absolute;
+      font-size: 20px;
+      color: $white;
+    }
+  }
+
+  .box1 {
+    width: 45%;
+    margin-right: 16px;
+  }
+
+  .box2 {
+    padding-top: 60px;
+    width: calc(55% - 10px);
+  }
+
+  .line-select {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 3;
+
+    :global {
+      .ant-select-selector {
+        background-color: transparent;
+        height: 30px;
+        border-radius: 3px;
+        border: solid 1px $green;
+        color: $green;
+
+        &:after {
+          color: $green;
+        }
+      }
+
+      .ant-select-arrow {
+        color: $green;
+      }
+    }
+  }
+}
+
+.list-header {
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+.list-wrap {
+  min-height: 100px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  :global {
+    .ant-btn {
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+  .item {
+    position: relative;
+    width: 500px;
+    height: 160px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+    border: 1px solid $green;
+    color: #fff;
+    margin-right: 20px;
+    display: flex;
+    cursor: pointer;
+
+    .text {
+      color: #fff;
+      padding: 10px;
+      width: calc(100% - 300px);
+      p {
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .name {
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 20px;
+      @include ellipsis();
+    }
+
+    .img {
+      width: 300px;
+      height: 100%;
+      overflow: hidden;
+
+      :global {
+        .ant-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

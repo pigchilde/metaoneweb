@@ -1,0 +1,57 @@
+.back {
+  display: block;
+  padding: 10px 0 0 14px;
+  font-size: 25px;
+  color: #ffffff;
+  vertical-align: top;
+  font-family: 'Azonix';
+}
+.main {
+  padding: 80px 14px;
+  display: flex;
+}
+.img-box {
+  width: 519px;
+  border-radius: 4px;
+  border: solid 3px #006366;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+.radio-btn {
+  :global {
+    .ant-radio-button-wrapper {
+      width: 207px;
+      height: 52px;
+      border-radius: 10px;
+      border: solid 3px $green;
+      font-size: 20px;
+      text-align: center;
+      line-height: 48px;
+      background: transparent;
+      color: $white;
+      &:before {
+        display: none;
+      }
+      &:focus {
+        outline: none;
+        border: none;
+      }
+      &:focus-within {
+        box-shadow: none;
+      }
+    }
+    .ant-radio-button-wrapper-checked {
+      background-color: $green;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+.content-box {
+  margin-left: 16px;
+}

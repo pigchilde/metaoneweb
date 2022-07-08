@@ -1,15 +1,17 @@
 @import '~@/themes/common.scss';
 
 .banner {
-  height: 333px;
+  height: 233px;
   background: url(../../../../assets/news/pic/banner.png) center center
     no-repeat;
   .banner-h2 {
     padding-top: 109px;
     font-size: 55px;
+    font-family: 'Azonix';
+    font-weight: bold;
     line-height: 24px;
     letter-spacing: 0px;
-    color: $white;
+    color: $green;
   }
   .banner-p {
     padding-top: 20px;

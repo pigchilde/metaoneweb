@@ -4,31 +4,26 @@
  */
 
 import { extend } from 'umi-request';
-import { notification } from 'antd';
-import router from 'umi/router';
-import { APIURL, UOMURL } from '@/utils/constants';
+import { notification, message } from 'antd';
+import Cookies from 'js-cookie';
+import { getLocale, history } from 'umi';
+import { getParameterByName } from './utils';
 
 interface objectT {
   [propName: string]: any;
 }
-
 /**
  * 异常处理程序
  */
 const errorHandler = (error: any) => {
   const { response = {}, data } = error;
   const { status } = response;
-  const { message } = data;
   if (status === 401) {
-    notification.error({
-      message: '未登录或登录已过期，请重新登录。',
-    });
-    return;
+    Cookies.remove('token');
+  } else {
+    message.error(data?.message);
   }
-  notification.error({
-    message: `请求错误 ${status}`,
-    description: message,
-  });
+
   throw error;
 };
 
@@ -40,54 +35,67 @@ export const request: any = extend({
   credentials: 'include', // 默认请求是否带上cookie
 });
 
-export const Request = (url: string, params: objectT) => {
-  const newOption = {
-    ...params,
-    headers: {},
-  };
-  return request(url, newOption)
-    .then((res: objectT) => {
-      if (res.code) {
-        return Promise.reject(res);
+request.interceptors.request.use(
+  (url: string, options: objectT) => {
+    return {
+      url,
+      options: {
+        ...options,
+        headers: {
+          ...(options?.headers ?? {}),
+          language: getLocale().toLowerCase(),
+        },
+      },
+    };
+  },
+  { global: false },
+);
+
+/**
+ * 配置request请求时的默认参数
+ */
+export const authRequest: any = extend({
+  errorHandler, // 默认错误处理
+  credentials: 'include', // 默认请求是否带上cookie
+});
+
+authRequest.interceptors.request.use(
+  (url: string, options: objectT) => {
+    const token = Cookies.get('token');
+    if (!token) {
+      const locationSrc = window.location.href;
+      const code = getParameterByName('invitationCode');
+      if (locationSrc.indexOf('personal/joinguild/') > -1) {
+        history.push(`/register?invitationCode=${code}`);
       } else {
-        return Promise.resolve(res);
+        history.push('/login');
       }
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    });
-};
+      return false;
+    }
+    return {
+      url,
+      options: {
+        ...options,
+        headers: {
+          ...(options?.headers ?? {}),
+          Authorization: token,
+          language: getLocale().toLowerCase(),
+        },
+      },
+    };
+  },
+  { global: false },
+);
 
-export const authRequest = (url: string, params: objectT) => {
-  const { xqjy }: objectT = window;
-  const auth = xqjy.xqjyUcManager.getAuthHeader({
-    url: (url.indexOf('/v1.0/') > -1 ? UOMURL : APIURL) + url,
-    method: params.method,
-  });
-
-  const newOption = {
-    ...params,
-    headers: {
-      authorization: auth,
-      vorg: xqjy.OrgName,
-    },
-    credentials: 'same-origin',
-  };
-  //代理build后失效 环境判断
-  const reqUrl =
-    process.env.NODE_ENV === 'production'
-      ? (url.indexOf('/v1.0/') > -1 ? UOMURL : APIURL) + url
-      : url;
-
-  return request(reqUrl, newOption)
-    .then((res: objectT) => {
-      if (res.code) {
-        return Promise.reject(res);
-      } else {
-        return Promise.resolve(res);
-      }
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    });
-};
+authRequest.interceptors.response.use(
+  async (response: objectT, options: objectT) => {
+    const res = await response.json();
+    if (res.code === 401) {
+      // 暂未登录或token已经过期
+      Cookies.remove('token');
+      // message.error(res.msg);
+    }
+    return res;
+  },
+  { global: false },
+);

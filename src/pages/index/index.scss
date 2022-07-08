@@ -7,23 +7,28 @@
 }
 
 .cm-tit {
-  font-size: 50px;
-  color: $white;
+  font-size: 55px;
+  font-family: 'Azonix';
+  font-weight: bold;
+  color: $green;
 }
 
 .banner {
   height: 805px;
   overflow: hidden;
   background-size: cover;
+  background-repeat: no-repeat;
   color: $white;
   .wrapper {
     height: 100%;
     display: flex;
-    align-items:flex-end;
-    justify-content:flex-start;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background-repeat: no-repeat;
+    background-position: right center;
   }
   .info {
-    width: 700px;
+    width: 950px;
   }
   .tit {
     font-size: 55px;
@@ -38,16 +43,20 @@
     margin-bottom: 48px;
     letter-spacing: -1px;
     @include lineRow(8);
+    font-weight: 300;
   }
   .btn-download {
     width: 197px;
     height: 60px;
+    line-height: 56px;
     border-radius: 10px;
     text-align: center;
     font-size: 22px;
     margin-bottom: 45px;
+    padding-top: 0;
+    padding-bottom: 0;
     &:before {
-      content: "";
+      content: '';
       position: static;
       display: inline-block;
       vertical-align: middle;
@@ -62,8 +71,7 @@
 }
 
 .share {
-  height: 119px;
-  // background: $green;
+  margin-bottom: 74px;
 }
 
 .video-swiper {
@@ -72,31 +80,38 @@
   .cm-tit {
     margin: 90px 0 15px;
     line-height: 48px;
+    font-weight: bold;
+    font-size: 50px;
   }
   .desc {
     font-size: 30px;
     line-height: 36px;
+    font-weight: 300;
   }
 }
 
 .news-swiper {
   height: 920px;
   overflow: hidden;
-  background: #0d122c url("~@/assets/index/img/bg-news.jpg") bottom right no-repeat;
+  background: #0d122c url('~@/assets/index/img/bg-news.jpg') bottom right
+    no-repeat;
   margin-bottom: 108px;
   .txt-top {
     font-size: 40px;
+    font-weight: 400;
     line-height: 40px;
     margin: 82px 0 18px;
   }
   .tit {
     font-size: 100px;
+    font-weight: bold;
     line-height: 48px;
     margin-bottom: 26px;
     color: $white;
   }
   .desc {
     font-size: 30px;
+    font-weight: 300;
     line-height: 36px;
     margin-bottom: 33px;
     width: 720px;
@@ -104,46 +119,7 @@
 }
 
 .photo-text {
-  margin-bottom: 339px;
-}
-
-.advisors {
-  margin-bottom: 380px;
-  .list {
-    display: flex;
-    justify-content: center;
-    @for $i from 0 through 6 {
-      &.total-#{$i} {
-        figure {
-          width: percentage(calc(1 / $i));
-        }
-      }
-    }
-  }
-  .cm-tit {
-    margin-bottom: 50px;
-    text-align: center;
-  }
-  figure {
-    width: 16%;
-    text-align: center;
-    margin: 0 27px;
-    max-width: 283px;
-    @include respond-to(md) {
-      margin: 0 14px;
-    }
-  }
-  img {
-    width: 100%;
-    max-height: 283px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 30px;
-  }
-  p {
-    font-size: 24px;
-    line-height: 30px;
-  }
+  margin-bottom: 100px;
 }
 
 .team-swiper {
@@ -156,12 +132,12 @@
 }
 
 .investors {
-  margin-bottom: 403px;
+  margin-bottom: 153px;
   .wrapper {
     max-width: 1308px;
   }
   .cm-tit {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     text-align: center;
   }
   ul {
@@ -171,13 +147,10 @@
     flex-wrap: wrap;
   }
   li {
-    width: 30%;
-    padding: 50px 20px;
+    width: 20%;
+    padding: 10px 20px;
     text-align: center;
-  }
-  a {
-    display: block;
-    width: 100%;
+    overflow: hidden;
   }
   img {
     max-width: 100%;

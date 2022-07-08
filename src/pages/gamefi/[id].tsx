@@ -6,11 +6,9 @@ import { history, useIntl } from 'umi';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
-
 interface objectT {
   [propName: string]: any;
 }
-import tmp1 from '@/assets/gamefi/img/d-1.png';
 const Detail = (props: objectT) => {
   const { location = {}, dispatch, gamefi = {}, match = {} } = props;
   const [loading, setLoading] = useState(true as boolean);
@@ -65,61 +63,39 @@ const Detail = (props: objectT) => {
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      <BannerDetail datas={gameDatas} />
+      {loading ? <Loading /> : <BannerDetail datas={gameDatas} />}
+
       <div className={`wrapper ${styles['article-wrapper']}`}>
         <Tabs>
           <TabPane tab={GAMEFI_DETAIL_TAB1} key="1">
-            <article className={styles.article}>
-              <h2>
-                3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
-                TO CONQUER EARTH ZERO METAVERSE
-              </h2>
-              <p>
-                resources.build vour NFT tanks. and defend your territory
-                aaainst thousands of other rival players. Battle it out in
-                thrilling military conflicts and spectacular locales alongside
-                your allies to conquer the Metaverse. Aunique mix of strategy
-                and action with stunning graphics awaits!
-              </p>
-              <img src={tmp1} />
-            </article>
+            <article
+              className={styles.article}
+              dangerouslySetInnerHTML={{
+                __html: gameDatas?.gameInfo?.aboutGame,
+              }}
+            ></article>
           </TabPane>
           <TabPane tab={GAMEFI_DETAIL_TAB2} key="2">
-            <article className={styles.article}>
-              <h2>
-                3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
-                TO CONQUER EARTH ZERO METAVERSE
-              </h2>
-              <p>
-                resources.build vour NFT tanks. and defend your territory
-                aaainst thousands of other rival players. Battle it out in
-                thrilling military conflicts and spectacular locales alongside
-                your allies to conquer the Metaverse. Aunique mix of strategy
-                and action with stunning graphics awaits!
-              </p>
-            </article>
+            <article
+              className={styles.article}
+              dangerouslySetInnerHTML={{
+                __html: gameDatas?.gameInfo?.gamePlay,
+              }}
+            ></article>
           </TabPane>
           <TabPane tab={GAMEFI_DETAIL_TAB3} key="3">
-            <article className={styles.article}>
-              <p>
-                resources.build vour NFT tanks. and defend your territory
-                aaainst thousands of other rival players. Battle it out in
-                thrilling military conflicts and spectacular locales alongside
-                your allies to conquer the Metaverse. Aunique mix of strategy
-                and action with stunning graphics awaits!
-              </p>
-              <img src={tmp1} />
-            </article>
+            <article
+              className={styles.article}
+              dangerouslySetInnerHTML={{
+                __html: gameDatas?.gameInfo?.howToEarn,
+              }}
+            ></article>
           </TabPane>
           <TabPane tab={GAMEFI_DETAIL_TAB4} key="4">
-            <article className={styles.article}>
-              <h2>
-                3D TURN-BASED STRATEGY GAME.BUILD &COMMAND YOUR FLEET OF TANKS
-                TO CONQUER EARTH ZERO METAVERSE
-              </h2>
-
-              <img src={tmp1} />
-            </article>
+            <article
+              className={styles.article}
+              dangerouslySetInnerHTML={{ __html: gameDatas?.gameInfo?.team }}
+            ></article>
           </TabPane>
         </Tabs>
       </div>

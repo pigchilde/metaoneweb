@@ -41,9 +41,7 @@ const FixedSider = () => {
         className={styles['btn-top']}
         onClick={go2top}
         hidden={!toTopVisible}
-      >
-        {intl.formatMessage({ id: 'COMMON_TO_TOP' })}
-      </div>
+      ></div>
     </div>
   );
 };

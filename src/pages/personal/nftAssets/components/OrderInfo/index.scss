@@ -1,0 +1,91 @@
+
+.lessess-address {
+  margin: 12px 0;
+  font-size: 22px;
+  line-height: 48px;
+  color: $white;
+  span {
+    color: $green;
+  }
+}
+.rounded-rectangle {
+  width: 880px;
+  height: 462px;
+  border-radius: 4px;
+  border: solid 3px #006366;
+  &.form-style {
+    height: 600px;
+  }
+  @include respond-to(lg) {
+    width: 700px;
+  }
+  @include respond-to(md) {
+    width: 600px;
+  }
+}
+.tab-box {
+  :global {
+    .ant-tabs-nav-list {
+      justify-content: left;
+    }
+    .ant-tabs-nav {
+      padding-left: 30px;
+    }
+    .ant-tabs-tab {
+      font-size: 26px;
+      padding: 12px 10px;
+      margin-right: 20px;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active {
+      background: transparent;
+    }
+    .ant-tabs-nav::before {
+      border-bottom: 2px solid #006366;
+    }
+    .ant-tabs-nav .ant-tabs-ink-bar {
+      height: 5px;
+    }
+  }
+}
+.tabs-item {
+  display: flex;
+  font-size: 22px;
+  padding-top: 15px;
+  .item1 {
+    width: 50%;
+    padding-left: 30px;
+    @extend %ellipsis-basic;
+  }
+  .item2 {
+    width: 50%;
+    @extend %ellipsis-basic;
+  }
+}
+.btn {
+  margin: 10px 0 0 30px;
+  width: 427px;
+  height: 55px;
+  border-radius: 10px;
+  font-size: 20px;
+  opacity: 0.9;
+  background: transparent;
+  &:hover {
+    opacity: 1;
+  }
+}
+.default-btn {
+  color: $green;
+  border-color: $green;
+  cursor: default;
+  &:hover {
+    background-color: transparent;
+  }
+}
+.cancel-btn {
+  border: none;
+  background-color: $red;
+  color: $white;
+  &:hover {
+    background-color: $red;
+  }
+}

@@ -1,12 +1,29 @@
 import styles from './index.scss';
 import Banner from './components/Banner';
 import { useIntl } from 'umi';
-import avater from '../../assets/gamers/pic/avater.png';
+// import avater from '../../assets/gamers/pic/avater.png';
 import PhotoText from '@/components/PhotoText';
 import { Tabs } from 'antd';
 import { connect } from 'dva';
 import { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
+import Empty from '@/components/Empty';
+
+import gamer1 from '../../assets/gamers/pic/gamer1.png';
+import gamer2 from '../../assets/gamers/pic/gamer2.png';
+import gamer3 from '../../assets/gamers/pic/gamer3.png';
+import gamer4 from '../../assets/gamers/pic/gamer4.png';
+import gamer5 from '../../assets/gamers/pic/gamer5.png';
+import gamer6 from '../../assets/gamers/pic/gamer6.png';
+import gamer7 from '../../assets/gamers/pic/gamer7.png';
+import gamer8 from '../../assets/gamers/pic/gamer8.png';
+import gamer9 from '../../assets/gamers/pic/gamer9.png';
+import gamer10 from '../../assets/gamers/pic/gamer10.png';
+import gamer11 from '../../assets/gamers/pic/gamer11.png';
+import gamer12 from '../../assets/gamers/pic/gamer12.png';
+import gamer13 from '../../assets/gamers/pic/gamer13.png';
+import gamer14 from '../../assets/gamers/pic/gamer14.png';
+import gamer15 from '../../assets/gamers/pic/gamer15.png';
 
 const { TabPane } = Tabs;
 interface objectT {
@@ -19,6 +36,7 @@ const Gamers = (props: objectT) => {
   const [loading, setLoading] = useState(true as boolean);
   const [bannerData, setBannerData] = useState({} as objectT);
   const [informationList, setInformationList] = useState({} as objectT);
+  const [top3, setTop3] = useState({} as objectT);
 
   useEffect(() => {
     setLoading(true);
@@ -37,6 +55,170 @@ const Gamers = (props: objectT) => {
       setLoading(false);
     });
   }, []);
+
+  const overAllTop3 = [
+    {
+      name: '屠梦者',
+      guild: '创世大爆炸',
+      favGames: 'Zombie World Z',
+      usdt: 1458.7,
+      avater: gamer1,
+    },
+    {
+      name: '安凉',
+      guild: '黑绳地狱',
+      favGames: 'Zombie World Z',
+      usdt: 951.2,
+      avater: gamer2,
+    },
+    {
+      name: '眼中星光',
+      guild: '风信子',
+      favGames: 'Zombie World Z',
+      usdt: 813.9,
+      avater: gamer3,
+    },
+  ];
+
+  const overAllTop4To10 = [
+    {
+      name: '落日西风',
+      guild: '轮回2021',
+      favGames: 'Age of tanks ',
+      usdt: 402.1,
+      avater: gamer4,
+    },
+    {
+      name: '挽安',
+      guild: 'IFGG',
+      favGames: 'Zombie World Z',
+      usdt: 400.6,
+      avater: gamer5,
+    },
+    {
+      name: 'Wendy Lee',
+      guild: 'WSCC',
+      favGames: 'The Killbox',
+      usdt: 381.8,
+      avater: gamer6,
+    },
+    {
+      name: 'MD',
+      guild: 'Zombie World Z',
+      favGames: 'Age of Tanks',
+      usdt: 381.6,
+      avater: gamer7,
+    },
+    {
+      name: 'didi',
+      guild: 'shinluo',
+      favGames: 'Zombie World Z',
+      usdt: 376.9,
+      avater: gamer8,
+    },
+    {
+      name: 'pqnzovmyc1885',
+      guild: '薄荷岛',
+      favGames: 'The Killbox',
+      usdt: 375,
+      avater: gamer9,
+    },
+    {
+      name: 'xdlagppo3995',
+      guild: 'MintD',
+      favGames: 'Age of tanks',
+      usdt: 373.8,
+      avater: gamer10,
+    },
+  ];
+
+  const weekTop3 = [
+    {
+      name: '挽安',
+      guild: 'IFGG',
+      favGames: 'Zombie World Z',
+      usdt: 70.8,
+      avater: gamer5,
+    },
+    {
+      name: '屠梦者',
+      guild: '创世大爆炸',
+      favGames: 'Zombie World Z',
+      usdt: 62.5,
+      avater: gamer1,
+    },
+    {
+      name: '追梦者',
+      guild: '原始部落',
+      favGames: 'Zombie World Z',
+      usdt: 58.06,
+      avater: gamer11,
+    },
+  ];
+
+  const weekTop4To10 = [
+    {
+      name: '眼睛没有故事',
+      guild: '白垩纪',
+      favGames: 'Zombie World Z',
+      usdt: 55.2,
+      avater: gamer12,
+    },
+    {
+      name: '青色发尾',
+      guild: '涅槃公会',
+      favGames: 'Age of tanks',
+      usdt: 55.09,
+      avater: gamer13,
+    },
+    {
+      name: 'fans',
+      guild: '薄荷岛',
+      favGames: 'The Killbox',
+      usdt: 44.92,
+      avater: gamer14,
+    },
+    {
+      name: 'box',
+      guild: 'MintD',
+      favGames: 'Age of tanks',
+      usdt: 25.42,
+      avater: gamer15,
+    },
+    {
+      name: 'Wendy Lee',
+      guild: 'WSCC',
+      favGames: 'The Killbox',
+      usdt: 12.15,
+      avater: gamer6,
+    },
+    {
+      name: 'didi',
+      guild: 'shinluo',
+      favGames: 'Zombie World Z',
+      usdt: 11.26,
+      avater: gamer8,
+    },
+    {
+      name: 'kuku',
+      guild: 'MD',
+      favGames: 'Zombie World Z',
+      usdt: 9.85,
+      avater: gamer7,
+    },
+  ];
+
+  useEffect(() => {
+    setTop3(weekTop3);
+  }, []);
+
+  const onTabChange = (e) => {
+    if (e === '1') {
+      setTop3(weekTop3);
+    } else {
+      setTop3(overAllTop3);
+    }
+  };
   return (
     <>
       {<Banner data={bannerData} />}
@@ -49,141 +231,99 @@ const Gamers = (props: objectT) => {
             })}
           </h3>
           <div className={styles['gamers-list-con']}>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
-              </dt>
-              <dd></dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
-              </dt>
-              <dd></dd>
-            </dl>
-            <dl>
-              <dt>
-                <span className={styles['avatar']}>
-                  <img src={avater} />
-                </span>
-                <span className={styles['name']}>Gamer Name</span>
-                <span className={styles['score']}>7700</span>
-              </dt>
-              <dd></dd>
-            </dl>
+            {loading ? (
+              <Loading></Loading>
+            ) : top3?.length ? (
+              top3.map((item: objectT, index: number) => {
+                const avater = 'gamer' + index;
+                return (
+                  <dl key={index}>
+                    <dt>
+                      <span className={styles['avatar']}>
+                        <img src={item.avater} />
+                      </span>
+                      <span className={styles['name']}>{item.name}</span>
+                      <span className={styles['score']}>
+                        {String(item.usdt).replace(/(\d)(?=(\d{3})+$)/g, '$1,')}
+                        <i>USDT</i>
+                      </span>
+                    </dt>
+                    <dd className={styles['img']}></dd>
+                    <dd className={styles['txt']}>
+                      Guild:{item.guild} <br />
+                      FAV Games:{item.favGames}
+                    </dd>
+                  </dl>
+                );
+              })
+            ) : (
+              <Empty></Empty>
+            )}
             <div className={styles['gamers-list-table']}>
-              {/* <ul className={styles['table-tab']}>
-                <li className={styles['active']}>
-                  {intl.formatMessage({
-                    id: 'GAMERS_List_TAB1',
-                  })}
-                </li>
-                <li>
-                  {intl.formatMessage({
-                    id: 'GAMERS_List_TAB2',
-                  })}
-                </li>
-              </ul>
-               */}
-              <Tabs defaultActiveKey="1">
+              <Tabs defaultActiveKey="1" onChange={onTabChange}>
                 <TabPane tab="Weekly List" key="1">
                   <ul className={styles['table-list']}>
-                    <li>
-                      <span className={styles['num']}>4</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>5</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>6</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>7</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>8</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>9</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
-                    <li>
-                      <span className={styles['num']}>10</span>
-                      <span className={styles['avatar']}>
-                        <img src={avater} />
-                      </span>
-                      <span className={styles['info']}>
-                        Gamer Name
-                        <br />
-                        <i>size:500 from:Area Gametype:RPG、ACT、AVG</i>
-                      </span>
-                      <span className={styles['score']}>7700</span>
-                    </li>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : weekTop4To10?.length ? (
+                      weekTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li key={index}>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={item.avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>Guild:{item.guild} FAV Games:item.favGames</i>
+                            </span>
+                            <span className={styles['score']}>
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
                   </ul>
                 </TabPane>
                 <TabPane tab="Overall List" key="2">
-                  Content of Tab Pane 2
+                  <ul className={styles['table-list']}>
+                    {loading ? (
+                      <Loading></Loading>
+                    ) : overAllTop4To10?.length ? (
+                      overAllTop4To10.map((item: objectT, index: number) => {
+                        return (
+                          <li key={index}>
+                            <span className={styles['num']}>{index + 4}</span>
+                            <span className={styles['avatar']}>
+                              <img src={item.avater} />
+                            </span>
+                            <span className={styles['info']}>
+                              {item.name}
+                              <br />
+                              <i>Guild:{item.guild} FAV Games:item.favGames</i>
+                            </span>
+                            <span className={styles['score']}>
+                              {String(item.usdt).replace(
+                                /(\d)(?=(\d{3})+$)/g,
+                                '$1,',
+                              )}
+                              <i>USDT</i>
+                            </span>
+                          </li>
+                        );
+                      })
+                    ) : (
+                      <Empty></Empty>
+                    )}
+                  </ul>
                 </TabPane>
               </Tabs>
             </div>

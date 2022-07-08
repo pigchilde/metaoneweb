@@ -3,6 +3,7 @@ import { connect, useIntl, useHistory } from 'umi';
 import { Form, Input, Button, message } from 'antd';
 import { encryptedData } from '@/utils/rsaUtils';
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 interface objectT {
   [propName: string]: any;
@@ -13,16 +14,22 @@ const Login = (props: objectT) => {
   const intl = useIntl();
   const history = useHistory();
 
+  useEffect(() => {
+    // 如果没有token清楚已保存的用户信息
+    const token = Cookies.get('token');
+    if (!token) {
+      dispatch({
+        type: 'login/removeUserInfo',
+      });
+    }
+  }, []);
+
   /**
    * 获取登录的用户信息
-   * @param token 登录后得到的token值
    */
-  const getUserInfo = (token: string) => {
+  const getUserInfo = () => {
     dispatch({
       type: 'login/getUserInfo',
-      payload: {
-        token,
-      },
     });
   };
 
@@ -48,16 +55,16 @@ const Login = (props: objectT) => {
       message.success(msg);
       const token = `${data.tokenHead}${data.token}`;
       Cookies.set('token', token, { expires: 30 });
-      getUserInfo(token);
-      history.goBack();
+      getUserInfo();
+      history.push('/personal/info');
     });
   };
   const onFinishFailed = (errorInfo: any) => {};
   return (
     <div className={styles['login-page']}>
       <header className={styles['login-head']}>
-        <h1>Login</h1>
-        <p>WELCOME BACK</p>
+        <h1>{intl.formatMessage({ id: 'LOGIN' })}</h1>
+        <p>{intl.formatMessage({ id: 'LOGIN_WELCOME_TEXT' })}</p>
       </header>
       <Form
         name="basic"
@@ -69,32 +76,46 @@ const Login = (props: objectT) => {
         layout="vertical"
       >
         <Form.Item
-          label="Email"
+          label={intl.formatMessage({ id: 'LOGIN_EMAIL' })}
           name="username"
           rules={[
             {
               required: true,
-              message: 'Please input your Your Email',
+              message: intl.formatMessage({ id: 'LOGIN_EMAIL_TIP1' }),
             },
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: intl.formatMessage({ id: 'LOGIN_EMAIL_TIP2' }),
             },
           ]}
         >
-          <Input placeholder="Your Email" />
+          <Input
+            placeholder={intl.formatMessage({ id: 'LOGIN_EMAIL_PLACEHOLDER' })}
+          />
         </Form.Item>
         <Form.Item
-          label="Password"
+          label={intl.formatMessage({ id: 'LOGIN_PASSWORD' })}
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          className={styles['password-items']}
+          rules={[
+            {
+              required: true,
+              message: intl.formatMessage({ id: 'LOGIN_PASSWORD_TIP' }),
+            },
+          ]}
         >
-          <Input.Password placeholder="Your Password" />
+          <Input.Password
+            placeholder={intl.formatMessage({
+              id: 'LOGIN_PASSWORD_PLACEHOLDER',
+            })}
+          />
         </Form.Item>
         <Form.Item>
-          <a href="/login/password">Forgot password?</a>
+          <a href="/login/password">
+            {intl.formatMessage({ id: 'LOGIN_FORGOT_PASSWORD' })}?
+          </a>
           <a className={styles['resgister']} href="/register">
-            Sign Up
+            {intl.formatMessage({ id: 'LOGIN_SIGN_UP' })}
           </a>
         </Form.Item>
         <Form.Item>
@@ -105,7 +126,7 @@ const Login = (props: objectT) => {
             className={styles['form-submit']}
             disabled={loading.global}
           >
-            Sign In
+            {intl.formatMessage({ id: 'SIGN_IN' })}
           </Button>
         </Form.Item>
       </Form>

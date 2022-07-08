@@ -4,10 +4,20 @@
   font-size: 25px;
   color: #ffffff;
   vertical-align: top;
+  font-family: 'Azonix';
 }
 .setting {
   padding: 32px 24px 20px 0;
-
+  .name {
+    color: #fff;
+    font-size: 27px;
+    @include respond-to(lg) {
+      font-size: 20px;
+    }
+    @include respond-to(md) {
+      font-size: 16px;
+    }
+  }
   .btns {
     display: flex;
   }
@@ -15,19 +25,38 @@
   .setting-con {
     margin-top: 40px;
   }
-
+  .avatar {
+    text-align: center;
+  }
+  .avatar-uploader {
+    display: inline-block;
+  }
   :global {
     .ant-avatar {
       display: block;
       margin: 0 auto;
     }
-
+    .ant-upload.ant-upload-select-picture-card .ant-upload {
+      display: block;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    .anticon-plus {
+      margin-top: 30px;
+    }
     p {
-      margin-top: 15px;
-      font-size: 30px;
-      line-height: 48px;
+      margin-top: 10px;
+      font-size: 20px;
+      line-height: 1.5;
       color: $white;
       text-align: center;
+      @include respond-to(lg) {
+        font-size: 20px;
+      }
+      @include respond-to(md) {
+        font-size: 16px;
+      }
     }
 
     .ant-col-19 {
@@ -36,7 +65,7 @@
       .ant-form-item {
         display: inline-flex;
         width: calc(50% - 46px);
-        margin: 0 23px;
+        margin: 0 23px 35px;
       }
 
       .setting-textarea {
@@ -47,45 +76,75 @@
     .ant-col {
       label {
         color: $white;
-        font-size: 30px;
-        line-height: 48px;
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 7px;
       }
 
       input {
         border-radius: 4px;
         border: solid 2px #006366;
-        height: 59px;
-        line-height: 59px;
+        height: 40px;
+        line-height: 40px;
         color: #a6a6a6;
         font-size: 27px;
         background: none;
-        margin-bottom: 35px;
+        font-size: 16px;
+        // margin-bottom: 35px;
+        // @include respond-to(lg) {
+        //   font-size: 20px;
+        // }
+        @include respond-to(md) {
+          font-size: 14px;
+        }
       }
-
+      .ant-input-disabled {
+        border: solid 2px #333;
+      }
       textarea {
         border-radius: 4px;
         border: solid 2px #006366;
         color: #a6a6a6;
-        font-size: 27px;
+        font-size: 16px;
         background: none;
         margin-bottom: 35px;
+        // @include respond-to(lg) {
+        //   font-size: 20px;
+        // }
+        @include respond-to(md) {
+          font-size: 14px;
+        }
       }
 
       .ant-btn {
-        height: 60px;
+        height: 48px;
         color: $white;
         border-radius: 10px;
-        font-size: 30px;
-        margin-right: 20px;
+        font-size: 20px;
+        margin-right: 18px;
         border-color: #c8354e;
       }
-
+      // @include respond-to(lg) {
+      //   label,
+      //   input,
+      //   .ant-btn,
+      //   textarea {
+      //     font-size: 20px;
+      //   }
+      // }
+      @include respond-to(md) {
+        label,
+        input,
+        .ant-btn,
+        textarea {
+          font-size: 14px;
+        }
+      }
       .ant-btn-default {
         background: transparent;
         color: $white;
-
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 44px;
+        padding-right: 44px;
       }
 
       .ant-btn-primary {
@@ -94,12 +153,48 @@
         background-color: #c8354e;
       }
     }
+    .ant-select .ant-select-selector {
+      background-color: transparent;
+      border: 2px solid #006366;
+      font-size: 16px;
+      padding: 4px 11px 6px;
+      color: $white;
+      // @include respond-to(lg) {
+      //   font-size: 20px;
+      // }
+      @include respond-to(md) {
+        font-size: 14px;
+      }
+    }
+    .ant-select .ant-select-selector {
+      height: 40px;
+      line-height: 40px;
+      .ant-select-selection-item {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+    .ant-select {
+      .anticon {
+        color: #fff;
+        font-size: 16px;
+      }
+      .ant-select-clear {
+        margin-top: -10px;
+        background-color: #020611;
+        height: 24px;
+        width: 24px;
+      }
+      .ant-select-clear .anticon {
+        color: $green;
+      }
+    }
   }
 }
 
 :global {
   .pop-pwd {
-
     .ant-modal {
       padding-bottom: 0;
       border: 1px solid $green;
@@ -113,7 +208,6 @@
       .anticon {
         color: $green;
         font-size: 26px;
-
       }
     }
 
@@ -134,6 +228,13 @@
       color: #a6a6a6;
       font-size: 20px;
       background: none;
+      line-height: 40px;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 14px;
+      }
     }
 
     .ant-input-password .anticon-eye-invisible {
@@ -161,12 +262,23 @@
       text-align: center;
       font-size: 32px;
       line-height: 46px;
-
+      @include respond-to(lg) {
+        font-size: 28px;
+      }
+      @include respond-to(md) {
+        font-size: 24px;
+      }
     }
 
-    .ant-form-item-label>label {
+    .ant-form-item-label > label {
       color: $white;
       font-size: 20px;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 14px;
+      }
     }
 
     .ant-btn {

@@ -62,8 +62,8 @@ $white-game-info: #eaffff;
               margin-top: 5px;
             }
           }
-          .ant-table-tbody > tr > td {
-            /* border: none; */
+          .ant-table-tbody > tr{
+            cursor: pointer;
           }
           .ant-table-tbody > tr > td.ant-table-cell-row-hover {
             background: #bb7824;

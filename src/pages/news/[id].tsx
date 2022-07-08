@@ -5,6 +5,7 @@ import PaginationItem from '@/components/Pagination';
 import Banner from './components/Banner';
 import Tab from './components/Tab';
 import { useEffect, useState } from 'react';
+
 import { connect } from 'dva';
 import moment from 'moment';
 import Loading from '@/components/Loading';
@@ -42,15 +43,22 @@ const Detail = (props: objectT) => {
   return (
     <>
       <Banner />
-      <section className={`${styles['main']} ${styles['wrapper']}`}>
-        <Tab value={query.tab} tabChange={tabChange} type="default" />
-        <article className={styles['article-page']}>
-          <h3>{newDatas.title}</h3>
-          <span className={styles['time']}>
-            {moment(newDatas.createTime).format('LL')}
-          </span>
-          <div dangerouslySetInnerHTML={{ __html: newDatas.content }}></div>
-        </article>
+
+      <section className={`${styles['detail-main']} ${styles['wrapper']}`}>
+        {loading ? (
+          <Loading></Loading>
+        ) : (
+          <>
+            <Tab value={query.tab} tabChange={tabChange} type="default" />
+            <article className={styles['article-page']}>
+              <h3>{newDatas.title}</h3>
+              <span className={styles['time']}>
+                {moment(newDatas.newsTime).format('LL')}
+              </span>
+              <div dangerouslySetInnerHTML={{ __html: newDatas.content }}></div>
+            </article>
+          </>
+        )}
       </section>
     </>
   );

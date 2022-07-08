@@ -63,8 +63,8 @@ hgroup {
 }
 
 html {
-  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, STHeiTi, Arial,
-    sans-serif;
+  font-family: 'Helvetica', 'Microsoft YaHei', 'Helvetica Neue', Helvetica,
+    STHeiTi, Arial, sans-serif;
   -ms-text-size-adjust: auto;
   -webkit-text-size-adjust: auto;
 }
@@ -183,11 +183,19 @@ li {
 .fr {
   float: right;
 }
+@font-face {
+  font-family: 'Azonix';
+  src: url('./assets/font/Azonix-1VB0.otf');
+}
+
+@font-face {
+  font-family: 'Oswald Bold';
+  src: url('./assets/font/OswaldBold.ttf');
+}
 
 /* 简单基础设置 */
 body {
-  font-family: 'Microsoft YaHei', 'SimHei', 'Helvetica Neue', Helvetica,
-    sans-serif, Helvetica, sans-serif;
+  font-family: Helvetica, 'SimHei', sans-serif !important;
   color: #fff;
   background-color: #000;
 }

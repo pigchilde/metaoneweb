@@ -1,5 +1,5 @@
-
 .footer {
+  position: relative;
   height: 128px;
   background: #000;
   padding: 0 68px;
@@ -9,8 +9,15 @@
   align-items: center;
   justify-content: space-between;
   color: $white;
+  min-width: 1200px;
+  z-index: 1;
 }
-
+.footer-fix {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .ft-l,
 .fl-r {
   display: flex;
@@ -21,6 +28,10 @@
   height: 71px;
   display: flex;
   align-items: center;
+  a {
+    display: inline-block;
+    height: 100%;
+  }
   &:after {
     content: '';
     display: block;
@@ -41,8 +52,66 @@
 }
 
 .ft-r {
+  dl {
+    display: flex;
+    align-items: center;
+  }
   dt {
     font-size: 22px;
     color: $white;
+  }
+  .social-media {
+    a {
+      margin-right: 0;
+      margin-left: 45px;
+    }
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1500px) {
+  .footer {
+    padding: 0 40px;
+    height: 84px;
+  }
+  .logo {
+    height: 62px;
+    &:after {
+      height: 50px;
+    }
+  }
+  .ft-r {
+    dt {
+      font-size: 20px;
+    }
+    .social-media {
+      a {
+        margin-left: 25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .footer {
+    padding: 0 30px;
+    height: 84px;
+  }
+  .logo {
+    height: 56px;
+    &:after {
+      height: 45px;
+    }
+  }
+  .ft-r {
+    dt {
+      font-size: 18px;
+    }
+    .social-media {
+      a {
+        margin-left: 25px;
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 }

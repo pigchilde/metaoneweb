@@ -49,9 +49,8 @@ export default {
   GAMEFI_DETAIL_BANNER_Fully: 'Fully Diluted Market Cap',
   GAMEFI_DETAIL_BANNER_Status: 'Game Release Status',
   GAMEFI_DETAIL_BACK: 'BACK',
-  HELP_BANNER_TITLE: 'Help center',
-  HELP_BANNER_DES:
-    'Are you in trouble? We hope we can give you an answer here.',
+  HELP_BANNER_TITLE: 'Help Centre',
+  HELP_BANNER_DES: 'MetaOne Q&A',
 
   INDEX_VIDEO_SWIPER_TITLE: 'MetaOne RAZZEL DAZZEL SHOW',
   INDEX_VIDEO_SWIPER_DESCRIPTION: 'the network for the new generation',
@@ -71,7 +70,6 @@ export default {
   COMMON_BUTTON_INVITE_USER: 'Invite User',
   COMMON_BUTTON_CONNECT_WALLET: 'Connect Wallet',
 
-  LANG_ENGLISH: '英语',
-  LANG_CHINESE_SIMPLIFIED: '中文（简体）',
-  LANG_CHINESE_TRADITIONAL: '中文（繁体）',
+  LANG_EN_US: '英语(美国)',
+  LANG_ZH_CN: '中文（简体）',
 };

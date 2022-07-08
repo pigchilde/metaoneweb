@@ -1,0 +1,107 @@
+$bgColor: #02050e;
+
+.swiper {
+  position: relative;
+  padding: 0 135px;
+  @include respond-to(lg) {
+    width: 97%;
+    margin: 0 auto;
+  }
+  figure {
+    position: relative;
+    width: 394px;
+    @include respond-to(lg) {
+      width: 300px;
+    }
+    @include respond-to(md) {
+      width: 232px;
+    }
+  }
+  .img-wrap {
+    width: 100%;
+    height: 394px;
+    margin: 0 auto 11px;
+    border-radius: 50%;
+    overflow: hidden;
+    @include respond-to(lg) {
+      height: 300px;
+    }
+    @include respond-to(md) {
+      height: 232px;
+    }
+  }
+  img  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hd {
+    position: relative;
+    border-bottom: 1px dashed $white;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    height: 66px;
+    overflow: hidden;
+  }
+  .name {
+    font-size: 30px;
+    color: $white;
+    line-height: 28px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .desc {
+    color: $white;
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 220px;
+    overflow: auto;
+    font-weight: lighter;
+  }
+}
+
+.swiper-ctrl {
+  span {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: $green;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: all 0.5s;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-top: -18px;
+    &:before {
+      content: "";
+      @extend .cm-spr;
+      width: 36px;
+      height: 35px;
+    }
+    &:hover {
+      opacity: 0.98;
+      transform: scale(0.98);
+    }
+    &.btn-prev {
+      left: 0;
+      &:before {
+        background-position: 0 -140px;
+      }
+    }
+    &.btn-next {
+      right: 0;
+      &:before {
+        background-position: 0 -175px;
+      }
+    }
+  }
+}

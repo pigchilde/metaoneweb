@@ -30,7 +30,12 @@ const Tab = (props: objectT) => {
   }, []);
 
   return (
-    <Tabs activeKey={value} onChange={tabChange} className={styles['tab-box']}>
+    <Tabs
+      activeKey={value}
+      onTabClick={tabChange}
+      className={styles['tab-box']}
+      // onTabClick={onTabClick}
+    >
       {tabDatas.map((i: objectT) => {
         return <TabPane tab={i.name} key={i.code}></TabPane>;
       })}

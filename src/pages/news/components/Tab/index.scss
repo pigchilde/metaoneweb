@@ -13,12 +13,18 @@
       // border-top-left-radius: 10px;
       // border-top-right-radius: 10px;
       border-radius: 10px;
-      max-width: 200px;
+      max-width: 250px;
     }
     .ant-tabs-tab-btn {
       width: 100%;
       font-size: 20px;
       @extend %ellipsis-basic;
+      @include respond-to(lg) {
+        font-size: 18px;
+      }
+      @include respond-to(md) {
+        font-size: 16px;
+      }
     }
     .ant-tabs-tab + .ant-tabs-tab {
       margin-left: 19px;

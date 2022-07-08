@@ -25,3 +25,13 @@ export const postCode: objectT = async (params: objectT) => {
     data: params.data,
   });
 };
+export const getCuntry: objectT = async (params: objectT) => {
+  return request(`/center/dic/getDicItem/${params.id}`, {
+    method: 'GET',
+  });
+};
+export const getDic: objectT = async (params: objectT) => {
+  return request(`/center/cdi/getDicList?dicCodes=${params.id}`, {
+    method: 'GET',
+  });
+};

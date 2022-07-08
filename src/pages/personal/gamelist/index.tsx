@@ -1,19 +1,48 @@
 import styles from './index.scss';
 import { useIntl, Link } from 'umi';
-import { useState } from 'react';
+import { connect } from 'dva';
+import { useEffect, useState } from 'react';
 import GuildList from './components/GuildList';
 import GamerList from './components/GamerList';
-const gameList = () => {
+interface objectT {
+  [propName: string]: any;
+}
+const gameList = (props: objectT) => {
   const intl = useIntl();
-  const [role, setRole] = useState('gamer');
+  const {
+    location = {},
+    dispatch,
+    gamefi = {},
+    match = {},
+    login: {
+      userInfo: { roles },
+    },
+  } = props;
+  const [backTitle, setTitle] = useState('');
+  const [role, setRole] = useState('GAMERS');
+  useEffect(() => {
+    if (roles) {
+      setRole(roles[0].code);
+      switch (roles[0].code) {
+        case 'GAMERS':
+          setTitle('MY GAME LIST');
+          break;
+        default:
+          setTitle('LIST OF GAMES');
+          break;
+      }
+    }
+  }, [roles]);
   return (
     <>
-      <Link to="/" className={styles['back']}>
-        {'< '}
-        {role == 'gamer' ? 'MY GAME LIST' : ' LIST OF GAMES'}
-      </Link>
-      {role == 'gamer' ? <GamerList /> : <GuildList />}
+      <div className={styles['back']}>{`${backTitle}`}</div>
+      {role == 'GAMERS' ? <GamerList /> : <GuildList />}
     </>
   );
 };
-export default gameList;
+export default connect(
+  ({ gamefi, login }: { gamefi: objectT; login: objectT }) => ({
+    gamefi,
+    login,
+  }),
+)(gameList);

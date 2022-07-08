@@ -34,10 +34,10 @@ $bgColor: #02050e;
     height: 624px;
     padding: 31px 0 0;
     @include respond-to(lg) {
-      width: 380px;
+      width: 368px;
     }
     @include respond-to(md) {
-      width: 310px;
+      width: 303px;
     }
     i {
       position: absolute;
@@ -91,11 +91,19 @@ $bgColor: #02050e;
     height: 286px;
     background: rgba(37, 37, 37, 0.37);
     padding: 20px 47px 15px 53px;
+    @include respond-to(lg) {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    @include respond-to(md) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
   .hd {
     position: relative;
     border-bottom: 1px dashed $white;
-    padding: 0 40px 14px 0;
+    padding: 0 0 14px 0;
     margin-bottom: 14px;
   }
   .name {
@@ -104,6 +112,8 @@ $bgColor: #02050e;
     margin-bottom: 5px;
     @include ellipsis();
     line-height: 32px;
+    padding-right: 40px;
+    font-weight: bold;
   }
   .position{
     font-size: 20px;
@@ -114,9 +124,11 @@ $bgColor: #02050e;
   .desc {
     color: $white;
     font-size: 16px;
-    @include lineRow(8);
     margin-bottom: 10px;
     line-height: 20px;
+    max-height: 160px;
+    overflow: auto;
+    font-weight: lighter;
   }
   .linkin {
     position: absolute;

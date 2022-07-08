@@ -1,26 +1,32 @@
 import styles from './index.scss';
 import { useIntl, history } from 'umi';
 import { Tabs } from 'antd';
-import { Form, Input, Button, message } from 'antd';
-import { useState } from 'react';
+import { Form, Input, Button, message, Select } from 'antd';
+import { useEffect, useState } from 'react';
 import { connect } from 'dva';
 const { TabPane } = Tabs;
+const { Option } = Select;
 interface objectT {
   [propName: string]: any;
 }
 const Register = (props: objectT) => {
   const { location = {}, dispatch, news = {} } = props;
+  const { query = {} } = location;
   const [form] = Form.useForm();
   const intl = useIntl();
   const [loading, setLoading] = useState(false as boolean);
+  const [regionData, setRegionData] = useState([] as Array<objectT>);
   const [sendEmailTxt, setSendEmailTxt] = useState({
     txt: intl.formatMessage({
       id: 'REGISTER_SEND',
     }),
     disable: false,
   } as objectT);
+
+  //当前tab界面
   const [tabValues, setTabValues] = useState({
     id: 1,
+    code: 'GAMERS',
     name: intl.formatMessage({
       id: 'SIGN_TAB_GAME',
     }),
@@ -28,10 +34,15 @@ const Register = (props: objectT) => {
       id: 'SIGN_TITLE1',
     }),
     bannerClass: 'sign-banner1',
+    tips: intl.formatMessage({
+      id: 'SIGN_TAB_GAME_TIP',
+    }),
   } as objectT);
-  const tabDatas = [
+  //tab数据
+  const [tabDatas, setTabDatas] = useState([
     {
       id: 1,
+      code: 'GAMERS',
       name: intl.formatMessage({
         id: 'SIGN_TAB_GAME',
       }),
@@ -39,9 +50,13 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE1',
       }),
       bannerClass: 'sign-banner1',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP',
+      }),
     },
     {
       id: 2,
+      code: 'GUILD',
       name: intl.formatMessage({
         id: 'SIGN_TAB_GUILD',
       }),
@@ -49,9 +64,13 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE2',
       }),
       bannerClass: 'sign-banner2',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP1',
+      }),
     },
     {
       id: 3,
+      code: 'NFTS_OWNER',
       name: intl.formatMessage({
         id: 'SIGN_TAB_NFT',
       }),
@@ -59,11 +78,24 @@ const Register = (props: objectT) => {
         id: 'SIGN_TITLE3',
       }),
       bannerClass: 'sign-banner3',
+      tips: intl.formatMessage({
+        id: 'SIGN_TAB_GAME_TIP2',
+      }),
     },
-  ];
+  ] as Array<objectT>);
+
+  useEffect(() => {
+    if (query.invitationCode) {
+      form.setFieldsValue({ invitationCode: query.invitationCode });
+    }
+    getCuntry();
+    getTabDatas();
+  }, []);
+  /*tab切换*/
   const tabChange = (e: string) => {
-    const currentDatas = tabDatas.find((i: objectT) => i.id == e);
+    const currentDatas = tabDatas.find((i: objectT) => i.code == e);
     setTabValues(currentDatas ? currentDatas : {});
+    form.resetFields();
   };
   /*提交*/
   const onFinish = (values: any) => {
@@ -81,10 +113,11 @@ const Register = (props: objectT) => {
       const { code: cCode, msg: cMsg } = result;
       if (cCode === 0) {
         //提交数据
+
         dispatch({
           type: 'register/postData',
           payload: {
-            data: { ...values, registerCategory: tabValues.id + '' },
+            data: { ...values, registerCategory: tabValues.code },
           },
         }).then((res: objectT) => {
           const { code, data, msg } = res;
@@ -112,8 +145,40 @@ const Register = (props: objectT) => {
       }
     });
   };
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+  // ;
+  /*获取tab*/
+  const getTabDatas = () => {
+    dispatch({
+      type: 'register/getCuntry',
+      payload: { id: 'ROLE_REGISTER_CATEGORY' },
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        const newArr = tabDatas.map((i: objectT) => {
+          data.map((j: objectT) => {
+            if (i.code === j.code) {
+              i.name = j.name;
+            }
+            return '';
+          });
+          return i;
+        });
+        setTabDatas(newArr);
+      }
+    });
+  };
+
+  /*获取地区*/
+  const getCuntry = () => {
+    dispatch({
+      type: 'register/getCuntry',
+      payload: { id: 'COMMON_COUNTRY' },
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        setRegionData(data);
+      }
+    });
   };
 
   /*获取验证码*/
@@ -126,7 +191,7 @@ const Register = (props: objectT) => {
     dispatch({
       type: 'register/postEmial',
       payload: {
-        data: { code: tabValues.id + '', email: emailData.email },
+        data: { code: tabValues.code, email: emailData.email },
       },
     }).then((res: objectT) => {
       const { code, data, msg } = res;
@@ -171,21 +236,16 @@ const Register = (props: objectT) => {
             className={styles['tab-box']}
           >
             {tabDatas.map((i: objectT) => {
-              return <TabPane tab={i.name} key={i.id}></TabPane>;
+              return <TabPane tab={i.name} key={i.code}></TabPane>;
             })}
           </Tabs>
           <div className={styles['form-box']}>
-            <p className={styles['tip']}>
-              {intl.formatMessage({
-                id: 'SIGN_TAB_GAME_TIP',
-              })}
-            </p>
+            <p className={styles['tip']}>{tabValues.tips}</p>
             <Form
               form={form}
               name="register"
               wrapperCol={{ span: 24 }}
               onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
               scrollToFirstError
             >
               <Form.Item
@@ -197,6 +257,7 @@ const Register = (props: objectT) => {
                     message: intl.formatMessage({
                       id: 'REGISTER_NAME_TIP',
                     }),
+                    whitespace: true,
                   },
                 ]}
               >
@@ -274,6 +335,14 @@ const Register = (props: objectT) => {
                     message: intl.formatMessage({
                       id: 'REGISTER_PASSWORD_TIP',
                     }),
+                    whitespace: true,
+                  },
+                  {
+                    pattern:
+                      /(?=.*([a-zA-Z].*))(?=.*[0-9].*)[a-zA-Z0-9-*/+.~!@#$%^&*()]{7,20}$/,
+                    message: intl.formatMessage({
+                      id: 'REGISTER_PASSWORD_TIP3',
+                    }),
                   },
                 ]}
                 hasFeedback
@@ -318,27 +387,63 @@ const Register = (props: objectT) => {
                   })}
                 />
               </Form.Item>
-              <Form.Item
-                label="invitationCode"
-                name="invitationCode"
-                rules={
-                  [
-                    // {
-                    //   required: true,
-                    //   message: intl.formatMessage({
-                    //     id: 'REGISTER_INVITATION_CODE_TIP',
-                    //   }),
-                    // },
-                  ]
-                }
-              >
-                <Input
-                  placeholder={intl.formatMessage({
-                    id: 'REGISTER_INVITATION_CODE',
-                  })}
-                />
-              </Form.Item>
-
+              {tabValues.code === 'GAMERS' ? (
+                <Form.Item
+                  label="invitationCode"
+                  name="invitationCode"
+                  rules={
+                    [
+                      // {
+                      //   required: true,
+                      //   message: intl.formatMessage({
+                      //     id: 'REGISTER_INVITATION_CODE_TIP',
+                      //   }),
+                      // },
+                    ]
+                  }
+                >
+                  <Input
+                    placeholder={intl.formatMessage({
+                      id: 'REGISTER_INVITATION_CODE',
+                    })}
+                  />
+                </Form.Item>
+              ) : (
+                ''
+              )}
+              {tabValues.code === 'GUILD' ? (
+                <Form.Item
+                  label="country"
+                  name="country"
+                  rules={
+                    [
+                      // {
+                      //   required: true,
+                      //   message: intl.formatMessage({
+                      //     id: 'REGISTER_INVITATION_CODE_TIP',
+                      //   }),
+                      // },
+                    ]
+                  }
+                >
+                  <Select
+                    placeholder={intl.formatMessage({
+                      id: 'REGISTER_REGION',
+                    })}
+                    allowClear
+                  >
+                    {regionData.map((i: objectT) => {
+                      return (
+                        <Option value={i.code} key={i.code}>
+                          {i.name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+              ) : (
+                ''
+              )}
               <Form.Item>
                 <Button
                   type="primary"

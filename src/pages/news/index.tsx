@@ -43,7 +43,7 @@ const News = (props: objectT) => {
     setLoading(true);
 
     if (!tabValue) {
-      setLoading(false);
+      // setLoading(false);
       return;
     }
     dispatch({
@@ -72,7 +72,7 @@ const News = (props: objectT) => {
     <>
       <Banner />
 
-      <section className={`${styles['main']} wrapper`}>
+      <section className={`${styles['main']} wrapper`} id="main">
         <Tab
           tabChange={tabChange}
           value={tabValue}
@@ -92,7 +92,7 @@ const News = (props: objectT) => {
                     <h6>{i.title} </h6>
                     <p className={styles['txt-desc']}>{i.ellipsisContent}</p>
                     <p className={styles['txt-time']}>
-                      {moment(i.createTime).format('LL')}
+                      {moment(i.newsTime).format('LL')}
                     </p>
                   </div>
                 </li>

@@ -57,7 +57,7 @@ const gameInfo = () => {
 
   return (
     <>
-      <Link to="/" className={styles['back']}>
+      <Link to="/personal/info" className={styles['back']}>
         {'< '}
         {intl.formatMessage({
           id: 'PERSONAL_GAMEINFO_BACK',

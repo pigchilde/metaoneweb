@@ -1,0 +1,75 @@
+.r-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 178px;
+  height: 59px;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0;
+  margin-left: 22px;
+  border-width: 3px;
+  border-color: $green !important;
+  background: $green;
+  color: $white !important;
+  background: $green !important;
+  &:hover {
+    opacity: 0.9;
+  }
+  .avatar {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+  }
+  &.dis-connect {
+    border-color: #fff;
+    background-color: #fff;
+    width: 200px;
+    color: #333;
+    border-radius: 50px;
+  }
+  &:global {
+    &.ant-btn-primary {
+      border-width: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1501px) and (max-width: 1680px) {
+  .r-btn {
+    margin-left: 15px;
+    width: 140px;
+    height: 46px;
+    font-size: 17px;
+    &.dis-connect {
+      width: 150px;
+    }
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1500px) {
+  .r-btn {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    border-width: 2px;
+    &.dis-connect {
+      width: 150px;
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .r-btn {
+    margin-left: 10px;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    border-width: 1px;
+    &.dis-connect {
+      width: 150px;
+    }
+  }
+}

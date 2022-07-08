@@ -8,8 +8,10 @@
   margin-bottom: 146px;
   h3 {
     font-size: 50px;
+    font-family: 'Azonix';
     line-height: 60px;
-    color: $white;
+    font-weight: bold;
+    color: $green;
     margin: 110px 0 20px 20px;
   }
   .gamers-list-con {
@@ -18,6 +20,8 @@
     float: left;
     dl {
       padding-top: 233px;
+      width: 180px;
+      overflow: hidden;
       dt {
         span {
           display: block;
@@ -27,6 +31,10 @@
           width: 55px;
           height: 55px;
           margin: 0 auto 13px;
+          img {
+            width: 42px;
+            height: 42px;
+          }
         }
         span.name {
           font-size: 19px;
@@ -36,15 +44,25 @@
           font-size: 26px;
           line-height: 36px;
           margin-bottom: 21px;
+          i {
+            font-size: 14px;
+            margin-left: 10px;
+          }
         }
       }
-      dd {
+      dd.img {
+        margin: 0 auto;
         background: url(../../assets/gamers/img/gamers_sprite.png);
+      }
+      dd.txt {
+        margin-top: 20px;
+        text-align: center;
       }
     }
     dl:nth-child(1) {
       order: 2;
       padding-top: 150px;
+      width: 238px;
       dt {
         span.name {
           font-size: 26px;
@@ -56,7 +74,7 @@
           margin-bottom: 21px;
         }
       }
-      dd {
+      dd.img {
         width: 238px;
         height: 173px;
         background-position: 0 0;
@@ -66,7 +84,7 @@
     dl:nth-child(2) {
       order: 1;
 
-      dd {
+      dd.img {
         width: 149px;
         height: 130px;
         background-position: -265px 0;
@@ -75,7 +93,7 @@
     }
     dl:nth-child(3) {
       order: 3;
-      dd {
+      dd.img {
         width: 113px;
         height: 113px;
         background-position: -458px 0;
@@ -90,6 +108,42 @@
       border: solid 0px #ffffff;
       flex-grow: 1;
       padding: 24px 15px;
+
+      :global {
+        .ant-tabs-top > .ant-tabs-nav::before {
+          border: none;
+        }
+        .ant-tabs-nav-list {
+          height: 52px;
+          .ant-tabs-tab {
+            margin-left: 0;
+          }
+          .ant-tabs-ink-bar {
+            display: none;
+          }
+          .ant-tabs-tab-active {
+            height: 52px;
+            padding: 0;
+            background: none;
+            .ant-tabs-tab-btn {
+              background-color: #00cacb;
+              border-radius: 10px;
+              padding: 0 15px;
+              height: 52px;
+            }
+          }
+          .ant-tabs-tab-btn {
+            padding: 0 15px;
+            height: 52px;
+            border-radius: 10px;
+            border: solid 1px #00cacb;
+            display: inline-block;
+            line-height: 52px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+        }
+      }
 
       .table-tab {
         margin-bottom: 17px;
@@ -116,10 +170,10 @@
           border-radius: 10px;
           border: solid 0px #ffffff;
           margin-bottom: 9px;
-          padding: 0 45px;
+          padding: 0 25px;
           font-size: 20px;
           line-height: 62px;
-
+          min-width: 540px;
           span {
             display: block;
             float: left;
@@ -133,7 +187,7 @@
               width: 42px;
               height: 42px;
             }
-            margin: 0 14px 0 30px;
+            margin: 0 14px 0 20px;
           }
           span.info {
             font-size: 20px;
@@ -146,6 +200,10 @@
           span.score {
             float: right;
             font-size: 20px;
+            i {
+              font-size: 12px;
+              margin-left: 10px;
+            }
           }
         }
       }

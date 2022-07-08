@@ -26,13 +26,13 @@ export default function MetaMaskCard() {
   const name = chainId ? CHAINS[chainId]?.name : undefined;
   // attempt to connect eagerly on mount
   useEffect(() => {
-    // void metaMask.connectEagerly();
+    void metaMask.connectEagerly();
   }, []);
 
   return (
     <>
-      <div>
-        <b>MetaMask</b>
+      {/*  <div style={{ background: '#fff' }}>
+     <b>MetaMask</b>
         <div>
           {error ? (
             <>
@@ -62,7 +62,7 @@ export default function MetaMaskCard() {
         )}
         <Accounts accounts={accounts} provider={provider} ENSNames={ENSNames} />
       </div>
-      <div style={{ marginBottom: '1rem' }} />
+      <div style={{ marginBottom: '1rem' }} /> */}
       <ConnectWithSelect
         connector={metaMask}
         chainId={chainId}

@@ -25,13 +25,11 @@ export default {
       { call, put, select }: initialStateT,
     ) {
       try {
-        // const filter: initialStateT = yield select(
-        //   (state: initialStateT) => state.gamefi.hotFilter,
-        // );
         console.log(payload, 'payload');
         const data: initialStateT = yield call(
           gameFiService.getHotList,
-          'LIKE',
+          // 'LIKE',
+          payload,
         );
         return data;
       } catch (err) {

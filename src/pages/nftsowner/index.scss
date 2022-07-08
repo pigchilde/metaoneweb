@@ -1,0 +1,100 @@
+.main {
+  min-height: 100%;
+}
+
+.sec-news {
+  background: url('~@/assets/nftsowner/img/bg.jpg') #02041d right center
+    no-repeat;
+  background-size: cover;
+  padding-bottom: 63px;
+
+  .sec-tit {
+    font-size: 55px;
+    font-family: 'Azonix';
+    color: $green;
+    font-weight: bold;
+    line-height: 105px;
+    padding-top: 37px;
+  }
+
+  .sec-desc {
+    font-size: 30px;
+    color: $white;
+    margin-bottom: 33px;
+  }
+}
+
+.news-list {
+  display: flex;
+  margin-bottom: 32px;
+  a {
+    width: 23.7%;
+    margin-right: 28px;
+  }
+  figure {
+    width: 100%;
+    &:hover {
+      .tit {
+        color: $green;
+      }
+      img {
+        transform: scale(1.02);
+      }
+    }
+  }
+  .hd {
+    background: #0a0a0a;
+    padding: 20px 34px 20px 30px;
+  }
+  .tit {
+    font-size: 16px;
+    color: #fffaf5;
+    line-height: 20px;
+    margin-bottom: 8px;
+    @include ellipsis();
+  }
+  .desc {
+    font-size: 12px;
+    line-height: 16px;
+    color: #b6b6b6;
+    margin-bottom: 7px;
+    @include lineRow(3);
+  }
+  time {
+    display: block;
+    text-align: right;
+    color: #fffaf5;
+  }
+  .img-wrap {
+    height: 398px;
+    overflow: hidden;
+    @include respond-to(lg) {
+      height: 300px;
+    }
+    @include respond-to(md) {
+      height: 240px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.sec-video-text {
+  section {
+    padding: 200px 0;
+  }
+  &:nth-of-type(2) {
+    section {
+      padding-top: 164px;
+    }
+  }
+  &:nth-of-type(4) {
+    &:after {
+      display: none;
+    }
+  }
+}

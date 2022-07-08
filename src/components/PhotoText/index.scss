@@ -4,12 +4,16 @@
   color: $white;
   h3 {
     font-size: 50px;
-    color: $white;
-    line-height: 1.5;
+    font-family: 'Azonix';
+    color: $green;
+    line-height: 52px;
+    font-weight: bold;
+    margin-bottom: 35px;
   }
   .text {
     font-size: 22px;
-    line-height: 1.8;
+    font-weight: 300;
+    line-height: 36px;
     text-align: left;
   }
   img {

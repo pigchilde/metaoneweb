@@ -29,6 +29,24 @@ export default {
       ]);
       return { banner: banner, list: list };
     },
+    *joinGuild(
+      { payload, callback }: initialStateT,
+      { call, put, all }: initialStateT,
+    ) {
+      // console.log('payload',payload)
+      const data: initialStateT = yield call(guildsService.joinGuild, payload);
+      return data;
+    },
+    *getGuildRoleInfo(
+      { payload, callback }: initialStateT,
+      { call, put, all }: initialStateT,
+    ) {
+      const data: initialStateT = yield call(
+        guildsService.getGuildRoleInfo,
+        payload,
+      );
+      return data;
+    },
     /* *getGamersBanner(
       { payload, callback }: initialStateT,
       { call, put }: initialStateT,

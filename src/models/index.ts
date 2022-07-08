@@ -23,12 +23,14 @@ export default {
       const [
         banner,
         videoList,
-        imgList,
+        newsList,
         informationList,
         adviserList,
         managmentList,
         advisorList,
+        positionDicItem,
       ]: [
+        initialStateT,
         initialStateT,
         initialStateT,
         initialStateT,
@@ -39,41 +41,23 @@ export default {
       ] = yield all([
         call(indexService.getHomeBanner, payload),
         call(indexService.getHomeVideoAutoList, payload),
-        call(indexService.getHomeImgAutoList, payload),
+        call(indexService.getNewsBroadcast, payload),
         call(indexService.getHomeInformationList, payload),
         call(indexService.getInvestmentAdviserList, payload),
         call(indexService.getMetaoneManagmentList, payload),
         call(indexService.getAdvisorList, payload),
+        call(indexService.getDicItem, payload),
       ]);
       return {
-        banner: banner,
-        videoList: videoList,
-        imgList: imgList,
-        informationList: informationList,
-        adviserList: adviserList,
-        managmentList: managmentList,
-        advisorList: advisorList,
+        banner,
+        videoList,
+        newsList,
+        informationList,
+        adviserList,
+        managmentList,
+        advisorList,
+        positionDicItem,
       };
     },
-    /* *getGamersBanner(
-      { payload, callback }: initialStateT,
-      { call, put }: initialStateT,
-    ) {
-      const data: initialStateT = yield call(
-        gamersService.getGamersBanner,
-        payload,
-      );
-      return data;
-    },
-    *getGamersInformationList(
-      { payload, callback }: initialStateT,
-      { call, put }: initialStateT,
-    ) {
-      const data: initialStateT = yield call(
-        gamersService.getGamersInformationList,
-        payload,
-      );
-      return data;
-    }, */
   },
 };

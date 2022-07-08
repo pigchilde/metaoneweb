@@ -2,22 +2,20 @@ import 'swiper/swiper.scss';
 import styles from './index.scss';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Link } from 'umi';
+import moment from 'moment';
 
 const CustomSwiper = (props: any) => {
-  const { datas = [], type = 'image' } = props;
-  const [showPlayBtn, setShowPlayBtn] = useState(false);
+  const { datas = [], type = 'image', moreLink } = props;
   const [showMoreLink, setShowMoreLink] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   /**
    * 处理视频点击
    */
   const handleVideoClick = (swiper: any) => {
-    setShowPlayBtn(false);
-    swiper.slideTo(swiper.clickedIndex, 500, (swiper: any) => {
-      handleVideoCtrl(swiper);
-    });
+    swiper.slideTo(swiper.clickedIndex, 500);
   };
 
   /**
@@ -44,10 +42,21 @@ const CustomSwiper = (props: any) => {
     currVideo.play();
   };
 
+  /**
+   * 处理音量变化
+   */
+  const handleVolumeChange = (e: SyntheticEvent) => {
+    const video = e.target as HTMLVideoElement;
+    setMuted(video.muted);
+  };
+
   return (
     <>
       {datas && datas.length ? (
-        <div className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}>
+        <div
+          className={`${styles['swiper']} ${styles[`swiper-${type}`]}`}
+          id="customSwiper"
+        >
           <Swiper
             modules={[Navigation]}
             slidesPerView={3}
@@ -71,27 +80,26 @@ const CustomSwiper = (props: any) => {
                 key={index}
               >
                 {type === 'image' ? (
-                  <Link to="">
+                  <Link to={`/news/${item.id}?tab=${item.newsCategory}`}>
                     <figure className={styles['slide-item']}>
                       <img src={item.img} alt="" />
                       <div className={styles['info']}>
                         <h4 className={styles['tit']}>{item.title}</h4>
-                        <p className={styles['desc']}>{item.content}</p>
-                        <time>{item.date}</time>
+                        <p className={styles['desc']}>{item.outline}</p>
+                        <time>{moment(item.newsTime).format('LL')}</time>
                       </div>
                     </figure>
                   </Link>
                 ) : (
                   <div className="video-wrap">
-                    <video controls>
+                    <video
+                      controls
+                      muted={muted}
+                      onVolumeChange={handleVolumeChange}
+                    >
                       <source src={item.video} />
                     </video>
-                    <div
-                      className={`btn-play ${showPlayBtn ? 'show' : undefined}`}
-                    >
-                      Start Watching
-                    </div>
-                    <p className={styles['desc']}>{item.video}</p>
+                    <p className={styles['desc']}>{item.title}</p>
                   </div>
                 )}
               </SwiperSlide>
@@ -106,7 +114,7 @@ const CustomSwiper = (props: any) => {
                 }`}
               ></span>
               <Link
-                to=""
+                to={moreLink}
                 className={`${styles['link-more']} ${
                   !showMoreLink ? styles['hide'] : ''
                 }`}

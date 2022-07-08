@@ -2,37 +2,51 @@
 
 .banner {
   margin: 35px 0;
-  height: 731px;
+  height: 810px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
+  background-repeat: no-repeat;
+  background-size: cover;
 
   .wrap_bg {
     padding-left: 20px;
     min-width: 1200px;
     width: 90%;
+    height: 810px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .banner-title {
     h2 {
       font-size: 130px;
+
+      font-weight: bold;
+      font-family: 'Oswald Bold';
       color: #00cacb;
       line-height: 1;
     }
     p {
       font-size: 26px;
+      font-weight: 400;
       line-height: 60px;
       margin-bottom: 20px;
     }
   }
   .banner-con {
+    max-width: 60%;
     h2 {
       font-size: 55px;
+      font-family: 'Azonix';
+      font-weight: bold;
       line-height: 60px;
-      color: $white;
+      color: $green;
     }
-    p {
+    .des {
       font-size: 30px;
+      font-weight: 300;
       line-height: 36px;
       width: 746px;
       margin-top: 18px;

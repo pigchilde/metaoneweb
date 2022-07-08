@@ -1,6 +1,7 @@
 import styles from './index.scss';
 import { useIntl } from 'umi';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import ObsUpload from './components/ObsUpload';
+import ChangePassword from './components/ChangePassword';
 import {
   Form,
   Input,
@@ -11,235 +12,258 @@ import {
   Modal,
   Upload,
   message,
+  Select,
 } from 'antd';
-import { SetStateAction, useState } from 'react';
-import ObsClient from 'esdk-obs-browserjs';
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
+import { connect } from 'dva';
+import { SetStateAction, useEffect, useState } from 'react';
+const { Option } = Select;
+interface objectT {
+  [propName: string]: any;
 }
 
-function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-}
-const setting = () => {
+const Setting = (props: objectT) => {
+  const { dispatch, login = {} } = props;
+  const { userInfo = {} } = login;
+  const { roles = [] } = userInfo;
   const intl = useIntl();
+  const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
-  const [loading, setLoading] = useState(false as boolean);
+  const [regionData, setRegionData] = useState([] as Array<objectT>);
+  const [isSubmit, setSubmit] = useState(false as boolean);
 
   const { TextArea } = Input;
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    if (isSubmit) {
+      message.error(
+        intl.formatMessage({
+          id: 'SETTING_SUBMIT_TIP',
+        }),
+      );
+      return '';
+    }
+    setSubmit(true);
+    dispatch({
+      type:
+        roles.length && roles[0].code === 'GUILD'
+          ? 'setting/putGuildInfo'
+          : 'setting/putInfo',
+      payload: { data: values },
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        message.success(
+          intl.formatMessage({
+            id: 'SETTING_SUCCESS',
+          }),
+        );
+        setTimeout(() => {
+          window.location.href = window.location.href;
+        }, 1000);
+      } else {
+        message.error(res.msg);
+      }
+      setSubmit(false);
+    });
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
   const showModal = () => {
     setIsModalVisible(true);
-  };
-  const handleOk = () => {
-    setIsModalVisible(false);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-  const upload = (file: { name: string }) => {
-    const that = this;
-    const bucketName = 'bucket-metaone'; // 桶名
-    const serverUrl = 'https://obs.ap-southeast-3.myhuaweicloud.com'; // 服务器地址
-    console.log(23234324, file);
-    // 后端生成秘钥，调取接口进行获取
-    var obsClient = new ObsClient({
-      access_key_id: 'UTGV3KMVFNK1OBH57Y06',
-      secret_access_key: '8SNqzncfqhuIftDPGWiAvIqdE5Zrzwf0uW58kuxD',
-      server: serverUrl,
+  /*获取地区*/
+  const getCuntry = () => {
+    dispatch({
+      type: 'register/getCuntry',
+      payload: { id: 'COMMON_COUNTRY' },
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        setRegionData(data);
+      }
     });
-    obsClient.putObject(
-      {
-        Bucket: bucketName, // 桶名
-        Key: 'avatar/' + file.name,
-        SourceFile: file,
-        Metadata: {
-          property: 'property-value',
-        },
-      },
-      function (
-        err: string,
-        result: {
-          CommonMsg: { Status: number; Code: string; Message: string };
-        },
-      ) {
-        if (err) {
-          console.error('Error-->' + err);
-        } else {
-          if (result.CommonMsg.Status < 300) {
-            // 上传成功后，文件地址
-            const fileUrl =
-              'https://' + bucketName + '.' + serverUrl + '/' + file.name;
-          } else {
-            console.log('Code-->' + result.CommonMsg.Code);
-            console.log('Message-->' + result.CommonMsg.Message);
-          }
-        }
-      },
-    );
   };
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-  const handleChange = (info: {
-    file: { status: string; originFileObj: { name: string } };
-  }) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      upload(info.file.originFileObj);
-      getBase64(info.file.originFileObj, (imageUrl: SetStateAction<string>) => {
-        setImageUrl(imageUrl);
-        setLoading(false);
-      });
-    }
-  };
+
+  useEffect(() => {
+    getCuntry();
+    dispatch({
+      type: 'setting/getInfo',
+      payload: {},
+    }).then((res: objectT) => {
+      const { code, data = [] } = res;
+      if (code === 0) {
+        form.setFieldsValue({
+          nickName: data.nickName,
+          gameType: data.gameType,
+          telegramId: data.telegramId,
+          contacts: data.contacts,
+          country: data.country,
+          description: data.description,
+        });
+        // setRegionData(data);
+      }
+    });
+  }, []);
   return (
     <div className={styles['setting']}>
-      <Form
-        name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-        layout="vertical"
-      >
-        <Row className={styles['setting-con']}>
-          <Col span={5}>
-            <Form.Item label="" name="" className="avatar">
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
+      <Row className={styles['setting-con']}>
+        <Col span={5}>
+          <div className={styles['avatar']}>
+            <ObsUpload userInfo={userInfo}></ObsUpload>
 
-              <p>Edit Your Logo</p>
-            </Form.Item>
-          </Col>
-          <Col span={19} className={styles['setting-con-item']}>
-            <Form.Item name="name" label="Guild Name">
-              <Input />
-            </Form.Item>
-            <Form.Item name="name" label="Category">
-              <Input />
-            </Form.Item>
-            <Form.Item name="name" label="Telegram ID">
-              <Input placeholder="Enter Your Tg" />
-            </Form.Item>
-            <Form.Item name="name" label="Contact">
-              <Input placeholder="Enter Your Contact " />
-            </Form.Item>
-            <Form.Item name="name" label="Guild Size">
-              <Input placeholder="Enter Guild Size" />
-            </Form.Item>
-            <Form.Item name="name" label="Country">
-              <Input placeholder="Enter Your Country" />
+            <p>Edit Your Logo</p>
+          </div>
+        </Col>
+        <Col span={19} className={styles['setting-con-item']}>
+          <Form
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            // onFinishFailed={onFinishFailed}
+            autoComplete="off"
+            layout="vertical"
+            form={form}
+          >
+            <Form.Item
+              // name="nickName"
+              label={intl.formatMessage({
+                id: 'SETTING_NICKNAME',
+              })}
+            >
+              <Input
+                placeholder={intl.formatMessage({
+                  id: 'SETTING_NICKNAME_TIPS',
+                })}
+                value={`${userInfo.nickName} (${userInfo.username})`}
+                disabled
+              />
             </Form.Item>
             <Form.Item
-              name="name"
-              label="Guild Size"
-              /* className={styles['setting-textArea']} */
+              name="telegramId"
+              label={intl.formatMessage({
+                id: 'SETTING_TELEGRAM',
+              })}
+            >
+              <Input
+                placeholder={intl.formatMessage({
+                  id: 'SETTING_TELEGRAM_TIPS',
+                })}
+              />
+            </Form.Item>
+            {roles.length && roles[0].code === 'GUILD' ? (
+              <>
+                <Form.Item
+                  name="gameType"
+                  label={intl.formatMessage({
+                    id: 'SETTING_CATEGORY',
+                  })}
+                >
+                  <Select
+                    placeholder={intl.formatMessage({
+                      id: 'SETTING_CATEGORY_TIPS',
+                    })}
+                    allowClear
+                  >
+                    <Option value="RPG" key="RPG">
+                      RPG
+                    </Option>
+                    <Option value="RTS" key="RTS">
+                      RTS
+                    </Option>
+                    <Option value="AVG" key="AVG">
+                      AVG
+                    </Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  name="contacts"
+                  label={intl.formatMessage({
+                    id: 'SETTING_CONTACT',
+                  })}
+                >
+                  <Input
+                    placeholder={intl.formatMessage({
+                      id: 'SETTING_CONTACT_TIPS',
+                    })}
+                  />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({
+                    id: 'SETTING_COUNTRY',
+                  })}
+                  name="country"
+                  rules={[]}
+                >
+                  <Select
+                    placeholder={intl.formatMessage({
+                      id: 'SETTING_COUNTRY_TIPS',
+                    })}
+                    allowClear
+                  >
+                    {regionData.map((i: objectT) => {
+                      return (
+                        <Option value={i.code} key={i.code}>
+                          {i.name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+              </>
+            ) : (
+              ''
+            )}
+            <Form.Item
+              name="description"
+              label={intl.formatMessage({
+                id: 'SETTING_DESCRIPTION',
+              })}
               className="setting-textarea"
             >
-              <TextArea rows={4} placeholder="Enter Your Description" />
+              <TextArea
+                rows={4}
+                placeholder={intl.formatMessage({
+                  id: 'SETTING_DESCRIPTION_TIPS',
+                })}
+              />
             </Form.Item>
             <Form.Item name="name" label="">
               <div className={styles['btns']}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  {intl.formatMessage({
+                    id: 'SETTING_SUBMIT',
+                  })}
                 </Button>
-                <Button onClick={showModal}>Change password</Button>
+                <Button onClick={showModal}>
+                  {intl.formatMessage({
+                    id: 'SETTING_CHANGE_PASSWORD',
+                  })}
+                </Button>
               </div>
             </Form.Item>
-          </Col>
-        </Row>
-      </Form>
+          </Form>
+        </Col>
+      </Row>
       <Modal
         title="Change password"
         wrapClassName="pop-pwd"
         visible={isModalVisible}
-        onOk={handleOk}
         onCancel={handleCancel}
-        okText="Submit"
+        footer={null}
       >
-        <div className={styles.changePop}>
-          <Form
-            name="basic"
-            wrapperCol={{ span: 24 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-            layout="vertical"
-          >
-            <Form.Item
-              label="Email"
-              name="Email"
-              rules={[
-                { required: true, message: 'Please input your Your Email' },
-              ]}
-            >
-              <Input placeholder="Your Email" />
-            </Form.Item>
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: 'Please input your password!' },
-              ]}
-            >
-              <Input.Password placeholder="Your Password" />
-            </Form.Item>
-            <Form.Item
-              label="confirmPassword"
-              name="confirmPassword"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your confirm Password!',
-                },
-              ]}
-            >
-              <Input.Password placeholder="Confirm Password" />
-            </Form.Item>
-          </Form>
-        </div>
+        <ChangePassword closeModal={handleCancel}></ChangePassword>
       </Modal>
     </div>
   );
 };
-export default setting;
+
+export default connect(
+  ({ setting, login }: { setting: objectT; login: objectT }) => ({
+    setting,
+    login,
+  }),
+)(Setting);

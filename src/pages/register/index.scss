@@ -130,17 +130,53 @@
     white-space: nowrap;
   }
   :global {
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      -webkit-text-fill-color: #ededed !important;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+      background-color: transparent;
+      background-image: none;
+      transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+    }
+    input {
+      background-color: transparent;
+    }
     .ant-form-horizontal .ant-form-item-label {
       display: none;
     }
     .ant-input,
-    .ant-input-affix-wrapper {
+    .ant-input-affix-wrapper,
+    .ant-select .ant-select-selector {
       background-color: transparent;
       border: 1px solid $green;
       font-size: 16px;
       padding: 8px 11px;
       color: $white;
       border-radius: 10px;
+    }
+    .ant-select .ant-select-selector {
+      height: 44px;
+      line-height: 44px;
+      .ant-select-selection-item {
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+      }
+    }
+    .ant-select {
+      .anticon {
+        color: #fff;
+        font-size: 16px;
+      }
+      .ant-select-clear {
+        background-color: #020611;
+        height: 24px;
+        width: 24px;
+      }
+      .ant-select-clear .anticon {
+        color: $green;
+      }
     }
     .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
       background-color: transparent;
